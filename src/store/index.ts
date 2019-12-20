@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from "store";
+import { createStore, applyMiddleware, compose } from "redux";
 import ReduxThunk from "redux-thunk";
 import appReducer from "./ducks";
 declare global {
