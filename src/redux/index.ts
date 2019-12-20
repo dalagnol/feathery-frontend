@@ -1,8 +1,12 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import ReduxThunk from 'redux-thunk';
-import appReducer from './ducks';
-
-import { Types } from './ducks/user';
+import { createStore, applyMiddleware, compose } from "redux";
+import ReduxThunk from "redux-thunk";
+import appReducer from "./ducks";
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
+  }
+}
+import { Types } from "./ducks/user";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middlewares = [ReduxThunk];
@@ -14,7 +18,7 @@ const rootReducer = (state, action) =>
 
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(...middlewares)),
+  composeEnhancers(applyMiddleware(...middlewares))
 );
 
 export default store;
