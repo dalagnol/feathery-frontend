@@ -13,7 +13,7 @@ import { Types } from "./ducks/user";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middlewares = [ReduxThunk];
 
-const rootReducer = (state, action: Action) =>
+const rootReducer = (state: any, action: Action) =>
   action.type === Types.LOGOUT
     ? appReducer(undefined, action)
     : appReducer(state, action);
