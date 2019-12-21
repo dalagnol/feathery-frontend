@@ -21,7 +21,7 @@ export default function userReducer(state = initialState, action: Action) {
 }
 
 export const Creator = {
-  logout: () => async dispatch => {
+  logout: () => async (dispatch: Function) => {
     localStorage.clear();
     dispatch({ type: Types.LOGOUT });
   },
