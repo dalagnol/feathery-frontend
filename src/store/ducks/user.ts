@@ -6,7 +6,7 @@ const initialState = {
   token: localStorage.getItem("token"),
   loading: false,
   error: null,
-  data: JSON.parse(localStorage.getItem("user"))
+  data: JSON.parse(localStorage.getItem("user") || "{}")
 };
 
 export default function userReducer(state = initialState, action) {
