@@ -1,4 +1,4 @@
 import Main from "./Main/Main";
-import About from "./About/about";
+import About from "./About/About";
 
-export default { Main, About };
+export { Main, About };
