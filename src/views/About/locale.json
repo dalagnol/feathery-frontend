@@ -1,6 +1,8 @@
 {
-  "aboutUs": {
-    "en": "About Us",
-    "pt": "Sobre Nós"
+  "en": {
+    "aboutus": "About us"
+  },
+  "pt": {
+    "aboutus": "Sobre nós"
   }
 }

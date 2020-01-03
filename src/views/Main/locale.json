@@ -1,11 +1,10 @@
 {
-  "welcome": {
-    "en": "Welcome",
-    "pt": "Bem-Vindo"
+  "en": {
+    "welcome": "Welcome",
+    "aboutus": "About Us"
   },
-
-  "aboutUs": {
-    "en": "About Us",
-    "pt": "Sobre Nós"
+  "pt": {
+    "welcome": "Boas vindas",
+    "aboutus": "Sobre Nós"
   }
 }

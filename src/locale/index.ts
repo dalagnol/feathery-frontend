@@ -26,6 +26,10 @@ class LanguageEngine {
     this.Language = lang;
     localStorage.setItem("language", lang);
   }
+
+  public use(dictionary: any) {
+    return dictionary[this.language];
+  }
 }
 
 export default new LanguageEngine();
