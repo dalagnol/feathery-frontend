@@ -1,4 +1,4 @@
-class LanguageEngine {
+export class LanguageEngine {
   private Language: string = "en";
   private Languages: Array<string> = ["en", "pt"];
 

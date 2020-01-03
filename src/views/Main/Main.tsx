@@ -7,16 +7,14 @@ import Locale from "locale";
 const { welcome, aboutus } = Locale.use(Dictionary);
 
 function Main({ history }: any) {
+  const about = () => {
+    history.push("/about");
+  };
+
   return (
     <div>
       <h1>{welcome}</h1>
-      <button
-        onClick={() => {
-          history.push("/about");
-        }}
-      >
-        {aboutus}
-      </button>
+      <button onClick={about}>{aboutus} data={"buttonTestId"} </button>
     </div>
   );
 }
