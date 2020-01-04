@@ -1,3 +1,5 @@
+import { IDictionary } from 'interfaces/Locale';
+
 export class LanguageEngine {
   private Language: string = "en";
   private Languages: Array<string> = ["en", "pt"];
@@ -14,7 +16,7 @@ export class LanguageEngine {
     }
   }
 
-  private getLangFromLS() {
+  private getLangFromLS(): void {
     this.Language = localStorage.getItem("language") || "en";
   }
 
@@ -27,7 +29,7 @@ export class LanguageEngine {
     localStorage.setItem("language", lang);
   }
 
-  public use(dictionary: any) {
+  public use(dictionary: any): any {
     return dictionary[this.language];
   }
 }
