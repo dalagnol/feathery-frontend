@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Theme from "themes";
+import { ITheme } from "interfaces/Theme";
 
-export const Background = styled.div`
+export const Background = styled.div<ITheme>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,17 +14,17 @@ export const Background = styled.div`
   height: 100vh;
   width: 100vw;
 
-  background-color: ${() => Theme.d.primary};
+  background-color: ${({ primary }) => primary};
 `;
 
-export const Title = styled.h1`
-  color: ${() => Theme.d.text};
+export const Title = styled.h1<ITheme>`
+  color: ${({ text }) => text};
 `;
 
-export const Button = styled.button`
-  color: ${() => Theme.d.text};
-  border-color: ${() => Theme.d.blurry};
-  background-color: ${() => Theme.d.primary};
+export const Button = styled.button<ITheme>`
+  color: ${({ text }) => text};
+  border-color: ${({ blurry }) => blurry};
+  background-color: ${({ primary }) => primary};
 
   font-size: 1em;
   border-radius: 10px;
