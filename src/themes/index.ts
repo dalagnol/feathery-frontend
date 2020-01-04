@@ -6,7 +6,17 @@ import Dark from "./Dark";
 
 import moment from "moment";
 
-const Themes: any = { Light, Dark };
+const Themes: any = {
+  Light: Light.Theme,
+  Dark: Dark.Theme,
+};
+
+const Locales: any = {
+  Light: Light.Dictionary,
+  Dark: Dark.Dictionary,
+};
+
+export { Light, Dark };
 
 export default new (class ThemeEngine {
   private Theme: string = "Light";
@@ -30,6 +40,25 @@ export default new (class ThemeEngine {
     return this.Theme;
   }
 
+  public localised(property: string, locale: string = "en") {
+    if (localStorage.getItem("language") && locale === "en") {
+      locale = localStorage.getItem("language")!;
+    }
+
+    return Locales[this.Theme][property];
+  }
+
+  public switch() {
+    const everyTheme = Object.keys(Themes);
+    console.log(this);
+    const currentThemeIndex = everyTheme.indexOf(this.Theme);
+    if (currentThemeIndex === everyTheme.length - 1) {
+      this.Theme = everyTheme[0];
+    } else {
+      this.Theme = everyTheme[currentThemeIndex + 1];
+    }
+  }
+
   public set theme(name: string) {
     if (Object.keys(Themes).includes(name)) {
       this.Theme = name;
@@ -40,5 +69,3 @@ export default new (class ThemeEngine {
     return Themes[this.Theme];
   }
 })();
-
-export { Light, Dark };

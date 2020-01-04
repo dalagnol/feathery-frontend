@@ -11,11 +11,11 @@ import Theme from "themes";
 const { aboutus, main } = Locale.use(Dictionary);
 
 export default withRouter(function About({ history }) {
-  const back = () => history.push("/");
+  const Main = () => history.push("/");
   return (
     <Background {...Theme.d}>
       <Title {...Theme.d}>{aboutus}</Title>
-      <Button {...Theme.d} onClick={back}>
+      <Button {...Theme.d} onClick={Main}>
         {main}
       </Button>
     </Background>

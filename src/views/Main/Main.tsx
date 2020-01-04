@@ -3,23 +3,26 @@ import { withRouter } from "react-router-dom";
 
 import { Background, Title, Button } from "./styles";
 
-import Dictionary from "./locale.json";
 import Locale from "locale";
+import Dictionary from "./locale.json";
 
 import Theme from "themes";
 
-const { welcome, aboutus } = Locale.use(Dictionary);
+const { welcome, aboutus, changetheme } = Locale.use(Dictionary);
 
 function Main({ history }: any) {
-  const about = () => {
+  const About = () => {
     history.push("/about");
   };
 
   return (
     <Background {...Theme.d}>
       <Title {...Theme.d}>{welcome}</Title>
-      <Button {...Theme.d} onClick={about}>
+      <Button {...Theme.d} onClick={About}>
         {aboutus}
+      </Button>
+      <Button {...Theme.d} onClick={() => Theme.switch()}>
+        {changetheme}
       </Button>
     </Background>
   );

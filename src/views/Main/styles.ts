@@ -30,4 +30,5 @@ export const Button = styled.button<ITheme>`
   border-radius: 10px;
 
   padding: 10px 30px;
+  margin: 10px 0px;
 `;
