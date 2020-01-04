@@ -1,3 +1,4 @@
+import { ITheme } from "interfaces/Theme";
 import { createMomentInitialiser as Time } from "./../shared/helpers";
 
 import Light from "./Light";
@@ -5,7 +6,7 @@ import Dark from "./Dark";
 
 import moment from "moment";
 
-const Themes = { Light, Dark };
+const Themes: any = { Light, Dark };
 
 export default new (class ThemeEngine {
   private Theme: string = "Light";
@@ -33,6 +34,10 @@ export default new (class ThemeEngine {
     if (Object.keys(Themes).includes(name)) {
       this.Theme = name;
     }
+  }
+
+  public get d(): ITheme {
+    return Themes[this.Theme];
   }
 })();
 
