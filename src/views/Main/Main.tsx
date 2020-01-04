@@ -6,6 +6,8 @@ import { Background, Title, Button } from "./styles";
 import Dictionary from "./locale.json";
 import Locale from "locale";
 
+import Theme from "themes";
+
 const { welcome, aboutus } = Locale.use(Dictionary);
 
 function Main({ history }: any) {
@@ -14,9 +16,11 @@ function Main({ history }: any) {
   };
 
   return (
-    <Background>
-      <Title>{welcome}</Title>
-      <Button onClick={about}>{aboutus}</Button>
+    <Background {...Theme.d}>
+      <Title {...Theme.d}>{welcome}</Title>
+      <Button {...Theme.d} onClick={about}>
+        {aboutus}
+      </Button>
     </Background>
   );
 }
