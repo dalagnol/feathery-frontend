@@ -1,8 +1,10 @@
 {
   "en": {
-    "aboutus": "About us"
+    "aboutus": "About us",
+    "main": "Main View"
   },
   "pt": {
-    "aboutus": "Sobre nós"
+    "aboutus": "Sobre nós",
+    "main": "Visualização Principal"
   }
 }

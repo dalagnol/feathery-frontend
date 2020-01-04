@@ -14,7 +14,9 @@ function Main({ history }: any) {
   return (
     <div>
       <h1>{welcome}</h1>
-      <button onClick={about}>{aboutus} data={"buttonTestId"} </button>
+      <button onClick={about} data-testid={"buttonTestId"}>
+        {aboutus}
+      </button>
     </div>
   );
 }
