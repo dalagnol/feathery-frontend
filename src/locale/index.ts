@@ -1,4 +1,4 @@
-export class LanguageEngine {
+export default new (class LanguageEngine {
   private Language: string = "en";
   private Languages: Array<string> = ["en", "pt"];
 
@@ -30,6 +30,4 @@ export class LanguageEngine {
   public use(dictionary: any): any {
     return dictionary[this.language];
   }
-}
-
-export default new LanguageEngine();
+})();

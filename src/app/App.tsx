@@ -3,18 +3,18 @@ import { BrowserRouter } from "react-router-dom";
 
 import PublicRoutes from "routes/public";
 
-import moment from "moment";
-import "moment/min/moment-with-locales";
-
-moment.locale("pt");
+import Theme from "themes";
+import Locale from "locale";
 
 declare global {
   interface Window {
-    moment: any;
+    Theme: any;
+    Locale: any;
   }
 }
 
-window.moment = moment;
+window.Theme = Theme;
+window.Locale = Locale;
 
 export default function App() {
   return (
