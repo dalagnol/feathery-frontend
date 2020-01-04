@@ -1,4 +1,4 @@
-import light from "./light";
-import dark from "./dark";
+import Light from "./Light";
+import Dark from "./Dark";
 
-export { light, dark };
+export { Light, Dark };

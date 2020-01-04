@@ -1,6 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
+import { Background, Title, Button } from "./styles";
+
 import Dictionary from "./locale.json";
 import Locale from "locale";
 
@@ -12,12 +14,10 @@ function Main({ history }: any) {
   };
 
   return (
-    <div>
-      <h1>{welcome}</h1>
-      <button onClick={about} data-testid={"buttonTestId"}>
-        {aboutus}
-      </button>
-    </div>
+    <Background>
+      <Title>{welcome}</Title>
+      <Button onClick={about}>{aboutus}</Button>
+    </Background>
   );
 }
 
