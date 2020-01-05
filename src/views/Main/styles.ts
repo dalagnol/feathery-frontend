@@ -16,7 +16,3 @@ export const Background = styled.div<ITheme>`
 
   background-color: ${({ primary }) => primary};
 `;
-
-export const Title = styled.h1<ITheme>`
-  color: ${({ text }) => text};
-`;
