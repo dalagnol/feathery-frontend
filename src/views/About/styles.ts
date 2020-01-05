@@ -17,6 +17,12 @@ export const Background = styled.div<ITheme>`
   background-color: ${({ primary }) => primary};
 `;
 
+export const Paragraph = styled.p<ITheme>`
+  font-size: 0.8em;
+
+  color: ${({ shadowy }) => shadowy};
+`;
+
 export const Title = styled.h1<ITheme>`
   color: ${({ text }) => text};
 `;
