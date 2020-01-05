@@ -1,13 +1,8 @@
 import axios from "axios";
-
-declare const process: any;
-
-const {
-  env: { REACT_APP_API_HOST, REACT_APP_API_PORT },
-} = process;
+import { API_HOST, API_PORT } from "config.json";
 
 const instance = axios.create({
-  baseURL: `${REACT_APP_API_HOST}:${REACT_APP_API_PORT}`,
+  baseURL: `${API_HOST}:${API_PORT}`,
   timeout: 2000,
   headers: {
     "Content-Type": "application/json",
