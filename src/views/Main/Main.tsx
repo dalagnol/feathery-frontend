@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
-import { useAlertOnMountEvents } from "shared/hooks";
+import { useRerender } from "shared/hooks";
 
 import { Background, Title, Button } from "./styles";
 
@@ -16,7 +16,7 @@ function Main({ history }: any) {
     history.push("/about");
   };
 
-  useAlertOnMountEvents();
+  const refresh = useRerender();
 
   return (
     <Background {...Theme.d}>
@@ -24,7 +24,7 @@ function Main({ history }: any) {
       <Button {...Theme.d} onClick={About}>
         {aboutus}
       </Button>
-      <Button {...Theme.d} onClick={() => Theme.switch()}>
+      <Button {...Theme.d} onClick={() => Theme.switch() && refresh()}>
         {changetheme}
       </Button>
     </Background>

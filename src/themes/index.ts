@@ -57,6 +57,7 @@ export default new (class ThemeEngine {
     } else {
       this.Theme = everyTheme[currentThemeIndex + 1];
     }
+    return true;
   }
 
   public set theme(name: string) {
