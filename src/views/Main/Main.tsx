@@ -8,6 +8,7 @@ import Locale from "locale";
 import Dictionary from "./locale.json";
 
 import Theme from "themes";
+import { Logo } from "assets";
 
 const { welcome, aboutus, changethemeto } = Locale.use(Dictionary);
 
@@ -24,6 +25,7 @@ function Main({ history }: any) {
 
   return (
     <Background {...Theme.d}>
+      <img src={Logo[Theme.theme]} />
       <Title {...Theme.d}>{welcome}</Title>
       <Button {...Theme.d} onClick={About}>
         {aboutus}

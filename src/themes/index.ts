@@ -1,28 +1,36 @@
-import { ITheme } from "interfaces/Theme";
+import { Language } from "./../interfaces/Locale";
+import { ITheme, IThemeEnum, ThemeProperty } from "interfaces/Theme";
 import { timeIsBetween } from "./../shared/helpers";
 
 import Light from "./Light";
 import Dark from "./Dark";
 
-const Themes: any = {
+const Themes: IThemeEnum = {
   Light: Light.Theme,
   Dark: Dark.Theme,
 };
 
-const Locales: any = {
+const Locales: IThemeEnum = {
   Light: Light.Dictionary,
   Dark: Dark.Dictionary,
 };
 
+type Name = "Light" | "Dark";
+const Names: Array<Name> = ["Light", "Dark"];
+
 export { Light, Dark };
 
 export default new (class ThemeEngine {
-  private Theme: string = "Light";
+  private Theme: Name = Names[0];
 
   constructor() {
     /** To implement later: theme stored in user's preferences */
     // const user: any = localStorage.getItem("user");
     const LSTheme: string | null = localStorage.getItem("theme");
+
+    if (LSTheme !== "Light" && LSTheme !== "Dark") {
+      return;
+    }
 
     if (LSTheme) {
       this.Theme = LSTheme;
@@ -35,29 +43,32 @@ export default new (class ThemeEngine {
     return this.Theme;
   }
 
-  public next(theme: string = this.Theme) {
-    const everyThemeName = Object.keys(Themes);
-    const currentThemeIndex = everyThemeName.indexOf(theme);
-    const resultingThemeName =
-      currentThemeIndex === everyThemeName.length - 1
-        ? everyThemeName[0]
-        : everyThemeName[currentThemeIndex + 1];
+  public next(theme: Name = this.Theme) {
+    const currentThemeIndex = Names.indexOf(theme);
+    const resultingTheme: Name =
+      currentThemeIndex === Names.length - 1
+        ? Names[0]
+        : Names[currentThemeIndex + 1];
 
     return {
-      localised: (property: string, locale: string = "en"): string =>
-        this.localised(property, locale, resultingThemeName),
-      next: (theme: string = resultingThemeName) => this.next(theme),
-      name: resultingThemeName,
+      localised: (property: ThemeProperty, locale: Language = "en"): string =>
+        this.localised(property, locale, resultingTheme),
+      next: (theme: Name = resultingTheme) => this.next(theme),
+      name: resultingTheme,
     };
   }
 
   public localised(
     property: string,
-    locale: string = "en",
-    theme: string = this.Theme
+    locale: Language = "en",
+    theme: Name = this.Theme
   ) {
-    if (localStorage.getItem("language") && locale === "en") {
-      locale = localStorage.getItem("language")!;
+    const LSLocale: string | null = localStorage.getItem("language");
+
+    if (LSLocale && locale === "en") {
+      if (LSLocale === "en" || LSLocale === "pt") {
+        locale = LSLocale;
+      }
     }
 
     return Locales[theme][locale][property];
@@ -68,7 +79,7 @@ export default new (class ThemeEngine {
     return true;
   }
 
-  public set theme(name: string) {
+  public set theme(name: Name) {
     if (Object.keys(Themes).includes(name)) {
       this.Theme = name;
     }

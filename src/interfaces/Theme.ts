@@ -6,3 +6,10 @@ export interface ITheme {
   shadowy: string;
   blurry: string;
 }
+
+export interface IThemeEnum {
+  Light: any;
+  Dark: any;
+}
+
+export type ThemeProperty = "name";
