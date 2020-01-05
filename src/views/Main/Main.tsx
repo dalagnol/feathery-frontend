@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withRouter } from "react-router-dom";
+import { useAlertOnMountEvents } from "shared/hooks";
 
 import { Background, Title, Button } from "./styles";
 
@@ -14,6 +15,8 @@ function Main({ history }: any) {
   const About = () => {
     history.push("/about");
   };
+
+  useAlertOnMountEvents();
 
   return (
     <Background {...Theme.d}>
