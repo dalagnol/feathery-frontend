@@ -4,8 +4,6 @@ import { timeIsBetween } from "./../shared/helpers";
 import Light from "./Light";
 import Dark from "./Dark";
 
-import moment from "moment";
-
 const Themes: any = {
   Light: Light.Theme,
   Dark: Dark.Theme,

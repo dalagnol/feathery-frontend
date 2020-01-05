@@ -17,10 +17,10 @@ function Main({ history }: any) {
   };
 
   const refresh = useRerender();
+  const changeThemes = () => Theme.switch() && refresh();
   const nextThemeName = Theme.next()
     .localised("name")
     .toLowerCase();
-  const changeThemes = () => Theme.switch() && refresh();
 
   return (
     <Background {...Theme.d}>
