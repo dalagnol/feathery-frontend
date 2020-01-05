@@ -2,13 +2,15 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { useRerender } from "shared/hooks";
 
-import { Background, Image, Title, Button } from "./styles";
+import { Background, Image, Title } from "./styles";
 
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
 import Theme from "themes";
 import { Logo } from "assets";
+
+import { Button } from "components";
 
 const { welcome, aboutus, changethemeto } = Locale.use(Dictionary);
 
@@ -27,10 +29,8 @@ function Main({ history }: any) {
     <Background {...Theme.d}>
       <Image src={Logo[Theme.theme]} />
       <Title {...Theme.d}>{welcome}</Title>
-      <Button {...Theme.d} onClick={About}>
-        {aboutus}
-      </Button>
-      <Button {...Theme.d} onClick={changeThemes}>
+      <Button onClick={About}>{aboutus}</Button>
+      <Button onClick={changeThemes}>
         {changethemeto} {nextThemeName}
       </Button>
     </Background>
