@@ -45,7 +45,7 @@ export default new (class ThemeEngine {
       locale = localStorage.getItem("language")!;
     }
 
-    return Locales[this.Theme][property];
+    return Locales[this.Theme][locale][property];
   }
 
   public switch() {
