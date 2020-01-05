@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_HOST, API_PORT } from "config.json";
 
 const instance = axios.create({
-  baseURL: `${API_HOST}:${API_PORT}`,
+  baseURL: `${API_HOST}:${API_PORT}/api/v1`,
   timeout: 2000,
   headers: {
     "Content-Type": "application/json",
