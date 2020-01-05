@@ -1,22 +1,15 @@
 import { Language } from "./../interfaces/Locale";
-import { ITheme, IThemeEnum, ThemeProperty } from "interfaces/Theme";
+import {
+  ITheme,
+  IThemeEnum,
+  ThemeProperty,
+  ThemeName as Name,
+  ThemeNames as Names,
+} from "interfaces/Theme";
 import { timeIsBetween } from "./../shared/helpers";
 
 import Light from "./Light";
 import Dark from "./Dark";
-
-const Themes: IThemeEnum = {
-  Light: Light.Theme,
-  Dark: Dark.Theme,
-};
-
-const Locales: IThemeEnum = {
-  Light: Light.Dictionary,
-  Dark: Dark.Dictionary,
-};
-
-type Name = "Light" | "Dark";
-const Names: Array<Name> = ["Light", "Dark"];
 
 export { Light, Dark };
 
@@ -89,3 +82,13 @@ export default new (class ThemeEngine {
     return Themes[this.Theme];
   }
 })();
+
+const Themes: IThemeEnum = {
+  Light: Light.Theme,
+  Dark: Dark.Theme,
+};
+
+const Locales: IThemeEnum = {
+  Light: Light.Dictionary,
+  Dark: Dark.Dictionary,
+};
