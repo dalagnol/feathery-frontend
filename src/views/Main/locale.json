@@ -2,11 +2,11 @@
   "en": {
     "welcome": "Welcome",
     "aboutus": "About Us",
-    "changetheme": "Change theme"
+    "changethemeto": "Change theme to"
   },
   "pt": {
     "welcome": "Boas vindas",
     "aboutus": "Sobre Nós",
-    "changetheme": "Mudar tema"
+    "changethemeto": "Mudar tema para"
   }
 }
