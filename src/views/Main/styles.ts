@@ -17,6 +17,11 @@ export const Background = styled.div<ITheme>`
   background-color: ${({ primary }) => primary};
 `;
 
+export const Image = styled.img`
+  height: 100px;
+  width: 100px;
+`;
+
 export const Title = styled.h1<ITheme>`
   color: ${({ text }) => text};
 `;

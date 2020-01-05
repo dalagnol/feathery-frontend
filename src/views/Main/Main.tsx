@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { useRerender } from "shared/hooks";
 
-import { Background, Title, Button } from "./styles";
+import { Background, Image, Title, Button } from "./styles";
 
 import Locale from "locale";
 import Dictionary from "./locale.json";
@@ -25,7 +25,7 @@ function Main({ history }: any) {
 
   return (
     <Background {...Theme.d}>
-      <img src={Logo[Theme.theme]} />
+      <Image src={Logo[Theme.theme]} />
       <Title {...Theme.d}>{welcome}</Title>
       <Button {...Theme.d} onClick={About}>
         {aboutus}
