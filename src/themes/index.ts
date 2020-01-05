@@ -1,5 +1,5 @@
 import { ITheme } from "interfaces/Theme";
-import { createMomentInitialiser as Time } from "./../shared/helpers";
+import { timeIsBetween } from "./../shared/helpers";
 
 import Light from "./Light";
 import Dark from "./Dark";
@@ -29,10 +29,7 @@ export default new (class ThemeEngine {
     if (LSTheme) {
       this.Theme = LSTheme;
     } else {
-      this.Theme =
-        moment().isAfter(Time("07:30")) && moment().isBefore(Time("18:00"))
-          ? "Light"
-          : "Dark";
+      this.Theme = timeIsBetween("07:30", "18:00") ? "Light" : "Dark";
     }
   }
 
@@ -40,23 +37,36 @@ export default new (class ThemeEngine {
     return this.Theme;
   }
 
-  public localised(property: string, locale: string = "en") {
+  public next(theme: string = this.Theme) {
+    const everyThemeName = Object.keys(Themes);
+    const currentThemeIndex = everyThemeName.indexOf(theme);
+    const resultingThemeName =
+      currentThemeIndex === everyThemeName.length - 1
+        ? everyThemeName[0]
+        : everyThemeName[currentThemeIndex + 1];
+
+    return {
+      localised: (property: string, locale: string = "en"): string =>
+        this.localised(property, locale, resultingThemeName),
+      next: (theme: string = resultingThemeName) => this.next(theme),
+      name: resultingThemeName,
+    };
+  }
+
+  public localised(
+    property: string,
+    locale: string = "en",
+    theme: string = this.Theme
+  ) {
     if (localStorage.getItem("language") && locale === "en") {
       locale = localStorage.getItem("language")!;
     }
 
-    return Locales[this.Theme][locale][property];
+    return Locales[theme][locale][property];
   }
 
   public switch() {
-    const everyTheme = Object.keys(Themes);
-    console.log(this);
-    const currentThemeIndex = everyTheme.indexOf(this.Theme);
-    if (currentThemeIndex === everyTheme.length - 1) {
-      this.Theme = everyTheme[0];
-    } else {
-      this.Theme = everyTheme[currentThemeIndex + 1];
-    }
+    this.Theme = this.next().name;
     return true;
   }
 

@@ -17,7 +17,10 @@ function Main({ history }: any) {
   };
 
   const refresh = useRerender();
-  const nextThemeName = Theme.localised("name").toLowerCase();
+  const nextThemeName = Theme.next()
+    .localised("name")
+    .toLowerCase();
+  const changeThemes = () => Theme.switch() && refresh();
 
   return (
     <Background {...Theme.d}>
@@ -25,7 +28,7 @@ function Main({ history }: any) {
       <Button {...Theme.d} onClick={About}>
         {aboutus}
       </Button>
-      <Button {...Theme.d} onClick={() => Theme.switch() && refresh()}>
+      <Button {...Theme.d} onClick={changeThemes}>
         {changethemeto} {nextThemeName}
       </Button>
     </Background>
