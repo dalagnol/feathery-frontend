@@ -5,7 +5,7 @@ import App from "./app/App";
 import Locale from "./locale";
 
 import moment from "moment";
-import "moment/min/moment-with-locales";
+import "moment/min/locales";
 
 moment.locale(Locale.language);
 

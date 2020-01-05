@@ -1,12 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
-
-export function useAlertOnMountEvents() {
-  useEffect(() => {
-    alert("montei");
-
-    return () => alert("desmontei");
-  });
-}
+import { useState, useCallback } from "react";
 
 export function useRerender() {
   const [, setForceRender] = useState(Math.random());

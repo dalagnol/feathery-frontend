@@ -21,7 +21,7 @@ export default new (class ThemeEngine {
 
   constructor() {
     /** To implement later: theme stored in user's preferences */
-    const user: any = localStorage.getItem("user");
+    // const user: any = localStorage.getItem("user");
     const LSTheme: string | null = localStorage.getItem("theme");
 
     if (LSTheme) {
