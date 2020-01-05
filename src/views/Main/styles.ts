@@ -16,24 +16,3 @@ export const Background = styled.div<ITheme>`
 
   background-color: ${({ primary }) => primary};
 `;
-
-export const Image = styled.img`
-  height: 100px;
-  width: 100px;
-`;
-
-export const Title = styled.h1<ITheme>`
-  color: ${({ text }) => text};
-`;
-
-export const Button = styled.button<ITheme>`
-  color: ${({ text }) => text};
-  border-color: ${({ blurry }) => blurry};
-  background-color: ${({ primary }) => primary};
-
-  font-size: 1em;
-  border-radius: 10px;
-
-  padding: 10px 30px;
-  margin: 10px 0px;
-`;
