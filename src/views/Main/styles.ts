@@ -8,6 +8,9 @@ export const ButtonContainer = styled.div<ITheme>`
   justify-content: center;
   align-items: center;
 
+  width: 100vw;
+  height: 100vh;
+
   margin: 20px;
 
   ${iPhone(`

@@ -6,6 +6,7 @@ import { iPhone, iPad, Mac } from "styles/Screens";
 export const Container = styled.div<ITheme>`
   display: flex;
   align-items: center;
+  justify-content: center;
 
   width: 100vw;
 
@@ -13,16 +14,13 @@ export const Container = styled.div<ITheme>`
 
   ${iPhone(`
     flex-direction: column;
-    justify-content: center;
   `)}
 
   ${iPad(`
     flex-direction: column;
-    justify-content: center;
   `)}
 
   ${Mac(`
     flex-direction: row;
-    justify-content: space-evenly;
   `)}
 `;

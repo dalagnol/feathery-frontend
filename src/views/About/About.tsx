@@ -10,7 +10,7 @@ import Theme from "themes";
 
 import Test from "services/TestService";
 
-import { Button, Container, Title } from "components";
+import { Button, Container, Navbar, Title } from "components";
 
 const { aboutus, main } = Locale.use(Dictionary);
 
@@ -21,6 +21,7 @@ export default withRouter(function About({ history }) {
 
   return (
     <Background {...Theme.d}>
+      <Navbar />
       <Container>
         <Title>{aboutus}</Title>
         <Paragraph {...Theme.d}>Service Status: {ping}</Paragraph>
