@@ -10,7 +10,7 @@ import Theme from "themes";
 
 import Test from "services/TestService";
 
-import { Button, Conatiner, Title } from "components";
+import { Button, Container, Title } from "components";
 
 const { aboutus, main } = Locale.use(Dictionary);
 
@@ -21,11 +21,11 @@ export default withRouter(function About({ history }) {
 
   return (
     <Background {...Theme.d}>
-      <Conatiner>
+      <Container>
         <Title>{aboutus}</Title>
         <Paragraph {...Theme.d}>Service Status: {ping}</Paragraph>
         <Button onClick={Main}>{main}</Button>
-      </Conatiner>
+      </Container>
     </Background>
   );
 });

@@ -9,7 +9,7 @@ import Dictionary from "./locale.json";
 
 import Theme from "themes";
 
-import { Button, Conatiner, Logo, Title } from "components";
+import { Button, Container, Logo, Title } from "components";
 
 const { welcome, aboutus, changethemeto } = Locale.use(Dictionary);
 
@@ -26,10 +26,10 @@ function Main({ history }: any) {
 
   return (
     <Background {...Theme.d}>
-      <Conatiner {...Theme.d}>
+      <Container {...Theme.d}>
         <Logo />
         <Title>{welcome}</Title>
-      </Conatiner>
+      </Container>
       <ButtonContainer {...Theme.d}>
         <Button onClick={About}>{aboutus}</Button>
         <Button onClick={changeThemes}>
