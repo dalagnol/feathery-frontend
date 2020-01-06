@@ -1,6 +1,28 @@
 import styled from "styled-components";
 import { ITheme } from "interfaces/Theme";
 
+import { iPhone, iPad, Mac } from "styles/Screens";
+
+export const ButtonContainer = styled.div<ITheme>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 20px;
+
+  ${iPhone(`
+    flex-direction: column;
+  `)}
+
+  ${iPad(`
+    flex-direction: column;
+  `)}
+
+  ${Mac(`
+    flex-direction: row;
+  `)}
+`;
+
 export const Background = styled.div<ITheme>`
   display: flex;
   justify-content: center;
@@ -17,26 +39,6 @@ export const Background = styled.div<ITheme>`
   background-color: ${({ primary }) => primary};
 `;
 
-export const ButtonContainer = styled.div<ITheme>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin: 20px;
-
-  @media (min-width: 80.0625em) {
-    flex-direction: row;
-  }
-
-  @media (min-width: 64.0625em) and (max-width: 80em) {
-    flex-direction: column;
-  }
-
-  @media (max-width: 64em) {
-    flex-direction: column;
-  }
-`;
-
 export const LogoContainer = styled.div<ITheme>`
   display: flex;
   justify-content: center;
@@ -44,15 +46,15 @@ export const LogoContainer = styled.div<ITheme>`
 
   margin: 20px;
 
-  @media (min-width: 80.0625em) {
-    flex-direction: row;
-  }
-
-  @media (min-width: 64.0625em) and (max-width: 80em) {
-    flex-direction: collum;
-  }
-
-  @media (max-width: 64em) {
+  ${iPhone(`
     flex-direction: column;
-  }
+  `)}
+
+  ${iPad(`
+    flex-direction: column;
+  `)}
+
+  ${Mac(`
+    flex-direction: row;
+  `)}
 `;
