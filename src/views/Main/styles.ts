@@ -38,23 +38,3 @@ export const Background = styled.div<ITheme>`
 
   background-color: ${({ primary }) => primary};
 `;
-
-export const LogoContainer = styled.div<ITheme>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin: 20px;
-
-  ${iPhone(`
-    flex-direction: column;
-  `)}
-
-  ${iPad(`
-    flex-direction: column;
-  `)}
-
-  ${Mac(`
-    flex-direction: row;
-  `)}
-`;

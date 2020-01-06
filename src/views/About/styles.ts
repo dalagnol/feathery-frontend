@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { ITheme } from "interfaces/Theme";
 
+import { iPhone, iPad, Mac } from "styles/Screens";
+
 export const Background = styled.div<ITheme>`
   display: flex;
   justify-content: center;
@@ -18,11 +20,18 @@ export const Background = styled.div<ITheme>`
 `;
 
 export const Paragraph = styled.p<ITheme>`
-  font-size: 0.8em;
-
   color: ${({ shadowy }) => shadowy};
-`;
+  margin: 10px;
 
-export const Title = styled.h1<ITheme>`
-  color: ${({ text }) => text};
+  ${iPhone(`
+    font-size: 20px;
+  `)}
+
+  ${iPad(`
+    font-size: 40px;
+  `)}
+
+  ${Mac(`
+    font-size: 40px;
+  `)}
 `;
