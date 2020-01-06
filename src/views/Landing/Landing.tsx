@@ -9,11 +9,11 @@ import Dictionary from "./locale.json";
 
 import Theme from "themes";
 
-import { Button, Container, Logo, Navbar, Title } from "components";
+import { Button, Container, Navbar, Title } from "components";
 
 const { welcome, aboutus, changethemeto } = Locale.use(Dictionary);
 
-function Main({ history }: any) {
+function Landing({ history }: any) {
   const About = () => {
     history.push("/about");
   };
@@ -40,4 +40,4 @@ function Main({ history }: any) {
   );
 }
 
-export default withRouter(Main);
+export default withRouter(Landing);

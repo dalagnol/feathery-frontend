@@ -1,4 +1,4 @@
-import Main from "./Main/Main";
+import Landing from "./Landing/Landing";
 import About from "./About/About";
 
-export { Main, About };
+export { Landing, About };

@@ -1,12 +1,12 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { Main, About } from "views";
+import { Landing, About } from "views";
 
 /**
  * Defines the route for the splash page.
  */
-export const splash = (): string => "/";
+export const landing = (): string => "/";
 
 /**
  * Defines the route for the about page.
@@ -25,11 +25,11 @@ export const signIn = (): string => "/signIn";
 
 export const publicRoutes = () => (
   <Switch>
-    <Route exact path={splash()} render={() => <Main />} />
+    <Route exact path={landing()} render={() => <Landing />} />
     <Route path={about()} render={() => <About />} />
     <Route path={login()} render={() => null} />
     <Route path={signIn()} render={() => null} />
-    <Redirect exact to={splash()} />
+    <Redirect exact to={landing()} />
   </Switch>
 );
 
