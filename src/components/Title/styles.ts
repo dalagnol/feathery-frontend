@@ -7,6 +7,8 @@ export const Title = styled.h1<ITheme>`
   color: ${({ text }) => text};
   margin: 7px;
 
+  font-family: Cookie;
+
   ${iPhone(`
     font-size: 40px;
   `)}
