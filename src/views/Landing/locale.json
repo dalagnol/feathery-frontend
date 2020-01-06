@@ -1,12 +1,14 @@
 {
   "en": {
-    "welcome": "Welcome",
+    "welcome": "Welcome to Feathery",
     "aboutus": "About Us",
-    "changethemeto": "Change theme to"
+    "changethemeto": "Change theme to",
+    "noposts": "No posts"
   },
   "pt": {
-    "welcome": "Boas vindas",
+    "welcome": "Boas vindas ao Feathery",
     "aboutus": "Sobre Nós",
-    "changethemeto": "Mudar tema para"
+    "changethemeto": "Mudar tema para",
+    "noposts": "Nenhuma postagem"
   }
 }

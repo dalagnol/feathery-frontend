@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { useRerender } from "shared/hooks";
 
-import { Background, ButtonContainer } from "./styles";
+import { Background, ButtonContainer, Text } from "./styles";
 
 import Locale from "locale";
 import Dictionary from "./locale.json";
@@ -11,7 +11,7 @@ import Theme from "themes";
 
 import { Button, Container, Navbar, Title } from "components";
 
-const { welcome, aboutus, changethemeto } = Locale.use(Dictionary);
+const { welcome, aboutus, changethemeto, noposts } = Locale.use(Dictionary);
 
 function Landing({ history }: any) {
   const About = () => {
@@ -36,6 +36,7 @@ function Landing({ history }: any) {
           {changethemeto} {nextThemeName}
         </Button>
       </ButtonContainer>
+      <Text {...Theme.d}>{noposts}</Text>
     </Background>
   );
 }

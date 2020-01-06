@@ -5,30 +5,28 @@ import { iPhone, iPad, Mac } from "styles/Screens";
 
 export const ButtonContainer = styled.div<ITheme>`
   display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100vw;
-  height: 100vh;
-
-  margin: 20px;
 
   ${iPhone(`
     flex-direction: column;
+
+    padding: 0 2vw;
   `)}
 
   ${iPad(`
     flex-direction: column;
+
+    padding: 0 5vw;
   `)}
 
   ${Mac(`
     flex-direction: row;
+
+    padding: 0 10vw;
   `)}
 `;
 
 export const Background = styled.div<ITheme>`
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 
@@ -40,4 +38,21 @@ export const Background = styled.div<ITheme>`
   width: 100vw;
 
   background-color: ${({ primary }) => primary};
+`;
+
+export const Text = styled.p<ITheme>`
+  color: ${({ shadowy }) => shadowy};
+  margin: 10px;
+
+  ${iPhone(`
+    font-size: 15px;
+  `)}
+
+  ${iPad(`
+    font-size: 25px;
+  `)}
+
+  ${Mac(`
+    font-size: 25px;
+  `)}
 `;
