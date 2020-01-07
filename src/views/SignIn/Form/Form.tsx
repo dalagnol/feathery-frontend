@@ -5,17 +5,11 @@ import { Container } from "./styles";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
-import Theme from "themes";
-
 import { Button, Input, Subheading } from "components";
 
 const { signin, credential, password } = Locale.use(Dictionary);
 
 export default function Form({ form, setForm }: any) {
-  const logForm = () => {
-    console.log(form);
-  };
-
   const onChangeHandler = (e: any) => {
     const {
       target: { name, value },
@@ -26,7 +20,7 @@ export default function Form({ form, setForm }: any) {
     }));
   };
   return (
-    <Container {...Theme.d}>
+    <Container>
       <Subheading>{credential}</Subheading>
       <Input
         value={form.email}
@@ -41,7 +35,7 @@ export default function Form({ form, setForm }: any) {
         name={"password"}
         onChange={onChangeHandler}
       />
-      <Button onClick={logForm}>{signin}</Button>
+      <Button>{signin}</Button>
     </Container>
   );
 }

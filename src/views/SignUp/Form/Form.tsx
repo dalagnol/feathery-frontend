@@ -27,10 +27,6 @@ const {
 } = Locale.use(Dictionary);
 
 export default function Form({ form, setForm }: any) {
-  const logForm = () => {
-    console.log(form);
-  };
-
   const onChangeHandler = (e: any) => {
     const {
       target: { name, value },
@@ -91,7 +87,7 @@ export default function Form({ form, setForm }: any) {
         name={"password"}
         onChange={onChangeHandler}
       />
-      <Button onClick={logForm}>{signup}</Button>
+      <Button>{signup}</Button>
     </Container>
   );
 }
