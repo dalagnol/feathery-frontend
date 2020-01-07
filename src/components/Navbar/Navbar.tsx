@@ -8,7 +8,7 @@ import Dictionary from "./locale.json";
 
 import Theme from "themes";
 
-import Logo from "components/Logo/Logo";
+import { Logo } from "components";
 
 const { signup, signin } = Locale.use(Dictionary);
 
