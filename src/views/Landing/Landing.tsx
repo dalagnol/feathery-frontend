@@ -9,7 +9,7 @@ import Dictionary from "./locale.json";
 
 import Theme from "themes";
 
-import { Button, Container, Navbar, Title } from "components";
+import { Button, Container, Footer, Navbar, Title } from "components";
 
 const { welcome, aboutus, changethemeto, noposts } = Locale.use(Dictionary);
 
@@ -37,6 +37,7 @@ function Landing({ history }: any) {
         </Button>
       </ButtonContainer>
       <Text {...Theme.d}>{noposts}</Text>
+      <Footer />
     </Background>
   );
 }
