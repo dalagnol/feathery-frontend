@@ -26,16 +26,16 @@ const {
   password,
 } = Locale.use(Dictionary);
 
-export default function SignUpForm({ signUpForm, setSignUpForm }: any) {
+export default function SignUpForm({ form, setForm }: any) {
   const logForm = () => {
-    console.log(signUpForm);
+    console.log(form);
   };
 
   const onChangeHandler = (e: any) => {
     const {
       target: { name, value },
     } = e;
-    setSignUpForm((form: any) => ({
+    setForm((form: any) => ({
       ...form,
       [name]: value,
     }));
@@ -44,21 +44,21 @@ export default function SignUpForm({ signUpForm, setSignUpForm }: any) {
     <Container>
       <Subheading>{fullname}</Subheading>
       <Input
-        value={signUpForm.fullname}
+        value={form.fullname}
         type={"text"}
         name={"fullname"}
         onChange={onChangeHandler}
       />
       <Subheading>{username}</Subheading>
       <Input
-        value={signUpForm.username}
+        value={form.username}
         type={"text"}
         name={"username"}
         onChange={onChangeHandler}
       />
       <Subheading>{email}</Subheading>
       <Input
-        value={signUpForm.email}
+        value={form.email}
         type={"email"}
         name={"email"}
         onChange={onChangeHandler}
@@ -86,7 +86,7 @@ export default function SignUpForm({ signUpForm, setSignUpForm }: any) {
       </GenderContainer>
       <Subheading>{password}</Subheading>
       <Input
-        value={signUpForm.password}
+        value={form.password}
         type={"password"}
         name={"password"}
         onChange={onChangeHandler}

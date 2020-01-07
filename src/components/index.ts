@@ -3,6 +3,7 @@ import Container from "./Container/Container";
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
 import Input from "./Input/Input";
+import Layout from "./Layout/Layout";
 import Logo from "./Logo/Logo";
 import Navbar from "./Navbar/Navbar";
 import Subheading from "./Subheading/Subheading";
@@ -14,6 +15,7 @@ export {
   Footer,
   Header,
   Input,
+  Layout,
   Logo,
   Navbar,
   Subheading,

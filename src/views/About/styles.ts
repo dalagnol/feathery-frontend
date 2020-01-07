@@ -3,21 +3,6 @@ import { ITheme } from "interfaces/Theme";
 
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const Background = styled.div<ITheme>`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  height: 100vh;
-  width: 100vw;
-
-  background-color: ${({ primary }) => primary};
-`;
-
 export const Paragraph = styled.p<ITheme>`
   color: ${({ text }) => text};
   text-align: justify;
@@ -41,7 +26,7 @@ export const Paragraph = styled.p<ITheme>`
 export const Subheading = styled.h1<ITheme>`
   color: ${({ text }) => text};
 
-  font-family: Amatic_SC;
+  font-family: AmaticSC;
 
   
 

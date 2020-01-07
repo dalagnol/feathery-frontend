@@ -6,7 +6,7 @@ import { iPhone, iPad, Mac } from "styles/Screens";
 export const Subheading = styled.h1<ITheme>`
   color: ${({ text }) => text};
 
-  font-family: Amatic_SC;
+  font-family: AmaticSC;
 
   ${iPhone(`
     font-size: 30px;

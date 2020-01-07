@@ -3,7 +3,7 @@ import { ITheme } from "interfaces/Theme";
 
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const Container = styled.div<ITheme>`
+export const CreatorContainer = styled.div<ITheme>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,7 +32,7 @@ export const Container = styled.div<ITheme>`
   `)}
 `;
 
-export const TextConatiner = styled.div`
+export const TextContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
@@ -66,7 +66,7 @@ export const Paragraph = styled.p<ITheme>`
 export const Subheading = styled.h1<ITheme>`
   color: ${({ text }) => text};
 
-  font-family: Amatic_SC;
+  font-family: AmaticSC;
 
   width: 90%;
 

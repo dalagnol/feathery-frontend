@@ -16,19 +16,19 @@ export const about = (): string => "/about";
 /**
  * Defines the route for the login page.
  */
-export const signUp = (): string => "/signUp";
+export const signup = (): string => "/signup";
 
 /**
  * Defines the route for the signIn page.
  */
-export const signIn = (): string => "/signIn";
+export const signin = (): string => "/signin";
 
 export const publicRoutes = () => (
   <Switch>
     <Route exact path={landing()} render={() => <Landing />} />
     <Route path={about()} render={() => <About />} />
-    <Route path={signUp()} render={() => <SignUp />} />
-    <Route path={signIn()} render={() => <SignIn />} />
+    <Route path={signup()} render={() => <SignUp />} />
+    <Route path={signin()} render={() => <SignIn />} />
     <Redirect exact to={landing()} />
   </Switch>
 );

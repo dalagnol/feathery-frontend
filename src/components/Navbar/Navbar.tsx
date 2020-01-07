@@ -14,11 +14,11 @@ const { signup, signin } = Locale.use(Dictionary);
 
 function Navbar({ history }: any) {
   const SignUp = () => {
-    history.push("/signUp");
+    history.push("/signup");
   };
 
   const SignIn = () => {
-    history.push("/signIn");
+    history.push("/signin");
   };
 
   return (
@@ -26,7 +26,7 @@ function Navbar({ history }: any) {
       <Button {...Theme.d} onClick={SignUp}>
         {signup}
       </Button>
-      <Logo></Logo>
+      <Logo />
       <Button {...Theme.d} onClick={SignIn}>
         {signin}
       </Button>

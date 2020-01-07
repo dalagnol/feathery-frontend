@@ -8,7 +8,7 @@ import { Header } from "components";
 import SignUpForm from "./SignInForm/SignInForm";
 
 export default function SignIn() {
-  const [signInForm, setSignInForm] = useState({
+  const [form, setForm] = useState({
     email: "",
     password: "",
   });
@@ -16,7 +16,7 @@ export default function SignIn() {
   return (
     <Background {...Theme.d}>
       <Header />
-      <SignUpForm signInForm={signInForm} setSignInForm={setSignInForm} />
+      <SignUpForm form={form} setForm={setForm} />
     </Background>
   );
 }

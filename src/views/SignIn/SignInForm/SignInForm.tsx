@@ -11,16 +11,16 @@ import { Button, Input, Subheading } from "components";
 
 const { signin, credential, password } = Locale.use(Dictionary);
 
-export default function SignInForm({ signInForm, setSignInForm }: any) {
+export default function SignInForm({ form, setForm }: any) {
   const logForm = () => {
-    console.log(signInForm);
+    console.log(form);
   };
 
   const onChangeHandler = (e: any) => {
     const {
       target: { name, value },
     } = e;
-    setSignInForm((form: any) => ({
+    setForm((form: any) => ({
       ...form,
       [name]: value,
     }));
@@ -29,14 +29,14 @@ export default function SignInForm({ signInForm, setSignInForm }: any) {
     <Container {...Theme.d}>
       <Subheading>{credential}</Subheading>
       <Input
-        value={signInForm.email}
+        value={form.email}
         type={"text"}
         name={"email"}
         onChange={onChangeHandler}
       />
       <Subheading>{password}</Subheading>
       <Input
-        value={signInForm.password}
+        value={form.password}
         type={"password"}
         name={"password"}
         s

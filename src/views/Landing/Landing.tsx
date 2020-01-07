@@ -2,14 +2,14 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { useRerender } from "shared/hooks";
 
-import { Background, ButtonContainer, Text } from "./styles";
+import { ButtonContainer, Text } from "./styles";
 
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
 import Theme from "themes";
 
-import { Button, Container, Footer, Navbar, Title } from "components";
+import { Button, Container, Layout, Title } from "components";
 
 const { welcome, aboutus, changethemeto, noposts } = Locale.use(Dictionary);
 
@@ -25,20 +25,22 @@ function Landing({ history }: any) {
     .toLowerCase();
 
   return (
-    <Background {...Theme.d}>
-      <Navbar />
-      <Container {...Theme.d}>
-        <Title>{welcome}</Title>
-      </Container>
-      <ButtonContainer {...Theme.d}>
-        <Button onClick={About}>{aboutus}</Button>
-        <Button onClick={changeThemes}>
-          {changethemeto} {nextThemeName}
-        </Button>
-      </ButtonContainer>
-      <Text {...Theme.d}>{noposts}</Text>
-      <Footer />
-    </Background>
+    <Layout>
+      {
+        <>
+          <Container {...Theme.d}>
+            <Title>{welcome}</Title>
+          </Container>
+          <ButtonContainer {...Theme.d}>
+            <Button onClick={About}>{aboutus}</Button>
+            <Button onClick={changeThemes}>
+              {changethemeto} {nextThemeName}
+            </Button>
+          </ButtonContainer>
+          <Text {...Theme.d}>{noposts}</Text>
+        </>
+      }
+    </Layout>
   );
 }
 
