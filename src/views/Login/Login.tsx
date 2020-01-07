@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
-import { Container, Header } from "components";
+import { Background } from "./styles";
+
+import Theme from "themes";
+
+import { Header } from "components";
 import LoginForm from "./LoginForm/LoginForm";
 
 export default function Login() {
@@ -10,9 +14,9 @@ export default function Login() {
   });
 
   return (
-    <Container>
+    <Background {...Theme.d}>
       <Header />
       <LoginForm loginForm={loginForm} setLoginForm={setLoginForm} />
-    </Container>
+    </Background>
   );
 }
