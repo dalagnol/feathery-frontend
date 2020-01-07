@@ -40,7 +40,7 @@ export const Paragraph = styled.p<ITheme>`
   `)}
 
   ${iPad(`
-    font-size: 20px;
+    font-size: 15px;
     margin: 0 5vw;
   `)}
 
