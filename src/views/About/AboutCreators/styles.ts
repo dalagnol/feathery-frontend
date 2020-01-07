@@ -7,7 +7,6 @@ export const Container = styled.div<ITheme>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: row;
 
   background-color: ${({ secondary }) => secondary}
 
@@ -15,16 +14,29 @@ export const Container = styled.div<ITheme>`
   height: auto;
 
   margin: 15px;
-  padding: 10px;
+  padding: 50px;
 
-  border-radius: 90px;
+  ${iPhone(`
+    border-radius: 165px;
+    flex-direction: column;
+  `)}
+
+  ${iPad(`
+    border-radius: 115px;
+    flex-direction: row;
+  `)}
+
+  ${Mac(`
+    border-radius: 90px;
+    flex-direction: row;
+  `)}
 `;
 
 export const TextConatiner = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  flex-direction: columm;
+  flex-direction: column;
 
   width: 75vw;
   height: auto;
@@ -32,15 +44,16 @@ export const TextConatiner = styled.div`
 
 export const Paragraph = styled.p<ITheme>`
   color: ${({ text }) => text};
+
   text-align: justify;
 
   ${iPhone(`
-    font-size: 10px;
+    font-size: 20px;
     margin: 0 2vw;
   `)}
 
   ${iPad(`
-    font-size: 15px;
+    font-size: 20px;
     margin: 0 5vw;
   `)}
 
@@ -50,11 +63,43 @@ export const Paragraph = styled.p<ITheme>`
   `)}
 `;
 
+export const Subheading = styled.h1<ITheme>`
+  color: ${({ text }) => text};
+
+  font-family: Amatic_SC;
+
+  width: 90%;
+
+  ${iPhone(`
+    font-size: 30px;
+  `)}
+
+  ${iPad(`
+    font-size: 35px;
+  `)}
+
+  ${Mac(`
+    font-size: 35px;
+  `)}
+`;
+
 export const Image = styled.img`
   border-radius: 50%;
 
   margin: 10px;
 
-  width: 150px;
-  height: 150px;
+  ${iPhone(`
+    width: 300px;
+    height: 300px;
+  `)}
+
+  ${iPad(`
+    width: 200px;
+    height: 200px;
+  `)}
+
+  ${Mac(`
+    width: 150px;
+    height: 150px;
+  `)}
 `;

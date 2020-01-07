@@ -23,17 +23,40 @@ export const Paragraph = styled.p<ITheme>`
   text-align: justify;
 
   ${iPhone(`
-    font-size: 10px;
-    margin: 0 2vw;
+    font-size: 20px;
+    margin: 0 3vw;
   `)}
 
   ${iPad(`
-    font-size: 20px;
+    font-size: 30px;
     margin: 0 5vw;
   `)}
 
   ${Mac(`
-    font-size: 20px;
+    font-size: 30px;
     margin: 0 10vw;
+  `)}
+`;
+
+export const Subheading = styled.h1<ITheme>`
+  color: ${({ text }) => text};
+
+  font-family: Amatic_SC;
+
+  
+
+  ${iPhone(`
+    font-size: 30px;
+    width: 90%;
+  `)}
+
+  ${iPad(`
+    font-size: 35px;
+    width: 90%;
+  `)}
+
+  ${Mac(`
+    font-size: 35px;
+    width: 80%;
   `)}
 `;

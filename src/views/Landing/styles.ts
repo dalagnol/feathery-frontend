@@ -47,7 +47,7 @@ export const Text = styled.p<ITheme>`
   font-family: Arial, Helvetica, sans-serif;;
   
   ${iPhone(`
-    font-size: 10px;
+    font-size: 15px;
   `)} ${iPad(`
     font-size: 20px;
   `)} ${Mac(`
