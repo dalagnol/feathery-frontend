@@ -1,12 +1,12 @@
 {
   "en": {
     "signin": "Sign In",
-    "credential": "Email or username",
+    "credential": "Email address or username",
     "password": "Password"
   },
   "pt": {
     "signin": "Login",
-    "credential": "Email ou nome do usuário",
+    "credential": "Endereço de email ou nome do usuário",
     "password": "Senha"
   }
 }

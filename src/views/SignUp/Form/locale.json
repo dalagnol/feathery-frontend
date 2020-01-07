@@ -3,7 +3,7 @@
     "signup": "Sign Up",
     "fullname": "Full Name",
     "username": "Username",
-    "email": "Email",
+    "email": "Email Address",
     "gender": "Gender",
     "male": "Male",
     "female": "Female",
@@ -11,10 +11,10 @@
   },
   "pt": {
     "signup": "Inscreva-se",
-    "fullname": "Nome Complato",
+    "fullname": "Nome Completo",
     "username": "Nome do Usuário",
-    "email": "Email",
-    "gender": "Gênenro",
+    "email": "Endereço de Email",
+    "gender": "Sexo",
     "male": "Masculino",
     "female": "Feminino",
     "password": "Senha"
