@@ -17,8 +17,8 @@ export const Footer = styled.div<ITheme>`
 
   padding: 10px;
 
-  background-color: ${({ text }) => text};
-  border-top: 1px solid ${({ blurry }) => blurry};
+  background-color: black;
+  border-top: 1px solid #aaa;
 `;
 
 export const Text = styled.p<ITheme>`

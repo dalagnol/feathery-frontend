@@ -8,8 +8,8 @@ export const Button = styled.button<ITheme>`
   border-color: ${({ blurry }) => blurry};
   background-color: ${({ primary }) => primary};
 
-  font-family: Amatic_SC_B;
-  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
   border-radius: 10px;
 
   padding: 10px 30px;

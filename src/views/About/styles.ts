@@ -20,7 +20,7 @@ export const Background = styled.div<ITheme>`
 
 export const Paragraph = styled.p<ITheme>`
   color: ${({ text }) => text};
-  text-align: center;
+  text-align: justify;
 
   ${iPhone(`
     font-size: 10px;
@@ -35,23 +35,5 @@ export const Paragraph = styled.p<ITheme>`
   ${Mac(`
     font-size: 20px;
     margin: 0 10vw;
-  `)}
-`;
-
-export const Subheading = styled.h1<ITheme>`
-  color: ${({ text }) => text};
-
-  font-family: Cookie;
-
-  ${iPhone(`
-    font-size: 30px;
-  `)}
-
-  ${iPad(`
-    font-size: 35px;
-  `)}
-
-  ${Mac(`
-    font-size: 35px;
   `)}
 `;

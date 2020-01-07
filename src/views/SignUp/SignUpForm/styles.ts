@@ -51,6 +51,6 @@ export const RadioButton = styled.input`
 export const Label = styled.label<ITheme>`
   color: ${({ text }) => text};
 
-  font-family: Amatic_SC;
-  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
 `;

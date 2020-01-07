@@ -44,13 +44,13 @@ export const Text = styled.p<ITheme>`
   color: ${({ shadowy }) => shadowy};
   margin: 10px;
 
-  font-family: Amatic_SC;
+  font-family: Arial, Helvetica, sans-serif;;
   
   ${iPhone(`
-    font-size: 20px;
+    font-size: 10px;
   `)} ${iPad(`
-    font-size: 30px;
+    font-size: 20px;
   `)} ${Mac(`
-    font-size: 30px;
+    font-size: 20px;
   `)};
 `;
