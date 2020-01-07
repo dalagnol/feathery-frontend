@@ -1,0 +1,10 @@
+{
+  "en": {
+    "signup": "Sign Up",
+    "signin": "Sign In"
+  },
+  "pt": {
+    "signup": "Inscreva-se",
+    "signin": "Login"
+  }
+}
