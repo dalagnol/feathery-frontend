@@ -1,32 +1,34 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { useService } from "shared/hooks";
+//import { useService } from "shared/hooks";
 
-import { Background, Paragraph } from "./styles";
+import { Background, Paragraph, Subheading } from "./styles";
 
 import Dictionary from "./locale.json";
 import Locale from "locale";
 import Theme from "themes";
 
-import Test from "services/TestService";
+//import Test from "services/TestService";
 
-import { Button, Container, Footer, Navbar, Title } from "components";
+import { Button, Footer, Navbar, Title } from "components";
 
-const { aboutus, main } = Locale.use(Dictionary);
+const { aboutus, main, aboutfeathery, creators, aboutcreators } = Locale.use(
+  Dictionary
+);
 
 export default withRouter(function About({ history }) {
   const Main = () => history.push("/");
 
-  const ping = useService(Test.ping);
+  //const ping = useService(Test.ping);
 
   return (
     <Background {...Theme.d}>
       <Navbar />
-      <Container>
-        <Title>{aboutus}</Title>
-        <Paragraph {...Theme.d}>Service Status: {ping}</Paragraph>
-        <Button onClick={Main}>{main}</Button>
-      </Container>
+      <Title>{aboutus}</Title>
+      <Paragraph {...Theme.d}>{aboutfeathery}</Paragraph>
+      <Subheading {...Theme.d}>{creators}</Subheading>
+      <Paragraph {...Theme.d}>{aboutcreators}</Paragraph>
+      <Button onClick={Main}>{main}</Button>
       <Footer />
     </Background>
   );

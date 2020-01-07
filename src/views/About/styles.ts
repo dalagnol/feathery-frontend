@@ -5,7 +5,6 @@ import { iPhone, iPad, Mac } from "styles/Screens";
 
 export const Background = styled.div<ITheme>`
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 
@@ -20,18 +19,39 @@ export const Background = styled.div<ITheme>`
 `;
 
 export const Paragraph = styled.p<ITheme>`
-  color: ${({ shadowy }) => shadowy};
-  margin: 10px;
+  color: ${({ text }) => text};
+  text-align: center;
 
   ${iPhone(`
-    font-size: 20px;
+    font-size: 10px;
+    margin: 0 2vw;
   `)}
 
   ${iPad(`
-    font-size: 40px;
+    font-size: 20px;
+    margin: 0 5vw;
   `)}
 
   ${Mac(`
-    font-size: 40px;
+    font-size: 20px;
+    margin: 0 10vw;
+  `)}
+`;
+
+export const Subheading = styled.h1<ITheme>`
+  color: ${({ text }) => text};
+
+  font-family: Cookie;
+
+  ${iPhone(`
+    font-size: 30px;
+  `)}
+
+  ${iPad(`
+    font-size: 35px;
+  `)}
+
+  ${Mac(`
+    font-size: 35px;
   `)}
 `;

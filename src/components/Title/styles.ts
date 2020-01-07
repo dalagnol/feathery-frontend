@@ -5,7 +5,7 @@ import { iPhone, iPad, Mac } from "styles/Screens";
 
 export const Title = styled.h1<ITheme>`
   color: ${({ text }) => text};
-  margin-top: 50px;
+  margin-top: 65px;
 
   font-family: Cookie;
 
