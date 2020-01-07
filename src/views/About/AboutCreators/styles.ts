@@ -66,7 +66,7 @@ export const Paragraph = styled.p<ITheme>`
 export const Subheading = styled.h1<ITheme>`
   color: ${({ text }) => text};
 
-  font-family: AmaticSC;
+  font-family: Amatic SC;
 
   width: 90%;
 

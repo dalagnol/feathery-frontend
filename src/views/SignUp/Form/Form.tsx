@@ -58,7 +58,6 @@ export default function Form({ form, setForm }: any) {
         <RadioBContainer>
           <RadioButton
             value={"male"}
-            type={"radio"}
             name={"gender"}
             onChange={onChangeHandler}
           />
@@ -67,7 +66,6 @@ export default function Form({ form, setForm }: any) {
         <RadioBContainer>
           <RadioButton
             value={"female"}
-            type={"radio"}
             name={"gender"}
             onChange={onChangeHandler}
           />

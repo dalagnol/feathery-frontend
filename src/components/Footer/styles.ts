@@ -25,7 +25,7 @@ export const Text = styled.p<ITheme>`
     color: ${({ shadowy }) => shadowy};
     margin: 10px;
 
-    font-family: AmaticSCB;
+    font-family: Amatic SC B;
 
     ${iPhone(`
     font-size: 15px;
