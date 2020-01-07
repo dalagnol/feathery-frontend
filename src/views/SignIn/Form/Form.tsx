@@ -11,7 +11,7 @@ import { Button, Input, Subheading } from "components";
 
 const { signin, credential, password } = Locale.use(Dictionary);
 
-export default function SignInForm({ form, setForm }: any) {
+export default function Form({ form, setForm }: any) {
   const logForm = () => {
     console.log(form);
   };
@@ -39,7 +39,6 @@ export default function SignInForm({ form, setForm }: any) {
         value={form.password}
         type={"password"}
         name={"password"}
-        s
         onChange={onChangeHandler}
       />
       <Button onClick={logForm}>{signin}</Button>

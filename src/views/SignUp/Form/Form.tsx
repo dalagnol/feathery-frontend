@@ -26,7 +26,7 @@ const {
   password,
 } = Locale.use(Dictionary);
 
-export default function SignUpForm({ form, setForm }: any) {
+export default function Form({ form, setForm }: any) {
   const logForm = () => {
     console.log(form);
   };

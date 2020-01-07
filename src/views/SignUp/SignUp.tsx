@@ -5,7 +5,7 @@ import { Background } from "./styles";
 import Theme from "themes";
 
 import { Header } from "components";
-import SignInForm from "./SignUpForm/SignUpForm";
+import Form from "./Form/Form";
 
 export default function SignUp() {
   const [form, setForm] = useState({
@@ -19,7 +19,7 @@ export default function SignUp() {
   return (
     <Background {...Theme.d}>
       <Header />
-      <SignInForm form={form} setForm={setForm} />
+      <Form form={form} setForm={setForm} />
     </Background>
   );
 }
