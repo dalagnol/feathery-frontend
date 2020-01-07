@@ -5,18 +5,21 @@ import { Background } from "./styles";
 import Theme from "themes";
 
 import { Header } from "components";
-import LoginForm from "./LoginForm/LoginForm";
+import SignInForm from "./SignUpForm/SignUpForm";
 
-export default function Login() {
-  const [loginForm, setLoginForm] = useState({
+export default function SignUp() {
+  const [signUpForm, setSignUpForm] = useState({
+    fullname: "",
+    username: "",
     email: "",
+    gender: "",
     password: "",
   });
 
   return (
     <Background {...Theme.d}>
       <Header />
-      <LoginForm loginForm={loginForm} setLoginForm={setLoginForm} />
+      <SignInForm signUpForm={signUpForm} setSignUpForm={setSignUpForm} />
     </Background>
   );
 }

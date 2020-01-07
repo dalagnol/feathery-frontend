@@ -1,0 +1,22 @@
+{
+  "en": {
+    "signup": "Sign Up",
+    "fullname": "Full Name",
+    "username": "Username",
+    "email": "Email",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "password": "Password"
+  },
+  "pt": {
+    "signup": "Inscreva-se",
+    "fullname": "Nome Complato",
+    "username": "Nome do Usuário",
+    "email": "Email",
+    "gender": "Gênenro",
+    "male": "Masculino",
+    "female": "Feminino",
+    "password": "Senha"
+  }
+}

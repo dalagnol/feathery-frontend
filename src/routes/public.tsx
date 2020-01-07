@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { Landing, About, Login } from "views";
+import { Landing, About, SignIn, SignUp } from "views";
 
 /**
  * Defines the route for the splash page.
@@ -27,8 +27,8 @@ export const publicRoutes = () => (
   <Switch>
     <Route exact path={landing()} render={() => <Landing />} />
     <Route path={about()} render={() => <About />} />
-    <Route path={signUp()} render={() => <Login />} />
-    <Route path={signIn()} render={() => null} />
+    <Route path={signUp()} render={() => <SignUp />} />
+    <Route path={signIn()} render={() => <SignIn />} />
     <Redirect exact to={landing()} />
   </Switch>
 );

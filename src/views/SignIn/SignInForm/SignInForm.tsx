@@ -9,18 +9,18 @@ import Theme from "themes";
 
 import { Button, Input, Subheading } from "components";
 
-const { signup, credential, password } = Locale.use(Dictionary);
+const { signin, credential, password } = Locale.use(Dictionary);
 
-export default function LoginForm({ loginForm, setLoginForm }: any) {
+export default function SignInForm({ signInForm, setSignInForm }: any) {
   const logForm = () => {
-    console.log(loginForm);
+    console.log(signInForm);
   };
 
   const onChangeHandler = (e: any) => {
     const {
       target: { name, value },
     } = e;
-    setLoginForm((form: any) => ({
+    setSignInForm((form: any) => ({
       ...form,
       [name]: value,
     }));
@@ -29,19 +29,20 @@ export default function LoginForm({ loginForm, setLoginForm }: any) {
     <Container {...Theme.d}>
       <Subheading>{credential}</Subheading>
       <Input
-        value={loginForm.email}
+        value={signInForm.email}
         type={"text"}
         name={"email"}
         onChange={onChangeHandler}
       />
       <Subheading>{password}</Subheading>
       <Input
-        value={loginForm.password}
+        value={signInForm.password}
         type={"password"}
         name={"password"}
+        s
         onChange={onChangeHandler}
       />
-      <Button onClick={logForm}>{signup}</Button>
+      <Button onClick={logForm}>{signin}</Button>
     </Container>
   );
 }
