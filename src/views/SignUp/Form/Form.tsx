@@ -1,19 +1,13 @@
 import React from "react";
 
-import {
-  Container,
-  GenderContainer,
-  RadioBContainer,
-  RadioButton,
-  Label,
-} from "./styles";
+import { Container, GenderContainer, RadioBContainer, Label } from "./styles";
 
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
 import Theme from "themes";
 
-import { Button, Input, Subheading } from "components";
+import { Button, Input, RadioButton, Subheading } from "components";
 
 const {
   signup,

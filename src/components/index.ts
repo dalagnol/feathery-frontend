@@ -6,6 +6,7 @@ import Input from "./Input/Input";
 import Layout from "./Layout/Layout";
 import Logo from "./Logo/Logo";
 import Navbar from "./Navbar/Navbar";
+import RadioButton from "./RadioButton/RadioButton";
 import Subheading from "./Subheading/Subheading";
 import Title from "./Title/Title";
 
@@ -18,6 +19,7 @@ export {
   Layout,
   Logo,
   Navbar,
+  RadioButton,
   Subheading,
   Title,
 };
