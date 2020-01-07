@@ -25,15 +25,17 @@ export const Text = styled.p<ITheme>`
     color: ${({ shadowy }) => shadowy};
     margin: 10px;
 
+    font-family: Amatic_SC_B;
+
     ${iPhone(`
-    font-size: 7px;
+    font-size: 15px;
     `)}
 
     ${iPad(`
-    font-size: 15px;
+    font-size: 20px;
     `)}
 
     ${Mac(`
-    font-size: 15px;
+    font-size: 20px;
     `)}
 `;

@@ -6,17 +6,20 @@ import { iPhone, iPad, Mac } from "styles/Screens";
 export const Subheading = styled.h1<ITheme>`
   color: ${({ text }) => text};
 
-  font-family: Cookie;
+  font-family: Amatic_SC;
 
   ${iPhone(`
     font-size: 30px;
+    width: 265px;
   `)}
 
   ${iPad(`
     font-size: 35px;
+    width: 365px;
   `)}
 
   ${Mac(`
     font-size: 35px;
+    width: 365px;
   `)}
 `;

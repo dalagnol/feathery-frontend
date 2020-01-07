@@ -1,9 +1,13 @@
 import React from "react";
 
+import { Container } from "./styles";
+
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
-import { Button, Container, Input, Subheading } from "components";
+import Theme from "themes";
+
+import { Button, Input, Subheading } from "components";
 
 const { signup, credential, password } = Locale.use(Dictionary);
 
@@ -22,7 +26,7 @@ export default function LoginForm({ loginForm, setLoginForm }: any) {
     }));
   };
   return (
-    <Container>
+    <Container {...Theme.d}>
       <Subheading>{credential}</Subheading>
       <Input
         value={loginForm.email}

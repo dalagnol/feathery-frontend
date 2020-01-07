@@ -4,3 +4,15 @@
   font-weight: 400;
   src: url("../assets/fonts/Cookie/Cookie-Regular.ttf");
 }
+
+@font-face {
+  font-family: "Amatic_SC";
+  font-style: normal;
+  src: url("../assets/fonts/Amatic_SC/AmaticSC-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Amatic_SC_B";
+  font-style: normal;
+  src: url("../assets/fonts/Amatic_SC/AmaticSC-Bold.ttf");
+}
