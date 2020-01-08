@@ -4,7 +4,8 @@ import { Background } from "./styles";
 
 import Theme from "themes";
 
-import { Footer, Navbar } from "components";
+import Navbar from "./Navbar/Navbar";
+import Footer from "./Footer/Footer";
 
 export default function Layout({ children }: any) {
   return (
