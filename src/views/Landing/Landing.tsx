@@ -9,7 +9,7 @@ import Dictionary from "./locale.json";
 
 import Theme from "themes";
 
-import { Button, Container, Layout, Title } from "components";
+import { Button, Layout, Title } from "components";
 
 const { welcome, aboutus, changethemeto, noposts } = Locale.use(Dictionary);
 
@@ -26,18 +26,14 @@ function Landing({ history }: any) {
 
   return (
     <Layout>
-      <>
-        <Container {...Theme.d}>
-          <Title>{welcome}</Title>
-        </Container>
-        <ButtonContainer {...Theme.d}>
-          <Button onClick={About}>{aboutus}</Button>
-          <Button onClick={changeThemes}>
-            {changethemeto} {nextThemeName}
-          </Button>
-        </ButtonContainer>
-        <Text {...Theme.d}>{noposts}</Text>
-      </>
+      <Title>{welcome}</Title>
+      <ButtonContainer {...Theme.d}>
+        <Button onClick={About}>{aboutus}</Button>
+        <Button onClick={changeThemes}>
+          {changethemeto} {nextThemeName}
+        </Button>
+      </ButtonContainer>
+      <Text {...Theme.d}>{noposts}</Text>
     </Layout>
   );
 }

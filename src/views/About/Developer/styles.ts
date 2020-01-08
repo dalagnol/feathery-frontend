@@ -10,7 +10,7 @@ export const CreatorContainer = styled.div<ITheme>`
 
   background-color: ${({ secondary }) => secondary}
 
-  width: 80vw;
+  width: 80%;
   height: auto;
 
   margin: 15px;
@@ -38,7 +38,7 @@ export const TextContainer = styled.div`
   justify-content: left;
   flex-direction: column;
 
-  width: 75vw;
+  width: 75%;
   height: auto;
 `;
 
@@ -49,17 +49,17 @@ export const Paragraph = styled.p<ITheme>`
 
   ${iPhone(`
     font-size: 20px;
-    margin: 0 2vw;
+    margin: 0 2%;
   `)}
 
   ${iPad(`
     font-size: 20px;
-    margin: 0 5vw;
+    margin: 0 5%;
   `)}
 
   ${Mac(`
     font-size: 20px;
-    margin: 0 10vw;
+    margin: 0 10%;
   `)}
 `;
 
