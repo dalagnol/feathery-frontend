@@ -6,12 +6,11 @@ export const Background = styled.div<ITheme>`
   align-items: center;
   flex-direction: column;
 
-  position: absolute;
   top: 0;
   left: 0;
 
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 
   background-color: ${({ primary }) => primary};
 `;
