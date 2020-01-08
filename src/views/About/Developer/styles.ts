@@ -10,23 +10,28 @@ export const CreatorContainer = styled.div<ITheme>`
 
   background-color: ${({ secondary }) => secondary}
 
-  width: 80%;
   height: auto;
 
   margin: 15px;
   padding: 50px;
 
   ${iPhone(`
-    border-radius: 165px;
+    width: 65%;
+
+    border-radius: 175px;
     flex-direction: column;
   `)}
 
   ${iPad(`
+    width: 80%;
+
     border-radius: 115px;
     flex-direction: row;
   `)}
 
   ${Mac(`
+    width: 80%;
+
     border-radius: 90px;
     flex-direction: row;
   `)}
@@ -89,8 +94,8 @@ export const Image = styled.img`
   margin: 10px;
 
   ${iPhone(`
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
   `)}
 
   ${iPad(`

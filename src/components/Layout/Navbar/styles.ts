@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ITheme } from "interfaces/Theme";
 
-export const Navbar = styled.div<ITheme>`
+export const Navbar = styled.header<ITheme>`
   position: fixed;
   display: flex;
   justify-content: space-between;

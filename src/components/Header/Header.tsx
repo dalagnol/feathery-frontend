@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Title } from "./styles";
+import { Container, Title } from "./styles";
 
 import Theme from "themes";
 
-import { Container, Logo } from "components";
+import { Logo } from "components";
 
 export default function Header() {
   return (
