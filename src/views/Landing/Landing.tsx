@@ -26,20 +26,18 @@ function Landing({ history }: any) {
 
   return (
     <Layout>
-      {
-        <>
-          <Container {...Theme.d}>
-            <Title>{welcome}</Title>
-          </Container>
-          <ButtonContainer {...Theme.d}>
-            <Button onClick={About}>{aboutus}</Button>
-            <Button onClick={changeThemes}>
-              {changethemeto} {nextThemeName}
-            </Button>
-          </ButtonContainer>
-          <Text {...Theme.d}>{noposts}</Text>
-        </>
-      }
+      <>
+        <Container {...Theme.d}>
+          <Title>{welcome}</Title>
+        </Container>
+        <ButtonContainer {...Theme.d}>
+          <Button onClick={About}>{aboutus}</Button>
+          <Button onClick={changeThemes}>
+            {changethemeto} {nextThemeName}
+          </Button>
+        </ButtonContainer>
+        <Text {...Theme.d}>{noposts}</Text>
+      </>
     </Layout>
   );
 }

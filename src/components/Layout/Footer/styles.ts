@@ -4,7 +4,6 @@ import { ITheme } from "interfaces/Theme";
 import { iPhone, iPad, Mac } from "styles/Screens";
 
 export const Footer = styled.div<ITheme>`
-  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
