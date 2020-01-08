@@ -8,20 +8,14 @@ export const ButtonContainer = styled.div<ITheme>`
 
   ${iPhone(`
     flex-direction: column;
-
-    padding: 0 2vw;
   `)}
 
   ${iPad(`
     flex-direction: column;
-
-    padding: 0 5vw;
   `)}
 
   ${Mac(`
     flex-direction: row;
-
-    padding: 0 10vw;
   `)}
 `;
 

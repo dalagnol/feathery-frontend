@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Background } from "./styles";
+import { Background, Content } from "./styles";
 
 import Theme from "themes";
 
@@ -11,7 +11,7 @@ export default function Layout({ children }: any) {
   return (
     <Background {...Theme.d}>
       <Navbar />
-      {children}
+      <Content>{children}</Content>
       <Footer />
     </Background>
   );

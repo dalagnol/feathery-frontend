@@ -7,16 +7,11 @@ export const Footer = styled.div<ITheme>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
 
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  width: 100vw;
+  width: 100%;
   height: 40px;
 
-  padding: 10px;
+  position: absolute;
 
   background-color: black;
   border-top: 1px solid #aaa;

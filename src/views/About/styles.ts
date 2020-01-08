@@ -9,17 +9,17 @@ export const Paragraph = styled.p<ITheme>`
 
   ${iPhone(`
     font-size: 20px;
-    margin: 0 3vw;
+    margin: 0 3%;
   `)}
 
   ${iPad(`
     font-size: 30px;
-    margin: 0 5vw;
+    margin: 0 5%;
   `)}
 
   ${Mac(`
     font-size: 30px;
-    margin: 0 10vw;
+    margin: 0 10%;
   `)}
 `;
 
