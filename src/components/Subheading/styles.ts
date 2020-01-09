@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import { iPhone, iPad, Mac } from "styles/Screens";
 
 export const Subheading = styled.h1`
