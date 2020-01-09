@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Themed } from "themes";
 
-import { Background } from "./styles";
-
 import { Header } from "components";
+import { Background } from "components/Layout";
 import Form from "./Form/Form";
 
 export default function SignUp() {
