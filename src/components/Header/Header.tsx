@@ -3,8 +3,6 @@ import { withRouter } from "react-router-dom";
 
 import { Container, Title } from "./styles";
 
-import Theme from "themes";
-
 import { Logo } from "components";
 
 export default withRouter(function Header({ history }: any) {
@@ -13,7 +11,7 @@ export default withRouter(function Header({ history }: any) {
   return (
     <Container onClick={Home}>
       <Logo />
-      <Title {...Theme.d}>Feathery</Title>
+      <Title>Feathery</Title>
     </Container>
   );
 });

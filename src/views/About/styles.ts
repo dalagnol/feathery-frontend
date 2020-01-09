@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import { ITheme } from "interfaces/Theme";
-
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const Paragraph = styled.p<ITheme>`
-  color: ${({ text }) => text};
+export const Paragraph = styled.p`
+  color: ${({ theme }) => theme.text};
   text-align: justify;
 
   ${iPhone(`
@@ -23,8 +21,8 @@ export const Paragraph = styled.p<ITheme>`
   `)}
 `;
 
-export const Subheading = styled.h1<ITheme>`
-  color: ${({ text }) => text};
+export const Subheading = styled.h1`
+  color: ${({ theme }) => theme.text};
 
   font-family: Amatic SC;
 

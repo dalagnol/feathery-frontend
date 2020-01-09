@@ -1,14 +1,12 @@
 import styled from "styled-components";
-import { ITheme } from "interfaces/Theme";
-
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const CreatorContainer = styled.div<ITheme>`
+export const CreatorContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  background-color: ${({ secondary }) => secondary}
+  background-color: ${({ theme }) => theme.secondary}
 
   height: auto;
 
@@ -49,8 +47,8 @@ export const TextContainer = styled.div`
   margin: 10px 10px 50px 10px;
 `;
 
-export const Paragraph = styled.p<ITheme>`
-  color: ${({ text }) => text};
+export const Paragraph = styled.p`
+  color: ${({ theme }) => theme.text};
 
   text-align: justify;
   width: 90%;
@@ -72,8 +70,8 @@ export const Paragraph = styled.p<ITheme>`
   `)}
 `;
 
-export const Subheading = styled.h1<ITheme>`
-  color: ${({ text }) => text};
+export const Subheading = styled.h1`
+  color: ${({ theme }) => theme.text};
 
   font-family: Amatic SC;
   width: 90%;

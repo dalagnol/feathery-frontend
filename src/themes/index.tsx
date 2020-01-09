@@ -1,3 +1,7 @@
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import { timeIsBetween } from "./../shared/helpers";
+
 import { Language } from "./../interfaces/Locale";
 import {
   ITheme,
@@ -6,14 +10,27 @@ import {
   ThemeName as Name,
   ThemeNames as Names,
 } from "interfaces/Theme";
-import { timeIsBetween } from "./../shared/helpers";
 
 import Light from "./Light";
 import Dark from "./Dark";
 
 export { Light, Dark };
 
-export default new (class ThemeEngine {
+const Themes: IThemeEnum = {
+  Light: Light.Theme,
+  Dark: Dark.Theme,
+};
+
+const Locales: IThemeEnum = {
+  Light: Light.Dictionary,
+  Dark: Dark.Dictionary,
+};
+
+interface ProviderProps {
+  children: any;
+}
+
+const Theme = new (class ThemeEngine {
   private Theme: Name = Names[0];
 
   constructor() {
@@ -26,14 +43,22 @@ export default new (class ThemeEngine {
     }
 
     if (LSTheme) {
-      this.Theme = LSTheme;
+      this.theme = LSTheme;
     } else {
-      this.Theme = timeIsBetween("07:30", "18:00") ? "Light" : "Dark";
+      this.theme = timeIsBetween("07:30", "18:00") ? "Light" : "Dark";
     }
   }
 
   public get theme() {
     return this.Theme;
+  }
+
+  public set theme(name: Name) {
+    if (Object.keys(Themes).includes(name)) {
+      localStorage.setItem("theme", name);
+      this.Theme = name;
+      document.querySelector("body")!.style.backgroundColor = this.d.primary;
+    }
   }
 
   public next(theme: Name = this.Theme) {
@@ -68,14 +93,9 @@ export default new (class ThemeEngine {
   }
 
   public switch() {
-    this.Theme = this.next().name;
+    const result = this.next().name;
+    this.theme = result;
     return true;
-  }
-
-  public set theme(name: Name) {
-    if (Object.keys(Themes).includes(name)) {
-      this.Theme = name;
-    }
   }
 
   public get d(): ITheme {
@@ -83,12 +103,8 @@ export default new (class ThemeEngine {
   }
 })();
 
-const Themes: IThemeEnum = {
-  Light: Light.Theme,
-  Dark: Dark.Theme,
-};
+export default Theme;
 
-const Locales: IThemeEnum = {
-  Light: Light.Dictionary,
-  Dark: Dark.Dictionary,
-};
+export const Themed = ({ children }: ProviderProps) => (
+  <ThemeProvider theme={Theme.d}>{children}</ThemeProvider>
+);

@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { ITheme } from "interfaces/Theme";
 
-export const Button = styled.button<ITheme>`
+export const Button = styled.button`
   cursor: pointer;
 
-  color: ${({ text }) => text};
-  border-color: ${({ blurry }) => blurry};
-  background-color: ${({ primary }) => primary};
+  color: ${({ theme }) => theme.text};
+  border-color: ${({ theme }) => theme.blurry};
+  background-color: ${({ theme }) => theme.primary};
 
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
