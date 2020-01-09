@@ -12,7 +12,7 @@ export const Footer = styled.div`
   position: absolute;
 
   background-color: black;
-  border-top: 1px solid #aaa;
+  border-top: 1px solid ${({ theme }) => theme.blurry};
 
   box-sizing: border-box;
   margin: 0;
