@@ -11,7 +11,7 @@ export default new (class LanguageEngine {
       this.Language = path;
       localStorage.setItem("language", path);
     } else {
-      this.getLangFromLS();
+      this.Language = this.getLangFromLS();
     }
   }
 
