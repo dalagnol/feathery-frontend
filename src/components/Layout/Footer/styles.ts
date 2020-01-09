@@ -24,7 +24,6 @@ export const Text = styled.p`
 
     font-family: Amatic SC B;
 
-
     ${iPhone(`
     font-size: 15px;
     `)}
