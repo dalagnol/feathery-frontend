@@ -17,14 +17,14 @@ export const CreatorContainer = styled.div<ITheme>`
 
   ${iPhone(`
     width: 65%;
-
+    padding: 40px;
     border-radius: 175px;
     flex-direction: column;
   `)}
 
   ${iPad(`
     width: 80%;
-
+    padding: 40px;
     border-radius: 115px;
     flex-direction: row;
   `)}
