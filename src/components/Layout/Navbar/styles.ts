@@ -17,6 +17,8 @@ export const Navbar = styled.header`
 `;
 
 export const Button = styled.button`
+  cursor: pointer;
+
   color: ${({ theme }) => theme.text};
   background-color: ${({ theme }) => theme.primary};
   border: none;
