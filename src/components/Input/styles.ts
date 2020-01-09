@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { ITheme } from "interfaces/Theme";
-
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const Input = styled.input<ITheme>`
-    background-color: ${({ secondary }) => secondary};
-    color: ${({ text }) => text};
+export const Input = styled.input`
+    background-color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.text};
 
     font-size: 20px;
 
@@ -29,9 +27,16 @@ export const Input = styled.input<ITheme>`
     width: 350px;
     `)}
 
-    transition: all 0.3s ease-in-out;
+    transition: all 0.22s ease-in-out;
 
     &:hover {
         box-shadow: 0px 0px 10px #00000044;
+        background-color: ${({ theme }) => theme.tertiary};
+    }
+
+    &:focus {
+        box-shadow: 0px 0px 10px #00000044;
+        background-color: ${({ theme }) => theme.text};
+        color: ${({ theme }) => theme.primary};
     }
 `;

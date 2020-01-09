@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import { ITheme } from "interfaces/Theme";
-
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const Subheading = styled.h1<ITheme>`
-  color: ${({ text }) => text};
+export const Subheading = styled.h1`
+  color: ${({ theme }) => theme.text};
 
   font-family: Amatic SC;
 

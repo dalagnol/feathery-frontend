@@ -1,3 +1,7 @@
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import { timeIsBetween } from "./../shared/helpers";
+
 import { Language } from "./../interfaces/Locale";
 import {
   ITheme,
@@ -6,7 +10,6 @@ import {
   ThemeName as Name,
   ThemeNames as Names,
 } from "interfaces/Theme";
-import { timeIsBetween } from "./../shared/helpers";
 
 import Light from "./Light";
 import Dark from "./Dark";
@@ -23,7 +26,11 @@ const Locales: IThemeEnum = {
   Dark: Dark.Dictionary,
 };
 
-export default new (class ThemeEngine {
+interface ProviderProps {
+  children: any;
+}
+
+const Theme = new (class ThemeEngine {
   private Theme: Name = Names[0];
 
   constructor() {
@@ -36,9 +43,9 @@ export default new (class ThemeEngine {
     }
 
     if (LSTheme) {
-      this.Theme = LSTheme;
+      this.theme = LSTheme;
     } else {
-      this.Theme = timeIsBetween("07:30", "18:00") ? "Light" : "Dark";
+      this.theme = timeIsBetween("07:30", "18:00") ? "Light" : "Dark";
     }
   }
 
@@ -50,6 +57,7 @@ export default new (class ThemeEngine {
     if (Object.keys(Themes).includes(name)) {
       localStorage.setItem("theme", name);
       this.Theme = name;
+      document.querySelector("body")!.style.backgroundColor = this.d.primary;
     }
   }
 
@@ -86,8 +94,7 @@ export default new (class ThemeEngine {
 
   public switch() {
     const result = this.next().name;
-    this.Theme = result;
-    localStorage.setItem("theme", result);
+    this.theme = result;
     return true;
   }
 
@@ -95,3 +102,9 @@ export default new (class ThemeEngine {
     return Themes[this.Theme];
   }
 })();
+
+export default Theme;
+
+export const Themed = ({ children }: ProviderProps) => (
+  <ThemeProvider theme={Theme.d}>{children}</ThemeProvider>
+);
