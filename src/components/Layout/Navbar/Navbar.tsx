@@ -1,10 +1,9 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-
-import { Navbar as Element, Button } from "./styles";
-
 import Locale from "locale";
 import Dictionary from "./locale.json";
+
+import { Navbar as Element, Button } from "./styles";
 
 import { Logo } from "components";
 
