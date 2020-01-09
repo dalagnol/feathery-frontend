@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { ITheme } from "interfaces/Theme";
 
-export const Background = styled.div<ITheme>`
-  background-color: ${({ primary }) => primary};
+export const Background = styled.div`
+  background-color: ${({ theme }) => theme.primary};
 `;
 
 export const Content = styled.main`

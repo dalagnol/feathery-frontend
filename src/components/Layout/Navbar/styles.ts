@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { ITheme } from "interfaces/Theme";
 
-export const Navbar = styled.header<ITheme>`
+export const Navbar = styled.header`
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -13,13 +12,13 @@ export const Navbar = styled.header<ITheme>`
   width: 100%;
   height: 50px;
 
-  background-color: ${({ primary }) => primary};
-  border-bottom: 1px solid ${({ blurry }) => blurry};
+  background-color: ${({ theme }) => theme.primary};
+  border-bottom: 1px solid ${({ theme }) => theme.blurry};
 `;
 
-export const Button = styled.button<ITheme>`
-  color: ${({ text }) => text};
-  background-color: ${({ primary }) => primary};
+export const Button = styled.button`
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.primary};
   border: none;
 
   font-size: 1em;
