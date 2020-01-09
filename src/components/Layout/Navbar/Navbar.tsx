@@ -12,7 +12,11 @@ import { Logo } from "components";
 
 const { signup, signin } = Locale.use(Dictionary);
 
-function Navbar({ history }: any) {
+export default withRouter(function Navbar({ history }: any) {
+  const Home = () => {
+    history.push("/");
+  };
+
   const SignUp = () => {
     history.push("/signup");
   };
@@ -26,12 +30,10 @@ function Navbar({ history }: any) {
       <Button {...Theme.d} onClick={SignUp}>
         {signup}
       </Button>
-      <Logo />
+      <Logo onClick={Home} />
       <Button {...Theme.d} onClick={SignIn}>
         {signin}
       </Button>
     </Element>
   );
-}
-
-export default withRouter(Navbar);
+});

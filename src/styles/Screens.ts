@@ -1,17 +1,17 @@
 export const iPhone = (css: string) => `
-    @media (max-width: 64em) {
+    @media (max-width: 63.99em) {
         ${css}
     }
 `;
 
 export const iPad = (css: string) => `
-    @media (min-width: 64.0625em) and (max-width: 80em) {
+    @media (min-width: 64em) and (max-width: 85.375em) {
         ${css}
     }
 `;
 
 export const Mac = (css: string) => `
-    @media (min-width: 80.0625em) {
+    @media (min-width: 85.4375em) {
         ${css}
     }
 `;

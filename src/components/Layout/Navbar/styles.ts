@@ -11,9 +11,7 @@ export const Navbar = styled.header<ITheme>`
   left: 0;
 
   width: 100%;
-  height: 40px;
-
-  padding: 10px;
+  height: 50px;
 
   background-color: ${({ primary }) => primary};
   border-bottom: 1px solid ${({ blurry }) => blurry};
@@ -26,6 +24,5 @@ export const Button = styled.button<ITheme>`
 
   font-size: 1em;
 
-  padding: 10px 30px;
-  margin: 10px 10px;
+  margin: 10px;
 `;
