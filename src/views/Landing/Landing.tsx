@@ -7,7 +7,7 @@ import { ButtonContainer, Text } from "./styles";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
-import Theme from "themes";
+import Theme, { Themed } from "themes";
 
 import { Button, Layout, Title } from "components";
 
@@ -25,16 +25,18 @@ function Landing({ history }: any) {
     .toLowerCase();
 
   return (
-    <Layout>
-      <Title>{welcome}</Title>
-      <ButtonContainer {...Theme.d}>
-        <Button onClick={About}>{aboutus}</Button>
-        <Button onClick={changeThemes}>
-          {changethemeto} {nextThemeName}
-        </Button>
-      </ButtonContainer>
-      <Text {...Theme.d}>{noposts}</Text>
-    </Layout>
+    <Themed>
+      <Layout>
+        <Title>{welcome}</Title>
+        <ButtonContainer {...Theme.d}>
+          <Button onClick={About}>{aboutus}</Button>
+          <Button onClick={changeThemes}>
+            {changethemeto} {nextThemeName}
+          </Button>
+        </ButtonContainer>
+        <Text {...Theme.d}>{noposts}</Text>
+      </Layout>
+    </Themed>
   );
 }
 
