@@ -5,8 +5,6 @@ import { Container, GenderContainer, RadioBContainer, Label } from "./styles";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
-import Theme from "themes";
-
 import { Button, Input, RadioButton, Subheading } from "components";
 
 const {
@@ -61,7 +59,7 @@ export default function Form({ form, setForm }: any) {
             name={"gender"}
             onChange={onChangeHandler}
           />
-          <Label {...Theme.d}>{male}</Label>
+          <Label>{male}</Label>
         </RadioBContainer>
         <RadioBContainer>
           <RadioButton
@@ -69,7 +67,7 @@ export default function Form({ form, setForm }: any) {
             name={"gender"}
             onChange={onChangeHandler}
           />
-          <Label {...Theme.d}>{female}</Label>
+          <Label>{female}</Label>
         </RadioBContainer>
       </GenderContainer>
       <Subheading>{password}</Subheading>

@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { ITheme } from "interfaces/Theme";
-
 import { iPhone, iPad, Mac } from "styles/Screens";
 
 export const Container = styled.div`
@@ -36,8 +34,8 @@ export const RadioBContainer = styled.div`
   margin: 10px;
 `;
 
-export const Label = styled.label<ITheme>`
-  color: ${({ text }) => text};
+export const Label = styled.label`
+  color: ${({ theme }) => theme.text};
 
   font-family: Arial, Helvetica, sans-serif;
   font-size: 22px;
