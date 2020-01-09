@@ -13,7 +13,7 @@ export const CreatorContainer = styled.div<ITheme>`
   height: auto;
 
   margin: 15px;
-  padding: 50px;
+  padding: 20px;
 
   ${iPhone(`
     width: 65%;
@@ -40,20 +40,23 @@ export const CreatorContainer = styled.div<ITheme>`
 export const TextContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: flex-start;
   flex-direction: column;
 
-  width: 75%;
+  flex: 4;
   height: auto;
+
+  margin: 10px 10px 50px 10px;
 `;
 
 export const Paragraph = styled.p<ITheme>`
   color: ${({ text }) => text};
 
   text-align: justify;
+  width: 75%;
 
   ${iPhone(`
-    font-size: 20px;
+    font-size: 18px;
     margin: 0 2%;
   `)}
 
@@ -72,26 +75,36 @@ export const Subheading = styled.h1<ITheme>`
   color: ${({ text }) => text};
 
   font-family: Amatic SC;
+  width: 75%;
 
-  width: 90%;
 
   ${iPhone(`
     font-size: 30px;
+    margin: 0 2%;
   `)}
 
   ${iPad(`
     font-size: 35px;
+    margin: 0 5%;
   `)}
 
   ${Mac(`
     font-size: 35px;
+    margin: 0 10%;
   `)}
+`;
+
+export const ImageContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+
+  flex: 1;
 `;
 
 export const Image = styled.img`
   border-radius: 50%;
 
-  margin: 10px;
+  display: flex;
 
   ${iPhone(`
     width: 250px;
