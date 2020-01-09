@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { ITheme } from "interfaces/Theme";
 
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const Input = styled.input<ITheme>`
-    background-color: ${({ secondary }) => secondary};
-    color: ${({ text }) => text};
+export const Input = styled.input`
+    background-color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.text};
 
     font-size: 20px;
 
