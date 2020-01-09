@@ -1,7 +1,8 @@
 import React from "react";
 
-import { Background, Content } from "./styles";
+import { Content } from "./styles";
 
+import Background from "./Background/Background";
 import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 
