@@ -6,10 +6,6 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
-  width: 100%;
-
-  margin: 20px;
 `;
 
 export const GenderContainer = styled.div`
