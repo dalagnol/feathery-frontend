@@ -3,7 +3,7 @@ import { ITheme } from "interfaces/Theme";
 export const LightTheme: ITheme = {
   primary: "white",
   secondary: "#eee",
-  thirdiary: "#aaa",
+  tertiary: "#aaa",
   text: "black",
   shadowy: "#aaa",
   blurry: "#eee",
