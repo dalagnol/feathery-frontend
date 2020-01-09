@@ -9,17 +9,15 @@ import {
   Image,
 } from "./styles";
 
-import Theme from "themes";
-
 export default function Developer({ photo, name, description }: any) {
   return (
-    <CreatorContainer {...Theme.d}>
+    <CreatorContainer>
       <ImageContainer>
         <Image src={photo} />
       </ImageContainer>
       <TextContainer>
-        <Subheading {...Theme.d}>{name}</Subheading>
-        <Paragraph {...Theme.d}>{description}</Paragraph>
+        <Subheading>{name}</Subheading>
+        <Paragraph>{description}</Paragraph>
       </TextContainer>
     </CreatorContainer>
   );
