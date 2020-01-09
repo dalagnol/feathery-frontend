@@ -7,7 +7,7 @@ export const Footer = styled.div`
   align-items: center;
 
   width: 100%;
-  height: auto;
+  height: 50px;
 
   position: absolute;
 
@@ -23,6 +23,7 @@ export const Text = styled.p`
     margin: 10px;
 
     font-family: Amatic SC B;
+
 
     ${iPhone(`
     font-size: 15px;
