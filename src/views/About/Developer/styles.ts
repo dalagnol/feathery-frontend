@@ -53,11 +53,12 @@ export const Paragraph = styled.p<ITheme>`
   color: ${({ text }) => text};
 
   text-align: justify;
-  width: 75%;
+  width: 90%;
 
   ${iPhone(`
     font-size: 18px;
     margin: 0 2%;
+    width: 100%;
   `)}
 
   ${iPad(`
@@ -75,12 +76,13 @@ export const Subheading = styled.h1<ITheme>`
   color: ${({ text }) => text};
 
   font-family: Amatic SC;
-  width: 75%;
+  width: 90%;
 
 
   ${iPhone(`
     font-size: 30px;
     margin: 0 2%;
+    width: 100%;
   `)}
 
   ${iPad(`
@@ -105,6 +107,9 @@ export const Image = styled.img`
   border-radius: 50%;
 
   display: flex;
+
+  max-width: 200px;
+  max-height: 200px;
 
   ${iPhone(`
     width: 250px;
