@@ -13,6 +13,16 @@ import Dark from "./Dark";
 
 export { Light, Dark };
 
+const Themes: IThemeEnum = {
+  Light: Light.Theme,
+  Dark: Dark.Theme,
+};
+
+const Locales: IThemeEnum = {
+  Light: Light.Dictionary,
+  Dark: Dark.Dictionary,
+};
+
 export default new (class ThemeEngine {
   private Theme: Name = Names[0];
 
@@ -34,6 +44,13 @@ export default new (class ThemeEngine {
 
   public get theme() {
     return this.Theme;
+  }
+
+  public set theme(name: Name) {
+    if (Object.keys(Themes).includes(name)) {
+      localStorage.setItem("theme", name);
+      this.Theme = name;
+    }
   }
 
   public next(theme: Name = this.Theme) {
@@ -68,27 +85,13 @@ export default new (class ThemeEngine {
   }
 
   public switch() {
-    this.Theme = this.next().name;
+    const result = this.next().name;
+    this.Theme = result;
+    localStorage.setItem("theme", result);
     return true;
-  }
-
-  public set theme(name: Name) {
-    if (Object.keys(Themes).includes(name)) {
-      this.Theme = name;
-    }
   }
 
   public get d(): ITheme {
     return Themes[this.Theme];
   }
 })();
-
-const Themes: IThemeEnum = {
-  Light: Light.Theme,
-  Dark: Dark.Theme,
-};
-
-const Locales: IThemeEnum = {
-  Light: Light.Dictionary,
-  Dark: Dark.Dictionary,
-};
