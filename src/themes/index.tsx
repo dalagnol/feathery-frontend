@@ -1,3 +1,7 @@
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import { timeIsBetween } from "./../shared/helpers";
+
 import { Language } from "./../interfaces/Locale";
 import {
   ITheme,
@@ -6,7 +10,6 @@ import {
   ThemeName as Name,
   ThemeNames as Names,
 } from "interfaces/Theme";
-import { timeIsBetween } from "./../shared/helpers";
 
 import Light from "./Light";
 import Dark from "./Dark";
@@ -22,6 +25,11 @@ const Locales: IThemeEnum = {
   Light: Light.Dictionary,
   Dark: Dark.Dictionary,
 };
+
+interface ProviderProps {
+  theme: Name;
+  children: any;
+}
 
 export default new (class ThemeEngine {
   private Theme: Name = Names[0];
@@ -93,5 +101,9 @@ export default new (class ThemeEngine {
 
   public get d(): ITheme {
     return Themes[this.Theme];
+  }
+
+  public provider({ children, theme }: ProviderProps) {
+    return <ThemeProvider theme={Themes[theme]}>{children}</ThemeProvider>;
   }
 })();
