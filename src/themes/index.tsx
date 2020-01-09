@@ -27,11 +27,10 @@ const Locales: IThemeEnum = {
 };
 
 interface ProviderProps {
-  theme: Name;
   children: any;
 }
 
-export default new (class ThemeEngine {
+const Theme = new (class ThemeEngine {
   private Theme: Name = Names[0];
 
   constructor() {
@@ -102,8 +101,10 @@ export default new (class ThemeEngine {
   public get d(): ITheme {
     return Themes[this.Theme];
   }
-
-  public provider({ children, theme }: ProviderProps) {
-    return <ThemeProvider theme={Themes[theme]}>{children}</ThemeProvider>;
-  }
 })();
+
+export default Theme;
+
+export const Themed = ({ children }: ProviderProps) => (
+  <ThemeProvider theme={Theme.d}>{children}</ThemeProvider>
+);

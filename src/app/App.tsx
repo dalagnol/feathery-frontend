@@ -6,14 +6,14 @@ import "styles/fonts.css";
 
 import PublicRoutes from "routes/public";
 
-import Theme from "themes";
+import { Themed } from "themes";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Theme.provider theme={Theme.theme}>
+      <Themed>
         <PublicRoutes />
-      </Theme.provider>
+      </Themed>
     </BrowserRouter>
   );
 }
