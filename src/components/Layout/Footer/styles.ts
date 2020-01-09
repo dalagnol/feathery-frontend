@@ -7,7 +7,7 @@ export const Footer = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 40px;
+  height: auto;
 
   position: absolute;
 
