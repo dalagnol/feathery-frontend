@@ -9,17 +9,17 @@ export const Subheading = styled.h1<ITheme>`
   font-family: Amatic SC;
 
   ${iPhone(`
-    font-size: 30px;
-    width: 265px;
+    font-size: 24px;
+    width: 300px;
   `)}
 
   ${iPad(`
-    font-size: 35px;
+    font-size: 25px;
     width: 365px;
   `)}
 
   ${Mac(`
-    font-size: 35px;
+    font-size: 30px;
     width: 365px;
   `)}
 `;

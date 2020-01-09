@@ -18,7 +18,7 @@ export const Input = styled.input<ITheme>`
     height: 30px; 
 
     ${iPhone(`
-    width: 250px;
+    width: 290px;
     `)}
 
     ${iPad(`
