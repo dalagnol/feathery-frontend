@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import { ITheme } from "interfaces/Theme";
-
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const ButtonContainer = styled.div<ITheme>`
+export const ButtonContainer = styled.div`
   display: flex;
 
   ${iPhone(`
@@ -19,8 +17,8 @@ export const ButtonContainer = styled.div<ITheme>`
   `)}
 `;
 
-export const Text = styled.p<ITheme>`
-  color: ${({ shadowy }) => shadowy};
+export const Text = styled.p`
+  color: ${({ theme }) => theme.shadowy};
   margin: 10px;
 
   font-family: Arial, Helvetica, sans-serif;;

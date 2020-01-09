@@ -1,9 +1,8 @@
 import React from "react";
-
-import { Container } from "./styles";
-
 import Locale from "locale";
 import Dictionary from "./locale.json";
+
+import { Container } from "./styles";
 
 import { Button, Input, Subheading } from "components";
 

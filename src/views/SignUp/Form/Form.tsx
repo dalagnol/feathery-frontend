@@ -1,9 +1,8 @@
 import React from "react";
-
-import { Container, GenderContainer, RadioBContainer, Label } from "./styles";
-
 import Locale from "locale";
 import Dictionary from "./locale.json";
+
+import { Container, GenderContainer, RadioBContainer, Label } from "./styles";
 
 import { Button, Input, RadioButton, Subheading } from "components";
 

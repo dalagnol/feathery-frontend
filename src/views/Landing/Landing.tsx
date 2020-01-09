@@ -1,13 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { useRerender } from "shared/hooks";
-
-import { ButtonContainer, Text } from "./styles";
-
+import Theme, { Themed } from "themes";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
-import Theme, { Themed } from "themes";
+import { ButtonContainer, Text } from "./styles";
 
 import { Button, Layout, Title } from "components";
 
