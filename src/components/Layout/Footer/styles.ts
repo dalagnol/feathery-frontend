@@ -13,6 +13,9 @@ export const Footer = styled.div`
 
   background-color: black;
   border-top: 1px solid #aaa;
+
+  box-sizing: border-box;
+  margin: 0;
 `;
 
 export const Text = styled.p`

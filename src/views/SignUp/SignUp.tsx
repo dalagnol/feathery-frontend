@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Themed } from "themes";
 
-import { Background } from "./styles";
-
 import { Header } from "components";
 import Form from "./Form/Form";
 
@@ -17,10 +15,8 @@ export default function SignUp() {
 
   return (
     <Themed>
-      <Background>
-        <Header />
-        <Form form={form} setForm={setForm} />
-      </Background>
+      <Header />
+      <Form form={form} setForm={setForm} />
     </Themed>
   );
 }

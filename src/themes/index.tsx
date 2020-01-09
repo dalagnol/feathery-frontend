@@ -43,9 +43,9 @@ const Theme = new (class ThemeEngine {
     }
 
     if (LSTheme) {
-      this.Theme = LSTheme;
+      this.theme = LSTheme;
     } else {
-      this.Theme = timeIsBetween("07:30", "18:00") ? "Light" : "Dark";
+      this.theme = timeIsBetween("07:30", "18:00") ? "Light" : "Dark";
     }
   }
 
@@ -57,6 +57,7 @@ const Theme = new (class ThemeEngine {
     if (Object.keys(Themes).includes(name)) {
       localStorage.setItem("theme", name);
       this.Theme = name;
+      document.querySelector("body")!.style.backgroundColor = this.d.primary;
     }
   }
 
@@ -93,8 +94,7 @@ const Theme = new (class ThemeEngine {
 
   public switch() {
     const result = this.next().name;
-    this.Theme = result;
-    localStorage.setItem("theme", result);
+    this.theme = result;
     return true;
   }
 
