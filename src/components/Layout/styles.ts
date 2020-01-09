@@ -2,17 +2,16 @@ import styled from "styled-components";
 import { ITheme } from "interfaces/Theme";
 
 export const Background = styled.div<ITheme>`
+  background-color: ${({ primary }) => primary};
+`;
+
+export const Content = styled.main`
+  width: 100%;
+  min-height: calc(100vh - 40px);
+
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  height: 100vh;
-  width: 100vw;
-
-  background-color: ${({ primary }) => primary};
+  margin: 0px;
 `;

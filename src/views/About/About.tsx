@@ -1,30 +1,50 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { useService } from "shared/hooks";
+//import { useService } from "shared/hooks";
 
-import { Background, Paragraph } from "./styles";
+import { Paragraph, Subheading } from "./styles";
 
 import Dictionary from "./locale.json";
 import Locale from "locale";
+
 import Theme from "themes";
 
-import Test from "services/TestService";
+//import Test from "services/TestService";
 
-import { Button, Title } from "components";
+import { Button, Layout, Title } from "components";
+import Developer from "./Developer/Developer";
 
-const { aboutus, main } = Locale.use(Dictionary);
+const {
+  aboutus,
+  main,
+  aboutfeathery,
+  creators,
+  aboutcreators,
+  aboutmorezco,
+  aboutdalagnol,
+} = Locale.use(Dictionary);
+
+const morezco = "https://avatars0.githubusercontent.com/u/34279299?s=460&v=4";
+const dalagnol = "https://avatars3.githubusercontent.com/u/49122688?s=460&v=4";
 
 export default withRouter(function About({ history }) {
   const Main = () => history.push("/");
 
-  const ping = useService(Test.ping);
+  //const ping = useService(Test.ping);
 
   return (
-    <Background {...Theme.d}>
+    <Layout>
       <Title>{aboutus}</Title>
-      <Paragraph {...Theme.d}>Service Status</Paragraph>
-      <Title>{ping}</Title>
+      <Paragraph {...Theme.d}>{aboutfeathery}</Paragraph>
+      <Subheading {...Theme.d}>{creators}</Subheading>
+      <Paragraph {...Theme.d}>{aboutcreators}</Paragraph>
+      <Developer photo={morezco} name={"Morezco"} description={aboutmorezco} />
+      <Developer
+        photo={dalagnol}
+        name={"Dalagnol"}
+        description={aboutdalagnol}
+      />
       <Button onClick={Main}>{main}</Button>
-    </Background>
+    </Layout>
   );
 });

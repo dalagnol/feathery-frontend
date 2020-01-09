@@ -3,21 +3,23 @@ import { ITheme } from "interfaces/Theme";
 
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const Title = styled.h1<ITheme>`
+export const Subheading = styled.h1<ITheme>`
   color: ${({ text }) => text};
-  margin-top: 65px;
 
-  font-family: Cookie;
+  font-family: Amatic SC;
 
   ${iPhone(`
-    font-size: 40px;
+    font-size: 24px;
+    width: 300px;
   `)}
 
   ${iPad(`
-    font-size: 65px;
+    font-size: 25px;
+    width: 365px;
   `)}
 
   ${Mac(`
-    font-size: 65px;
+    font-size: 30px;
+    width: 365px;
   `)}
 `;

@@ -1,4 +1,7 @@
-import Main from "./Main/Main";
+import Landing from "./Landing/Landing";
 import About from "./About/About";
+import SignIn from "./SignIn/SignIn";
+import SignUp from "./SignUp/SignUp";
+import Adimo from "./Adimo/Adimo";
 
-export { Main, About };
+export { Landing, About, SignIn, SignUp, Adimo };

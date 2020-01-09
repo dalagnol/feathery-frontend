@@ -1,10 +1,20 @@
 {
   "en": {
     "aboutus": "About us",
-    "main": "Main View"
+    "main": "Main View",
+    "aboutfeathery": "Feathery is a website where you can post new ideas, your thoughts or anything you would like to share. It was made with the purpose of learning React and good design. Hope you enjoy using it as much as we enjoyed making it!",
+    "creators": "Creators",
+    "aboutcreators": "Morezco and Dalagnol are brazilians web developers who love to create and innovate through coding. Hereafter they intend to move to Canada and open a company, where they can keep contributing with their work.",
+    "aboutmorezco": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris pharetra et ultrices neque. Interdum posuere lorem ipsum dolor sit amet.",
+    "aboutdalagnol": "Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum. Nunc congue nisi vitae suscipit tellus mauris. Consectetur purus ut faucibus pulvinar elementum integer."
   },
   "pt": {
     "aboutus": "Sobre nós",
-    "main": "Visualização Principal"
+    "main": "Visualização Principal",
+    "aboutfeathery": "Feathery é um site no qual você pode postar novas ideias, seus pensamentos or qualquer coisa que você gostaria de compartilhar. Ele foi feito com o propósito de aprender React e design. Esperamos que você goste de usar ele tanto qunato nós gostamos de fazê-lo!",
+    "creators": "Criadores",
+    "aboutcreators": "Morezco e Dalagnol são web developers brasileiros que amam criar e inovar através da programação. Futuramente eles pretendem se mudar para o Canadá e abrir um empresa, na qual poderão continuar contribuíndo com seu trabalho.",
+    "aboutmorezco": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris pharetra et ultrices neque. Interdum posuere lorem ipsum dolor sit amet.",
+    "aboutdalagnol": "Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum. Nunc congue nisi vitae suscipit tellus mauris. Consectetur purus ut faucibus pulvinar elementum integer."
   }
 }
