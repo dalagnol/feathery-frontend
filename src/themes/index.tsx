@@ -78,7 +78,7 @@ const Theme = new (class ThemeEngine {
     property: string,
     locale: Language = "en",
     theme: Name = this.Theme
-  ) {
+  ): string | undefined {
     const LSLocale: string | null = localStorage.getItem("language");
 
     if (LSLocale && locale === "en") {
@@ -90,10 +90,8 @@ const Theme = new (class ThemeEngine {
     return Locales[theme][locale][property];
   }
 
-  public switch() {
-    const result = this.next().name;
-    this.theme = result;
-    return true;
+  public switch(): void {
+    this.theme = this.next().name;
   }
 
   public get d(): ITheme {
