@@ -7,7 +7,7 @@ import Form from "./Form/Form";
 
 export default function SignIn() {
   const data = useForm({
-    credential: "",
+    credential: "Adimo",
     password: "",
   });
 

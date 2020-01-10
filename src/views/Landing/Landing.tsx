@@ -16,11 +16,14 @@ function Landing({ history }: any) {
     history.push("/about");
   };
 
-  const refresh = useRerender();
-  const changeThemes = () => Theme.switch() && refresh();
   const nextThemeName = Theme.next()
     .localised("name")
     .toLowerCase();
+  const refresh = useRerender();
+  const changeThemes = () => {
+    Theme.switch();
+    refresh();
+  };
 
   return (
     <Themed>
