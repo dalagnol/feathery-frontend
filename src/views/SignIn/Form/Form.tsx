@@ -6,34 +6,17 @@ import { Container } from "./styles";
 
 import { Button, Input, Subheading } from "components";
 
-const { signin, credential, password } = Locale.use(Dictionary);
+const { signin, cred, pass } = Locale.use(Dictionary);
 
-export default function Form({ form, setForm }: any) {
-  const onChangeHandler = (e: any) => {
-    const {
-      target: { name, value },
-    } = e;
-    setForm((form: any) => ({
-      ...form,
-      [name]: value,
-    }));
-  };
+export default function Form({ form }: any) {
+  const [data, { credential, password }] = form;
+
   return (
     <Container>
-      <Subheading>{credential}</Subheading>
-      <Input
-        value={form.email}
-        type={"text"}
-        name={"email"}
-        onChange={onChangeHandler}
-      />
-      <Subheading>{password}</Subheading>
-      <Input
-        value={form.password}
-        type={"password"}
-        name={"password"}
-        onChange={onChangeHandler}
-      />
+      <Subheading>{cred}</Subheading>
+      <Input {...credential} />
+      <Subheading>{pass}</Subheading>
+      <Input {...password} />
       <Button>{signin}</Button>
     </Container>
   );

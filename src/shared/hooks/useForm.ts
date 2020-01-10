@@ -13,11 +13,19 @@ export default function useForm(body: any) {
     }));
   };
 
-  const Props = Object.entries(body).map((entry: any) => ({
-    value: form[entry[0]],
-    name: entry[0],
-    onChange: { Handler },
-  }));
+  const Props: any = {};
+
+  Object.entries(body).map((entry: any) => {
+    Props[entry[0]] = {
+      value: form[entry[0]],
+      name: entry[0],
+      onChange: Handler,
+    };
+
+    if (entry[0].toLowerCase() === "password") {
+      Props[entry[0]].type = "password";
+    }
+  });
 
   return [form, Props, Handler, setForm];
 }
