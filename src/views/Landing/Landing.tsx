@@ -5,7 +5,7 @@ import Theme, { Themed } from "themes";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
-import { ButtonContainer, Text } from "./styles";
+import { Buttons, Text } from "./styles";
 
 import { Button, Layout, Title } from "components";
 
@@ -26,13 +26,13 @@ function Landing({ history }: any) {
     <Themed>
       <Layout>
         <Title>{welcome}</Title>
-        <ButtonContainer {...Theme.d}>
+        <Buttons>
           <Button onClick={About}>{aboutus}</Button>
           <Button onClick={changeThemes}>
             {changethemeto} {nextThemeName}
           </Button>
-        </ButtonContainer>
-        <Text {...Theme.d}>{noposts}</Text>
+        </Buttons>
+        <Text>{noposts}</Text>
       </Layout>
     </Themed>
   );
