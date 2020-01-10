@@ -2,7 +2,7 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import { timeIsBetween } from "./../shared/helpers";
 
-import { Language } from "./../interfaces/Locale";
+import { Language } from "locale/interfaces/language";
 
 import ITheme from "./interfaces/Theme";
 import IThemeEnum from "./interfaces/Themes";

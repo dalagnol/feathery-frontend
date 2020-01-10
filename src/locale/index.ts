@@ -1,4 +1,4 @@
-import { Language } from "./../interfaces/Locale";
+import { Language } from "./interfaces/language";
 
 export class LanguageEngine {
   private Language: Language = "en";

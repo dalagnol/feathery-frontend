@@ -1,4 +1,4 @@
-import { Action } from "interfaces/Redux";
+import Action from "../interfaces/action";
 
 export const Types = {
   LOGOUT: "user/LOGOUT",
