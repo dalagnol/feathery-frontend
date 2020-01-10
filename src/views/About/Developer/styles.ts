@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const CreatorContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,7 +35,7 @@ export const CreatorContainer = styled.div`
   `)}
 `;
 
-export const TextContainer = styled.div`
+export const Texts = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -94,7 +94,7 @@ export const Subheading = styled.h1`
   `)}
 `;
 
-export const ImageContainer = styled.div`
+export const Images = styled.div`
   display: flex;
   justify-content: flex-start;
 
