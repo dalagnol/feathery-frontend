@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import ReduxThunk from "redux-thunk";
 import appReducer from "./ducks";
 
-import { Action } from "interfaces/Redux";
+import Action from "./interfaces/action";
 declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;

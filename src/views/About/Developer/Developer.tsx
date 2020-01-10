@@ -1,9 +1,9 @@
 import React from "react";
 
 import {
-  ImageContainer,
-  CreatorContainer,
-  TextContainer,
+  Images,
+  Container,
+  Texts,
   Paragraph,
   Subheading,
   Image,
@@ -11,14 +11,14 @@ import {
 
 export default function Developer({ photo, name, description }: any) {
   return (
-    <CreatorContainer>
-      <ImageContainer>
+    <Container>
+      <Images>
         <Image src={photo} />
-      </ImageContainer>
-      <TextContainer>
+      </Images>
+      <Texts>
         <Subheading>{name}</Subheading>
         <Paragraph>{description}</Paragraph>
-      </TextContainer>
-    </CreatorContainer>
+      </Texts>
+    </Container>
   );
 }

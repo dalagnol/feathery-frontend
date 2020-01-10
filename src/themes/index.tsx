@@ -2,14 +2,12 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import { timeIsBetween } from "./../shared/helpers";
 
-import { Language } from "./../interfaces/Locale";
-import {
-  ITheme,
-  IThemeEnum,
-  ThemeProperty,
-  ThemeName as Name,
-  ThemeNames as Names,
-} from "interfaces/Theme";
+import { Language } from "locale/interfaces/language";
+
+import ITheme from "./interfaces/Theme";
+import IThemeEnum from "./interfaces/Themes";
+import { ThemeName as Name, ThemeNames as Names } from "./interfaces/ThemeName";
+import { ThemeProperty } from "./interfaces/ThemeProperty";
 
 import Light from "./Light";
 import Dark from "./Dark";
@@ -80,7 +78,7 @@ const Theme = new (class ThemeEngine {
     property: string,
     locale: Language = "en",
     theme: Name = this.Theme
-  ) {
+  ): string | undefined {
     const LSLocale: string | null = localStorage.getItem("language");
 
     if (LSLocale && locale === "en") {
@@ -92,10 +90,8 @@ const Theme = new (class ThemeEngine {
     return Locales[theme][locale][property];
   }
 
-  public switch() {
-    const result = this.next().name;
-    this.theme = result;
-    return true;
+  public switch(): void {
+    this.theme = this.next().name;
   }
 
   public get d(): ITheme {

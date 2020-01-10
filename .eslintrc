@@ -21,7 +21,8 @@
     "@typescript-eslint/no-empty-function": "off",
     "require-atomic-updates": "off",
     "no-mixed-operators": "off",
-    "@typescript-eslint/interface-name-prefix": "off"
+    "@typescript-eslint/interface-name-prefix": "off",
+    "array-callback-return": "off"
   },
   "settings": {
     "react": {
