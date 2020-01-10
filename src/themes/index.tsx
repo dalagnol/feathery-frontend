@@ -3,13 +3,11 @@ import { ThemeProvider } from "styled-components";
 import { timeIsBetween } from "./../shared/helpers";
 
 import { Language } from "./../interfaces/Locale";
-import {
-  ITheme,
-  IThemeEnum,
-  ThemeProperty,
-  ThemeName as Name,
-  ThemeNames as Names,
-} from "interfaces/Theme";
+
+import ITheme from "./interfaces/Theme";
+import IThemeEnum from "./interfaces/Themes";
+import { ThemeName as Name, ThemeNames as Names } from "./interfaces/ThemeName";
+import { ThemeProperty } from "./interfaces/ThemeProperty";
 
 import Light from "./Light";
 import Dark from "./Dark";

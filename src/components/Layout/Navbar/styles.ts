@@ -10,10 +10,11 @@ export const Navbar = styled.header`
   left: 0;
 
   width: 100%;
-  height: 50px;
+  height: 49px;
 
   background-color: ${({ theme }) => theme.primary};
   border-bottom: 1px solid ${({ theme }) => theme.blurry};
+  box-sizing: border-box;
 `;
 
 export const Button = styled.button`

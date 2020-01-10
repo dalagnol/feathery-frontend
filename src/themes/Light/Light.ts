@@ -1,4 +1,4 @@
-import { ITheme } from "interfaces/Theme";
+import ITheme from "../interfaces/Theme";
 
 export const LightTheme: ITheme = {
   primary: "white",

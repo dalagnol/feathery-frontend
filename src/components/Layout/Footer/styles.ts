@@ -9,7 +9,7 @@ export const Footer = styled.footer`
   width: 100%;
   height: 49px;
 
-  position: absolute;
+  position: relative;
 
   background-color: black;
   border-top: 1px solid ${({ theme }) => theme.blurry};

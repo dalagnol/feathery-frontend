@@ -1,25 +1,24 @@
 import { Language } from "./../interfaces/Locale";
 
-export default new (class LanguageEngine {
+export class LanguageEngine {
   private Language: Language = "en";
 
   constructor() {
-    this.getLangFromLS();
-    let path: string = window.location.pathname.split("/")[1];
+    const path: string = window.location.pathname.split("/")[1];
 
     if (path === "en" || path === "pt") {
       this.Language = path;
       localStorage.setItem("language", path);
     } else {
-      this.Language = this.getLangFromLS();
+      this.loadLocaleFromLocalStorage();
     }
   }
 
-  private getLangFromLS(): Language {
+  private loadLocaleFromLocalStorage(): void {
     const L: Language | string | null =
       localStorage.getItem("language") || "en";
 
-    return L === "en" || L === "pt" ? L : "en";
+    this.Language = L === "en" || L === "pt" ? L : "en";
   }
 
   public get language(): Language {
@@ -34,4 +33,6 @@ export default new (class LanguageEngine {
   public use(dictionary: any): any {
     return dictionary[this.language];
   }
-})();
+}
+
+export default new LanguageEngine();
