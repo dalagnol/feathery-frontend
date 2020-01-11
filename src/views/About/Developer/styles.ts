@@ -13,6 +13,8 @@ export const Container = styled.div`
   margin: 15px;
   padding: 20px;
 
+  max-width: 900px;
+
   ${iPhone(`
     width: 65%;
     padding: 40px;
