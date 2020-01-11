@@ -6,7 +6,7 @@ import { Header } from "components";
 import Form from "./Form/Form";
 
 export default function SignIn() {
-  const data = useForm({
+  const form = useForm({
     credential: "",
     password: "",
   });
@@ -14,7 +14,7 @@ export default function SignIn() {
   return (
     <Themed>
       <Header />
-      <Form form={data} />
+      <Form form={form} />
     </Themed>
   );
 }

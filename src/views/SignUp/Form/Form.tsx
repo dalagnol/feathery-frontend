@@ -2,81 +2,42 @@ import React from "react";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
-import { Container, GenderContainer, RadioBContainer, Label } from "./styles";
+import { Container, Genders, Radios, Label } from "./styles";
 
-import { Button, Input, RadioButton, Subheading } from "components";
+import { Button, Input, Radio, Subheading as Sub } from "components";
 
-const {
-  signup,
-  fullname,
-  username,
-  email,
-  gender,
-  male,
-  female,
-  password,
-} = Locale.use(Dictionary);
+const Localised = Locale.use(Dictionary);
 
-export default function Form({ form, setForm }: any) {
-  const onChangeHandler = (e: any) => {
-    const {
-      target: { name, value },
-    } = e;
-    setForm((form: any) => ({
-      ...form,
-      [name]: value,
-    }));
+export default function Form({ form }: any) {
+  const [data, { fullname, username, email, gender, password }] = form;
+
+  const FormProps = {
+    method: "POST",
+    onSubmit: (e: any) => e.preventDefault(),
   };
+
   return (
-    <Container>
-      <Subheading>{fullname}</Subheading>
-      <Input
-        value={form.fullname}
-        type={"text"}
-        name={"fullname"}
-        onChange={onChangeHandler}
-      />
-      <Subheading>{username}</Subheading>
-      <Input
-        value={form.username}
-        type={"text"}
-        name={"username"}
-        onChange={onChangeHandler}
-      />
-      <Subheading>{email}</Subheading>
-      <Input
-        value={form.email}
-        type={"email"}
-        name={"email"}
-        onChange={onChangeHandler}
-      />
-      <Subheading>{gender}</Subheading>
-      <GenderContainer>
-        <RadioBContainer>
-          <RadioButton
-            value={"male"}
-            name={"gender"}
-            onChange={onChangeHandler}
-          />
-          <Label>{male}</Label>
-        </RadioBContainer>
-        <RadioBContainer>
-          <RadioButton
-            value={"female"}
-            name={"gender"}
-            onChange={onChangeHandler}
-          />
-          <Label>{female}</Label>
-        </RadioBContainer>
-      </GenderContainer>
-      <Subheading>{password}</Subheading>
-      <Input
-        value={form.password}
-        type={"password"}
-        name={"password"}
-        onChange={onChangeHandler}
-      />
-      <Button>{signup}</Button>
+    <Container {...FormProps}>
+      <Sub>{Localised.fullname}</Sub>
+      <Input {...fullname} />
+      <Sub>{Localised.username}</Sub>
+      <Input {...username} />
+      <Sub>{Localised.email}</Sub>
+      <Input {...email} />
+      <Sub>{Localised.gender}</Sub>
+      <Genders>
+        <Radios>
+          <Radio {...gender} value="male" />
+          <Label>{Localised.male}</Label>
+        </Radios>
+        <Radios>
+          <Radio {...gender} value="female" />
+          <Label>{Localised.female}</Label>
+        </Radios>
+      </Genders>
+      <Sub>{Localised.password}</Sub>
+      <Input {...password} />
+      <Button>{Localised.signup}</Button>
     </Container>
   );
 }

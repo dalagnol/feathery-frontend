@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const Container = styled.div`
+export const Container = styled.form`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 `;
 
-export const GenderContainer = styled.div`
+export const Genders = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,7 +26,7 @@ export const GenderContainer = styled.div`
   `)}
 `;
 
-export const RadioBContainer = styled.div`
+export const Radios = styled.div`
   margin: 10px;
 `;
 
