@@ -11,8 +11,13 @@ const { signin, cred, pass } = Locale.use(Dictionary);
 export default function Form({ form }: any) {
   const [data, { credential, password }] = form;
 
+  const FormProps = {
+    method: "POST",
+    onSubmit: (e: any) => e.preventDefault(),
+  };
+
   return (
-    <Container>
+    <Container {...FormProps}>
       <Subheading>{cred}</Subheading>
       <Input {...credential} />
       <Subheading>{pass}</Subheading>

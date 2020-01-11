@@ -78,7 +78,7 @@ const Theme = new (class ThemeEngine {
     property: string,
     locale: Language = "en",
     theme: Name = this.Theme
-  ): string | undefined {
+  ): string {
     const LSLocale: string | null = localStorage.getItem("language");
 
     if (LSLocale && locale === "en") {
