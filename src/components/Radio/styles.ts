@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const RadioButton = styled.input`
+export const Radio = styled.input`
   font-size: 20px;
 
   border: none;
