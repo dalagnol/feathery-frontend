@@ -6,12 +6,12 @@ import { withRouter } from "react-router-dom";
 
 import { Creators as User } from "store/ducks/user";
 
-import { Header } from "components";
+import { Header, Loader } from "components";
 import Form from "./Form/Form";
 
 export default withRouter(function SignIn({ history }: any) {
   const dispatch = useDispatch();
-  const user = useSelector((state: any) => state.user.data);
+  const user = useSelector((state: any) => state.user);
 
   const form = useForm({
     credential: "",
@@ -21,13 +21,14 @@ export default withRouter(function SignIn({ history }: any) {
   const submit = (form: any) => dispatch(User.login(form));
 
   useEffect(() => {
-    if (user) {
+    if (user.data) {
       history.push("/");
     }
-  }, [user]);
+  }, [user.data, history]);
 
   return (
     <Themed>
+      {user.loading && <Loader />}
       <Header />
       <Form form={form} submit={submit} />
     </Themed>

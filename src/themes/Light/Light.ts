@@ -1,12 +1,12 @@
 import ITheme from "../interfaces/Theme";
 
 export const LightTheme: ITheme = {
-  primary: "white",
-  secondary: "#eee",
-  tertiary: "#aaa",
-  text: "black",
-  shadowy: "#aaa",
-  blurry: "#eee",
+  primary: "#ffffff",
+  secondary: "#eeeeee",
+  tertiary: "#aaaaaa",
+  text: "#000000",
+  shadowy: "#aaaaaa",
+  blurry: "#eeeeee",
 };
 
 export default LightTheme;
