@@ -8,7 +8,7 @@ import { Button, Input, Subheading } from "components";
 
 const { signin, cred, pass } = Locale.use(Dictionary);
 
-export default function Form({ form }: any) {
+export default function Form({ form, submit }: any) {
   const [data, { credential, password }] = form;
 
   const FormProps = {
@@ -22,7 +22,7 @@ export default function Form({ form }: any) {
       <Input {...credential} />
       <Subheading>{pass}</Subheading>
       <Input {...password} />
-      <Button>{signin}</Button>
+      <Button onClick={() => submit(data)}>{signin}</Button>
     </Container>
   );
 }

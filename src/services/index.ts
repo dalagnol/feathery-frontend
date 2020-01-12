@@ -1,3 +1,4 @@
-import api from "./api";
+import API from "./api/connection";
+import Socket from "./server/connection";
 
-export { api };
+export { API, Socket };

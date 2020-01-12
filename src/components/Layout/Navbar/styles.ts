@@ -17,7 +17,7 @@ export const Navbar = styled.header`
   box-sizing: border-box;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<any>`
   cursor: pointer;
 
   color: ${({ theme }) => theme.text};
@@ -25,6 +25,12 @@ export const Button = styled.button`
   border: none;
 
   font-size: 1em;
+
+  width: 100px;
+  box-sizing: border-box;
+
+  text-align: ${({ left, right }) =>
+    left ? "left" : right ? "right" : "center"};
 
   margin: 10px;
 `;
