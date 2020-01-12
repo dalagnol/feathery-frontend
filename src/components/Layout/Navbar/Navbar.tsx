@@ -34,15 +34,27 @@ export default withRouter(function Navbar({ history }: any) {
 
   return (
     <Element>
-      {!user && <Button onClick={SignUp}>{signup}</Button>}
+      {!user && (
+        <Button left onClick={SignUp}>
+          {signup}
+        </Button>
+      )}
       {user && (
-        <Button>
+        <Button left>
           <FontAwesomeIcon icon={faBars} />
         </Button>
       )}
       <Logo onClick={Home} />
-      {!user && <Button onClick={SignIn}>{signin}</Button>}
-      {user && <Button onClick={logout}>{user.name}</Button>}
+      {!user && (
+        <Button right onClick={SignIn}>
+          {signin}
+        </Button>
+      )}
+      {user && (
+        <Button right onClick={logout}>
+          {user.name}
+        </Button>
+      )}
     </Element>
   );
 });
