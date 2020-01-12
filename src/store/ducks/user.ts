@@ -12,7 +12,7 @@ export const Types = {
 const initialState = {
   loading: false,
   error: null,
-  data: JSON.parse(localStorage.getItem("user") || "{}"),
+  data: JSON.parse(localStorage.getItem("user") || "null"),
 };
 
 export default function userReducer(state = initialState, action: Action) {
@@ -41,7 +41,7 @@ export const Creators = {
       const { token, user } = await Service.Authenticate(form);
 
       localStorage.setItem("token", token);
-      localStorage.setItem("user", user);
+      localStorage.setItem("user", JSON.stringify(user));
 
       Socket.Authenticate();
 
