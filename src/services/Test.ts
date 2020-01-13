@@ -1,4 +1,4 @@
-import { API } from "services";
+import API from "./api";
 
 export default new (class TestService {
   public async ping(): Promise<string> {

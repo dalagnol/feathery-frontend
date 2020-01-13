@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { Landing, About, SignIn, SignUp } from "views";
+import { Landing, About, SignIn, SignUp, Chat } from "views";
 
 /**
  * Defines the route for the splash page.
@@ -22,6 +22,7 @@ export const signup = (): string => "/signup";
  * Defines the route for the signIn page.
  */
 export const signin = (): string => "/signin";
+export const chat = (): string => "/chat";
 
 export const publicRoutes = () => (
   <Switch>
@@ -29,6 +30,7 @@ export const publicRoutes = () => (
     <Route path={about()} render={() => <About />} />
     <Route path={signup()} render={() => <SignUp />} />
     <Route path={signin()} render={() => <SignIn />} />
+    <Route path={chat()} render={() => <Chat />} />
     <Redirect exact to={landing()} />
   </Switch>
 );
