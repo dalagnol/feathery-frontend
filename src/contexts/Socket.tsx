@@ -9,17 +9,33 @@ export const SocketContext = createContext({});
 
 export default function Socket({ children, events, room }: any) {
   useEffect(() => {
-    Server.emit("Enter Channel", room);
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      Server.emit("Authenticate", token);
+    }
+
+    if (room) {
+      Server.emit("Join", room);
+    }
 
     if (events) {
-      events.forEach((event: any) => Server.on(event[0], event[1]));
+      if (events instanceof Array) {
+        events.forEach((event: any) => Server.on(event[0], event[1]));
+      } else {
+        Object.entries(events).forEach((entry: [string, any]) =>
+          Server.on(entry[0], entry[1])
+        );
+      }
     }
 
     return () => {
-      Server.emit("Leave Channel", room);
+      if (room) {
+        Server.emit("Exit", room);
+      }
       Server.disconnect();
     };
-  });
+  }, []);
 
   return (
     <SocketContext.Provider value={{ Server }}>

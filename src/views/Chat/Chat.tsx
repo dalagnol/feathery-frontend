@@ -6,9 +6,13 @@ import { Layout } from "components";
 import Content from "./Content/Content";
 
 export default function Chat() {
-  const x = [["Adimo", (...msg: any) => console.log(...msg)]];
+  const events = [
+    ["Adimo", (...msg: any) => console.log(...msg)],
+    ["Broadcast", (...msg: any) => console.log(...msg)],
+  ];
+
   return (
-    <Socket room={"Adimo"} events={x}>
+    <Socket room={"Adimo"} events={events}>
       <Themed>
         <Layout>
           <Content />
