@@ -8,6 +8,7 @@ import Subheading from "./Subheading/Subheading";
 import Title from "./Title/Title";
 import Overlay from "./Overlay/Overlay";
 import Loader from "./Loader/Loader";
+import Chat from "./Chat/Chat";
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   Title,
   Overlay,
   Loader,
+  Chat,
 };

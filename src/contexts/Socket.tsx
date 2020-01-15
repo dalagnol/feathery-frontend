@@ -3,11 +3,11 @@ import io from "socket.io-client";
 import config from "config.json";
 
 const URL = `${config.API_HOST}:${config.SOCKET_PORT}`;
-const Server = io(URL);
 
 export const SocketContext = createContext({});
 
 export default function Socket({ children, events, room }: any) {
+  const Server = io(URL);
   useEffect(() => {
     const token = localStorage.getItem("token");
 
