@@ -29,7 +29,7 @@ export default withRouter(function SignUp({ history }: any) {
 
   useEffect(() => {
     if (!user.error && resgitered === true && user.loading === false) {
-      history.push("/");
+      history.push("/signin");
     }
   }, [user.loading, history]);
 
