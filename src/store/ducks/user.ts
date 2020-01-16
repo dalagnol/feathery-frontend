@@ -6,6 +6,9 @@ export const Types = {
   LOGIN: "user/LOGIN",
   LOGIN_SUCCESS: "user/LOGIN_SUCCESS",
   LOGIN_FAILURE: "user/LOGIN_FAILURE",
+  SIGN_UP: "user/SIGN_UP",
+  SIGN_UP_SUCCESS: "user/SIGN_UP_SUCCESS",
+  SIGN_UP_FAILURE: "user/SIGN_UP_FAILURE",
 };
 
 const initialState = {
@@ -23,6 +26,12 @@ export default function userReducer(state = initialState, action: Action) {
     case Types.LOGIN_SUCCESS:
       return { ...state, loading: false, error: null, data: action.payload };
     case Types.LOGIN_FAILURE:
+      return { ...state, loading: false, error: action.payload, data: null };
+    case Types.SIGN_UP:
+      return { ...state, loading: true, error: null, data: null };
+    case Types.SIGN_UP_SUCCESS:
+      return { ...state, loading: false, error: null, data: action.payload };
+    case Types.SIGN_UP_FAILURE:
       return { ...state, loading: false, error: action.payload, data: null };
     default:
       return { ...state };
@@ -45,6 +54,16 @@ export const Creators = {
       dispatch({ type: Types.LOGIN_SUCCESS, payload: user });
     } catch (oof) {
       dispatch({ type: Types.LOGIN_FAILURE, payload: oof.message });
+    }
+  },
+  signUp: (form: any) => async (dispatch: Function) => {
+    dispatch({ type: Types.SIGN_UP });
+    try {
+      const { user } = await Service.Register(form);
+
+      dispatch({ type: Types.SIGN_UP_SUCCESS, payload: user });
+    } catch (oof) {
+      dispatch({ type: Types.SIGN_UP_FAILURE, payload: oof.message });
     }
   },
 };
