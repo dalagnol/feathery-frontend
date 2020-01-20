@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Themed } from "themes";
 import { useForm } from "shared/hooks";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,7 +30,11 @@ export default withRouter(function SignIn({ history }: any) {
     <Themed>
       {user.loading && <Loader />}
       <Header />
-      <Form form={form} submit={submit} />
+      <Form
+        form={form}
+        submit={submit}
+        errMsg={user.error}
+      />
     </Themed>
   );
 });

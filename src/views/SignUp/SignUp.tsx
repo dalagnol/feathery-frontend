@@ -10,7 +10,11 @@ import { Header } from "components";
 import Form from "./Form/Form";
 
 export default withRouter(function SignUp({ history }: any) {
-  const [resgitered, setRegistered] = useState(false);
+  interface IErrMsg {
+    SUErrMsg: string | null;
+    setSUErrMsg: Function;
+  }
+
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user);
 
@@ -22,21 +26,18 @@ export default withRouter(function SignUp({ history }: any) {
     password: "",
   });
 
-  const submit = (form: any) => {
-    dispatch(User.signUp(form));
-    setRegistered(true);
-  };
+  const submit = (form: any) => dispatch(User.signUp(form));
 
   useEffect(() => {
-    if (!user.error && resgitered === true && user.loading === false) {
+    if (user.data) {
       history.push("/signin");
     }
-  }, [user.loading, history]);
+  }, [user.data, history]);
 
   return (
     <Themed>
       <Header />
-      <Form form={form} submit={submit} />
+      <Form form={form} submit={submit} errMsg={user.error} />
     </Themed>
   );
 });

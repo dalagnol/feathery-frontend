@@ -59,9 +59,9 @@ export const Creators = {
   signUp: (form: any) => async (dispatch: Function) => {
     dispatch({ type: Types.SIGN_UP });
     try {
-      const { user } = await Service.Register(form);
+      const { Creation } = await Service.Register(form);
 
-      dispatch({ type: Types.SIGN_UP_SUCCESS, payload: user });
+      dispatch({ type: Types.SIGN_UP_SUCCESS, payload: Creation });
     } catch (oof) {
       dispatch({ type: Types.SIGN_UP_FAILURE, payload: oof.message });
     }

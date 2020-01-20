@@ -4,11 +4,17 @@ import Dictionary from "./locale.json";
 
 import { Container, Genders, Radios, Label } from "./styles";
 
-import { Button, Input, Radio, Subheading as Sub } from "components";
+import {
+  Button,
+  ErrMessage,
+  Input,
+  Radio,
+  Subheading as Sub,
+} from "components";
 
 const Localised = Locale.use(Dictionary);
 
-export default function Form({ form, submit }: any) {
+export default function Form({ form, submit, errMsg }: any) {
   const [data, { name, identifier, email, gender, password }] = form;
 
   const FormProps = {
@@ -38,6 +44,7 @@ export default function Form({ form, submit }: any) {
       <Sub>{Localised.password}</Sub>
       <Input {...password} />
       <Button onClick={() => submit(data)}>{Localised.signup}</Button>
+      {errMsg && <ErrMessage>{errMsg}</ErrMessage>}
     </Container>
   );
 }
