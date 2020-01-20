@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Themed } from "themes";
 import { useForm } from "shared/hooks";
 import { useDispatch, useSelector } from "react-redux";

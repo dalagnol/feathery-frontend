@@ -9,6 +9,7 @@ export const Types = {
   SIGN_UP: "user/SIGN_UP",
   SIGN_UP_SUCCESS: "user/SIGN_UP_SUCCESS",
   SIGN_UP_FAILURE: "user/SIGN_UP_FAILURE",
+  CLEAN_UP_ERROR: "user/CLEAN_UP_ERROR",
 };
 
 const initialState = {
@@ -33,6 +34,8 @@ export default function userReducer(state = initialState, action: Action) {
       return { ...state, loading: false, error: null, data: action.payload };
     case Types.SIGN_UP_FAILURE:
       return { ...state, loading: false, error: action.payload, data: null };
+    case Types.CLEAN_UP_ERROR:
+      return { ...state, loading: false, error: null };
     default:
       return { ...state };
   }
@@ -65,5 +68,8 @@ export const Creators = {
     } catch (oof) {
       dispatch({ type: Types.SIGN_UP_FAILURE, payload: oof.message });
     }
+  },
+  cleanUpError: () => async (dispatch: Function) => {
+    dispatch({ type: Types.CLEAN_UP_ERROR });
   },
 };
