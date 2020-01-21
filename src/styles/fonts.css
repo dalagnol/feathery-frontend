@@ -13,6 +13,12 @@
 
 @font-face {
   font-family: "Amatic SC B";
-  font-style: normal;
+  font-style: bold;
   src: url("../assets/fonts/Amatic_SC/AmaticSC-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Nanum Gothic";
+  font-style: normal;
+  src: url("../assets/fonts/Nanum_Gothic/NanumGothic-Regular.ttf");
 }

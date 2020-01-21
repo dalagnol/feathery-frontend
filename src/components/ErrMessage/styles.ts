@@ -1,48 +1,39 @@
 import styled from "styled-components";
-import { ErrorAlt } from "styled-icons/boxicons-regular/ErrorAlt";
+import { Exclamation } from "styled-icons/fa-solid/Exclamation";
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const ErrorIcon = styled(ErrorAlt)`
+export const ErrorIcon = styled(Exclamation)`
+  width: 24px;
+  height: 24px;
+
   color: #d82700;
 `;
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.primary};
-  box-shadow: 0px 0px 20px #00000022;
-
-  color: ${({ theme }) => theme.text};
-
-  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 
-  height: 570px;
-  width: 570px;
+  width: 100%;
+  height: 50px;
 `;
 
 export const ErrMessage = styled.p`
-  color: #D82700;
+  color: #d82700;
 
-  font-family: Amatic SC;
+  font-family: Nanum Gothic;
   text-align: center;
 
-  width: 90%;
-
   ${iPhone(`
-    font-size: 20px;
+    font-size: 18px;
   `)}
 
   ${iPad(`
-    font-size: 30px;
+    font-size: 22px;
   `)}
 
   ${Mac(`
-    font-size: 30px;
+    font-size: 22px;
   `)}
 `;
