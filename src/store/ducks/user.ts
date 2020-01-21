@@ -1,6 +1,5 @@
 import Action from "../interfaces/action";
-import Service from "services/api/Users";
-import Socket from "services/server/Users";
+import Service from "services/Users";
 
 export const Types = {
   LOGOUT: "user/LOGOUT",
@@ -42,8 +41,6 @@ export const Creators = {
 
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
-
-      Socket.Authenticate();
 
       dispatch({ type: Types.LOGIN_SUCCESS, payload: user });
     } catch (oof) {
