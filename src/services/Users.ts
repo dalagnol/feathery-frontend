@@ -6,7 +6,7 @@ export default new (class UserService {
       const { data } = await API.post("/login", form);
       return data;
     } catch (oof) {
-      console.log(oof);
+      return oof.response.data;
     }
   }
 
@@ -15,7 +15,7 @@ export default new (class UserService {
       const { data } = await API.post("/user", form);
       return data;
     } catch (oof) {
-      console.log(oof);
+      return oof.response.data;
     }
   }
 })();

@@ -48,25 +48,30 @@ export const Creators = {
   },
   login: (form: any) => async (dispatch: Function) => {
     dispatch({ type: Types.LOGIN });
-    try {
-      const { token, user } = await Service.Authenticate(form);
 
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+    const data = await Service.Authenticate(form);
 
-      dispatch({ type: Types.LOGIN_SUCCESS, payload: user });
-    } catch (oof) {
-      dispatch({ type: Types.LOGIN_FAILURE, payload: oof.message });
+    if (data.message) {
+      dispatch({ type: Types.LOGIN_FAILURE, payload: data.message });
+    } else {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      dispatch({ type: Types.LOGIN_SUCCESS, payload: data.user });
     }
   },
   signUp: (form: any) => async (dispatch: Function) => {
     dispatch({ type: Types.SIGN_UP });
-    try {
-      const { Creation } = await Service.Register(form);
 
-      dispatch({ type: Types.SIGN_UP_SUCCESS, payload: Creation });
-    } catch (oof) {
-      dispatch({ type: Types.SIGN_UP_FAILURE, payload: oof.message });
+    const data = await Service.Register(form);
+
+    if (data.message) {
+      dispatch({
+        type: Types.SIGN_UP_FAILURE,
+        payload: data.message,
+      });
+    } else {
+      dispatch({ type: Types.SIGN_UP_SUCCESS, payload: data.Creation });
     }
   },
   cleanUpError: () => async (dispatch: Function) => {
