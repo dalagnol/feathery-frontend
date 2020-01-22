@@ -6,15 +6,10 @@ import { withRouter } from "react-router-dom";
 
 import { Creators as User } from "store/ducks/user";
 
-import { Header } from "components";
+import { Header, Loader } from "components";
 import Form from "./Form/Form";
 
 export default withRouter(function SignUp({ history }: any) {
-  interface IErrMsg {
-    SUErrMsg: string | null;
-    setSUErrMsg: Function;
-  }
-
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user);
 
@@ -36,6 +31,7 @@ export default withRouter(function SignUp({ history }: any) {
 
   return (
     <Themed>
+      {user.loading && <Loader />}
       <Header />
       <Form form={form} submit={submit} errMsg={user.error} />
     </Themed>
