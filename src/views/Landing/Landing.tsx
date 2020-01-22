@@ -8,6 +8,7 @@ import Dictionary from "./locale.json";
 import { Buttons, Text } from "./styles";
 
 import { Button, Layout, Title } from "components";
+import SelectLanguage from "./SelectLanguage/SelectLanguage";
 
 const { welcome, aboutus, changethemeto, noposts } = Locale.use(Dictionary);
 
@@ -34,6 +35,7 @@ function Landing({ history }: any) {
           <Button onClick={changeThemes}>
             {changethemeto} {nextThemeName}
           </Button>
+          <SelectLanguage />
         </Buttons>
         <Text>{noposts}</Text>
       </Layout>

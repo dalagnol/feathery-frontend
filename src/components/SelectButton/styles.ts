@@ -11,14 +11,19 @@ export const Select = styled.select`
   font-size: 18px;
   border-radius: 10px;
 
-  padding: 10px 30px;
-  margin: 10px;
+  margin: 10px 0 10px 13px;
+
+  width: 200px;
+  height: 42px;
 
   transition: all 0.3s ease-in-out;
 
   &:hover {
     box-shadow: 0px 0px 10px #00000022;
+    background-color: ${({ theme }) => theme.secundary};
+  }
+  &:focus {
+    color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.text};
   }
 `;
-
-export const Option = styled.option``;

@@ -10,7 +10,7 @@ export const ErrorIcon = styled(Exclamation)`
 `;
 
 export const Container = styled.div`
-  display: flex;
+  display: flex;z
   flex-direction: row;
   justify-content: center;
   align-items: center;

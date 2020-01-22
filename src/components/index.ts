@@ -7,6 +7,7 @@ import Loader from "./Loader/Loader";
 import Logo from "./Logo/Logo";
 import Overlay from "./Overlay/Overlay";
 import Radio from "./Radio/Radio";
+import SelectButton from "./SelectButton/SelectButton";
 import Subheading from "./Subheading/Subheading";
 import Title from "./Title/Title";
 
@@ -20,6 +21,7 @@ export {
   Logo,
   Overlay,
   Radio,
+  SelectButton,
   Subheading,
   Title,
 };
