@@ -15,6 +15,7 @@ export default function Log({ setEvents, room }: any) {
       ...state,
       message: [(state.message && state.message[0]) || [], data.msg],
     }));
+    // eslint-disable-next-line
   }, [data]);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function Log({ setEvents, room }: any) {
         set((state: any) => ({ ...state, message: [[...log, message]] }));
       },
     });
+    // eslint-disable-next-line
   }, [socket.message]);
 
   return (

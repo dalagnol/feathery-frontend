@@ -42,6 +42,7 @@ export default function Socket({ children, events, room }: any) {
       }
       Server.disconnect();
     };
+    // eslint-disable-next-line
   }, [room, events]);
 
   return (
