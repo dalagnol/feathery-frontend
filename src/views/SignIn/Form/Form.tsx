@@ -6,7 +6,7 @@ import { Container } from "./styles";
 
 import { Button, Input, Subheading } from "components";
 
-export default function Form({ form, submit, errMsg }: any) {
+export default function Form({ form, submit }: any) {
   const { signin, cred, pass } = Locale.use(Dictionary);
   const [data, { credential, password }] = form;
 
