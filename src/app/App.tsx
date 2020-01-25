@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import "styles/standards.css";
-import "styles/fonts.css";
+import "styles/standards.scss";
+import "styles/fonts.scss";
+import "styles/animations";
 
 import Public from "routes/public";
 

@@ -18,7 +18,7 @@ export default function Form({ form, submit }: any) {
   return (
     <Container {...FormProps}>
       <Subheading>{cred}</Subheading>
-      <Input {...credential} />
+      <Input shake {...credential} />
       <Subheading>{pass}</Subheading>
       <Input {...password} />
       <Button onClick={() => submit(data)}>{signin}</Button>

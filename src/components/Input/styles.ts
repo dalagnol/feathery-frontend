@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const Input = styled.input`
+export const Input = styled.input<any>`
     background-color: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.text};
 
@@ -39,4 +39,10 @@ export const Input = styled.input`
         background-color: ${({ theme }) => theme.text};
         color: ${({ theme }) => theme.primary};
     }
+
+    ${({ shake }) =>
+      shake &&
+      `
+        animation: shake 0.4s;
+    `}
 `;
