@@ -4,13 +4,7 @@ import Dictionary from "./locale.json";
 
 import { Container, Genders, Radios, Label } from "./styles";
 
-import {
-  Button,
-  ErrMessage,
-  Input,
-  Radio,
-  Subheading as Sub,
-} from "components";
+import { Button, Input, Radio, Subheading as Sub } from "components";
 
 export default function Form({ form, submit, errMsg }: any) {
   const [data, { name, identifier, email, gender, password }] = form;
@@ -43,7 +37,6 @@ export default function Form({ form, submit, errMsg }: any) {
       <Sub>{Localised.password}</Sub>
       <Input {...password} />
       <Button onClick={() => submit(data)}>{Localised.signup}</Button>
-      {errMsg && <ErrMessage>{errMsg}</ErrMessage>}
     </Container>
   );
 }

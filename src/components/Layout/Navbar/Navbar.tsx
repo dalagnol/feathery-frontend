@@ -12,9 +12,8 @@ import { Logo } from "components";
 
 import { Creators as User } from "store/ducks/user";
 
-const { signup, signin } = Locale.use(Dictionary);
-
 export default withRouter(function Navbar({ history }: any) {
+  const { signup, signin } = Locale.use(Dictionary);
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user.data);
   const token = localStorage.getItem("token");
