@@ -2,7 +2,7 @@
 
 This project is an exercise in which we will create a content-hosting platform emplyoing the MERN stack.
 
-This repository is the front-end of the application and it runs on React, employing TypeScript for the code dialect and Redux for its dataflow, adopting the Ducks pattern.
+This repository is the front-end of the application and it runs on React, employing TypeScript for the code dialect and MobX for its dataflow.
 
 ### Environment needs
 
