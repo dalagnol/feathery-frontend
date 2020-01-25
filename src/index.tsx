@@ -7,14 +7,6 @@ import Locale from "./locale";
 import moment from "moment";
 import "moment/min/locales";
 
-declare global {
-  interface Window {
-    locale: any;
-  }
-}
-
-window.locale = Locale;
-
 moment.locale(Locale.language);
 
 ReactDOM.render(<App />, document.getElementById("root"));
