@@ -6,10 +6,9 @@ import { Container, Genders, Radios, Label } from "./styles";
 
 import { Button, Input, Radio, Subheading as Sub } from "components";
 
-const Localised = Locale.use(Dictionary);
-
-export default function Form({ form }: any) {
-  const [data, { fullname, username, email, gender, password }] = form;
+export default function Form({ form, submit, errMsg }: any) {
+  const [data, { name, identifier, email, gender, password }] = form;
+  const Localised = Locale.use(Dictionary);
 
   const FormProps = {
     method: "POST",
@@ -19,9 +18,9 @@ export default function Form({ form }: any) {
   return (
     <Container {...FormProps}>
       <Sub>{Localised.fullname}</Sub>
-      <Input {...fullname} />
+      <Input {...name} />
       <Sub>{Localised.username}</Sub>
-      <Input {...username} />
+      <Input {...identifier} />
       <Sub>{Localised.email}</Sub>
       <Input {...email} />
       <Sub>{Localised.gender}</Sub>
@@ -37,7 +36,7 @@ export default function Form({ form }: any) {
       </Genders>
       <Sub>{Localised.password}</Sub>
       <Input {...password} />
-      <Button>{Localised.signup}</Button>
+      <Button onClick={() => submit(data)}>{Localised.signup}</Button>
     </Container>
   );
 }

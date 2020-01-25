@@ -3,18 +3,7 @@ import { iPhone, iPad, Mac } from "styles/Screens";
 
 export const Buttons = styled.div`
   display: flex;
-
-  ${iPhone(`
-    flex-direction: column;
-  `)}
-
-  ${iPad(`
-    flex-direction: column;
-  `)}
-
-  ${Mac(`
-    flex-direction: row;
-  `)}
+  flex-direction: column;
 `;
 
 export const Text = styled.p`

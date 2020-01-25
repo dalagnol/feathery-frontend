@@ -30,7 +30,7 @@ export default withRouter(function SignIn({ history }: any) {
     <Themed>
       {user.loading && <Loader />}
       <Header />
-      <Form form={form} submit={submit} />
+      <Form form={form} submit={submit} errMsg={user.error} />
     </Themed>
   );
 });

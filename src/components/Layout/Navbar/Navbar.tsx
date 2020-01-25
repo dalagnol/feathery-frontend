@@ -12,12 +12,11 @@ import { Logo } from "components";
 
 import { Creators as User } from "store/ducks/user";
 
-const { signup, signin } = Locale.use(Dictionary);
-
 export default withRouter(function Navbar({ history }: any) {
+  const { signup, signin } = Locale.use(Dictionary);
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user.data);
-
+  const token = localStorage.getItem("token");
   const Home = () => {
     history.push("/");
   };
@@ -34,23 +33,23 @@ export default withRouter(function Navbar({ history }: any) {
 
   return (
     <Element>
-      {!user && (
+      {!token && (
         <Button left onClick={SignUp}>
           {signup}
         </Button>
       )}
-      {user && (
+      {token && (
         <Button left>
           <FontAwesomeIcon icon={faBars} />
         </Button>
       )}
       <Logo onClick={Home} />
-      {!user && (
+      {!token && (
         <Button right onClick={SignIn}>
           {signin}
         </Button>
       )}
-      {user && (
+      {token && (
         <Button right onClick={logout}>
           {user.name}
         </Button>

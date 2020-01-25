@@ -9,4 +9,13 @@ export default new (class UserService {
       console.log(oof);
     }
   }
+
+  public async Register(form: any) {
+    try {
+      const { data } = await API.post("/user", form);
+      return data;
+    } catch (oof) {
+      return oof.response.data;
+    }
+  }
 })();

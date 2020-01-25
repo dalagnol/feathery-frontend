@@ -9,9 +9,10 @@ import { Buttons, Text } from "./styles";
 
 import { Button, Layout, Title } from "components";
 
-const { welcome, aboutus, changethemeto, noposts } = Locale.use(Dictionary);
-
 function Landing({ history }: any) {
+  const { welcome, aboutus, changethemeto, noposts } = Locale.use(Dictionary);
+  const refresh = useRerender();
+
   const About = () => {
     history.push("/about");
   };
@@ -19,7 +20,7 @@ function Landing({ history }: any) {
   const nextThemeName = Theme.next()
     .localised("name")
     .toLowerCase();
-  const refresh = useRerender();
+
   const changeThemes = () => {
     Theme.switch();
     refresh();

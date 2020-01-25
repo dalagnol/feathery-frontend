@@ -22,8 +22,8 @@ export const signup = (): string => "/signup";
  * Defines the route for the signIn page.
  */
 export const signin = (): string => "/signin";
-
 export const chat = (): string => "/chat";
+
 export const adimo = (): string => "/adimo";
 
 export const publicRoutes = () => (
