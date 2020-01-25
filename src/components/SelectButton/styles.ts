@@ -20,10 +20,8 @@ export const Select = styled.select`
 
   &:hover {
     box-shadow: 0px 0px 10px #00000022;
-    background-color: ${({ theme }) => theme.secundary};
   }
   &:focus {
-    color: ${({ theme }) => theme.primary};
-    background-color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.secundary};
   }
 `;

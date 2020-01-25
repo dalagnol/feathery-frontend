@@ -1,26 +1,23 @@
 import React from "react";
-import { useRerender } from "shared/hooks";
+import Locale from "locale";
+import Dictionary from "./locale.json";
 
 import { LangIcon, Container } from "./styles";
 
 import { SelectButton } from "components";
 import { Option } from "components/SelectButton";
 
-export default function SelectLanguage() {
-  /*
-  const refresh = useRerender();
-  const changeLang = () => {
-    localStorage.setItem("language", "pt");
-    refresh();
-  };
-  */
- 
+const { english, portuguese } = Locale.use(Dictionary);
+
+export default function SelectLanguage({ onChangeHandler }: any) {
+  const lang = localStorage.getItem("language");
+
   return (
     <Container>
       <LangIcon />
-      <SelectButton>
-        <Option value={"en"}>English</Option>
-        <Option value={"pt"}>Portuguese</Option>
+      <SelectButton onChange={onChangeHandler} value={lang}>
+        <Option value={"en"}>{english}</Option>
+        <Option value={"pt"}>{portuguese}</Option>
       </SelectButton>
     </Container>
   );

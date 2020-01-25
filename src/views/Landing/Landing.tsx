@@ -10,9 +10,10 @@ import { Buttons, Text } from "./styles";
 import { Button, Layout, Title } from "components";
 import SelectLanguage from "./SelectLanguage/SelectLanguage";
 
-const { welcome, aboutus, changethemeto, noposts } = Locale.use(Dictionary);
-
 function Landing({ history }: any) {
+  const { welcome, aboutus, changethemeto, noposts } = Locale.use(Dictionary);
+  const refresh = useRerender();
+
   const About = () => {
     history.push("/about");
   };
@@ -20,9 +21,16 @@ function Landing({ history }: any) {
   const nextThemeName = Theme.next()
     .localised("name")
     .toLowerCase();
-  const refresh = useRerender();
   const changeThemes = () => {
     Theme.switch();
+    refresh();
+  };
+
+  const onChangeHandler = (e: any) => {
+    const {
+      target: { value },
+    } = e;
+    Locale.language = value;
     refresh();
   };
 
@@ -35,7 +43,7 @@ function Landing({ history }: any) {
           <Button onClick={changeThemes}>
             {changethemeto} {nextThemeName}
           </Button>
-          <SelectLanguage />
+          <SelectLanguage onChangeHandler={onChangeHandler} />
         </Buttons>
         <Text>{noposts}</Text>
       </Layout>
