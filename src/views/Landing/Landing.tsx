@@ -1,5 +1,6 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { observer } from "mobx-react";
+import { useHistory } from "react-router-dom";
 import { useRerender } from "shared/hooks";
 import Theme, { Themed } from "themes";
 import Locale from "locale";
@@ -7,11 +8,16 @@ import Dictionary from "./locale.json";
 
 import { Buttons, Text } from "./styles";
 
-import { Button, Layout, Title } from "components";
+import { Button, Layout, Title, Loader } from "components";
 
-function Landing({ history }: any) {
+import Users from "store/Users";
+
+export default observer(function Landing() {
   const { welcome, aboutus, changethemeto, noposts } = Locale.use(Dictionary);
+  const history = useHistory();
   const refresh = useRerender();
+
+  const { user } = Users;
 
   const About = () => {
     history.push("/about");
@@ -30,6 +36,7 @@ function Landing({ history }: any) {
     <Themed>
       <Layout>
         <Title>{welcome}</Title>
+        {user ? <Title>{user}</Title> : <Loader />}
         <Buttons>
           <Button onClick={About}>{aboutus}</Button>
           <Button onClick={changeThemes}>
@@ -40,6 +47,4 @@ function Landing({ history }: any) {
       </Layout>
     </Themed>
   );
-}
-
-export default withRouter(Landing);
+});
