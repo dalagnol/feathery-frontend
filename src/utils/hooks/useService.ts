@@ -1,14 +1,20 @@
 import { useState } from "react";
+import { errorSwitch } from "utils/helpers";
 
-export default function useService(method: any, ...params: any) {
+export default function useService({ method, params, handler, errors }: any) {
   const [value, setValue] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const PromiseWrapper = async () => {
-    const response = await method(...params);
-    setValue(response);
+    setLoading(true);
+    try {
+      const data = await method(...params);
+      handler(data);
+    } catch (oof) {
+      errorSwitch(oof, errors);
+    }
+    setLoading(false);
   };
 
-  PromiseWrapper();
-
-  return value;
+  return [value, loading, PromiseWrapper];
 }

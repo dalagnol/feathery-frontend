@@ -1,4 +1,6 @@
 import createMomentInitialiser from "./createMomentInitialiser";
 import timeIsBetween from "./timeIsBetween";
 
-export { createMomentInitialiser, timeIsBetween };
+import errorSwitch from "./errorSwitch";
+
+export { createMomentInitialiser, timeIsBetween, errorSwitch };

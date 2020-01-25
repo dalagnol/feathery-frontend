@@ -5,8 +5,9 @@ export default new (class UserService {
     const { data } = await API.post("/login", form);
 
     localStorage.setItem("token", data.token);
+    localStorage.setItem("user", data.user);
 
-    return data;
+    return data.user;
   }
 
   public async Register(form: any) {

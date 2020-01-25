@@ -6,7 +6,7 @@ import { Container } from "./styles";
 
 import { Button, Input, Subheading } from "components";
 
-export default function Form({ form, submit }: any) {
+export default function Form({ form, submit, errors }: any) {
   const { signin, cred, pass } = Locale.use(Dictionary);
   const [data, { credential, password }] = form;
 
@@ -15,10 +15,13 @@ export default function Form({ form, submit }: any) {
     onSubmit: (e: any) => e.preventDefault(),
   };
 
+  credential.shake = errors.credError;
+  password.shake = errors.pswdError;
+
   return (
     <Container {...FormProps}>
       <Subheading>{cred}</Subheading>
-      <Input shake {...credential} />
+      <Input {...credential} />
       <Subheading>{pass}</Subheading>
       <Input {...password} />
       <Button onClick={() => submit(data)}>{signin}</Button>
