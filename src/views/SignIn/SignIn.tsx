@@ -1,6 +1,6 @@
 import React from "react";
 import { Themed } from "themes";
-import { useForm } from "shared/hooks";
+import { useForm } from "utils/hooks";
 import { withRouter } from "react-router-dom";
 
 import { Header, Loader } from "components";

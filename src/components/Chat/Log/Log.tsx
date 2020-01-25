@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { SocketContext } from "contexts/Socket";
-import { useForm } from "shared/hooks";
+import { useForm } from "utils/hooks";
 
 import { Container } from "./styles";
 

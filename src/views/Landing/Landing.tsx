@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { useHistory } from "react-router-dom";
-import { useRerender } from "shared/hooks";
+import { useRerender } from "utils/hooks";
 import Theme, { Themed } from "themes";
 import Locale from "locale";
 import Dictionary from "./locale.json";
