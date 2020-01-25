@@ -12,10 +12,9 @@ import {
   Subheading as Sub,
 } from "components";
 
-const Localised = Locale.use(Dictionary);
-
 export default function Form({ form, submit, errMsg }: any) {
   const [data, { name, identifier, email, gender, password }] = form;
+  const Localised = Locale.use(Dictionary);
 
   const FormProps = {
     method: "POST",
