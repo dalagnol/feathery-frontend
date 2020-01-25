@@ -10,6 +10,7 @@ export default function useService({ method, params, handler, errors }: any) {
     try {
       const data = await method(...params);
       handler(data);
+      setValue(data);
     } catch (oof) {
       errorSwitch(oof, errors);
     }

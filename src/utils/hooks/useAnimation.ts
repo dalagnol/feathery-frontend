@@ -9,7 +9,7 @@ export default function useTimer(time: number) {
         setTimer(false);
       }, time);
     }
-  }, [timer]);
+  }, [time, timer]);
 
   const trigger = () => setTimer(true);
 
