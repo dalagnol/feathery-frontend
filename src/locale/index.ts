@@ -1,7 +1,8 @@
+import { observable, computed } from "mobx";
 import { Language } from "./interfaces/language";
 
 export class LanguageEngine {
-  private Language: Language = "en";
+  @observable private Language: Language = "en";
 
   constructor() {
     const path: string = window.location.pathname.split("/")[1];
@@ -21,7 +22,7 @@ export class LanguageEngine {
     this.Language = L === "en" || L === "pt" ? L : "en";
   }
 
-  public get language(): Language {
+  @computed public get language(): Language {
     return this.Language;
   }
 

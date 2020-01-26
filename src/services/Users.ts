@@ -5,7 +5,7 @@ export default new (class UserService {
     const { data } = await API.post("/login", form);
 
     localStorage.setItem("token", data.token);
-    localStorage.setItem("user", data.user);
+    localStorage.setItem("user", JSON.stringify(data.user));
 
     return data.user;
   }

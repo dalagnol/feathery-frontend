@@ -1,11 +1,11 @@
-import { observable, computed } from "mobx";
+import { observable, computed, toJS } from "mobx";
 
 class UserStore {
   @observable private User: any = JSON.parse(localStorage.getItem("user")!);
   @observable private Loading = false;
 
   @computed public get user() {
-    return this.User;
+    return toJS(this.User);
   }
 
   public logout() {

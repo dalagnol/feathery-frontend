@@ -1,5 +1,5 @@
-import Public from "./public";
-import Commons from "./commons";
-import Admins from "./admins";
+import nobody from "./nobody";
+import commons from "./commons";
+import admins from "./admins";
 
-export { Public, Commons, Admins };
+export default { nobody, commons, admins } as any;
