@@ -1,4 +1,5 @@
 import React from "react";
+import { observable } from "mobx";
 import { ThemeProvider } from "styled-components";
 import { timeIsBetween } from "utils/helpers";
 
@@ -28,8 +29,8 @@ interface ProviderProps {
   children: any;
 }
 
-const Theme = new (class ThemeEngine {
-  private Theme: Name = Names[0];
+class ThemeEngine {
+  @observable private Theme: Name = Names[0];
 
   constructor() {
     /** To implement later: theme stored in user's preferences */
@@ -97,7 +98,9 @@ const Theme = new (class ThemeEngine {
   public get d(): ITheme {
     return Themes[this.Theme];
   }
-})();
+}
+
+const Theme = new ThemeEngine();
 
 export default Theme;
 

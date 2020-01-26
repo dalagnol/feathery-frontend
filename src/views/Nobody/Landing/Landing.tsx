@@ -1,7 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { useHistory } from "react-router-dom";
-import { useRerender } from "utils/hooks";
 import Theme, { Themed } from "themes";
 import Locale from "locale";
 import Dictionary from "./locale.json";
@@ -13,7 +12,6 @@ import { Button, Layout, Title } from "components";
 export default observer(function Landing() {
   const { welcome, aboutus, changethemeto, noposts } = Locale.use(Dictionary);
   const history = useHistory();
-  const refresh = useRerender();
 
   const About = () => {
     history.push("/about");
@@ -25,7 +23,6 @@ export default observer(function Landing() {
 
   const changeThemes = () => {
     Theme.switch();
-    refresh();
   };
 
   return (
