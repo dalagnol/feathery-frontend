@@ -12,6 +12,10 @@ export default new (class UserService {
 
   public async Register(form: any) {
     const { data } = await API.post("/user", form);
+
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+
     return data;
   }
 })();

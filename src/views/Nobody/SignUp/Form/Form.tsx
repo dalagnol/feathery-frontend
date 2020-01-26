@@ -6,7 +6,7 @@ import { Container, Genders, Radios, Label } from "./styles";
 
 import { Button, Input, Radio, Subheading as Sub } from "components";
 
-export default function Form({ form, submit }: any) {
+export default function Form({ form, submit, errors }: any) {
   const [data, { name, identifier, email, gender, password }] = form;
   const Localised = Locale.use(Dictionary);
 
@@ -14,6 +14,11 @@ export default function Form({ form, submit }: any) {
     method: "POST",
     onSubmit: (e: any) => e.preventDefault(),
   };
+
+  name.shake = errors.nameError;
+  identifier.shake = errors.idtfError;
+  email.shake = errors.mailError;
+  password.shake = errors.pswdError;
 
   return (
     <Container {...FormProps}>
