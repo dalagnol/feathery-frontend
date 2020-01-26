@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { Feed } from "views/Commons";
+import { Feed } from "views/Creators";
 
 export const feed = (): string => "/";
 
