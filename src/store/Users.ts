@@ -8,12 +8,6 @@ class UserStore {
     return toJS(this.User);
   }
 
-  public logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    this.User = null;
-  }
-
   public set user(data: any) {
     if (
       data.id &&
@@ -26,6 +20,12 @@ class UserStore {
     } else {
       this.User = null;
     }
+  }
+
+  public logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    this.User = null;
   }
 
   @computed public get loading() {
