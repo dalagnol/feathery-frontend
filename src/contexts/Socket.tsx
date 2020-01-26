@@ -58,7 +58,11 @@ export default function Socket({ children, events, room }: any) {
         Server,
       }}
     >
-      {children}
+      {typeof children === "function" ? (
+        <SocketContext.Consumer>{children}</SocketContext.Consumer>
+      ) : (
+        children
+      )}
     </SocketContext.Provider>
   );
 }

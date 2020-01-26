@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import Socket from "contexts/Socket";
 
-import UI from "./UI/UI";
+import { Container, Input } from "./styles";
 
 export default function Chat({ room, sender }: any) {
   const [history, setHistory]: any = useState([]);
+
+  const handler = (e: any, Server: any) => {
+    const {
+      keyCode,
+      target: { value },
+    } = e;
+
+    if (keyCode === 13) {
+      Server.emit("Message", room, { sender, value });
+    }
+  };
 
   const events = {
     Message: (message: any) => {
@@ -16,7 +27,16 @@ export default function Chat({ room, sender }: any) {
 
   return (
     <Socket room={room} events={events}>
-      <UI room={room} sender={sender} state={[history, setHistory]} />
+      {({ Server }: any) => (
+        <>
+          <Container>
+            {history.map((message: any, index: number) => (
+              <h5 key={index}>{message.value}</h5>
+            ))}
+          </Container>
+          <Input onKeyDown={(e: any) => handler(e, Server)} />
+        </>
+      )}
     </Socket>
   );
 }
