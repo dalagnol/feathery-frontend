@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import { timeIsBetween } from "./../shared/helpers";
+import { timeIsBetween } from "utils/helpers";
 
 import { Language } from "locale/interfaces/language";
 

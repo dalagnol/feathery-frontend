@@ -8,9 +8,20 @@ export const SocketContext = createContext({});
 
 export default function Socket({ children, events, room }: any) {
   const Server = io(URL);
-  const [socket, setter]: any = useState({});
+  const [SocketStates, setSocketStates]: any = useState({});
+  const [SocketParams, setSocketParams]: any = useState({});
 
-  console.log(socket);
+  const parametrise = (key: string, value = []) =>
+    setSocketParams((state: any) => ({ ...state, [key]: value }));
+
+  const clear = (key: string) =>
+    setSocketParams((state: any) => ({ ...state, [key]: undefined }));
+
+  const set = (key: string, value = {}) =>
+    setSocketStates((state: any) => ({ ...state, [key]: value }));
+
+  const unset = (key: string) =>
+    setSocketStates((state: any) => ({ ...state, [key]: undefined }));
 
   useEffect(() => {
     Server.removeAllListeners();
@@ -29,9 +40,13 @@ export default function Socket({ children, events, room }: any) {
       if (events instanceof Array) {
         events.forEach((event: any) => Server.on(event[0], event[1]));
       } else {
-        console.log(socket.message);
         Object.entries(events).forEach((entry: [string, any]) =>
-          Server.on(entry[0], () => entry[1](setter, ...socket[entry[0]]))
+          Server.on(entry[0], () =>
+            entry[1](
+              { parametrise, clear, set, unset },
+              ...SocketParams[entry[0]]
+            )
+          )
         );
       }
     }
@@ -46,7 +61,16 @@ export default function Socket({ children, events, room }: any) {
   }, [room, events]);
 
   return (
-    <SocketContext.Provider value={{ Server, setter, ...socket }}>
+    <SocketContext.Provider
+      value={{
+        Server,
+        parametrise,
+        clear,
+        set,
+        unset,
+        ...SocketStates,
+      }}
+    >
       {children}
     </SocketContext.Provider>
   );

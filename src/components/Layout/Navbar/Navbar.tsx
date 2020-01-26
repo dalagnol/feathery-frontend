@@ -9,6 +9,8 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import { Logo } from "components";
 
+import Store from "store/Users";
+
 export default withRouter(function Navbar({ history }: any) {
   const { signup, signin } = Locale.use(Dictionary);
   const token = localStorage.getItem("token");
@@ -23,6 +25,12 @@ export default withRouter(function Navbar({ history }: any) {
   const SignIn = () => {
     history.push("/signin");
   };
+
+  const Logout = function() {
+    Store.logout();
+  };
+
+  const { user } = Store;
 
   return (
     <Element>
@@ -43,8 +51,8 @@ export default withRouter(function Navbar({ history }: any) {
         </Button>
       )}
       {token && (
-        <Button right onClick={() => alert("should logout")}>
-          user name
+        <Button right onClick={Logout}>
+          {user.name}
         </Button>
       )}
     </Element>

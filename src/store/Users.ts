@@ -1,37 +1,31 @@
-import { observable, action, computed } from "mobx";
+import { observable, computed } from "mobx";
 
 class UserStore {
-  @observable private User: any = null;
+  @observable private User: any = JSON.parse(localStorage.getItem("user")!);
   @observable private Loading = false;
 
-  @action public async getUser() {
-    this.Loading = true;
-    setTimeout(() => {
-      this.User = "Jujuba";
-      this.Loading = false;
-    }, 2000);
-  }
-
-  public async setUser(name: string) {
-    this.User = null;
-    this.Loading = true;
-    setTimeout(() => {
-      this.User = name;
-      this.Loading = false;
-    }, 2000);
-  }
-
   @computed public get user() {
-    if (this.User) {
-      return this.User;
-    } else {
-      this.getUser();
-      return null;
-    }
+    return this.User;
   }
 
-  public set user(name: any) {
-    this.User = name;
+  public logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    this.User = null;
+  }
+
+  public set user(data: any) {
+    if (
+      data.id &&
+      data.name &&
+      data.identifier &&
+      data.email &&
+      localStorage.getItem("token")
+    ) {
+      this.User = data;
+    } else {
+      this.User = null;
+    }
   }
 
   @computed public get loading() {
