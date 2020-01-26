@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { Landing, About, SignIn, SignUp, Chat, Adimo } from "views";
+import { Landing, About, SignIn, SignUp, Chat, Adimo } from "views/Nobody";
 
 export const landing = (): string => "/";
 export const about = (): string => "/about";
