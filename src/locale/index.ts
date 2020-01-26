@@ -1,7 +1,7 @@
 import { observable, computed } from "mobx";
 import { Language } from "./interfaces/language";
 
-export class LanguageEngine {
+class LanguageEngine {
   @observable private Language: Language = "en";
 
   constructor() {
