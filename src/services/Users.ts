@@ -11,11 +11,7 @@ export default new (class UserService {
   }
 
   public async Register(form: any) {
-    try {
-      const { data } = await API.post("/user", form);
-      return data;
-    } catch (oof) {
-      return oof.response.data;
-    }
+    const { data } = await API.post("/user", form);
+    return data;
   }
 })();
