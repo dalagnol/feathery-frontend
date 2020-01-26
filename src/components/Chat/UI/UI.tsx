@@ -3,7 +3,7 @@ import { SocketContext } from "contexts/Socket";
 
 import { Container, Input } from "./styles";
 
-export default function UI({ state }: any) {
+export default function UI({ room, sender, state }: any) {
   const { Server } = useContext(SocketContext);
   const [history, setHistory] = state;
 
@@ -15,15 +15,15 @@ export default function UI({ state }: any) {
 
     if (keyCode === 13) {
       console.log("I happened");
-      Server.emit("Broadcast", value);
+      Server.emit("Message", room, { sender, value });
     }
   };
 
   return (
     <>
       <Container>
-        {history.map((message: string, index: number) => (
-          <h5 key={index}>{message}</h5>
+        {history.map((message: any, index: number) => (
+          <h5 key={index}>{message.value}</h5>
         ))}
       </Container>
       <Input onKeyDown={handler} />

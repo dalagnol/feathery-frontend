@@ -7,8 +7,8 @@ export default function Adimo() {
   return (
     <Themed>
       <Layout row around>
-        <Chat />
-        <Chat />
+        <Chat sender={"moresco"} room="Adimo" />
+        <Chat sender={"juba"} room="Adimo" />
       </Layout>
     </Themed>
   );
