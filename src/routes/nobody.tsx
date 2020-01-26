@@ -10,7 +10,7 @@ export const signin = (): string => "/signin";
 export const chat = (): string => "/chat";
 export const adimo = (): string => "/adimo";
 
-export const publicRoutes = () => (
+export default () => (
   <Switch>
     <Route exact path={landing()} render={() => <Landing />} />
     <Route path={about()} render={() => <About />} />
@@ -21,5 +21,3 @@ export const publicRoutes = () => (
     <Redirect exact to={landing()} />
   </Switch>
 );
-
-export default publicRoutes;

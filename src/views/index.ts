@@ -5,4 +5,6 @@ import SignUp from "./Nobody/SignUp/SignUp";
 import Chat from "./Nobody/Chat/Chat";
 import Adimo from "./Nobody/Adimo/Adimo";
 
-export { Landing, About, SignIn, SignUp, Chat, Adimo };
+import Feed from "./Commons/Feed/Feed";
+
+export { Landing, About, SignIn, SignUp, Chat, Adimo, Feed };

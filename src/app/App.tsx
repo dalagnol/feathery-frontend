@@ -1,16 +1,22 @@
 import React from "react";
+import { observer } from "mobx-react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import "styles/standards.scss";
 import "styles/fonts.scss";
 import "styles/animations";
 
-import Public from "routes/public";
+import Store from "store/Users";
 
-export default function App() {
+import Routing from "routes";
+
+export default observer(function App() {
+  const { user } = Store;
+  const Routes = Routing[user?.group || "nobody"];
+
   return (
     <Router>
-      <Public />
+      <Routes />
     </Router>
   );
-}
+});
