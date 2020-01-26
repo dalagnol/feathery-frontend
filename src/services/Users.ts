@@ -16,6 +16,6 @@ export default new (class UserService {
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.user));
 
-    return data;
+    return data.user;
   }
 })();
