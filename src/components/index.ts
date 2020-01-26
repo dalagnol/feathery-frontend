@@ -8,6 +8,7 @@ import Overlay from "./Overlay/Overlay";
 import Radio from "./Radio/Radio";
 import Subheading from "./Subheading/Subheading";
 import Title from "./Title/Title";
+import Chat from "./Chat/Chat";
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   Radio,
   Subheading,
   Title,
+  Chat,
 };
