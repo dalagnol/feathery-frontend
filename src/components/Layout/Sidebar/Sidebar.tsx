@@ -7,8 +7,8 @@ import {
   Container,
   LogoContainer,
   Sidebar as Element,
+  Text,
   Button,
-  Buttons,
   FeedIcon,
   AboutUsIcon,
 } from "./styles";
@@ -35,14 +35,14 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
         <LogoContainer>
           <Logo onClick={CloseSidebar} />
         </LogoContainer>
-        <Buttons onClick={GoToFeed}>
+        <Button onClick={GoToFeed}>
           <FeedIcon />
-          <Button>{feed}</Button>
-        </Buttons>
-        <Buttons>
+          <Text>{feed}</Text>
+        </Button>
+        <Button>
           <AboutUsIcon />
-          <Button>{aboutus}</Button>
-        </Buttons>
+          <Text>{aboutus}</Text>
+        </Button>
       </Element>
     </Container>
   );
