@@ -1,6 +1,6 @@
 import useService from "./useService";
 import useRerender from "./useRerender";
 import useForm from "./useForm";
-import useAnimation from "./useAnimation";
+import useTimer from "./useTimer";
 
-export { useService, useRerender, useForm, useAnimation };
+export { useService, useRerender, useForm, useTimer };

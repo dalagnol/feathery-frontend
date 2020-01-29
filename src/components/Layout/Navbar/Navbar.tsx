@@ -9,7 +9,7 @@ import { Logo } from "components";
 
 import Store from "store/Users";
 
-export default function Navbar({ sidebarOpen, setSidebarOpen, user }: any) {
+export default function Navbar({ setSidebarOpen, ...props }: any) {
   const { signup, signin } = Locale.use(Dictionary);
   const token = localStorage.getItem("token");
 
@@ -36,7 +36,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, user }: any) {
   };
 
   return (
-    <Element sidebarOpen={sidebarOpen}>
+    <Element {...props}>
       {!token && (
         <Button left onClick={SignUp}>
           {signup}

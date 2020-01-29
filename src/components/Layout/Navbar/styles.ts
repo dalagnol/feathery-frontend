@@ -20,8 +20,9 @@ export const Navbar = styled.header<any>`
 
   transition: all 0.4s ease-in-out;
 
-  ${({ sidebarOpen }) =>
+  ${({ sidebarOpen, closingSidebar }) =>
     sidebarOpen &&
+    !closingSidebar &&
     `
     transform: translateY(-100%);
   `}

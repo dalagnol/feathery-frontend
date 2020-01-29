@@ -19,10 +19,11 @@ export const Footer = styled.footer<any>`
 
   transition: all 0.4s ease-in-out;
 
-  ${({ sidebarOpen }) =>
+  ${({ sidebarOpen, closingSidebar }) =>
     sidebarOpen &&
+    !closingSidebar &&
     `
-    transform: translateY(100%);
+    transform: translateY(49px);
 
     position: fixed;
   `}

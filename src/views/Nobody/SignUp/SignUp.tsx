@@ -1,6 +1,6 @@
 import React from "react";
 import { Themed } from "themes";
-import { useForm, useAnimation, useService } from "utils/hooks";
+import { useForm, useTimer, useService } from "utils/hooks";
 import { withRouter } from "react-router-dom";
 import { errors } from "./constants";
 
@@ -11,10 +11,10 @@ import UserService from "services/Users";
 import UserStore from "store/Users";
 
 export default withRouter(function SignUp() {
-  const [nameError, nameTrigger]: any = useAnimation(500);
-  const [idtfError, idtfTrigger]: any = useAnimation(500);
-  const [mailError, mailTrigger]: any = useAnimation(500);
-  const [pswdError, pswdTrigger]: any = useAnimation(500);
+  const [nameError, nameTrigger]: any = useTimer(500);
+  const [idtfError, idtfTrigger]: any = useTimer(500);
+  const [mailError, mailTrigger]: any = useTimer(500);
+  const [pswdError, pswdTrigger]: any = useTimer(500);
 
   const form = useForm({
     name: "",

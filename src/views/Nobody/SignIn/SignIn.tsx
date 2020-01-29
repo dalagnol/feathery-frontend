@@ -1,6 +1,6 @@
 import React from "react";
 import { Themed } from "themes";
-import { useForm, useAnimation, useService } from "utils/hooks";
+import { useForm, useTimer, useService } from "utils/hooks";
 import { withRouter } from "react-router-dom";
 import { errors } from "./constants";
 
@@ -11,8 +11,8 @@ import UserService from "services/Users";
 import UserStore from "store/Users";
 
 export default withRouter(function SignIn() {
-  const [credError, credTrigger]: any = useAnimation(500);
-  const [pswdError, pswdTrigger]: any = useAnimation(500);
+  const [credError, credTrigger]: any = useTimer(500);
+  const [pswdError, pswdTrigger]: any = useTimer(500);
 
   const form = useForm({
     credential: "",

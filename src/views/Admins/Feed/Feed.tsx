@@ -6,7 +6,9 @@ import { Layout } from "components";
 export default function Feed() {
   return (
     <Themed>
-      <Layout></Layout>
+      <Layout>
+        <h1>test</h1>
+      </Layout>
     </Themed>
   );
 }

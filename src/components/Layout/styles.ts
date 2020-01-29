@@ -23,9 +23,17 @@ export const Content = styled.main<any>`
 
   margin: 50px 0px 0px 0px;
 
+  transition: all 0.3s ease-in-out;
+
   ${({ sidebarOpen }) =>
     sidebarOpen &&
     `
-    transform: translateX(400px);
-`}
+      transform: translateX(200px);
+    `}
+
+  ${({ closingSidebar }) =>
+    closingSidebar &&
+    `
+      transform: translateX(0);
+    `}
 `;

@@ -5,6 +5,9 @@ import { People } from "styled-icons/material/People";
 export const Container = styled.div<any>`
   position: fixed;
 
+  top: 0;
+  left: 0;
+
   min-height: 100vh;
   min-width: 100vw;
 
@@ -12,14 +15,14 @@ export const Container = styled.div<any>`
 
   z-index: 10000;
 
-  transform: translateX(-100%);
-
   transition: all 0.4s ease-in-out;
 
-  ${({ sidebarOpen }) =>
-    sidebarOpen &&
+  animation: fadeIn 1s;
+
+  ${({ closing }) =>
+    closing &&
     `
-      transform: translate(0, -50px);
+    opacity: 0;
   `}
 `;
 
@@ -33,7 +36,7 @@ export const LogoContainer = styled.div`
   background-color: ${({ theme }) => theme.secondary};
 `;
 
-export const Sidebar = styled.aside`
+export const Sidebar = styled.aside<any>`
   position: absolute;
 
   display: flex;
@@ -49,6 +52,16 @@ export const Sidebar = styled.aside`
   background-color: ${({ theme }) => theme.primary};
 
   box-shadow: 0px 0px 10px ${({ theme }) => theme.shadowy};
+
+  transition: all 0.6s ease-in-out;
+
+  animation: slideRight 0.6s;
+
+  ${({ closing }) =>
+    closing &&
+    `
+    transform: translateX(-100%);
+  `}
 `;
 
 export const Text = styled.p`
