@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
@@ -11,9 +11,12 @@ import { Logo } from "components";
 
 import Store from "store/Users";
 
-export default withRouter(function Navbar({ history }: any) {
+export default function Navbar({ sidebarOpen, setSidebarOpen, user }: any) {
   const { signup, signin } = Locale.use(Dictionary);
   const token = localStorage.getItem("token");
+
+  const history = useHistory();
+
   const Home = () => {
     history.push("/");
   };
@@ -30,10 +33,12 @@ export default withRouter(function Navbar({ history }: any) {
     Store.logout();
   };
 
-  const { user } = Store;
+  const OpenSidebar = () => {
+    setSidebarOpen(true);
+  };
 
   return (
-    <Element>
+    <Element sidebarOpen={sidebarOpen}>
       {!token && (
         <Button left onClick={SignUp}>
           {signup}
@@ -41,7 +46,7 @@ export default withRouter(function Navbar({ history }: any) {
       )}
       {token && (
         <Button left>
-          <FontAwesomeIcon icon={faBars} />
+          <FontAwesomeIcon icon={faBars} onClick={OpenSidebar} />
         </Button>
       )}
       <Logo onClick={Home} />
@@ -57,4 +62,4 @@ export default withRouter(function Navbar({ history }: any) {
       )}
     </Element>
   );
-});
+}

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Navbar = styled.header`
+export const Navbar = styled.header<any>`
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -15,6 +15,14 @@ export const Navbar = styled.header`
   background-color: ${({ theme }) => theme.primary};
   border-bottom: 1px solid ${({ theme }) => theme.blurry};
   box-sizing: border-box;
+
+  transition: all 0.4s ease-in-out;
+
+  ${({ sidebarOpen }) =>
+    sidebarOpen &&
+    `
+    transform: translateY(-100%);
+  `}
 `;
 
 export const Button = styled.button<any>`

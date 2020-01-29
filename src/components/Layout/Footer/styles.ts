@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { iPhone, iPad, Mac } from "styles/Screens";
 
-export const Footer = styled.footer`
+export const Footer = styled.footer<any>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,6 +16,14 @@ export const Footer = styled.footer`
 
   box-sizing: border-box;
   margin: 0;
+
+  transition: all 0.4s ease-in-out;
+
+  ${({ sidebarOpen }) =>
+    sidebarOpen &&
+    `
+    transform: translateY(100%);
+  `}
 `;
 
 export const Text = styled.p`

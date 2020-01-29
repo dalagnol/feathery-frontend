@@ -22,4 +22,10 @@ export const Content = styled.main<any>`
     between && (row ? "justify-content: " : "align-items: ") + "space-between;"}
 
   margin: 50px 0px 0px 0px;
+
+  ${({ sidebarOpen }) =>
+    sidebarOpen &&
+    `
+    transform: translateX(400px);
+`}
 `;

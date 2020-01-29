@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<any>`
   position: fixed;
 
   min-height: 100vh;
@@ -9,13 +9,24 @@ export const Container = styled.div`
   background-color: ${({ theme }) => `${theme.primary}bb`};
 
   z-index: 10000;
+
+  transform: translateX(-100%);
+
+  transition: all 0.5s ease-in-out;
+
+  ${({ sidebarOpen }) =>
+    sidebarOpen &&
+    `
+      transform: translateX(0);
+  `}
 `;
 
 export const Sidebar = styled.aside`
-  position: fixed;
+  position: absolute;
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   top: 0;
   left: 0;
