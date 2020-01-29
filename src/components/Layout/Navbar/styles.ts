@@ -50,8 +50,6 @@ export const SidebarButton = styled(Bars)`
   height: 20px;
   width: 20px;
 
-  margin: 10px;
-
   transition: all 0.4s ease-in-out;
 
   &:hover {
