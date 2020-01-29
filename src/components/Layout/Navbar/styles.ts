@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Bars } from "styled-icons/fa-solid/Bars";
+import { UserCircle } from "styled-icons/fa-solid/UserCircle";
 
 export const Navbar = styled.header<any>`
   position: fixed;
@@ -49,6 +50,19 @@ export const SidebarButton = styled(Bars)`
 
   height: 20px;
   width: 20px;
+
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    text-shadow: 0px 0px 10px ${({ theme }) => theme.shadowy};
+  }
+`;
+
+export const UserButton = styled(UserCircle)`
+  color: ${({ theme }) => theme.text};
+
+  height: 22px;
+  width: 22px;
 
   transition: all 0.4s ease-in-out;
 

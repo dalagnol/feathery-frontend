@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
-import { Navbar as Element, Button, SidebarButton } from "./styles";
+import { Navbar as Element, Button, SidebarButton, UserButton } from "./styles";
 
 import { Logo } from "components";
 
@@ -55,7 +55,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, user }: any) {
       )}
       {token && (
         <Button right onClick={Logout}>
-          {user.name}
+          <UserButton />
         </Button>
       )}
     </Element>
