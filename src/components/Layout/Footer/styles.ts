@@ -23,6 +23,8 @@ export const Footer = styled.footer<any>`
     sidebarOpen &&
     `
     transform: translateY(100%);
+
+    position: fixed;
   `}
 `;
 

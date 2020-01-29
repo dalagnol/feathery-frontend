@@ -3,9 +3,7 @@ import { useHistory } from "react-router-dom";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
-import { Navbar as Element, Button } from "./styles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { Navbar as Element, Button, SidebarButton } from "./styles";
 
 import { Logo } from "components";
 
@@ -46,7 +44,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, user }: any) {
       )}
       {token && (
         <Button left>
-          <FontAwesomeIcon icon={faBars} onClick={OpenSidebar} />
+          <SidebarButton onClick={OpenSidebar} />
         </Button>
       )}
       <Logo onClick={Home} />

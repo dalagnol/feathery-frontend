@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Bars } from "styled-icons/fa-solid/Bars";
 
 export const Navbar = styled.header<any>`
   position: fixed;
@@ -41,4 +42,19 @@ export const Button = styled.button<any>`
     left ? "left" : right ? "right" : "center"};
 
   margin: 10px;
+`;
+
+export const SidebarButton = styled(Bars)`
+  color: ${({ theme }) => theme.text};
+
+  height: 20px;
+  width: 20px;
+
+  margin: 10px;
+
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    text-shadow: 0px 0px 10px ${({ theme }) => theme.shadowy};
+  }
 `;
