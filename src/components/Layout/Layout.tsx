@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LayoutContext } from "contexts/Layout";
 import { useTimer } from "utils/hooks";
 
 import { Content } from "./styles";
@@ -10,6 +11,7 @@ import Sidebar from "./Sidebar/Sidebar";
 import UserStore from "store/Users";
 
 export default function Layout({ children, ...props }: any) {
+  const { ...LayoutProps } = useContext(LayoutContext);
   const [closingSidebar, trigger] = useTimer(600);
   const [openSidebar, setOpenSidebar] = useState(false);
 
