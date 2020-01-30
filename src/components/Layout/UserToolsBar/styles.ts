@@ -5,10 +5,8 @@ export const Container = styled.div<any>`
 
   right: 0;
 
-  min-height: 600px;
-  min-width: 400px;
-
-  margin: 5px 15px 0 0;
+  min-height: 100vh;
+  min-width: 100vw;
 
   background-color: ${({ theme }) => `${theme.primary}bb`};
 
@@ -38,7 +36,7 @@ export const Sidebar = styled.aside<any>`
   width: 400px;
   height: 600px;
 
-  margin-top: 18px;
+  margin: 25px 15px 0 0;
 
   background-color: ${({ theme }) => theme.secondary};
 
@@ -48,12 +46,12 @@ export const Sidebar = styled.aside<any>`
 
   transition: all 0.6s ease-in-out;
 
-  animation: slideRight 0.6s;
+  animation: slideLeft 0.6s;
 
   ${({ closing }) =>
     closing &&
     `
-    transform: translateX(-100%);
+    transform: translateX(100%);
   `}
 `;
 
@@ -92,7 +90,7 @@ export const Buttons = styled.div`
   width: 100%;
 `;
 
-export const ArrowUp = styled.div`
+export const ArrowUp = styled.div<any>`
   width: 0;
   height: 0;
 
@@ -102,5 +100,17 @@ export const ArrowUp = styled.div`
 
   border-radius: 15px;
 
+  margin: 5px 15px 0 0;
+
   float: right;
+
+  transition: all 0.6s ease-in-out;
+
+  animation: slideLeft 0.6s;
+
+  ${({ closing }) =>
+    closing &&
+    `
+    transform: translateX(100%);
+  `}
 `;

@@ -9,7 +9,11 @@ import { Logo } from "components";
 
 import Store from "store/Users";
 
-export default function Navbar({ setSidebarOpen, ...props }: any) {
+export default function Navbar({
+  setSidebarOpen,
+  setOpenUserToolsBar,
+  ...props
+}: any) {
   const { signup, signin } = Locale.use(Dictionary);
   const token = localStorage.getItem("token");
 
@@ -35,6 +39,10 @@ export default function Navbar({ setSidebarOpen, ...props }: any) {
     setSidebarOpen(true);
   };
 
+  const OpenUserToolsBar = () => {
+    setOpenUserToolsBar(true);
+  };
+
   return (
     <Element {...props}>
       {!token && (
@@ -54,7 +62,7 @@ export default function Navbar({ setSidebarOpen, ...props }: any) {
         </Button>
       )}
       {token && (
-        <Button right onClick={Logout}>
+        <Button right onClick={OpenUserToolsBar}>
           <UserButton />
         </Button>
       )}

@@ -2,11 +2,21 @@ import React from "react";
 
 import { Container, Sidebar, ArrowUp } from "./styles";
 
-export default function UserToolsBar() {
+export default function UserToolsBar({
+  setUserToolsBarOpen,
+  userToolsBarOpen,
+  closingSidebar,
+}: any) {
+  const CloseUserToolsBar = () => {
+    setUserToolsBarOpen(false);
+  };
+
   return (
-    <Container>
-      <ArrowUp />
-      <Sidebar />
-    </Container>
+    userToolsBarOpen && (
+      <Container closing={closingSidebar} onClick={CloseUserToolsBar}>
+        <ArrowUp closing={closingSidebar} />
+        <Sidebar closing={closingSidebar} userToolsBarOpen={userToolsBarOpen} />
+      </Container>
+    )
   );
 }
