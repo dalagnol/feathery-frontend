@@ -92,6 +92,13 @@ export const Button = styled.button`
   }
 `;
 
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+`;
+
 export const FeedIcon = styled(Home)`
   color: ${({ theme }) => theme.tertiary};
 

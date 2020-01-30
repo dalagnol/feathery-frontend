@@ -9,6 +9,7 @@ import {
   Sidebar as Element,
   Text,
   Button,
+  Buttons,
   FeedIcon,
   AboutUsIcon,
 } from "./styles";
@@ -40,14 +41,16 @@ export default function Sidebar({
           <LogoContainer>
             <Logo onClick={CloseSidebar} />
           </LogoContainer>
-          <Button onClick={GoToFeed}>
-            <FeedIcon />
-            <Text>{feed}</Text>
-          </Button>
-          <Button>
-            <AboutUsIcon />
-            <Text>{aboutus}</Text>
-          </Button>
+          <Buttons>
+            <Button onClick={GoToFeed}>
+              <FeedIcon />
+              <Text>{feed}</Text>
+            </Button>
+            <Button>
+              <AboutUsIcon />
+              <Text>{aboutus}</Text>
+            </Button>
+          </Buttons>
         </Element>
       </Container>
     )
