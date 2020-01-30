@@ -7,11 +7,11 @@ import { Content } from "./styles";
 import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 import Sidebar from "./Sidebar/Sidebar";
+import UserToolsBar from "./UserToolsBar/UserToolsBar";
 
 import UserStore from "store/Users";
 
 export default function Layout({ children, ...props }: any) {
-  const { ...LayoutProps } = useContext(LayoutContext);
   const [closingSidebar, trigger] = useTimer(600);
   const [openSidebar, setOpenSidebar] = useState(false);
 
@@ -54,6 +54,7 @@ export default function Layout({ children, ...props }: any) {
     <>
       <Navbar {...NavbarProps} />
       <Sidebar {...SidebarProps} />
+      <UserToolsBar />
       <Content {...ContentProps}>{children}</Content>
       <Footer {...FooterProps} />
     </>
