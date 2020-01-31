@@ -29,6 +29,9 @@ export const Navbar = styled.header<any>`
 `;
 
 export const Button = styled.button<any>`
+  display: flex;
+  flex-direction: row;
+
   cursor: pointer;
 
   color: ${({ theme }) => theme.text};
@@ -70,4 +73,15 @@ export const UserButton = styled(UserCircle)`
   &:hover {
     text-shadow: 0px 0px 10px ${({ theme }) => theme.shadowy};
   }
+`;
+
+export const Text = styled.p`
+  color: ${({ theme }) => theme.text};
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+
+  margin: 5px;
+
+  text-shadow: 0px 0px 30px ${({ theme }) => theme.shadowy};
 `;

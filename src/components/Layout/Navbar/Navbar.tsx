@@ -3,7 +3,13 @@ import { useHistory } from "react-router-dom";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
-import { Navbar as Element, Button, SidebarButton, UserButton } from "./styles";
+import {
+  Navbar as Element,
+  Button,
+  SidebarButton,
+  UserButton,
+  Text,
+} from "./styles";
 
 import { Logo } from "components";
 
@@ -12,6 +18,7 @@ import Store from "store/Users";
 export default function Navbar({
   setSidebarOpen,
   setOpenUserToolsBar,
+  user,
   ...props
 }: any) {
   const { signup, signin } = Locale.use(Dictionary);
@@ -63,6 +70,7 @@ export default function Navbar({
       )}
       {token && (
         <Button right onClick={OpenUserToolsBar}>
+          <Text>{user.name}</Text>
           <UserButton />
         </Button>
       )}
