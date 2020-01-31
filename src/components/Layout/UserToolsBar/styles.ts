@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { UserDetail } from "styled-icons/boxicons-solid/UserDetail";
 
 export const Container = styled.div<any>`
   position: fixed;
@@ -69,17 +70,21 @@ export const Text = styled.p`
 export const Button = styled.button`
   cursor: pointer;
 
+  background-color: ${({ theme }) => theme.secondary};
+
   display: flex;
   flex-direction: row;
 
   border: none;
+
+  margin: 18px 0;
 
   width: 100%;
 
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    background-color: ${({ theme }) => theme.secondary};
+    background-color: ${({ theme }) => theme.primary};
   }
 `;
 
@@ -113,4 +118,15 @@ export const ArrowUp = styled.div<any>`
     `
     transform: translateY(-100%);
   `}
+`;
+
+export const ProfileIcon = styled(UserDetail)`
+  color: ${({ theme }) => theme.tertiary};
+
+  height: 40px;
+  width: 40px;
+
+  margin-left: 5px;
+
+  text-shadow: 0px 0px 30px ${({ theme }) => theme.shadowy};
 `;
