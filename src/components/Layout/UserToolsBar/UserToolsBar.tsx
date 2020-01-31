@@ -14,7 +14,7 @@ export default function UserToolsBar({
   return (
     userToolsBarOpen && (
       <Container closing={closingSidebar} onClick={CloseUserToolsBar}>
-        <ArrowUp closing={closingSidebar} />
+        <ArrowUp closing={closingSidebar} userToolsBarOpen={userToolsBarOpen} />
         <Sidebar closing={closingSidebar} userToolsBarOpen={userToolsBarOpen} />
       </Container>
     )

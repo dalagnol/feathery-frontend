@@ -46,12 +46,12 @@ export const Sidebar = styled.aside<any>`
 
   transition: all 0.6s ease-in-out;
 
-  animation: slideLeft 0.6s;
+  animation: slideDown 0.6s;
 
   ${({ closing }) =>
     closing &&
     `
-    transform: translateX(100%);
+    transform: translateY(-100%);
   `}
 `;
 
@@ -106,11 +106,11 @@ export const ArrowUp = styled.div<any>`
 
   transition: all 0.6s ease-in-out;
 
-  animation: slideLeft 0.6s;
+  animation: slideDown 0.6s;
 
   ${({ closing }) =>
     closing &&
     `
-    transform: translateX(100%);
+    transform: translateY(-100%);
   `}
 `;

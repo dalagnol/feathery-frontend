@@ -22,7 +22,7 @@ export default function Layout({ children, ...props }: any) {
     sidebarOpen: openSidebar,
     setSidebarOpen: openSidebar ? trigger : setOpenSidebar,
     openUserToolsBar: openUserToolsBar,
-    setOpenUserToolsBar: setOpenUserToolsBar,
+    setOpenUserToolsBar: openUserToolsBar ? Trigger : setOpenUserToolsBar,
     closingSidebar,
     closingUserToolsBar,
     user: user,
