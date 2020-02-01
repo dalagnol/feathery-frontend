@@ -2,11 +2,11 @@ import ITheme from "../interfaces/Theme";
 
 export const DarkTheme: ITheme = {
   primary: "#000000",
-  secondary: "#222222",
-  tertiary: "#444444",
+  secondary: "#999999",
+  tertiary: "#666666",
   text: "#ffffff",
-  shadowy: "#999999",
-  blurry: "#222222",
+  shadowy: "#44444466",
+  blurry: "#10101088",
 };
 
 export default DarkTheme;

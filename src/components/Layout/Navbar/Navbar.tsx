@@ -9,11 +9,11 @@ import {
   SidebarButton,
   UserButton,
   Text,
+  Side,
+  Middle,
 } from "./styles";
 
 import { Logo } from "components";
-
-import Store from "store/Users";
 
 export default function Navbar({
   setSidebarOpen,
@@ -38,10 +38,6 @@ export default function Navbar({
     history.push("/signin");
   };
 
-  const Logout = function() {
-    Store.logout();
-  };
-
   const OpenSidebar = () => {
     setSidebarOpen(true);
   };
@@ -52,28 +48,34 @@ export default function Navbar({
 
   return (
     <Element {...props}>
-      {!token && (
-        <Button left onClick={SignUp}>
-          {signup}
-        </Button>
-      )}
-      {token && (
-        <Button left>
-          <SidebarButton onClick={OpenSidebar} />
-        </Button>
-      )}
-      <Logo onClick={Home} />
-      {!token && (
-        <Button right onClick={SignIn}>
-          {signin}
-        </Button>
-      )}
-      {token && (
-        <Button right onClick={OpenSettings}>
-          <Text>{user.name}</Text>
-          <UserButton />
-        </Button>
-      )}
+      <Side>
+        {!token && (
+          <Button left onClick={SignUp}>
+            {signup}
+          </Button>
+        )}
+        {token && (
+          <Button left>
+            <SidebarButton onClick={OpenSidebar} />
+          </Button>
+        )}
+      </Side>
+      <Middle>
+        <Logo onClick={Home} />
+      </Middle>
+      <Side right>
+        {!token && (
+          <Button right onClick={SignIn}>
+            {signin}
+          </Button>
+        )}
+        {token && (
+          <Button right onClick={OpenSettings}>
+            <Text>{user.name}</Text>
+            <UserButton />
+          </Button>
+        )}
+      </Side>
     </Element>
   );
 }

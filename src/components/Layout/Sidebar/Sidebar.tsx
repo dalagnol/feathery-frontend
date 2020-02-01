@@ -17,23 +17,18 @@ import {
 
 import { Logo } from "components";
 
-const { feed, aboutus } = Locale.use(Dictionary);
-
 export default function Sidebar({
   setSidebarOpen,
   sidebarOpen,
   closingSidebar,
 }: any) {
-  const history = useHistory();
+  const { push } = useHistory();
+  const { feed, aboutus } = Locale.use(Dictionary);
 
   const ref = useExternalClick(() => setSidebarOpen(false));
 
-  const CloseSidebar = () => {
-    setSidebarOpen(false);
-  };
-
   const GoToFeed = () => {
-    history.push("/");
+    push("/");
     setSidebarOpen(false);
   };
 
@@ -42,7 +37,7 @@ export default function Sidebar({
       <Container closing={closingSidebar}>
         <Element ref={ref} closing={closingSidebar} sidebarOpen={sidebarOpen}>
           <LogoContainer>
-            <Logo onClick={CloseSidebar} />
+            <Logo />
           </LogoContainer>
           <Buttons>
             <Button onClick={GoToFeed}>

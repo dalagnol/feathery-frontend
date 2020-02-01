@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Themed } from "themes";
+import { observer } from "mobx-react";
 import { useTimer } from "utils/hooks";
 
 import { Content } from "./styles";
@@ -10,7 +12,7 @@ import Settings from "./Settings/Settings";
 
 import UserStore from "store/Users";
 
-export default function Layout({ children, ...props }: any) {
+export default observer(function Layout({ children, ...props }: any) {
   const [closingSidebar, sidebarTrigger] = useTimer(600);
   const [closingSettings, settingsTrigger] = useTimer(600);
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -68,12 +70,12 @@ export default function Layout({ children, ...props }: any) {
   }, [closingSidebar, closingSettings]);
 
   return (
-    <>
+    <Themed>
       <Navbar {...NavbarProps} />
       <Sidebar {...SidebarProps} />
       <Settings {...SettingsProps} />
       <Content {...ContentProps}>{children}</Content>
       <Footer {...FooterProps} />
-    </>
+    </Themed>
   );
-}
+});

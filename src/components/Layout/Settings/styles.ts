@@ -1,9 +1,5 @@
 import styled from "styled-components";
-import { UserDetail } from "styled-icons/boxicons-solid/UserDetail";
-import { Palette } from "styled-icons/fa-solid/Palette";
-import { Translate } from "styled-icons/material/Translate";
-
-import { iPhone, iPad, Mac } from "styles/screens";
+import { iPhone } from "styles/screens";
 
 export const Container = styled.div<any>`
   position: fixed;
@@ -45,9 +41,12 @@ export const Popup = styled.div<any>`
 
   margin: 25px 15px 0 0;
 
-  background-color: ${({ theme }) => theme.secondary};
+  background-color: ${({ theme }) => theme.blurry};
 
-  box-shadow: 15px 15px 20px ${({ theme }) => theme.shadowy};
+  box-shadow: ${({ theme }) =>
+    theme.primary === "#000000"
+      ? "0px 0px 0px #000000"
+      : `15px 15px 20px ${theme.shadowy}`};
 
   border-radius: 25px 5px 25px 25px;
 
@@ -87,10 +86,12 @@ export const Buttons = styled.div`
 export const Button = styled.button`
   cursor: pointer;
 
-  background-color: ${({ theme }) => theme.secondary};
+  background-color: ${({ theme }) => theme.blurry};
 
   display: flex;
   flex-direction: row;
+
+  align-items: center;
 
   border: none;
   border-radius: 15px;
@@ -99,8 +100,18 @@ export const Button = styled.button`
 
   transition: all 0.3s ease-in-out;
 
+  * {
+    transition: all 0.3s ease-in-out;
+
+    color: ${({ theme }) => theme.text};
+  }
+
   &:hover {
     background-color: ${({ theme }) => theme.primary};
+
+    * {
+      color: ${({ theme }) => theme.text};
+    }
   }
 `;
 
@@ -110,7 +121,7 @@ export const ArrowUp = styled.div<any>`
 
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-bottom: 15px solid ${({ theme }) => theme.secondary};
+  border-bottom: 15px solid ${({ theme }) => theme.shadowy};
 
   border-radius: 15px;
 
@@ -129,7 +140,7 @@ export const ArrowUp = styled.div<any>`
   `}
 `;
 
-export const ProfileIcon = styled(UserDetail)`
+export const Icon = styled.div`
   color: ${({ theme }) => theme.tertiary};
 
   height: 40px;

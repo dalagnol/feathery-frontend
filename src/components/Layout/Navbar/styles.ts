@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { Bars } from "styled-icons/fa-solid/Bars";
+import { Menu } from "styled-icons/feather/Menu";
 import { UserCircle } from "styled-icons/fa-solid/UserCircle";
+import { iPhone } from "styles/screens";
 
 export const Navbar = styled.header<any>`
   position: fixed;
@@ -19,6 +20,12 @@ export const Navbar = styled.header<any>`
   box-sizing: border-box;
 
   transition: all 0.4s ease-in-out;
+
+  ${iPhone(`
+    p {
+      display: none;
+    }
+  `)}
 
   ${({ sidebarOpen, closingSidebar }) =>
     sidebarOpen &&
@@ -40,7 +47,6 @@ export const Button = styled.button<any>`
 
   font-size: 1em;
 
-  width: 100px;
   box-sizing: border-box;
 
   text-align: ${({ left, right }) =>
@@ -49,7 +55,7 @@ export const Button = styled.button<any>`
   margin: 10px;
 `;
 
-export const SidebarButton = styled(Bars)`
+export const SidebarButton = styled(Menu)`
   color: ${({ theme }) => theme.text};
 
   height: 20px;
@@ -84,4 +90,16 @@ export const Text = styled.p`
   margin: 5px;
 
   text-shadow: 0px 0px 30px ${({ theme }) => theme.shadowy};
+`;
+
+export const Side = styled.div<any>`
+  display: flex;
+  flex: 0.49;
+
+  ${({ right }) => right && `justify-content: flex-end`};
+`;
+
+export const Middle = styled.div`
+  display: flex;
+  flex: 0.01;
 `;

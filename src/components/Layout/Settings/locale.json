@@ -1,0 +1,16 @@
+{
+  "en": {
+    "profile": "Profile",
+    "theme": "Theme",
+    "language": "Language",
+    "settings": "Settings",
+    "exit": "Logout"
+  },
+  "pt": {
+    "profile": "Perfil",
+    "theme": "Tema",
+    "language": "Idioma",
+    "settings": "Ajustes",
+    "exit": "Sair"
+  }
+}
