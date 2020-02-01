@@ -28,6 +28,18 @@ export default function Settings({
               <ProfileIcon />
               <Text>Profile</Text>
             </Button>
+            <Button>
+              <ProfileIcon />
+              <Text>Theme</Text>
+            </Button>
+            <Button>
+              <ProfileIcon />
+              <Text>Language</Text>
+            </Button>
+            <Button>
+              <ProfileIcon />
+              <Text>Logout</Text>
+            </Button>
           </Buttons>
         </Popup>
       </Container>

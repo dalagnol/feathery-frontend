@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { UserDetail } from "styled-icons/boxicons-solid/UserDetail";
+import { Palette } from "styled-icons/fa-solid/Palette";
+import { Translate } from "styled-icons/material/Translate";
+
+import { iPhone, iPad, Mac } from "styles/screens";
 
 export const Container = styled.div<any>`
   position: fixed;
@@ -24,18 +28,20 @@ export const Container = styled.div<any>`
   `}
 `;
 
-export const Popup = styled.menu<any>`
+export const Popup = styled.div<any>`
   position: absolute;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  padding: 10px;
+
   top: 0;
   right: 0;
 
-  width: 400px;
-  height: 600px;
+  width: 200px;
+  height: auto;
 
   margin: 25px 15px 0 0;
 
@@ -49,6 +55,10 @@ export const Popup = styled.menu<any>`
 
   animation: slideLeft 0.6s;
 
+  ${iPhone(`
+    width: 80vw;
+  `)}
+
   ${({ closing }) =>
     closing &&
     `
@@ -60,11 +70,18 @@ export const Text = styled.p`
   color: ${({ theme }) => theme.text};
 
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 23px;
+  font-size: 1.8em;
 
   margin: 10px;
 
   text-shadow: 0px 0px 30px ${({ theme }) => theme.shadowy};
+`;
+
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
 `;
 
 export const Button = styled.button`
@@ -76,9 +93,7 @@ export const Button = styled.button`
   flex-direction: row;
 
   border: none;
-  border-radius: 15px 0px 0px 15px;
-
-  margin: 18px 0;
+  border-radius: 15px;
 
   width: 100%;
 
@@ -87,13 +102,6 @@ export const Button = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.primary};
   }
-`;
-
-export const Buttons = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
 `;
 
 export const ArrowUp = styled.div<any>`
@@ -126,8 +134,6 @@ export const ProfileIcon = styled(UserDetail)`
 
   height: 40px;
   width: 40px;
-
-  margin-left: 5px;
 
   text-shadow: 0px 0px 30px ${({ theme }) => theme.shadowy};
 `;
