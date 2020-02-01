@@ -1,6 +1,7 @@
-import useService from "./useService";
+import useExternalClick from "./useExternalClick";
 import useRerender from "./useRerender";
-import useForm from "./useForm";
+import useService from "./useService";
 import useTimer from "./useTimer";
+import useForm from "./useForm";
 
-export { useService, useRerender, useForm, useTimer };
+export { useExternalClick, useService, useRerender, useForm, useTimer };

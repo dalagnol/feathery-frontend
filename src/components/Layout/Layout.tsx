@@ -6,45 +6,46 @@ import { Content } from "./styles";
 import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 import Sidebar from "./Sidebar/Sidebar";
-import UserToolsBar from "./UserToolsBar/UserToolsBar";
+import Settings from "./Settings/Settings";
 
 import UserStore from "store/Users";
 
 export default function Layout({ children, ...props }: any) {
-  const [closingSidebar, trigger] = useTimer(600);
-  const [closingUserToolsBar, Trigger] = useTimer(600);
+  const [closingSidebar, sidebarTrigger] = useTimer(600);
+  const [closingSettings, settingsTrigger] = useTimer(600);
   const [openSidebar, setOpenSidebar] = useState(false);
-  const [openUserToolsBar, setOpenUserToolsBar] = useState(false);
+  const [openSettings, setOpenSettings] = useState(false);
 
   const { user } = UserStore;
 
   const NavbarProps = {
     sidebarOpen: openSidebar,
-    setSidebarOpen: openSidebar ? trigger : setOpenSidebar,
-    openUserToolsBar: openUserToolsBar,
-    setOpenUserToolsBar: openUserToolsBar ? Trigger : setOpenUserToolsBar,
+    setSidebarOpen: openSidebar ? sidebarTrigger : setOpenSidebar,
+    openSettings: openSettings,
+    setOpenSettings: openSettings ? settingsTrigger : setOpenSettings,
     closingSidebar,
-    closingUserToolsBar,
+    closingSettings,
     user: user,
   };
 
   const SidebarProps = {
     sidebarOpen: openSidebar,
-    setSidebarOpen: openSidebar ? trigger : setOpenSidebar,
+    setSidebarOpen: openSidebar ? sidebarTrigger : setOpenSidebar,
     closingSidebar,
     user: user,
   };
 
-  const UserToolsBarProps = {
-    userToolsBarOpen: openUserToolsBar,
-    setUserToolsBarOpen: openUserToolsBar ? Trigger : setOpenUserToolsBar,
-    closingUserToolsBar,
+  const SettingsProps = {
+    SettingsOpen: openSettings,
+    setSettingsOpen: openSettings ? sidebarTrigger : setOpenSettings,
+    closingSettings,
     user: user,
   };
 
   const ContentProps = {
     sidebarOpen: openSidebar,
     closingSidebar,
+    closingSettings,
     props: { ...props },
   };
 
@@ -58,18 +59,18 @@ export default function Layout({ children, ...props }: any) {
       setTimeout(() => {
         setOpenSidebar(false);
       }, 600);
-    } else if (closingUserToolsBar) {
+    } else if (closingSettings) {
       setTimeout(() => {
-        setOpenUserToolsBar(false);
+        setOpenSettings(false);
       }, 600);
     }
-  }, [closingSidebar, closingUserToolsBar]);
+  }, [closingSidebar, closingSettings]);
 
   return (
     <>
       <Navbar {...NavbarProps} />
       <Sidebar {...SidebarProps} />
-      <UserToolsBar {...UserToolsBarProps} />
+      <Settings {...SettingsProps} />
       <Content {...ContentProps}>{children}</Content>
       <Footer {...FooterProps} />
     </>

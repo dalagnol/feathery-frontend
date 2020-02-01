@@ -1,17 +1,23 @@
 import { useState, useEffect } from "react";
 
-export default function useTimer(time: number) {
-  const [timer, setTimer] = useState(false);
+export default (time: number, options?: any) => {
+  const effect = options?.effect || function() {};
+  const offset = options?.offset || 0;
+
+  const [current, setCurrent] = useState(false);
+  const [enabled, setEnabled] = useState(offset);
 
   useEffect(() => {
-    if (time && timer) {
+    if (current) {
+      effect();
       setTimeout(() => {
-        setTimer(false);
+        setCurrent(false);
       }, time);
     }
-  }, [time, timer]);
+  }, [effect, time, current]);
 
-  const trigger = () => setTimer(true);
+  const trigger = () =>
+    enabled >= 0 ? setCurrent(true) : setEnabled(enabled + 1);
 
-  return [timer, trigger];
-}
+  return [current, trigger];
+};

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import Locale from "locale";
 import Dictionary from "./locale.json";
+import { useExternalClick } from "utils/hooks";
 
 import {
   Navbar as Element,
@@ -17,7 +18,7 @@ import Store from "store/Users";
 
 export default function Navbar({
   setSidebarOpen,
-  setOpenUserToolsBar,
+  setOpenSettings,
   user,
   ...props
 }: any) {
@@ -46,12 +47,16 @@ export default function Navbar({
     setSidebarOpen(true);
   };
 
-  const OpenUserToolsBar = () => {
-    setOpenUserToolsBar(true);
+  const OpenSettings = () => {
+    setOpenSettings(true);
   };
 
+  const ref = useExternalClick(
+    useCallback((e: any) => console.log(e.currentTarget), [])
+  );
+
   return (
-    <Element {...props}>
+    <Element ref={ref} {...props}>
       {!token && (
         <Button left onClick={SignUp}>
           {signup}
@@ -69,7 +74,7 @@ export default function Navbar({
         </Button>
       )}
       {token && (
-        <Button right onClick={OpenUserToolsBar}>
+        <Button right onClick={OpenSettings}>
           <Text>{user.name}</Text>
           <UserButton />
         </Button>
