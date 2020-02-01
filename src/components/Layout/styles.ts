@@ -25,16 +25,17 @@ export const Content = styled.main<any>`
 
   transition: all 0.3s ease-in-out;
 
-  ${({ closingSettings }) =>
-    closingSettings &&
+  ${({ openSettings }) =>
+    openSettings &&
     `
-    filter: blur(5px);
+    filter: blur(2px);
   `};
 
-  ${({ sidebarOpen }) =>
-    sidebarOpen &&
+  ${({ openSidebar }) =>
+    openSidebar &&
     `
       transform: translateX(200px);
+      filter: blur(2px);
     `}
 
 

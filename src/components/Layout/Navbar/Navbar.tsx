@@ -1,8 +1,7 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import Locale from "locale";
 import Dictionary from "./locale.json";
-import { useExternalClick } from "utils/hooks";
 
 import {
   Navbar as Element,
@@ -51,12 +50,8 @@ export default function Navbar({
     setOpenSettings(true);
   };
 
-  const ref = useExternalClick(
-    useCallback((e: any) => console.log(e.currentTarget), [])
-  );
-
   return (
-    <Element ref={ref} {...props}>
+    <Element {...props}>
       {!token && (
         <Button left onClick={SignUp}>
           {signup}

@@ -19,6 +19,12 @@ export const Footer = styled.footer<any>`
 
   transition: all 0.4s ease-in-out;
 
+  ${({ openSettings }) =>
+    openSettings &&
+    `
+    filter: blur(2px);
+  `}
+
   ${({ sidebarOpen, closingSidebar }) =>
     sidebarOpen &&
     !closingSidebar &&

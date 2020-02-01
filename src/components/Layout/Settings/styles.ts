@@ -24,7 +24,7 @@ export const Container = styled.div<any>`
   `}
 `;
 
-export const Sidebar = styled.aside<any>`
+export const Popup = styled.menu<any>`
   position: absolute;
 
   display: flex;
@@ -47,12 +47,12 @@ export const Sidebar = styled.aside<any>`
 
   transition: all 0.6s ease-in-out;
 
-  animation: slideDown 0.6s;
+  animation: slideLeft 0.6s;
 
   ${({ closing }) =>
     closing &&
     `
-    transform: translateY(-100%);
+    transform: translateX(100%);
   `}
 `;
 
@@ -76,6 +76,7 @@ export const Button = styled.button`
   flex-direction: row;
 
   border: none;
+  border-radius: 15px 0px 0px 15px;
 
   margin: 18px 0;
 
@@ -111,12 +112,12 @@ export const ArrowUp = styled.div<any>`
 
   transition: all 0.6s ease-in-out;
 
-  animation: slideDown 0.6s;
+  animation: slideLeft 0.6s;
 
   ${({ closing }) =>
     closing &&
     `
-    transform: translateY(-100%);
+    transform: translateX(100%);
   `}
 `;
 

@@ -2,6 +2,7 @@ import React from "react";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 import { useHistory } from "react-router-dom";
+import { useExternalClick } from "utils/hooks";
 
 import {
   Container,
@@ -25,6 +26,8 @@ export default function Sidebar({
 }: any) {
   const history = useHistory();
 
+  const ref = useExternalClick(() => setSidebarOpen(false));
+
   const CloseSidebar = () => {
     setSidebarOpen(false);
   };
@@ -36,8 +39,8 @@ export default function Sidebar({
 
   return (
     sidebarOpen && (
-      <Container closing={closingSidebar} onClick={CloseSidebar}>
-        <Element closing={closingSidebar} sidebarOpen={sidebarOpen}>
+      <Container closing={closingSidebar}>
+        <Element ref={ref} closing={closingSidebar} sidebarOpen={sidebarOpen}>
           <LogoContainer>
             <Logo onClick={CloseSidebar} />
           </LogoContainer>

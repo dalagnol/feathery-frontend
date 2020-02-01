@@ -1,14 +1,15 @@
-import { useRef, useEffect } from "react";
+import { useRef, useCallback, useEffect } from "react";
 
-export default (handler: any) => {
+export default (handler: any, ...deps: any) => {
   const ref: any = useRef(null);
+  const func = useCallback(handler, deps);
   useEffect(() => {
     const listener = (event: any) => {
       if (!ref.current || ref.current.contains(event.target)) {
         return;
       }
 
-      handler(event);
+      func(event);
     };
 
     document.addEventListener("mousedown", listener);
@@ -18,7 +19,7 @@ export default (handler: any) => {
       document.removeEventListener("mousedown", listener);
       document.removeEventListener("touchstart", listener);
     };
-  }, [ref, handler]);
+  }, [ref, func]);
 
   return ref;
 };

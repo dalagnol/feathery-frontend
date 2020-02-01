@@ -37,21 +37,22 @@ export default function Layout({ children, ...props }: any) {
 
   const SettingsProps = {
     SettingsOpen: openSettings,
-    setSettingsOpen: openSettings ? sidebarTrigger : setOpenSettings,
+    setSettingsOpen: settingsTrigger,
     closingSettings,
     user: user,
   };
 
   const ContentProps = {
-    sidebarOpen: openSidebar,
+    openSidebar,
     closingSidebar,
-    closingSettings,
+    openSettings,
     props: { ...props },
   };
 
   const FooterProps = {
     closingSidebar,
     sidebarOpen: openSidebar,
+    openSettings,
   };
 
   useEffect(() => {

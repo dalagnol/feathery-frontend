@@ -1,8 +1,9 @@
 import React from "react";
+import { useExternalClick } from "utils/hooks";
 
 import {
   Container,
-  Sidebar,
+  Popup,
   ArrowUp,
   Buttons,
   Button,
@@ -13,24 +14,22 @@ import {
 export default function Settings({
   setSettingsOpen,
   SettingsOpen,
-  closingSidebar,
+  closingSettings,
 }: any) {
-  const CloseSettings = () => {
-    setSettingsOpen(false);
-  };
+  const ref = useExternalClick(() => setSettingsOpen());
 
   return (
     SettingsOpen && (
-      <Container closing={closingSidebar} onClick={CloseSettings}>
-        <ArrowUp closing={closingSidebar} SettingsOpen={SettingsOpen} />
-        <Sidebar closing={closingSidebar} SettingsOpen={SettingsOpen}>
+      <Container closing={closingSettings}>
+        <ArrowUp closing={closingSettings} SettingsOpen={SettingsOpen} />
+        <Popup ref={ref} closing={closingSettings} SettingsOpen={SettingsOpen}>
           <Buttons>
             <Button>
               <ProfileIcon />
               <Text>Profile</Text>
             </Button>
           </Buttons>
-        </Sidebar>
+        </Popup>
       </Container>
     )
   );

@@ -9,8 +9,8 @@ export default (time: number, options?: any) => {
 
   useEffect(() => {
     if (current) {
-      effect();
       setTimeout(() => {
+        effect();
         setCurrent(false);
       }, time);
     }
