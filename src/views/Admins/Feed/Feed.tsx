@@ -15,6 +15,14 @@ export default observer(function Feed() {
           <Option value={"Potestas"}>Adimo</Option>
           <Option value={"Potestas"}>Adimo</Option>
           <Option value={"Potestas"}>Adimo</Option>
+          <Option value={"Potestas"}>Adimo</Option>
+          <Option value={"Potestas"}>Adimo</Option>
+          <Option value={"Potestas"}>Adimo</Option>
+          <Option value={"Potestas"}>Adimo</Option>
+          <Option value={"Potestas"}>Adimo</Option>
+          <Option value={"Potestas"}>Adimo</Option>
+          <Option value={"Potestas"}>Adimo</Option>
+          <Option value={"Potestas"}>Adimo</Option>
         </Select>
       </SelectThing>
     </Layout>
