@@ -19,5 +19,5 @@ export default (time: number, options?: any) => {
   const trigger = () =>
     enabled >= 0 ? setCurrent(true) : setEnabled(enabled + 1);
 
-  return [current, trigger];
+  return [current, trigger] as any;
 };

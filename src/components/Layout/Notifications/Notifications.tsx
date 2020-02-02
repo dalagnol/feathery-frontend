@@ -6,7 +6,7 @@ import { Background, Container, Popup, ArrowUp } from "./styles";
 import Tile from "./Tile/Tile";
 
 export default observer(function Pane(props: any) {
-  const [notifications, setNotifications] = useState([
+  const [notifications] = useState([
     {
       title: "Adimo potestas",
       description: "Adimo potestas tua quae, tibi donat fortunam pugnae.",

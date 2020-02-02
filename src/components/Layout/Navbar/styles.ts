@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Menu } from "styled-icons/feather/Menu";
 import { User } from "styled-icons/evil";
 import { List } from "styled-icons/feather";
-import { Mac } from "styles/screens";
 
 export const Navbar = styled.header<any>`
   position: fixed;
