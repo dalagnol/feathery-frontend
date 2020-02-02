@@ -5,7 +5,7 @@ export const DarkTheme: ITheme = {
   secondary: "#999999",
   tertiary: "#666666",
   text: "#ffffff",
-  shadowy: "#44444466",
+  shadowy: "#aaaaaa66",
   blurry: "#10101088",
 };
 

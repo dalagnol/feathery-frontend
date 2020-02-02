@@ -9,6 +9,8 @@ import Radio from "./Radio/Radio";
 import Subheading from "./Subheading/Subheading";
 import Title from "./Title/Title";
 import Chat from "./Chat/Chat";
+import Select from "./Select/Select";
+import Option from "./Select/List/Option/Option";
 
 export {
   Button,
@@ -22,4 +24,6 @@ export {
   Subheading,
   Title,
   Chat,
+  Select,
+  Option,
 };

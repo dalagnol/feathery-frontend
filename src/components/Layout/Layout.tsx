@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Themed } from "themes";
 import { observer } from "mobx-react";
 import { useTimer } from "utils/hooks";
