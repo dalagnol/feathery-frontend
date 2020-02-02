@@ -1,14 +1,9 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { Landing, About, SignIn, SignUp, Chat, Adimo } from "views/Nobody";
+import { landing, about, signup, signin, chat, adimo } from "routes";
 
-export const landing = (): string => "/";
-export const about = (): string => "/about";
-export const signup = (): string => "/signup";
-export const signin = (): string => "/signin";
-export const chat = (): string => "/chat";
-export const adimo = (): string => "/adimo";
+import { Landing, About, SignIn, SignUp, Chat, Adimo } from "views/Nobody";
 
 export default () => (
   <Switch>

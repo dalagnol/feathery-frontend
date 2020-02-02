@@ -1,13 +1,14 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { Feed } from "views/Admins";
+import { feed, profile } from "routes";
 
-export const feed = (): string => "/";
+import { Feed, Profile } from "views/Admins";
 
 export default () => (
   <Switch>
-    <Route exact path={feed()} render={() => <Feed />} />
+    <Route exact path={feed()} component={Feed} />
+    <Route exact path={profile()} component={Profile} />
     <Redirect exact to={feed()} />
   </Switch>
 );
