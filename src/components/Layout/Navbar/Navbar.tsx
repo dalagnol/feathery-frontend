@@ -75,7 +75,13 @@ export default function Navbar({
           <div>
             <Text>{user.name}</Text>
             <Button right onClick={OpenSettings}>
-              <UserButton />
+              {user.picture ? (
+                <div>
+                  <img src={user.picture} />
+                </div>
+              ) : (
+                <UserButton />
+              )}
             </Button>
             <Button>
               <Notifications onClick={setNotifications} />

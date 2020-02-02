@@ -1,8 +1,12 @@
 import { observable, computed, toJS } from "mobx";
 
 class UserStore {
-  @observable private User: any = JSON.parse(localStorage.getItem("user")!);
+  @observable private User: any;
   @observable private Loading = false;
+
+  constructor() {
+    this.user = JSON.parse(localStorage.getItem("user")!);
+  }
 
   @computed public get user() {
     return toJS(this.User);
@@ -17,6 +21,9 @@ class UserStore {
       localStorage.getItem("token")
     ) {
       this.User = data;
+      if (this.User.picture) {
+        this.User.picture = `data:image/png;base64,${this.User.picture}`;
+      }
     } else {
       this.User = null;
     }

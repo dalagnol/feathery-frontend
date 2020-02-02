@@ -25,6 +25,14 @@ export const Navbar = styled.header<any>`
     border-sizing: border-box;
   }
 
+  div {
+    div {
+      img {
+        width: 100%;
+      }
+    }
+  }
+
   ${({ sidebarOpen, closingSidebar }) =>
     sidebarOpen &&
     !closingSidebar &&
@@ -49,9 +57,20 @@ export const Button = styled.button<any>`
 
   margin: 0px;
 
+  font-size: 0.8em;
+
   min-width: 60px;
   width: 60px;
   max-width: 60px;
+
+  div {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+  }
 
   text-align: ${({ left, right }) =>
     left ? "left" : right ? "right" : "center"};

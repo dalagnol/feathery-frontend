@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { iPhone, iPad, Mac } from "styles/screens";
 
 export const Input = styled.input<any>`
-    background-color: ${({ theme }) => theme.secondary};
+    background-color: ${({ theme }) => `${theme.secondary}66`};
     color: ${({ theme }) => theme.text};
 
     font-size: 20px;

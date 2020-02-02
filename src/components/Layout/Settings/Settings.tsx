@@ -3,7 +3,10 @@ import { observer } from "mobx-react";
 import Locale from "locale";
 import Theme from "themes";
 import Dictionary from "./locale.json";
+import { useHistory } from "react-router-dom";
 import { useExternalClick } from "utils/hooks";
+
+import { profile as profileRoute } from "routes";
 
 import {
   Background,
@@ -25,13 +28,24 @@ export default observer(function Pane({
   closingSettings,
 }: any) {
   const ref = useExternalClick(() => setSettingsOpen());
+  const { push } = useHistory();
   const { profile, theme, language, settings, exit } = Locale.use(Dictionary);
+
   const logout = function() {
     Store.logout();
   };
   const changeTheme = function() {
     Theme.switch();
     setSettingsOpen(false);
+  };
+  const changeLanguage = function() {
+    Locale.language = Locale.language === "pt" ? "en" : "pt";
+  };
+  const toProfile = function() {
+    setSettingsOpen();
+    setTimeout(() => {
+      push(profileRoute(Store.user.id));
+    }, 500);
   };
 
   return (
@@ -45,7 +59,7 @@ export default observer(function Pane({
             SettingsOpen={SettingsOpen}
           >
             <Buttons>
-              <Button>
+              <Button onClick={toProfile}>
                 <Icon>
                   <User />
                 </Icon>
@@ -57,11 +71,7 @@ export default observer(function Pane({
                 </Icon>
                 <Text>{theme}</Text>
               </Button>
-              <Button
-                onClick={() =>
-                  (Locale.language = Locale.language === "pt" ? "en" : "pt")
-                }
-              >
+              <Button onClick={changeLanguage}>
                 <Icon>
                   <Globe />
                 </Icon>
