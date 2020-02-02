@@ -44,12 +44,12 @@ export const Popup = styled.div<any>`
   flex-direction: column;
   align-items: center;
 
-  padding: 10px;
+  padding: 20px 0px;
 
   top: 0;
   right: 0;
 
-  width: 200px;
+  width: 300px;
   height: auto;
 
   margin: 25px 20px 0 0;
@@ -66,6 +66,15 @@ export const Popup = styled.div<any>`
   transition: all 0.6s ease-in-out;
 
   animation: slideLeft 0.6s;
+
+  h2 {
+    font: 1.5em Nanum Gothic;
+  }
+
+  * {
+    font: 1em Nanum Gothic;
+    color: ${({ theme }) => theme.text};
+  }
 
   ${({ closing }) =>
     closing &&
