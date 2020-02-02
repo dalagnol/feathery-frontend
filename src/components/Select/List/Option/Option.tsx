@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import { Container } from "./styles";
+import { Container, Check } from "./styles";
 
-export default function Component({ children, value }: Option) {
-  return <Container>{children}</Container>;
+import { Context } from "../../Select";
+
+export default function Component({ children, ...props }: Option) {
+  const { value, choose } = useContext(Context);
+  return (
+    <Container onClick={() => choose({ children, value: props.value })}>
+      {value === props.value && <Check size={32} />}
+      <p>{children}</p>
+    </Container>
+  );
 }

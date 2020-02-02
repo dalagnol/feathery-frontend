@@ -11,7 +11,7 @@ export default observer(function Feed() {
       <Title>test</Title>
       <SelectThing>
         <Select>
-          <Option value={"Potestas"}>Adimo</Option>
+          <Option value={"Adimo"}>Adimo</Option>
           <Option value={"Potestas"}>Adimo</Option>
           <Option value={"Potestas"}>Adimo</Option>
           <Option value={"Potestas"}>Adimo</Option>

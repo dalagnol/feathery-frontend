@@ -3,6 +3,7 @@ import Locale from "locale";
 import Dictionary from "./locale.json";
 import { useTimer, useExternalClick } from "utils/hooks";
 import { context as make } from "./constants";
+import { shallowly } from "utils/helpers";
 import "./types.d";
 
 import { Container, Arrow, Box } from "./styles";
@@ -27,10 +28,9 @@ export default function Select({
   ...props
 }: any) {
   const { select } = Locale.use(Dictionary);
-  const [internalOpenState, setInternalOpenState] = useState(false);
-  const [internalValue, setInternalValue] = useState(null);
+  const [internalOpenState, setInternalOpenState] = useState(true);
+  const [internalValue, setInternalValue] = useState("Adimo");
   const [internalLookup, setInternalLookup] = useState("");
-  const [display, setDisplay] = useState("");
 
   const [openState, setOpenState] = [
     open || internalOpenState,
@@ -45,7 +45,13 @@ export default function Select({
     setLookup || setInternalLookup,
   ];
 
-  const [closing, triggerClose] = useTimer(600, {
+  const [display, setDisplay] = useState(
+    valueState !== null
+      ? children.find((child: any) => shallowly(child.props.value, valueState))
+      : ""
+  );
+
+  const [closing, triggerClose] = useTimer(300, {
     effect: () => {
       setOpenState(false);
     },
