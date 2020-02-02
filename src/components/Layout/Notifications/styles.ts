@@ -55,6 +55,11 @@ export const Popup = styled.div<any>`
 
   background-color: ${({ theme }) => theme.blurry};
 
+  * {
+    font-family: Nanum Gothic;
+    color: ${({ theme }) => theme.text};
+  }
+
   box-shadow: ${({ theme }) =>
     theme.primary === "#000000"
       ? "0px 0px 0px #000000"
@@ -74,9 +79,9 @@ export const Popup = styled.div<any>`
 `;
 
 export const Text = styled.p`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.text} !important;
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
   font-size: 1.8em;
 
   margin: 10px;
