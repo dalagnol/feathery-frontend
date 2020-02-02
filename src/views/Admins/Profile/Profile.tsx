@@ -15,7 +15,7 @@ export default observer(function Profile() {
 
   return (
     <Layout>
-      <Container>{id === user.id ? <h1>test</h1> : <Others />}</Container>
+      <Container>{id === user.id ? <Self /> : <Others />}</Container>
     </Layout>
   );
 });

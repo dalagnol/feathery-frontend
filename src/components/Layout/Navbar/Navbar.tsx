@@ -14,7 +14,7 @@ import {
   Notifications,
 } from "./styles";
 
-import { Logo } from "components";
+import { Logo, UserPicture } from "components";
 
 export default function Navbar({
   setSidebarOpen,
@@ -75,13 +75,7 @@ export default function Navbar({
           <div>
             <Text>{user.name}</Text>
             <Button right onClick={OpenSettings}>
-              {user.picture ? (
-                <div>
-                  <img src={user.picture} />
-                </div>
-              ) : (
-                <UserButton />
-              )}
+              <UserPicture />
             </Button>
             <Button>
               <Notifications onClick={setNotifications} />
