@@ -27,7 +27,7 @@ export const Container = styled.div<any>`
   box-shadow: 0px 0px 50px ${({ theme }) => `${theme.shadowy}77`};
 
   animation: ${({ closing }) =>
-    closing ? "slideUp 0.5s, fadeOut 0.3s" : "fadeIn 0.3s, slideDown 0.5s"};
+    closing ? "slideUp 0.5s, fadeOut 0.2s" : "fadeIn 2s, slideDown 0.5s"};
 
   opacity: ${({ closing }) => closing && "0"};
 `;

@@ -1,4 +1,4 @@
 type Option = {
-  label: string;
+  children: string;
   value: any;
 };

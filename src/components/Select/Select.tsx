@@ -2,6 +2,7 @@ import React, { useState, createContext } from "react";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 import { useTimer, useExternalClick } from "utils/hooks";
+import { context as make } from "./constants";
 import "./types.d";
 
 import { Container, Arrow, Box } from "./styles";
@@ -50,8 +51,8 @@ export default function Select({
     },
   });
 
-  const choose = ({ label, value }: Option) => {
-    setDisplay(label || (value as string));
+  const choose = ({ children, value }: Option) => {
+    setDisplay(children || (value as string));
 
     setValueState(value);
 
@@ -61,29 +62,30 @@ export default function Select({
   const toggle = () => setOpenState(!openState);
   const ref = useExternalClick(triggerClose);
 
+  const context = make(
+    openState,
+    valueState,
+    lookupState,
+    setLookupState,
+    closing,
+    choose,
+    triggerClose,
+    toggle
+  );
+
+  const containerProps = {
+    ref,
+    className: "SelectContainer",
+    ...context,
+    ...props,
+  };
+
   return (
-    <Context.Provider
-      value={{
-        open: openState,
-        value: valueState,
-        lookup: lookupState,
-        setLookup: setLookupState,
-        closing,
-        choose,
-        close: triggerClose,
-        toggle,
-      }}
-    >
-      <Container
-        ref={ref}
-        className={"SelectContainer"}
-        open={openState}
-        closing={closing}
-        {...props}
-      >
+    <Context.Provider value={context}>
+      <Container {...containerProps}>
         <Box className={"noborder"} onClick={toggle}>
-          {display || placeholder || select}{" "}
-          <Arrow open={openState} closing={closing} />
+          {display || placeholder || select}
+          <Arrow {...context} />
         </Box>
         <List>{children}</List>
       </Container>

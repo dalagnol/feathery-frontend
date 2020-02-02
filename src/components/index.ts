@@ -10,6 +10,7 @@ import Subheading from "./Subheading/Subheading";
 import Title from "./Title/Title";
 import Chat from "./Chat/Chat";
 import Select from "./Select/Select";
+import Option from "./Select/List/Option/Option";
 
 export {
   Button,
@@ -24,4 +25,5 @@ export {
   Title,
   Chat,
   Select,
+  Option,
 };

@@ -3,14 +3,19 @@ import { observer } from "mobx-react";
 
 import { SelectThing } from "./styles";
 
-import { Layout, Title, Select } from "components";
+import { Layout, Title, Select, Option } from "components";
 
 export default observer(function Feed() {
   return (
     <Layout>
       <Title>test</Title>
       <SelectThing>
-        <Select />
+        <Select>
+          <Option value={"Potestas"}>Adimo</Option>
+          <Option value={"Potestas"}>Adimo</Option>
+          <Option value={"Potestas"}>Adimo</Option>
+          <Option value={"Potestas"}>Adimo</Option>
+        </Select>
       </SelectThing>
     </Layout>
   );
