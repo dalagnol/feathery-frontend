@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
 
 import { SelectThing } from "./styles";
@@ -6,12 +6,13 @@ import { SelectThing } from "./styles";
 import { Layout, Title, Select, Option } from "components";
 
 export default observer(function Feed() {
+  const [title, setTitle] = useState("");
   return (
     <Layout>
-      <Title>test</Title>
+      <Title>{title}</Title>
       <SelectThing>
-        <Select>
-          <Option value={"Potestas"}>Adimo</Option>
+        <Select value={title} setValue={setTitle}>
+          <Option value={"Adimo"}>Adimo</Option>
           <Option value={"Potestas"}>Adimo</Option>
           <Option value={"Potestas"}>Adimo</Option>
           <Option value={"Potestas"}>Adimo</Option>
