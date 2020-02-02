@@ -28,8 +28,6 @@ export const Background = styled.div<any>`
 `;
 
 export const Container = styled.div`
-  position: absolute;
-
   max-width: 320px;
 
   border-sizing: border-box;
@@ -134,7 +132,6 @@ export const Button = styled.button`
 `;
 
 export const ArrowUp = styled.div<any>`
-  position: absolute;
   right: 0px;
 
   width: 0;

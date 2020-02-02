@@ -44,7 +44,15 @@ export const Button = styled.button<any>`
   background-color: ${({ theme }) => theme.primary};
   border: none;
 
-  font-size: 1em;
+  align-items: center;
+
+  border-sizing: border-box;
+
+  margin: 0px;
+
+  min-width: 60px;
+  width: 60px;
+  max-width: 60px;
 
   text-align: ${({ left, right }) =>
     left ? "left" : right ? "right" : "center"};
@@ -83,11 +91,6 @@ export const Notifications = styled(List)`
 
   height: 30px;
   width: 30px;
-  margin-left: -7px;
-
-  ${Mac(`
-    margin-left: 0px; 
-  `)}
 
   transition: all 0.4s ease-in-out;
 
@@ -117,18 +120,7 @@ export const Side = styled.div<any>`
 
   div {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-
-    button {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-
-      margin: 0px;
-
-      width: 200px;
-    }
   }
 
   ${({ right }) => right && `justify-content: flex-end`};
