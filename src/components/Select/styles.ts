@@ -11,10 +11,12 @@ export const Container = styled.div<any>`
 
   &,
   & > div:not(.noborder) {
-    background-color: ${({ theme }) => theme.secondary};
+    background-color: ${({ theme, open }) =>
+      `${theme.primary}${open ? "99" : "33"}`};
+
     box-shadow: 0px 0px
       ${({ open, closing }) => (open && !closing ? "50px" : "5px")}
-      ${({ theme }) => `${theme.shadowy}77`};
+      ${({ theme }) => `${theme.shadowy}`};
   }
 
   padding: 0px 15px;
