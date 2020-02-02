@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Background = styled.div<any>`
   position: fixed;
 
+  top: 50;
   right: 0;
 
   display: flex;
@@ -27,15 +28,19 @@ export const Background = styled.div<any>`
 `;
 
 export const Container = styled.div`
-  position: absolute;
+  display: flex;
+  flex-direction: column;
 
-  max-width: 320px;
+  align-items: flex-end;
 
-  border-sizing: border-box;
+  padding: 0px 70px;
 
   * {
-    border-sizing: border-box;
+    margin: 5px 0px;
   }
+
+  flex: 1;
+  overflow: hidden;
 `;
 
 export const Popup = styled.div<any>`
@@ -45,13 +50,8 @@ export const Popup = styled.div<any>`
 
   padding: 10px;
 
-  top: 0;
-  right: 0;
-
   width: 200px;
   height: auto;
-
-  margin: 25px 57px 0 0;
 
   background-color: ${({ theme }) => theme.blurry};
 
@@ -124,7 +124,6 @@ export const Button = styled.button`
 `;
 
 export const ArrowUp = styled.div<any>`
-  position: absolute;
   right: 40px;
 
   width: 0;

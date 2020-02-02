@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { iPhone } from "styles/screens";
 
 export const Background = styled.div<any>`
   position: fixed;
 
+  top: 50;
   right: 0;
 
   display: flex;
@@ -28,15 +28,19 @@ export const Background = styled.div<any>`
 `;
 
 export const Container = styled.div`
-  position: absolute;
+  display: flex;
+  flex-direction: column;
 
-  max-width: 320px;
+  align-items: flex-end;
 
-  border-sizing: border-box;
+  padding: 0px 15px;
 
   * {
-    border-sizing: border-box;
+    margin: 5px 0px;
   }
+
+  flex: 1;
+  overflow: hidden;
 `;
 
 export const Popup = styled.div<any>`
@@ -44,17 +48,17 @@ export const Popup = styled.div<any>`
   flex-direction: column;
   align-items: center;
 
-  padding: 20px 0px;
+  padding: 10px;
 
-  top: 0;
-  right: 0;
-
-  width: 300px;
+  width: 200px;
   height: auto;
 
-  margin: 25px 20px 0 0;
-
   background-color: ${({ theme }) => theme.blurry};
+
+  * {
+    font-family: Nanum Gothic;
+    color: ${({ theme }) => theme.text};
+  }
 
   box-shadow: ${({ theme }) =>
     theme.primary === "#000000"
@@ -67,15 +71,6 @@ export const Popup = styled.div<any>`
 
   animation: slideLeft 0.6s;
 
-  h2 {
-    font: 1.5em Nanum Gothic;
-  }
-
-  * {
-    font: 1em Nanum Gothic;
-    color: ${({ theme }) => theme.text};
-  }
-
   ${({ closing }) =>
     closing &&
     `
@@ -84,9 +79,9 @@ export const Popup = styled.div<any>`
 `;
 
 export const Text = styled.p`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.text} !important;
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
   font-size: 1.8em;
 
   margin: 10px;
@@ -134,8 +129,7 @@ export const Button = styled.button`
 `;
 
 export const ArrowUp = styled.div<any>`
-  position: absolute;
-  right: 0px;
+  right: 40px;
 
   width: 0;
   height: 0;

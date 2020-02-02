@@ -73,11 +73,13 @@ export default function Navbar({
         )}
         {token && (
           <div>
+            <Text>{user.name}</Text>
             <Button right onClick={OpenSettings}>
-              <Text>{user.name}</Text>
               <UserButton />
             </Button>
-            <Notifications onClick={setNotifications} />
+            <Button>
+              <Notifications onClick={setNotifications} />
+            </Button>
           </div>
         )}
       </Side>

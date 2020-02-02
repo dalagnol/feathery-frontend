@@ -14,6 +14,11 @@ export const Container = styled.div`
   border-top: 1px dashed ${({ theme }) => theme.tertiary};
   border-bottom: 1px dashed ${({ theme }) => theme.tertiary};
 
+  * {
+    font-family: Nanum Gothic;
+    color: ${({ theme }) => theme.text};
+  }
+
   h4 {
     margin: 2px;
   }

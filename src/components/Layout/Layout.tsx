@@ -65,10 +65,17 @@ export default observer(function Layout({ children, ...props }: any) {
     user: user,
   };
 
+  const NotificationProps = {
+    open: notifications,
+    close: notificationsTrigger,
+    closing: closingNotifications,
+    user: user,
+  };
+
   const ContentProps = {
-    sidebar,
+    blur: notifications || settings,
+    move: sidebar,
     closingSidebar,
-    settings,
     props: { ...props },
   };
 
@@ -82,8 +89,8 @@ export default observer(function Layout({ children, ...props }: any) {
     <Themed>
       <Navbar {...NavbarProps} />
       <Sidebar {...SidebarProps} />
-      <Settings {...SettingsProps} SettingsOpen={settings} />
-      <Notifications open={notifications} close={notificationsTrigger} />
+      <Settings {...SettingsProps} />
+      <Notifications {...NotificationProps} />
       <Content {...ContentProps}>{children}</Content>
       <Footer {...FooterProps} />
     </Themed>
