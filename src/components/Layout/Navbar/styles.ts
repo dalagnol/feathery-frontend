@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Menu } from "styled-icons/feather/Menu";
-import { UserCircle } from "styled-icons/fa-solid/UserCircle";
-import { iPhone } from "styles/screens";
+import { User } from "styled-icons/evil";
+import { List } from "styled-icons/feather";
+import { Mac } from "styles/screens";
 
 export const Navbar = styled.header<any>`
   position: fixed;
@@ -21,11 +22,9 @@ export const Navbar = styled.header<any>`
 
   transition: all 0.4s ease-in-out;
 
-  ${iPhone(`
-    p {
-      display: none;
-    }
-  `)}
+  * {
+    border-sizing: border-box;
+  }
 
   ${({ sidebarOpen, closingSidebar }) =>
     sidebarOpen &&
@@ -47,12 +46,8 @@ export const Button = styled.button<any>`
 
   font-size: 1em;
 
-  box-sizing: border-box;
-
   text-align: ${({ left, right }) =>
     left ? "left" : right ? "right" : "center"};
-
-  margin: 10px;
 `;
 
 export const SidebarButton = styled(Menu)`
@@ -68,11 +63,29 @@ export const SidebarButton = styled(Menu)`
   }
 `;
 
-export const UserButton = styled(UserCircle)`
+export const UserButton = styled(User)`
   color: ${({ theme }) => theme.text};
 
-  height: 22px;
-  width: 22px;
+  height: 42px;
+  width: 42px;
+
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    text-shadow: 0px 0px 10px ${({ theme }) => theme.shadowy};
+  }
+`;
+
+export const Notifications = styled(List)`
+  color: ${({ theme }) => theme.text};
+
+  height: 30px;
+  width: 30px;
+  margin-left: -7px;
+
+  ${Mac(`
+    margin-left: 0px; 
+  `)}
 
   transition: all 0.4s ease-in-out;
 
@@ -84,7 +97,7 @@ export const UserButton = styled(UserCircle)`
 export const Text = styled.p`
   color: ${({ theme }) => theme.text};
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
   font-size: 16px;
 
   margin: 5px;
@@ -95,6 +108,26 @@ export const Text = styled.p`
 export const Side = styled.div<any>`
   display: flex;
   flex: 0.49;
+
+  align-items: center;
+
+  padding: 0px 10px;
+
+  div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    button {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      margin: 0px;
+
+      width: 200px;
+    }
+  }
 
   ${({ right }) => right && `justify-content: flex-end`};
 `;

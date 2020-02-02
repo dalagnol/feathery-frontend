@@ -11,6 +11,7 @@ import {
   Text,
   Side,
   Middle,
+  Notifications,
 } from "./styles";
 
 import { Logo } from "components";
@@ -70,10 +71,13 @@ export default function Navbar({
           </Button>
         )}
         {token && (
-          <Button right onClick={OpenSettings}>
-            <Text>{user.name}</Text>
-            <UserButton />
-          </Button>
+          <div>
+            <Button right onClick={OpenSettings}>
+              <Text>{user.name}</Text>
+              <UserButton />
+            </Button>
+            <Notifications />
+          </div>
         )}
       </Side>
     </Element>

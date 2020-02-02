@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import { iPhone } from "styles/screens";
 
-export const Container = styled.div<any>`
+export const Background = styled.div<any>`
   position: fixed;
 
   right: 0;
+
+  display: flex;
+  justify-content: flex-end;
 
   min-height: 100vh;
   min-width: 100vw;
@@ -24,6 +27,18 @@ export const Container = styled.div<any>`
   `}
 `;
 
+export const Container = styled.div`
+  position: relative;
+
+  max-width: 320px;
+
+  border-sizing: border-box;
+
+  * {
+    border-sizing: border-box;
+  }
+`;
+
 export const Popup = styled.div<any>`
   position: absolute;
 
@@ -39,7 +54,7 @@ export const Popup = styled.div<any>`
   width: 200px;
   height: auto;
 
-  margin: 25px 15px 0 0;
+  margin: 25px 57px 0 0;
 
   background-color: ${({ theme }) => theme.blurry};
 
@@ -48,15 +63,11 @@ export const Popup = styled.div<any>`
       ? "0px 0px 0px #000000"
       : `15px 15px 20px ${theme.shadowy}`};
 
-  border-radius: 25px 5px 25px 25px;
+  border-radius: 25px 0px 25px 25px;
 
   transition: all 0.6s ease-in-out;
 
   animation: slideLeft 0.6s;
-
-  ${iPhone(`
-    width: 80vw;
-  `)}
 
   ${({ closing }) =>
     closing &&
@@ -116,6 +127,9 @@ export const Button = styled.button`
 `;
 
 export const ArrowUp = styled.div<any>`
+  position: absolute;
+  right: 40px;
+
   width: 0;
   height: 0;
 
@@ -126,8 +140,6 @@ export const ArrowUp = styled.div<any>`
   border-radius: 15px;
 
   margin: 5px 15px 0 0;
-
-  float: right;
 
   transition: all 0.6s ease-in-out;
 

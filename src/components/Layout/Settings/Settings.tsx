@@ -6,6 +6,7 @@ import Dictionary from "./locale.json";
 import { useExternalClick } from "utils/hooks";
 
 import {
+  Background,
   Container,
   Popup,
   ArrowUp,
@@ -35,47 +36,53 @@ export default observer(function Pane({
 
   return (
     SettingsOpen && (
-      <Container closing={closingSettings}>
-        <ArrowUp closing={closingSettings} SettingsOpen={SettingsOpen} />
-        <Popup ref={ref} closing={closingSettings} SettingsOpen={SettingsOpen}>
-          <Buttons>
-            <Button>
-              <Icon>
-                <User />
-              </Icon>
-              <Text>{profile}</Text>
-            </Button>
-            <Button onClick={changeTheme}>
-              <Icon>
-                <PenTool />
-              </Icon>
-              <Text>{theme}</Text>
-            </Button>
-            <Button
-              onClick={() =>
-                (Locale.language = Locale.language === "pt" ? "en" : "pt")
-              }
-            >
-              <Icon>
-                <Globe />
-              </Icon>
-              <Text>{language}</Text>
-            </Button>
-            <Button onClick={alert}>
-              <Icon>
-                <Settings />
-              </Icon>
-              <Text>{settings}</Text>
-            </Button>
-            <Button onClick={logout}>
-              <Icon>
-                <LogOut />
-              </Icon>
-              <Text>{exit}</Text>
-            </Button>
-          </Buttons>
-        </Popup>
-      </Container>
+      <Background closing={closingSettings}>
+        <Container>
+          <ArrowUp closing={closingSettings} SettingsOpen={SettingsOpen} />
+          <Popup
+            ref={ref}
+            closing={closingSettings}
+            SettingsOpen={SettingsOpen}
+          >
+            <Buttons>
+              <Button>
+                <Icon>
+                  <User />
+                </Icon>
+                <Text>{profile}</Text>
+              </Button>
+              <Button onClick={changeTheme}>
+                <Icon>
+                  <PenTool />
+                </Icon>
+                <Text>{theme}</Text>
+              </Button>
+              <Button
+                onClick={() =>
+                  (Locale.language = Locale.language === "pt" ? "en" : "pt")
+                }
+              >
+                <Icon>
+                  <Globe />
+                </Icon>
+                <Text>{language}</Text>
+              </Button>
+              <Button onClick={alert}>
+                <Icon>
+                  <Settings />
+                </Icon>
+                <Text>{settings}</Text>
+              </Button>
+              <Button onClick={logout}>
+                <Icon>
+                  <LogOut />
+                </Icon>
+                <Text>{exit}</Text>
+              </Button>
+            </Buttons>
+          </Popup>
+        </Container>
+      </Background>
     )
   );
 });
