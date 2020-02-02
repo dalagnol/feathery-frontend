@@ -62,6 +62,10 @@ export default function Select({
 
     setValueState(value);
 
+    if (onChange) {
+      onChange({ children, value });
+    }
+
     triggerClose();
   };
 
