@@ -79,6 +79,8 @@ export const UserButton = styled(User)`
 export const Notifications = styled(List)`
   color: ${({ theme }) => theme.text};
 
+  cursor: pointer;
+
   height: 30px;
   width: 30px;
   margin-left: -7px;

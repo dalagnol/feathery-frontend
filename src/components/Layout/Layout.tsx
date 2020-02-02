@@ -14,12 +14,27 @@ import Settings from "./Settings/Settings";
 import UserStore from "store/Users";
 
 export default observer(function Layout({ children, ...props }: any) {
-  const [closingSidebar, sidebarTrigger] = useTimer(600);
-  const [closingSettings, settingsTrigger] = useTimer(600);
-  const [closingNotifications, notificationsTrigger] = useTimer(600);
   const [sidebar, setSidebar] = useState(false);
-  const [settings, setOpenSettings] = useState(false);
+  const [settings, setSettings] = useState(false);
   const [notifications, setNotifications] = useState(false);
+
+  const [closingSidebar, sidebarTrigger] = useTimer(600, {
+    effect: () => {
+      setSidebar(false);
+    },
+  });
+
+  const [closingSettings, settingsTrigger] = useTimer(600, {
+    effect: () => {
+      setSettings(false);
+    },
+  });
+
+  const [closingNotifications, notificationsTrigger] = useTimer(600, {
+    effect: () => {
+      setNotifications(false);
+    },
+  });
 
   const { user } = UserStore;
 
@@ -27,7 +42,10 @@ export default observer(function Layout({ children, ...props }: any) {
     sidebarOpen: sidebar,
     setSidebarOpen: sidebar ? sidebarTrigger : setSidebar,
     settings: settings,
-    setOpenSettings: settings ? settingsTrigger : setOpenSettings,
+    setOpenSettings: settings ? settingsTrigger : setSettings,
+    setNotifications: notifications
+      ? notificationsTrigger
+      : () => setNotifications(true),
     closingSidebar,
     closingSettings,
     user: user,
@@ -35,7 +53,7 @@ export default observer(function Layout({ children, ...props }: any) {
 
   const SidebarProps = {
     sidebarOpen: sidebar,
-    setSidebarOpen: sidebar ? sidebarTrigger : setSidebar,
+    setSidebarOpen: sidebarTrigger,
     closingSidebar,
     user: user,
   };
@@ -60,24 +78,12 @@ export default observer(function Layout({ children, ...props }: any) {
     settings,
   };
 
-  useEffect(() => {
-    if (closingSidebar) {
-      setTimeout(() => {
-        setSidebar(false);
-      }, 600);
-    } else if (closingSettings) {
-      setTimeout(() => {
-        setOpenSettings(false);
-      }, 600);
-    }
-  }, [closingSidebar, closingSettings]);
-
   return (
     <Themed>
       <Navbar {...NavbarProps} />
       <Sidebar {...SidebarProps} />
       <Settings {...SettingsProps} SettingsOpen={settings} />
-      <Notifications open={false} close={() => {}} />
+      <Notifications open={notifications} close={notificationsTrigger} />
       <Content {...ContentProps}>{children}</Content>
       <Footer {...FooterProps} />
     </Themed>

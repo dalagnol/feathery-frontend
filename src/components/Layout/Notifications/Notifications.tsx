@@ -5,7 +5,7 @@ import { useExternalClick } from "utils/hooks";
 import { Background, Container, Popup, ArrowUp, Text } from "./styles";
 
 export default observer(function Pane({ close, open, closing }: any) {
-  const ref = useExternalClick(() => close());
+  const ref = useExternalClick(close);
 
   return (
     open && (

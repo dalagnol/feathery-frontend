@@ -20,6 +20,7 @@ export default function Navbar({
   setSidebarOpen,
   setOpenSettings,
   user,
+  setNotifications,
   ...props
 }: any) {
   const { signup, signin } = Locale.use(Dictionary);
@@ -76,7 +77,7 @@ export default function Navbar({
               <Text>{user.name}</Text>
               <UserButton />
             </Button>
-            <Notifications />
+            <Notifications onClick={setNotifications} />
           </div>
         )}
       </Side>

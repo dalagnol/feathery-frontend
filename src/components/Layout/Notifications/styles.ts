@@ -28,7 +28,7 @@ export const Background = styled.div<any>`
 `;
 
 export const Container = styled.div`
-  position: relative;
+  position: absolute;
 
   max-width: 320px;
 
@@ -52,7 +52,7 @@ export const Popup = styled.div<any>`
   width: 200px;
   height: auto;
 
-  margin: 25px 57px 0 0;
+  margin: 25px 20px 0 0;
 
   background-color: ${({ theme }) => theme.blurry};
 
@@ -126,7 +126,7 @@ export const Button = styled.button`
 
 export const ArrowUp = styled.div<any>`
   position: absolute;
-  right: 40px;
+  right: 0px;
 
   width: 0;
   height: 0;
