@@ -1,6 +1,10 @@
 import styled from "styled-components";
+import { Menu } from "styled-icons/feather/Menu";
+import { User } from "styled-icons/evil";
+import { List } from "styled-icons/feather";
+import { Mac } from "styles/screens";
 
-export const Navbar = styled.header`
+export const Navbar = styled.header<any>`
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -15,9 +19,25 @@ export const Navbar = styled.header`
   background-color: ${({ theme }) => theme.primary};
   border-bottom: 1px solid ${({ theme }) => theme.blurry};
   box-sizing: border-box;
+
+  transition: all 0.4s ease-in-out;
+
+  * {
+    border-sizing: border-box;
+  }
+
+  ${({ sidebarOpen, closingSidebar }) =>
+    sidebarOpen &&
+    !closingSidebar &&
+    `
+    transform: translateY(-100%);
+  `}
 `;
 
 export const Button = styled.button<any>`
+  display: flex;
+  flex-direction: row;
+
   cursor: pointer;
 
   color: ${({ theme }) => theme.text};
@@ -26,11 +46,95 @@ export const Button = styled.button<any>`
 
   font-size: 1em;
 
-  width: 100px;
-  box-sizing: border-box;
-
   text-align: ${({ left, right }) =>
     left ? "left" : right ? "right" : "center"};
+`;
 
-  margin: 10px;
+export const SidebarButton = styled(Menu)`
+  color: ${({ theme }) => theme.text};
+
+  height: 20px;
+  width: 20px;
+
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    text-shadow: 0px 0px 10px ${({ theme }) => theme.shadowy};
+  }
+`;
+
+export const UserButton = styled(User)`
+  color: ${({ theme }) => theme.text};
+
+  height: 42px;
+  width: 42px;
+
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    text-shadow: 0px 0px 10px ${({ theme }) => theme.shadowy};
+  }
+`;
+
+export const Notifications = styled(List)`
+  color: ${({ theme }) => theme.text};
+
+  cursor: pointer;
+
+  height: 30px;
+  width: 30px;
+  margin-left: -7px;
+
+  ${Mac(`
+    margin-left: 0px; 
+  `)}
+
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    text-shadow: 0px 0px 10px ${({ theme }) => theme.shadowy};
+  }
+`;
+
+export const Text = styled.p`
+  color: ${({ theme }) => theme.text};
+
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+
+  margin: 5px;
+
+  text-shadow: 0px 0px 30px ${({ theme }) => theme.shadowy};
+`;
+
+export const Side = styled.div<any>`
+  display: flex;
+  flex: 0.49;
+
+  align-items: center;
+
+  padding: 0px 10px;
+
+  div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    button {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      margin: 0px;
+
+      width: 200px;
+    }
+  }
+
+  ${({ right }) => right && `justify-content: flex-end`};
+`;
+
+export const Middle = styled.div`
+  display: flex;
+  flex: 0.01;
 `;

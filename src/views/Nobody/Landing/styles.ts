@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { iPhone, iPad, Mac } from "styles/Screens";
+import { iPhone, iPad, Mac } from "styles/screens";
 
 export const Buttons = styled.div`
   display: flex;
@@ -7,10 +7,10 @@ export const Buttons = styled.div`
 `;
 
 export const Text = styled.p`
-  color: ${({ theme }) => theme.shadowy};
+  color: ${({ theme }) => theme.secondary};
   margin: 10px;
 
-  font-family: Arial, Helvetica, sans-serif;;
+  font-family: Helvetica, sans-serif;
   
   ${iPhone(`
     font-size: 15px;

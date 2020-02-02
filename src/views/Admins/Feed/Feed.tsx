@@ -1,12 +1,12 @@
 import React from "react";
-import { Themed } from "themes";
+import { observer } from "mobx-react";
 
-import { Layout } from "components";
+import { Layout, Title } from "components";
 
-export default function Feed() {
+export default observer(function Feed() {
   return (
-    <Themed>
-      <Layout></Layout>
-    </Themed>
+    <Layout>
+      <Title>test</Title>
+    </Layout>
   );
-}
+});

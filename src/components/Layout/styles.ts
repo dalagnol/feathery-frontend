@@ -22,4 +22,26 @@ export const Content = styled.main<any>`
     between && (row ? "justify-content: " : "align-items: ") + "space-between;"}
 
   margin: 50px 0px 0px 0px;
+
+  transition: all 0.3s ease-in-out;
+
+  ${({ settings }) =>
+    settings &&
+    `
+    filter: blur(2px);
+  `};
+
+  ${({ sidebar }) =>
+    sidebar &&
+    `
+      transform: translateX(200px);
+      filter: blur(2px);
+    `}
+
+
+  ${({ closingSidebar }) =>
+    closingSidebar &&
+    `
+      transform: translateX(0);
+    `}
 `;

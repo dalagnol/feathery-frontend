@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { iPhone, iPad, Mac } from "styles/Screens";
+import { iPhone, iPad, Mac } from "styles/screens";
 
 export const Input = styled.input<any>`
     background-color: ${({ theme }) => theme.secondary};
