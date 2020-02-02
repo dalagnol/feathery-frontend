@@ -2,28 +2,26 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 import { useExternalClick } from "utils/hooks";
 
-import { Background, Container, Popup, ArrowUp, Text } from "./styles";
+import { Background, Container, Popup, ArrowUp } from "./styles";
 import Tile from "./Tile/Tile";
 
-type cunt = number;
-
-export default observer(function Pane({ close, open, closing }: any) {
+export default observer(function Pane(props: any) {
   const [notifications, setNotifications] = useState([
     {
       title: "Adimo potestas",
       description: "Adimo potestas tua quae, tibi donat fortunam pugnae.",
     },
   ]);
-  const ref = useExternalClick(close);
+  const ref = useExternalClick(props.close);
 
   return (
-    open && (
-      <Background closing={closing}>
+    props.open && (
+      <Background {...props}>
         <Container>
-          <ArrowUp closing={closing} open={open} />
-          <Popup ref={ref} closing={closing} SettingsOpen={open}>
+          <ArrowUp {...props} />
+          <Popup ref={ref} {...props}>
             <h2>Notifications</h2>
-            {notifications.map((notification: any, index: cunt) => (
+            {notifications.map((notification: any, index: number) => (
               <Tile data={notification} key={index} />
             ))}
           </Popup>

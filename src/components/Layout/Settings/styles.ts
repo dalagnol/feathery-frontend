@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Background = styled.div<any>`
   position: fixed;
 
-  top: 0;
+  top: 50;
   right: 0;
 
   display: flex;
@@ -33,7 +33,7 @@ export const Container = styled.div`
 
   align-items: flex-end;
 
-  padding: 50px 70px;
+  padding: 0px 70px;
 
   * {
     margin: 5px 0px;
