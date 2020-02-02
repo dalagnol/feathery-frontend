@@ -25,14 +25,14 @@ export const Content = styled.main<any>`
 
   transition: all 0.3s ease-in-out;
 
-  ${({ openSettings }) =>
-    openSettings &&
+  ${({ settings }) =>
+    settings &&
     `
     filter: blur(2px);
   `};
 
-  ${({ openSidebar }) =>
-    openSidebar &&
+  ${({ sidebar }) =>
+    sidebar &&
     `
       transform: translateX(200px);
       filter: blur(2px);

@@ -8,6 +8,7 @@ import { Content } from "./styles";
 import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 import Sidebar from "./Sidebar/Sidebar";
+import Notifications from "./Notifications/Notifications";
 import Settings from "./Settings/Settings";
 
 import UserStore from "store/Users";
@@ -15,52 +16,54 @@ import UserStore from "store/Users";
 export default observer(function Layout({ children, ...props }: any) {
   const [closingSidebar, sidebarTrigger] = useTimer(600);
   const [closingSettings, settingsTrigger] = useTimer(600);
-  const [openSidebar, setOpenSidebar] = useState(false);
-  const [openSettings, setOpenSettings] = useState(false);
+  const [closingNotifications, notificationsTrigger] = useTimer(600);
+  const [sidebar, setSidebar] = useState(false);
+  const [settings, setOpenSettings] = useState(false);
+  const [notifications, setNotifications] = useState(false);
 
   const { user } = UserStore;
 
   const NavbarProps = {
-    sidebarOpen: openSidebar,
-    setSidebarOpen: openSidebar ? sidebarTrigger : setOpenSidebar,
-    openSettings: openSettings,
-    setOpenSettings: openSettings ? settingsTrigger : setOpenSettings,
+    sidebarOpen: sidebar,
+    setSidebarOpen: sidebar ? sidebarTrigger : setSidebar,
+    settings: settings,
+    setOpenSettings: settings ? settingsTrigger : setOpenSettings,
     closingSidebar,
     closingSettings,
     user: user,
   };
 
   const SidebarProps = {
-    sidebarOpen: openSidebar,
-    setSidebarOpen: openSidebar ? sidebarTrigger : setOpenSidebar,
+    sidebarOpen: sidebar,
+    setSidebarOpen: sidebar ? sidebarTrigger : setSidebar,
     closingSidebar,
     user: user,
   };
 
   const SettingsProps = {
-    SettingsOpen: openSettings,
+    SettingsOpen: settings,
     setSettingsOpen: settingsTrigger,
     closingSettings,
     user: user,
   };
 
   const ContentProps = {
-    openSidebar,
+    sidebar,
     closingSidebar,
-    openSettings,
+    settings,
     props: { ...props },
   };
 
   const FooterProps = {
     closingSidebar,
-    sidebarOpen: openSidebar,
-    openSettings,
+    sidebarOpen: sidebar,
+    settings,
   };
 
   useEffect(() => {
     if (closingSidebar) {
       setTimeout(() => {
-        setOpenSidebar(false);
+        setSidebar(false);
       }, 600);
     } else if (closingSettings) {
       setTimeout(() => {
@@ -73,7 +76,8 @@ export default observer(function Layout({ children, ...props }: any) {
     <Themed>
       <Navbar {...NavbarProps} />
       <Sidebar {...SidebarProps} />
-      <Settings {...SettingsProps} />
+      <Settings {...SettingsProps} SettingsOpen={settings} />
+      <Notifications open={false} close={() => {}} />
       <Content {...ContentProps}>{children}</Content>
       <Footer {...FooterProps} />
     </Themed>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { iPhone } from "styles/screens";
 
 export const Background = styled.div<any>`
   position: fixed;
@@ -27,7 +28,7 @@ export const Background = styled.div<any>`
 `;
 
 export const Container = styled.div`
-  position: absolute;
+  position: relative;
 
   max-width: 320px;
 
