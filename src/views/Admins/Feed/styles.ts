@@ -8,5 +8,7 @@ export const SelectThing = styled.div`
 
   .SelectContainer {
     border-radius: 10px;
+    padding: 0px;
+    position: relative;
   }
 `;

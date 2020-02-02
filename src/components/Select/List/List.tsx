@@ -7,11 +7,11 @@ import { Context } from "../Select";
 import Search from "./Search/Search";
 
 export default function List({ children }: any) {
-  const { open } = useContext(Context);
+  const select: any = useContext(Context);
 
   return (
-    open && (
-      <Container>
+    select.open && (
+      <Container {...select}>
         <Search />
         <Options>{children}</Options>
       </Container>

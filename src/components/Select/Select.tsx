@@ -74,9 +74,16 @@ export default function Select({
         toggle,
       }}
     >
-      <Container ref={ref} className={"SelectContainer"} {...props}>
-        <Box onClick={toggle}>
-          {display || placeholder || select} <Arrow open={openState} />
+      <Container
+        ref={ref}
+        className={"SelectContainer"}
+        open={openState}
+        closing={closing}
+        {...props}
+      >
+        <Box className={"noborder"} onClick={toggle}>
+          {display || placeholder || select}{" "}
+          <Arrow open={openState} closing={closing} />
         </Box>
         <List>{children}</List>
       </Container>

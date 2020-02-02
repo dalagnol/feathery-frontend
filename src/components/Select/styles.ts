@@ -1,16 +1,25 @@
 import styled from "styled-components";
 import { ArrowDown } from "styled-icons/feather";
 
-export const Container = styled.div`
+export const Container = styled.div<any>`
   display: flex;
   flex: 1;
 
   height: 100%;
 
-  background-color: ${({ theme }) => theme.primary};
-  border: 3px dotted ${({ theme }) => theme.text};
+  transition: all 0.3s ease-in-out;
+
+  &,
+  & > div:not(.noborder) {
+    background-color: ${({ theme }) => theme.secondary};
+    box-shadow: 0px 0px
+      ${({ open, closing }) => (open && !closing ? "50px" : "5px")}
+      ${({ theme }) => `${theme.shadowy}77`};
+  }
 
   padding: 0px 15px;
+
+  z-index: 100;
 
   * {
     font: 1em Nanum Gothic;
@@ -24,6 +33,10 @@ export const Box = styled.div`
 
   cursor: pointer;
 
+  padding: 0px 10px;
+
+  z-index: 100;
+
   justify-content: space-between;
   align-items: center;
 `;
@@ -34,5 +47,5 @@ export const Arrow = styled<any>(ArrowDown)`
 
   transition: all 0.3s ease-in-out;
 
-  ${({ open }) => open && `transform: rotate(180deg)`};
+  ${({ open, closing }) => open && !closing && `transform: rotate(180deg)`};
 `;
