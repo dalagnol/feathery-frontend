@@ -55,13 +55,13 @@ export default function Select({
     },
   });
 
-  const choose = ({ children, value }: Option) => {
+  const choose = ({ name, children, value }: Option) => {
     setDisplay(children || (value as string));
 
     setValueState(value);
 
     if (onChange) {
-      onChange({ children, value });
+      onChange({ name, children, value });
     }
 
     triggerClose();
@@ -78,7 +78,8 @@ export default function Select({
     closing,
     choose,
     triggerClose,
-    toggle
+    toggle,
+    props
   );
 
   const containerProps = {

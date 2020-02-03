@@ -1,48 +1,40 @@
 import styled from "styled-components";
-import { iPhone, iPad, Mac } from "styles/screens";
 
 export const Input = styled.input<any>`
-    background-color: ${({ theme }) => `${theme.secondary}66`};
-    color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => `${theme.primary}66`};
+  color: ${({ theme }) => theme.text};
 
-    font-size: 20px;
+  font: 1em Nanum Gothic;
 
-    border: none;
-    border-radius: 5px;
+  border: none;
+  border-radius: 5px;
+  border-sizing: border-box;
 
-    margin: 10px;
-    padding: 10px;
+  height: 50px;
 
-    height: 30px; 
+  box-shadow: 0px 0px 5px ${({ theme }) => theme.shadowy};
 
-    ${iPhone(`
-    width: 290px;
-    `)}
+  width: 100%;
 
-    ${iPad(`
-    width: 350px;
-    `)}
+  transition: all 0.22s ease-in-out;
 
-    ${Mac(`
-    width: 350px;
-    `)}
+  text-indent: 1em;
 
-    transition: all 0.22s ease-in-out;
+  &:hover {
+    box-shadow: 0px 0px 10px #00000044;
+    color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.tertiary};
+  }
 
-    &:hover {
-        box-shadow: 0px 0px 10px #00000044;
-        background-color: ${({ theme }) => theme.tertiary};
-    }
+  &:focus {
+    box-shadow: 0px 0px 10px #00000044;
+    background-color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.primary};
+  }
 
-    &:focus {
-        box-shadow: 0px 0px 10px #00000044;
-        background-color: ${({ theme }) => theme.text};
-        color: ${({ theme }) => theme.primary};
-    }
-
-    ${({ shake }) =>
-      shake &&
-      `
+  ${({ shake }) =>
+    shake &&
+    `
         animation: shake 0.4s;
     `}
 `;

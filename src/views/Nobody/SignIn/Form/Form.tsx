@@ -24,7 +24,9 @@ export default function Form({ form, submit, errors }: any) {
       <Input {...credential} />
       <Subheading>{pass}</Subheading>
       <Input {...password} />
-      <Button onClick={() => submit(data)}>{signin}</Button>
+      <footer>
+        <Button onClick={() => submit(data)}>{signin}</Button>
+      </footer>
     </Container>
   );
 }

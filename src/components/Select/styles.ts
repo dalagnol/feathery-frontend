@@ -12,7 +12,7 @@ export const Container = styled.div<any>`
   &,
   & > div:not(.noborder) {
     background-color: ${({ theme, open }) =>
-      `${theme.primary}${open ? "99" : "33"}`};
+      `${theme.primary}${open ? "ef" : "33"}`};
 
     box-shadow: 0px 0px
       ${({ open, closing }) => (open && !closing ? "50px" : "5px")}

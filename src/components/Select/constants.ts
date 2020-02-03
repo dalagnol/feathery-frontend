@@ -6,7 +6,8 @@ export const context = (
   closing: any,
   choose: any,
   close: any,
-  toggle: any
+  toggle: any,
+  props: any
 ) => ({
   open,
   value,
@@ -16,4 +17,5 @@ export const context = (
   choose,
   close,
   toggle,
+  name: props.name,
 });

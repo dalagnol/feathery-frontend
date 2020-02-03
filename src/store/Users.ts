@@ -13,19 +13,21 @@ class UserStore {
   }
 
   public set user(data: any) {
-    if (
-      data.id &&
-      data.name &&
-      data.identifier &&
-      data.email &&
-      localStorage.getItem("token")
-    ) {
-      this.User = data;
-      if (this.User.picture) {
-        this.User.picture = `data:image/png;base64,${this.User.picture}`;
+    if (data) {
+      if (
+        data.id &&
+        data.name &&
+        data.identifier &&
+        data.email &&
+        localStorage.getItem("token")
+      ) {
+        this.User = data;
+        if (this.User.picture) {
+          this.User.picture = `data:image/png;base64,${this.User.picture}`;
+        }
+      } else {
+        this.User = null;
       }
-    } else {
-      this.User = null;
     }
   }
 

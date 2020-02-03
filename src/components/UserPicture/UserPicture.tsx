@@ -10,7 +10,7 @@ export default observer(function UserPicture({ ...props }: any) {
   return (
     (Store.user.picture && (
       <Container>
-        <Image {...props} src={Store.user.picture} />
+        <Image {...props} src={props.src || Store.user.picture} />
       </Container>
     )) || <User style={{ width: "100%" }} />
   );
