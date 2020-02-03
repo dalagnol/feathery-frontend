@@ -1,85 +1,87 @@
 import styled from "styled-components";
 
-import { iPhone } from "styles/screens";
+import { iPhone, iPad, Mac } from "styles/screens";
 
 export const Form = styled.form`
-  padding: 50px;
-
-  width: 100%;
+  padding-top: 50px;
 
   display: flex;
   flex-direction: row;
 
   justify-content: space-between;
 
-  header {
-    height: 200px;
-    width: 100%;
+  flex: 1;
 
-    display: flex;
-    flex-direction: column;
-
-    flex: 0.5;
-
-    align-items: center;
-
-    div {
-      width: 200px;
-      height: 200px;
-      div {
-        box-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
-      }
-    }
-
-    flex: 0.4;
-
-    ${iPhone(`
+  ${iPhone(`
       display: flex;
       align-items: center;
-    `)}
+      flex-direction: column;
+  `)}
+`;
 
-    h1 {
-      font-family: Nanum Gothic;
-      text-align: center;
-    }
+export const Header = styled.header`
+  height: 200px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  flex: 0.5;
+
+  align-items: center;
+`;
+
+export const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  flex: 0.5;
+
+  width: 100%;
+
+  & > * {
+    margin: 10px;
+  }
+`;
+
+export const UserPictureContainer = styled.div`
+  div {
+    box-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
   }
 
-  main {
-    display: flex;
-    flex-direction: column;
+  ${iPhone(`
+    width: 300px;
+    height: 300px;
+  `)}
+  ${iPad(`
+    width: 300px;
+    height: 300px;
+  `)}
+  ${Mac(`
+    width: 400px;
+    height: 400px;
+  `)}
+`;
 
-    label {
-      font: 2em Amatic SC;
-    }
+export const Buttons = styled.header`
+  display: flex;
+  flex-direction: row;
+  flex: 1;
 
-    & > * {
-      margin: 10px;
-    }
+  margin: 0px;
 
-    & > div {
-      margin: 5px 0px;
-      width: 100%;
-      height: 45px;
+  justify-content: space-between;
+`;
 
-      padding: 0px 10px;
+export const SelectContainer = styled.div`
+  margin: 5px 0px;
+  width: 100%;
+  height: 45px;
 
-      .SelectContainer {
-        border-radius: 10px;
-        padding: 0px;
-        position: relative;
-      }
-    }
+  padding: 0px 10px;
 
-    header {
-      display: flex;
-      flex-direction: row;
-      flex: 1;
-
-      margin: 0px;
-
-      justify-content: space-between;
-    }
-
-    flex: 0.5;
+  .SelectContainer {
+    border-radius: 10px;
+    padding: 0px;
+    position: relative;
   }
 `;

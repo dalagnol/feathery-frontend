@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 import { observer } from "mobx-react";
-import { Form } from "./styles";
 import { useForm } from "utils/hooks";
 import { base64 } from "utils/helpers";
+
+import { Form, Header, UserPictureContainer, Main, Buttons, SelectContainer } from "./styles";
 
 import {
   Suspense,
@@ -11,6 +12,8 @@ import {
   Select,
   Option,
   Button,
+  Title,
+  Subheading,
 } from "components";
 
 import Store from "store/Users";
@@ -36,32 +39,32 @@ export default observer(function Self() {
   return (
     <Suspense data={user}>
       <Form onSubmit={e => e.preventDefault()}>
-        <header>
-          <div>
+        <Header>
+          <UserPictureContainer>
             <UserPicture src={form.picture} />
-          </div>
-          <h1>Guilherme Moresco</h1>
-        </header>
-        <main>
-          <header>
+          </UserPictureContainer>
+          <Title>{user.name}</Title>
+        </Header>
+        <Main>
+          <Buttons>
             <input onChange={imageHandler} ref={ref} type="file" hidden />
             <Button onClick={() => ref.current.click()}>Set a picture</Button>
             <Button>Save</Button>
-          </header>
-          <label>Name</label>
+          </Buttons>
+          <Subheading>Name</Subheading>
           <Input {...$name} />
-          <label>Email</label>
+          <Subheading>Email</Subheading>
           <Input {...$email} />
-          <label>Gender</label>
-          <div>
+          <Subheading>Gender</Subheading>
+          <SelectContainer>
             <Select {...$gender}>
               <Option value={"male"}>Male</Option>
               <Option value={"female"}>Female</Option>
             </Select>
-          </div>
-          <label>Phone No.</label>
+          </SelectContainer>
+          <Subheading>Phone No.</Subheading>
           <Input {...$phone} />
-        </main>
+        </Main>
       </Form>
     </Suspense>
   );

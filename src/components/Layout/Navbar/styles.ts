@@ -59,9 +59,9 @@ export const Button = styled.button<any>`
 
   font-size: 0.8em;
 
-  min-width: 60px;
-  width: 60px;
-  max-width: 60px;
+  min-width: 59px;
+  width: 59px;
+  max-width: 59px;
 
   div {
     width: 42px;

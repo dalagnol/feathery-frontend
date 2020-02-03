@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { iPhone, iPad, Mac } from "styles/screens";
 
-export const Subheading = styled.h1`
+export const Subheading = styled.label`
   color: ${({ theme }) => theme.text};
 
   font-family: Amatic SC;
