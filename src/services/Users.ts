@@ -18,4 +18,12 @@ export default new (class UserService {
 
     return data.user;
   }
+
+  public async Update(form: any, id: any) {
+    const { data } = await API.put(`/user/${id}`, form);
+
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    return data.user;
+  }
 })();

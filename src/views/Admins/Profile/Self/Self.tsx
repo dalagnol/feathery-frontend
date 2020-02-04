@@ -3,7 +3,14 @@ import { observer } from "mobx-react";
 import { useForm } from "utils/hooks";
 import { base64 } from "utils/helpers";
 
-import { Form, Header, UserPictureContainer, Main, Buttons, SelectContainer } from "./styles";
+import {
+  Form,
+  Header,
+  UserPictureContainer,
+  Main,
+  Buttons,
+  SelectContainer,
+} from "./styles";
 
 import {
   Suspense,
@@ -17,6 +24,7 @@ import {
 } from "components";
 
 import Store from "store/Users";
+import Service from "services/Users";
 
 export default observer(function Self() {
   const { user } = Store;
@@ -36,9 +44,14 @@ export default observer(function Self() {
     );
   };
 
+  const FormProps = {
+    method: "PUT",
+    onSubmit: (e: any) => e.preventDefault(),
+  };
+
   return (
     <Suspense data={user}>
-      <Form onSubmit={e => e.preventDefault()}>
+      <Form {...FormProps}>
         <Header>
           <UserPictureContainer>
             <UserPicture src={form.picture} />
@@ -49,7 +62,7 @@ export default observer(function Self() {
           <Buttons>
             <input onChange={imageHandler} ref={ref} type="file" hidden />
             <Button onClick={() => ref.current.click()}>Set a picture</Button>
-            <Button>Save</Button>
+            <Button onClick={() => {}}>Save</Button>
           </Buttons>
           <Subheading>Name</Subheading>
           <Input {...$name} />
