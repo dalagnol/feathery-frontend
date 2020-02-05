@@ -62,7 +62,7 @@ export default observer(function Self() {
 
   const [, loading, update] = useService({
     method: Service.Update,
-    params: form,
+    params: [form],
     handler: (data: any) => {
       Store.user = data;
     },
@@ -83,11 +83,7 @@ export default observer(function Self() {
           <Buttons>
             <input onChange={imageHandler} ref={ref} type="file" hidden />
             <Button onClick={() => ref.current.click()}>Set a picture</Button>
-            <Button
-              onClick={() => (typeof update === "function" ? update() : "")}
-            >
-              Save
-            </Button>
+            <Button onClick={() => typeof update === "function" && update()}>Save</Button>
           </Buttons>
           <Subheading>Name</Subheading>
           <Input {...$name} />

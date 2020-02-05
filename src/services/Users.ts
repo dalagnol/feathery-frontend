@@ -2,7 +2,6 @@ import API from "./api";
 
 export default new (class UserService {
   public async Authenticate(form: any) {
-    debugger;
     const { data } = await API.post("/login", form);
 
     localStorage.setItem("token", data.token);
