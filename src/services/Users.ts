@@ -2,6 +2,7 @@ import API from "./api";
 
 export default new (class UserService {
   public async Authenticate(form: any) {
+    debugger;
     const { data } = await API.post("/login", form);
 
     localStorage.setItem("token", data.token);
@@ -19,8 +20,8 @@ export default new (class UserService {
     return data.user;
   }
 
-  public async Update(form: any, id: any) {
-    const { data } = await API.put(`/user/${id}`, form);
+  public async Update(form: any) {
+    const { data } = await API.put(`/user/${form.id}`, form);
 
     localStorage.setItem("user", JSON.stringify(data.user));
 
