@@ -5,9 +5,9 @@ import Dictionary from "./locale.json";
 
 import {
   Navbar as Element,
+  Buttons,
   Button,
   SidebarButton,
-  UserButton,
   Text,
   Side,
   Middle,
@@ -73,10 +73,12 @@ export default function Navbar({
         )}
         {token && (
           <div>
-            <Text>{user.name}</Text>
-            <Button right onClick={OpenSettings}>
-              <UserPicture />
-            </Button>
+            <Buttons onClick={OpenSettings}>
+              <Text>{user.name}</Text>
+              <Button right>
+                <UserPicture />
+              </Button>
+            </Buttons>
             <Button>
               <Notifications onClick={setNotifications} />
             </Button>

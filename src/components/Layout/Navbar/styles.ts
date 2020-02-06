@@ -72,6 +72,23 @@ export const Button = styled.button<any>`
     left ? "left" : right ? "right" : "center"};
 `;
 
+export const Buttons = styled.div<any>`
+  display: flex;
+  flex-direction: row;
+
+  cursor: pointer;
+
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.primary};
+  border: none;
+
+  align-items: center;
+
+  margin: 0px;
+
+  font-size: 0.8em;
+`;
+
 export const SidebarButton = styled(Menu)`
   color: ${({ theme }) => theme.text};
 
