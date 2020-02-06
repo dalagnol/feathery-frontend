@@ -35,11 +35,10 @@ export default observer(function Self() {
   const [phoneError, phoneTrigger]: any = useTimer(500);
 
   const { user } = Store;
-
   const [
     form,
     { $name, $identifier, $email, $gender, $phone, $picture },
-  ] = useForm({ ...user, phone: user.phone || "" });
+  ] = useForm({ ...user, phone: user.phone || "", picture: user.picture || "" });
 
   const ref: any = useRef(null);
 
