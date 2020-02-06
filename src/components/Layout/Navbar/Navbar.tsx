@@ -28,6 +28,8 @@ export default function Navbar({
 
   const history = useHistory();
 
+  const path = window.location.pathname;
+
   const Home = () => {
     history.push("/");
   };
@@ -75,9 +77,9 @@ export default function Navbar({
           <div>
             <Buttons onClick={OpenSettings}>
               <Text>{user.name}</Text>
-              <Button right>
+              {`/user/${user.id}` !== path && <Button right>
                 <UserPicture />
-              </Button>
+              </Button>}
             </Buttons>
             <Button>
               <Notifications onClick={setNotifications} />
