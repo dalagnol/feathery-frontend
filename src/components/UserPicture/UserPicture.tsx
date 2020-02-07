@@ -1,8 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import { Container, Image } from "./styles";
-import { User } from "styled-icons/evil";
+import { Container, Image, UserIcon } from "./styles";
 
 import Store from "store/Users";
 
@@ -12,6 +11,6 @@ export default observer(function UserPicture({ ...props }: any) {
       <Container>
         <Image {...props} src={props.src || Store.user.picture} />
       </Container>
-    )) || <User style={{ width: "100%" }} />
+    )) || <UserIcon />
   );
 });

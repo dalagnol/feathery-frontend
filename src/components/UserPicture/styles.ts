@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { User } from "styled-icons/evil";
 
 export const Container = styled.div`
   border-radius: 50%;
@@ -8,4 +9,10 @@ export const Container = styled.div`
 
 export const Image = styled.img`
   width: 100%;
+`;
+
+export const UserIcon = styled(User)`
+  width: 100%;
+
+  color: ${({ theme }) => theme.text};
 `;

@@ -51,6 +51,7 @@ export const UserPictureContainer = styled.div`
 
 export const Text = styled.p`
   color: ${({ theme }) => theme.secondary};
+
   margin: 10px;
 
   font-family: Helvetica, sans-serif;
@@ -58,7 +59,7 @@ export const Text = styled.p`
   text-shadow: 0px 0px 10px ${({ theme }) => `${theme.shadowy}44`};
   
   ${iPhone(`
-    font-size: 15px;
+    font-size: 17px;
   `)} ${iPad(`
     font-size: 20px;
   `)} ${Mac(`
@@ -148,7 +149,7 @@ export const Infos = styled.div`
   margin: 20px 40px;
 
   ${iPad(`
-    margin-right: 45px;
+    margin-right: 45px; 
   `)};
 `;
 
