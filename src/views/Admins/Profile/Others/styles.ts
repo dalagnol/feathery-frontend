@@ -54,6 +54,8 @@ export const Text = styled.p`
   margin: 10px;
 
   font-family: Helvetica, sans-serif;
+
+  text-shadow: 0px 0px 10px ${({ theme }) => `${theme.shadowy}44`};
   
   ${iPhone(`
     font-size: 15px;
