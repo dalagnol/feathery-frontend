@@ -22,7 +22,7 @@ export default function useForm(preset: any, options: any = {}) {
   const [form, setForm] = useState(body);
 
   const handler = (e: any, nameOverride?: string) => {
-    let { label, value, name, target } = e;
+    let { value, name, target } = e;
 
     if (target) {
       value = target.value;

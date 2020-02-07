@@ -40,6 +40,7 @@ export default observer(function Self() {
     { $name, $identifier, $email, $gender, $phone, $picture, $password },
   ] = useForm({
     ...user,
+    password: "",
     phone: user.phone || "",
     picture: user.picture || "",
   });
