@@ -99,9 +99,11 @@ export const Main = styled.main`
     flex-direction: column;
   `)} ${iPad(`
     flex-direction: row;
+    margin-top: 55px;
   `)} ${Mac(`
-    flex-direction: row;
+    flex-direction: column;
     flex: 0.6;
+    margin-top: 55px;
   `)};
 `;
 
@@ -128,6 +130,7 @@ export const Bio = styled.div`
     flex: 0.4;
   `)} ${Mac(`
     flex: 0.5;
+    margin: 10px 40px;
   `)};
 
   &:hover {
@@ -140,11 +143,11 @@ export const Infos = styled.div`
   flex: 0.6;
   flex-direction: column;
 
-  margin-right: 45px;
+  margin: 20px 40px;
 
-  ${iPhone(`
-    margin: 10px 40px
-  `)}
+  ${iPad(`
+    margin-right: 45px;
+  `)};
 `;
 
 export const Info = styled.div`
