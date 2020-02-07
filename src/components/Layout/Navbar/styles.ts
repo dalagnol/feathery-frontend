@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Menu } from "styled-icons/feather/Menu";
-import { User } from "styled-icons/evil";
 import { List } from "styled-icons/feather";
 
 export const Navbar = styled.header<any>`
@@ -57,11 +56,11 @@ export const Button = styled.button<any>`
 
   margin: 0px;
 
-  font-size: 0.8em;
+  font-size: 0.95em;
 
   min-width: 59px;
-  width: 59px;
-  max-width: 59px;
+  width: auto;
+  max-width: 75px;
 
   div {
     width: 42px;
@@ -94,19 +93,6 @@ export const SidebarButton = styled(Menu)`
 
   height: 20px;
   width: 20px;
-
-  transition: all 0.4s ease-in-out;
-
-  &:hover {
-    text-shadow: 0px 0px 10px ${({ theme }) => theme.shadowy};
-  }
-`;
-
-export const UserButton = styled(User)`
-  color: ${({ theme }) => theme.text};
-
-  height: 42px;
-  width: 42px;
 
   transition: all 0.4s ease-in-out;
 
@@ -160,4 +146,13 @@ export const Side = styled.div<any>`
 export const Middle = styled.div`
   display: flex;
   flex: 0.01;
+`;
+
+export const UserPictureConatiner = styled.div`
+  div {
+    box-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
+  }
+
+  width: 48px;
+  height: 48px;
 `;

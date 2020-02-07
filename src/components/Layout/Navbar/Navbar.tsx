@@ -12,6 +12,7 @@ import {
   Side,
   Middle,
   Notifications,
+  UserPictureConatiner,
 } from "./styles";
 
 import { Logo, UserPicture } from "components";
@@ -78,9 +79,9 @@ export default function Navbar({
             <Buttons onClick={OpenSettings}>
               <Text>{user.name}</Text>
               {`/user/${user.id}` !== path && (
-                <Button right>
+                <UserPictureConatiner>
                   <UserPicture />
-                </Button>
+                </UserPictureConatiner>
               )}
             </Buttons>
             <Button>

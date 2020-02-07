@@ -33,7 +33,7 @@ export const Container = styled.div`
 
   align-items: flex-end;
 
-  padding: 0px 70px;
+  padding: 0px 62px;
 
   * {
     margin: 5px 0px;
