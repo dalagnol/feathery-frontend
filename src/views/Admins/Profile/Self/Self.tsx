@@ -37,8 +37,12 @@ export default observer(function Self() {
   const { user } = Store;
   const [
     form,
-    { $name, $identifier, $email, $gender, $phone, $picture },
-  ] = useForm({ ...user, phone: user.phone || "", picture: user.picture || "" });
+    { $name, $identifier, $email, $gender, $phone, $picture, $password },
+  ] = useForm({
+    ...user,
+    phone: user.phone || "",
+    picture: user.picture || "",
+  });
 
   const ref: any = useRef(null);
 
@@ -82,7 +86,9 @@ export default observer(function Self() {
           <Buttons>
             <input onChange={imageHandler} ref={ref} type="file" hidden />
             <Button onClick={() => ref.current.click()}>Set a picture</Button>
-            <Button onClick={() => typeof update === "function" && update()}>Save</Button>
+            <Button onClick={() => typeof update === "function" && update()}>
+              Save
+            </Button>
           </Buttons>
           <Subheading>Name</Subheading>
           <Input {...$name} />
@@ -99,6 +105,8 @@ export default observer(function Self() {
           </SelectContainer>
           <Subheading>Phone No.</Subheading>
           <Input {...$phone} />
+          <Subheading>Password</Subheading>
+          <Input {...$password} />
         </Main>
       </Form>
     </Suspense>
