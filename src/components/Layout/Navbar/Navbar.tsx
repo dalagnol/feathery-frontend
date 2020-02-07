@@ -77,9 +77,11 @@ export default function Navbar({
           <div>
             <Buttons onClick={OpenSettings}>
               <Text>{user.name}</Text>
-              {`/user/${user.id}` !== path && <Button right>
-                <UserPicture />
-              </Button>}
+              {`/user/${user.id}` !== path && (
+                <Button right>
+                  <UserPicture />
+                </Button>
+              )}
             </Buttons>
             <Button>
               <Notifications onClick={setNotifications} />
