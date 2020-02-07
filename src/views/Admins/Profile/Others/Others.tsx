@@ -1,6 +1,17 @@
 import React from "react";
 
-import { Container, Header, UserPictureContainer, Text, EmailIcon, PhoneIcon, Main, Bio, Info } from "./styles";
+import {
+  Container,
+  Header,
+  UserPictureContainer,
+  Text,
+  EmailIcon,
+  PhoneIcon,
+  Main,
+  Bio,
+  Infos,
+  Info,
+} from "./styles";
 
 import { Title, UserPicture } from "components";
 
@@ -20,12 +31,25 @@ export default function Others() {
       </Header>
       <Main>
         <Bio>
-          <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit dolor magna eget est lorem. Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum.</Text>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Hendrerit dolor magna eget est lorem. Tellus pellentesque eu
+            tincidunt tortor aliquam nulla facilisi cras fermentum.
+          </Text>
         </Bio>
-        <Info>
-          <EmailIcon />
-          <PhoneIcon />
-        </Info>
+        <Infos>
+          <Info>
+            <EmailIcon />
+            <Text>{user.email}</Text>
+          </Info>
+          {user.phone && (
+            <Info>
+              <PhoneIcon />
+              <Text>{user.phone}</Text>
+            </Info>
+          )}
+        </Infos>
       </Main>
     </Container>
   );

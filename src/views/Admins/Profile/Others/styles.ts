@@ -18,14 +18,13 @@ export const Container = styled.main`
 `;
 
 export const Header = styled.header`
-  height: 200px;
   width: 100%;
 
   display: flex;
   flex-direction: column;
 
   ${Mac(`
-    flex: 0.5;
+    flex: 0.4;
   `)};
 
   align-items: center;
@@ -66,26 +65,29 @@ export const Text = styled.p`
 `;
 
 export const EmailIcon = styled(Mail)`
-    color: ${({ theme }) => theme.secondary};
-    
-    height: 32px;
-    width: 32px;
+  color: ${({ theme }) => theme.secondary};
 
-    text-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
+  height: 32px;
+  width: 32px;
+
+  margin: 5px;
+
+  text-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
 `;
 
 export const PhoneIcon = styled(Phone)`
-    color: ${({ theme }) => theme.secondary};
-    
-    height: 32px;
-    width: 32px;
+  color: ${({ theme }) => theme.secondary};
 
-    text-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
+  height: 32px;
+  width: 32px;
+
+  margin: 5px;
+
+  text-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
 `;
 
 export const Main = styled.main`
   display: flex;
-  flex-direction: row;
 
   width: 100%;
 
@@ -93,20 +95,73 @@ export const Main = styled.main`
     margin: 10px;
   }
 
-    ${Mac(`
-    flex: 0.5;
+  ${iPhone(`
+    flex-direction: column;
+  `)} ${iPad(`
+    flex-direction: row;
+  `)} ${Mac(`
+    flex-direction: row;
+    flex: 0.6;
   `)};
 `;
 
 export const Bio = styled.div`
   display: flex;
-  flex: 0.5;
 
   text-align: justify;
+
+  margin-left: 45px;
+  padding: 20px;
+
+  background-color: ${({ theme }) => theme.blurry};
+
+  border-radius: 35px;
+
+  transition: all 0.3s ease-in-out;
+
+  box-shadow: 0px 0px 10px ${({ theme }) => `${theme.shadowy}22`};
+
+  ${iPhone(`
+    flex: 0.4;
+    margin: 10px 40px;
+  `)} ${iPad(`
+    flex: 0.4;
+  `)} ${Mac(`
+    flex: 0.5;
+  `)};
+
+  &:hover {
+    box-shadow: 0px 0px 10px ${({ theme }) => `${theme.shadowy}44`};
+  }
+`;
+
+export const Infos = styled.div`
+  display: flex;
+  flex: 0.6;
+  flex-direction: column;
+
+  margin-right: 45px;
+
+  ${iPhone(`
+    margin: 10px 40px
+  `)}
 `;
 
 export const Info = styled.div`
   display: flex;
-  flex: 0.5;
-  flex-direction: column;
+  flex-direction: row;
+
+  background-color: ${({ theme }) => theme.blurry};
+
+  border-radius: 50px;
+
+  padding: 20px;
+
+  box-shadow: 0px 0px 10px ${({ theme }) => `${theme.shadowy}22`};
+
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0px 0px 10px ${({ theme }) => `${theme.shadowy}44`};
+  }
 `;
