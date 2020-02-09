@@ -12,6 +12,8 @@ export const Navbar = styled.header<any>`
   top: 0;
   left: 0;
 
+  z-index: 100000;
+
   width: 100%;
   height: 49px;
 

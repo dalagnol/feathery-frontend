@@ -36,7 +36,7 @@ export default observer(function Pane({
   };
   const changeTheme = function() {
     Theme.switch();
-    setSettingsOpen(false);
+    setSettingsOpen();
   };
   const changeLanguage = function() {
     Locale.language = Locale.language === "pt" ? "en" : "pt";

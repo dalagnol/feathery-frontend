@@ -76,7 +76,7 @@ export default observer(function Layout({ children, ...props }: any) {
     blur: notifications || settings,
     move: sidebar,
     closingSidebar,
-    props: { ...props },
+    ...props,
   };
 
   const FooterProps = {

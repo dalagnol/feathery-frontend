@@ -8,7 +8,6 @@ export default function Adimo() {
     <Themed>
       <Layout row around>
         <Chat />
-        <Chat />
       </Layout>
     </Themed>
   );

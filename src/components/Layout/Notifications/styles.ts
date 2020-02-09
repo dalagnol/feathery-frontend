@@ -63,7 +63,7 @@ export const Popup = styled.div<any>`
   box-shadow: ${({ theme }) =>
     theme.primary === "#000000"
       ? "0px 0px 0px #000000"
-      : `15px 15px 20px ${theme.shadowy}`};
+      : `15px 15px 50px ${theme.shadowy}55`};
 
   border-radius: 25px 0px 25px 25px;
 
