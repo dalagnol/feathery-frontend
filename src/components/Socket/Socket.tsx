@@ -25,11 +25,12 @@ export default function Socket({ children, events, room }: any) {
       }
 
       if (room) {
-        if (!(room instanceof Array)) {
-          room = [room];
+        let rooms = room;
+        if (!(rooms instanceof Array)) {
+          rooms = [rooms];
         }
 
-        room.forEach((r: string) => Server.emit("Join", room));
+        rooms.forEach((r: string) => Server.emit("Join", r));
       }
 
       return () => {
@@ -62,15 +63,17 @@ export default function Socket({ children, events, room }: any) {
   useEffect(() => {
     if (Server) {
       Rooms.forEach((r: string) => Server.emit("Exit", r));
-      if (room) {
-        if (!(room instanceof Array)) {
-          room = [room];
+      let rooms = room;
+      if (rooms) {
+        if (!(rooms instanceof Array)) {
+          rooms = [rooms];
         }
 
-        room.forEach((r: string) => Server.emit("Join", r));
-        setRooms(room);
+        rooms.forEach((r: string) => Server.emit("Join", r));
+        setRooms(rooms);
       }
     }
+    // eslint-disable-next-line
   }, [room]);
 
   return (
