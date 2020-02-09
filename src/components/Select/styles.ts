@@ -12,16 +12,18 @@ export const Container = styled.div<any>`
   &,
   & > div:not(.noborder) {
     background-color: ${({ theme, open }) =>
-      `${theme.primary}${open ? "ef" : "33"}`};
+      `${theme.primary}${open ? "ef" : "6c"}`};
 
     box-shadow: 0px 0px
-      ${({ open, closing }) => (open && !closing ? "50px" : "5px")}
+      ${({ open, closing }) => (open && !closing ? "50px" : "2px")}
       ${({ theme }) => `${theme.shadowy}`};
   }
 
   padding: 0px 15px;
 
   z-index: 100;
+
+  border-bottom: 1px solid ${({ theme }) => `${theme.secondary}bb`};
 
   * {
     font: 1em Nanum Gothic;
@@ -35,7 +37,7 @@ export const Box = styled.div`
 
   cursor: pointer;
 
-  padding: 0px 10px;
+  padding: 0px 15px;
 
   z-index: 100;
 

@@ -10,6 +10,10 @@ export const Container = styled.form`
 
   margin: 0px auto;
 
+  * {
+    margin: 10px 0px;
+  }
+
   footer {
     display: flex;
     flex: 1;

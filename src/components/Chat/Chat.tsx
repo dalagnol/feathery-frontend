@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import Socket from "contexts/Socket";
 
 import { Container, Input } from "./styles";
+
+import { Socket } from "components";
 
 export default function Chat({ room, sender }: any) {
   const [history, setHistory]: any = useState([]);

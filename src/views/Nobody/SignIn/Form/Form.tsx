@@ -16,6 +16,8 @@ export default function Form({ form, submit, errors }: any) {
   };
 
   credential.shake = errors.credError;
+  credential.autofocus = "on";
+
   password.shake = errors.pswdError;
 
   return (

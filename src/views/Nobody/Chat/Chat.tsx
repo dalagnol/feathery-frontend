@@ -1,8 +1,7 @@
 import React from "react";
-import Socket from "contexts/Socket";
 import { Themed } from "themes";
 
-import { Layout } from "components";
+import { Layout, Socket } from "components";
 import Content from "./Content/Content";
 
 export default function Chat() {

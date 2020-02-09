@@ -22,7 +22,7 @@ export default new (class UserService {
   public async Update(form: any) {
     const { data } = await API.put(`/user/${form.id}`, form);
 
-    localStorage.setItem("user", JSON.stringify(data.user));
+    localStorage.setItem("user", JSON.stringify(data.user ? data.user : data));
 
     return data.user;
   }

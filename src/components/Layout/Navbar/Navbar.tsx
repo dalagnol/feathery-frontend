@@ -12,10 +12,10 @@ import {
   Side,
   Middle,
   Notifications,
-  UserPictureConatiner,
+  User,
 } from "./styles";
 
-import { Logo, UserPicture } from "components";
+import { Logo, UserPicture as Picture } from "components";
 
 export default function Navbar({
   setSidebarOpen,
@@ -27,20 +27,18 @@ export default function Navbar({
   const { signup, signin } = Locale.use(Dictionary);
   const token = localStorage.getItem("token");
 
-  const history = useHistory();
-
-  const path = window.location.pathname;
+  const { push } = useHistory();
 
   const Home = () => {
-    history.push("/");
+    push("/");
   };
 
   const SignUp = () => {
-    history.push("/signup");
+    push("/signup");
   };
 
   const SignIn = () => {
-    history.push("/signin");
+    push("/signin");
   };
 
   const OpenSidebar = () => {
@@ -55,7 +53,7 @@ export default function Navbar({
     <Element {...props}>
       <Side>
         {!token && (
-          <Button left onClick={SignUp}>
+          <Button sign left onClick={SignUp}>
             {signup}
           </Button>
         )}
@@ -70,19 +68,17 @@ export default function Navbar({
       </Middle>
       <Side right>
         {!token && (
-          <Button right onClick={SignIn}>
+          <Button sign right onClick={SignIn}>
             {signin}
           </Button>
         )}
         {token && (
           <div>
             <Buttons onClick={OpenSettings}>
-              <Text>{user.name}</Text>
-              {`/user/${user.id}` !== path && (
-                <UserPictureConatiner>
-                  <UserPicture />
-                </UserPictureConatiner>
-              )}
+              <Text desktop>{user.name}</Text>
+              <User>
+                <Picture />
+              </User>
             </Buttons>
             <Button>
               <Notifications onClick={setNotifications} />

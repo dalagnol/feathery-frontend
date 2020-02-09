@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Menu } from "styled-icons/feather/Menu";
 import { List } from "styled-icons/feather";
+import { iPhone } from "styles/screens";
 
 export const Navbar = styled.header<any>`
   position: fixed;
@@ -67,8 +68,16 @@ export const Button = styled.button<any>`
     height: 42px;
   }
 
+  justify-content: ${({ left, right }) =>
+    left ? "flex-start" : right ? "flex-end" : "center"};
+
   text-align: ${({ left, right }) =>
     left ? "left" : right ? "right" : "center"};
+
+  ${({ sign }) =>
+    sign &&
+    `min-width: 150px;
+    text-align: right;`}
 `;
 
 export const Buttons = styled.div<any>`
@@ -116,7 +125,7 @@ export const Notifications = styled(List)`
   }
 `;
 
-export const Text = styled.p`
+export const Text = styled.p<any>`
   color: ${({ theme }) => theme.text};
 
   font-family: Helvetica, sans-serif;
@@ -125,6 +134,8 @@ export const Text = styled.p`
   margin: 5px;
 
   text-shadow: 0px 0px 30px ${({ theme }) => theme.shadowy};
+
+  ${({ desktop }) => desktop && iPhone(`display: none;`)}
 `;
 
 export const Side = styled.div<any>`
@@ -148,7 +159,7 @@ export const Middle = styled.div`
   flex: 0.01;
 `;
 
-export const UserPictureConatiner = styled.div`
+export const User = styled.div`
   div {
     box-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
   }

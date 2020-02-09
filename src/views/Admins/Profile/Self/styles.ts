@@ -16,6 +16,8 @@ export const Form = styled.form`
       display: flex;
       align-items: center;
       flex-direction: column;
+
+      padding: 0px;
   `)}
 `;
 
@@ -29,6 +31,11 @@ export const Header = styled.header`
   flex: 0.5;
 
   align-items: center;
+
+  ${iPhone(`
+    flex: 1;
+    height: 400px;
+  `)}
 `;
 
 export const Main = styled.main`
@@ -36,11 +43,16 @@ export const Main = styled.main`
   flex-direction: column;
   flex: 0.5;
 
-  width: 100%;
-
-  & > * {
-    margin: 10px;
+  input,
+  & > div {
+    margin: 10px 0px 20px 0px;
   }
+
+  ${iPhone(`
+    flex: 1;
+
+    padding: 20px;
+  `)}
 `;
 
 export const UserPictureContainer = styled.div`
@@ -48,14 +60,9 @@ export const UserPictureContainer = styled.div`
     box-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
   }
 
-  ${iPhone(`
-    width: 300px;
-    height: 300px;
-  `)}
-  ${iPad(`
-    width: 300px;
-    height: 300px;
-  `)}
+  width: 300px;
+  height: 300px;
+
   ${Mac(`
     width: 400px;
     height: 400px;
@@ -75,12 +82,10 @@ export const Buttons = styled.header`
 export const SelectContainer = styled.div`
   margin: 5px 0px;
   width: 100%;
-  height: 45px;
-
-  padding: 0px 10px;
+  height: 50px;
 
   .SelectContainer {
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 0px;
     position: relative;
   }

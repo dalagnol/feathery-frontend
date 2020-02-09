@@ -9,10 +9,11 @@ export const Input = styled.input<any>`
   border: none;
   border-radius: 5px;
   border-sizing: border-box;
+  border-bottom: 1px solid ${({ theme }) => `${theme.secondary}bb`};
 
   height: 50px;
 
-  box-shadow: 0px 0px 5px ${({ theme }) => theme.shadowy};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.shadowy};
 
   width: 100%;
 
@@ -27,7 +28,7 @@ export const Input = styled.input<any>`
   }
 
   &:focus {
-    box-shadow: 0px 0px 10px #00000044;
+    box-shadow: 0px 0px 10px #00000099;
     background-color: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.primary};
   }
