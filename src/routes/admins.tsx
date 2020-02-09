@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { feed, profile } from "routes";
+import { feed, profile } from "routes/paths";
 
 import { Feed, Profile } from "views/Admins";
 

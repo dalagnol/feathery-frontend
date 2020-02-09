@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { landing, about, signup, signin, chat, adimo } from "routes";
+import { landing, about, signup, signin, chat, adimo } from "routes/paths";
 
 import { Landing, About, SignIn, SignUp, Chat, Adimo } from "views/Nobody";
 

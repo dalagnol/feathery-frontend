@@ -45,7 +45,7 @@ export default function Select({
   const [display, setDisplay] = useState(
     valueState !== null
       ? children.find((child: any) => shallowly(child.props.value, valueState))
-          .props.value
+          .props.children
       : ""
   );
 

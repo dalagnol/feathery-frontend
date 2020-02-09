@@ -48,7 +48,7 @@ export const Button = styled.button<any>`
   cursor: pointer;
 
   color: ${({ theme }) => theme.text};
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => `${theme.primary}00`};
   border: none;
 
   align-items: center;
@@ -164,6 +164,12 @@ export const User = styled.div`
     box-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
   }
 
-  width: 48px;
-  height: 48px;
+  border-radius: 50%;
+
+  box-shadow: 0px 0px 10px ${({ theme }) => theme.shadowy};
+
+  max-width: 42px;
+  max-height: 42px;
+
+  overflow: hidden;
 `;

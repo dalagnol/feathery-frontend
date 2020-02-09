@@ -7,15 +7,16 @@ import { errors } from "./constants";
 import {
   Form,
   Header,
-  UserPictureContainer,
+  User,
   Main,
   Buttons,
   SelectContainer,
+  Handler,
 } from "./styles";
 
 import {
   Suspense,
-  UserPicture,
+  UserPicture as Picture,
   Input,
   Select,
   Option,
@@ -29,15 +30,15 @@ import Store from "store/Users";
 import Service from "services/Users";
 
 export default observer(function Self() {
-  const [nameError, nameTrigger]: any = useTimer(500);
-  const [idtfError, idtfTrigger]: any = useTimer(500);
-  const [mailError, mailTrigger]: any = useTimer(500);
-  const [phoneError, phoneTrigger]: any = useTimer(500);
+  const [, nameTrigger]: any = useTimer(500);
+  const [, idtfTrigger]: any = useTimer(500);
+  const [, mailTrigger]: any = useTimer(500);
+  const [, phoneTrigger]: any = useTimer(500);
 
   const { user } = Store;
   const [
     form,
-    { $name, $identifier, $email, $gender, $phone, $picture, $password },
+    { $name, $email, $gender, $phone, $picture, $password },
   ] = useForm({
     ...user,
     password: "",
@@ -78,10 +79,11 @@ export default observer(function Self() {
       {loading && <Loader />}
       <Form {...FormProps}>
         <Header>
-          <UserPictureContainer>
-            <UserPicture src={form.picture} />
-          </UserPictureContainer>
+          <User>
+            <Picture src={form.picture} />
+          </User>
           <Title>{user.name}</Title>
+          <Handler>{`@${user.identifier}`}</Handler>
         </Header>
         <Main>
           <Buttons>
@@ -93,8 +95,6 @@ export default observer(function Self() {
           </Buttons>
           <Subheading>Name</Subheading>
           <Input {...$name} />
-          <Subheading>Username</Subheading>
-          <Input {...$identifier} />
           <Subheading>Email</Subheading>
           <Input {...$email} />
           <Subheading>Gender</Subheading>

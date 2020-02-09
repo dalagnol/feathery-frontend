@@ -23,7 +23,9 @@ class UserStore {
       ) {
         this.User = data;
         if (this.User.picture) {
-          this.User.picture = `data:image/png;base64,${this.User.picture}`;
+          this.User.picture = this.User.picture.includes("base64")
+            ? this.User.picture
+            : `data:image/png;base64,${this.User.picture}`;
         }
       } else {
         this.User = null;

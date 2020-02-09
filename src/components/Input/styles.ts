@@ -9,7 +9,7 @@ export const Input = styled.input<any>`
   border: none;
   border-radius: 5px;
   border-sizing: border-box;
-  border-bottom: 1px solid ${({ theme }) => `${theme.secondary}bb`};
+  border-bottom: 1px dashed ${({ theme }) => `${theme.secondary}66`};
 
   height: 50px;
 

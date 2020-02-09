@@ -23,7 +23,7 @@ export const Container = styled.div<any>`
 
   z-index: 100;
 
-  border-bottom: 1px solid ${({ theme }) => `${theme.secondary}bb`};
+  border-bottom: 1px dashed ${({ theme }) => `${theme.secondary}66`};
 
   * {
     font: 1em Nanum Gothic;

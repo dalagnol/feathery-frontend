@@ -6,7 +6,7 @@ import Dictionary from "./locale.json";
 import { useHistory } from "react-router-dom";
 import { useExternalClick } from "utils/hooks";
 
-import { profile as profileRoute } from "routes";
+import { profile as profileRoute } from "routes/paths";
 
 import {
   Background,

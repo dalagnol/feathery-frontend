@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { iPhone, iPad, Mac } from "styles/screens";
+import { iPhone, Mac } from "styles/screens";
 
 export const Form = styled.form`
   padding-top: 50px;
@@ -22,13 +22,15 @@ export const Form = styled.form`
 `;
 
 export const Header = styled.header`
+  padding-top: 20px;
+
   height: 200px;
   width: 100%;
 
   display: flex;
   flex-direction: column;
 
-  flex: 0.5;
+  flex: 0.45;
 
   align-items: center;
 
@@ -41,7 +43,7 @@ export const Header = styled.header`
 export const Main = styled.main`
   display: flex;
   flex-direction: column;
-  flex: 0.5;
+  flex: 0.45;
 
   input,
   & > div {
@@ -55,17 +57,17 @@ export const Main = styled.main`
   `)}
 `;
 
-export const UserPictureContainer = styled.div`
-  div {
-    box-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
-  }
+export const User = styled.div`
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
 
   width: 300px;
   height: 300px;
 
   ${Mac(`
-    width: 400px;
-    height: 400px;
+    min-width: 400px;
+    min-height: 400px;
   `)}
 `;
 
@@ -89,4 +91,9 @@ export const SelectContainer = styled.div`
     padding: 0px;
     position: relative;
   }
+`;
+
+export const Handler = styled.p`
+  font: 1em Nanum Gothic;
+  color: ${({ theme }) => theme.secondary};
 `;
