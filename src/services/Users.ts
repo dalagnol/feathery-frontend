@@ -26,4 +26,12 @@ export default new (class UserService {
 
     return data.user;
   }
+
+  public async ResetPswEmail(email: any) {
+    // eslint-disable-next-line no-debugger
+    debugger;
+    const { data } = await API.put("/reset", email);
+
+    return data;
+  }
 })();

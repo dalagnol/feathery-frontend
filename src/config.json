@@ -1,5 +1,5 @@
 {
-  "API_HOST": "http://moresco.local",
+  "API_HOST": "http://localhost",
   "API_PORT": 5000,
   "SOCKET_PORT": 2000
 }
