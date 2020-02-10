@@ -15,6 +15,9 @@ export const Overlay = styled.div`
 
   z-index: 1000000;
 
+  top: 0;
+  left: 0;
+
   & > div {
     transition: all 0.12s ease-in-out;
   }

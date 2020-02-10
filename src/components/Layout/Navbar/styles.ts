@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Menu } from "styled-icons/feather/Menu";
-import { User } from "styled-icons/evil";
 import { List } from "styled-icons/feather";
+import { iPhone } from "styles/screens";
 
 export const Navbar = styled.header<any>`
   position: fixed;
@@ -11,6 +11,8 @@ export const Navbar = styled.header<any>`
 
   top: 0;
   left: 0;
+
+  z-index: 100000;
 
   width: 100%;
   height: 49px;
@@ -23,6 +25,14 @@ export const Navbar = styled.header<any>`
 
   * {
     border-sizing: border-box;
+  }
+
+  div {
+    div {
+      img {
+        width: 100%;
+      }
+    }
   }
 
   ${({ sidebarOpen, closingSidebar }) =>
@@ -40,7 +50,7 @@ export const Button = styled.button<any>`
   cursor: pointer;
 
   color: ${({ theme }) => theme.text};
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => `${theme.primary}00`};
   border: none;
 
   align-items: center;
@@ -49,12 +59,44 @@ export const Button = styled.button<any>`
 
   margin: 0px;
 
-  min-width: 60px;
-  width: 60px;
-  max-width: 60px;
+  font-size: 0.95em;
+
+  min-width: 59px;
+  width: auto;
+  max-width: 75px;
+
+  div {
+    width: 42px;
+    height: 42px;
+  }
+
+  justify-content: ${({ left, right }) =>
+    left ? "flex-start" : right ? "flex-end" : "center"};
 
   text-align: ${({ left, right }) =>
     left ? "left" : right ? "right" : "center"};
+
+  ${({ sign }) =>
+    sign &&
+    `min-width: 150px;
+    text-align: right;`}
+`;
+
+export const Buttons = styled.div<any>`
+  display: flex;
+  flex-direction: row;
+
+  cursor: pointer;
+
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.primary};
+  border: none;
+
+  align-items: center;
+
+  margin: 0px;
+
+  font-size: 0.8em;
 `;
 
 export const SidebarButton = styled(Menu)`
@@ -62,19 +104,6 @@ export const SidebarButton = styled(Menu)`
 
   height: 20px;
   width: 20px;
-
-  transition: all 0.4s ease-in-out;
-
-  &:hover {
-    text-shadow: 0px 0px 10px ${({ theme }) => theme.shadowy};
-  }
-`;
-
-export const UserButton = styled(User)`
-  color: ${({ theme }) => theme.text};
-
-  height: 42px;
-  width: 42px;
 
   transition: all 0.4s ease-in-out;
 
@@ -98,7 +127,7 @@ export const Notifications = styled(List)`
   }
 `;
 
-export const Text = styled.p`
+export const Text = styled.p<any>`
   color: ${({ theme }) => theme.text};
 
   font-family: Helvetica, sans-serif;
@@ -107,6 +136,8 @@ export const Text = styled.p`
   margin: 5px;
 
   text-shadow: 0px 0px 30px ${({ theme }) => theme.shadowy};
+
+  ${({ desktop }) => desktop && iPhone(`display: none;`)}
 `;
 
 export const Side = styled.div<any>`
@@ -128,4 +159,19 @@ export const Side = styled.div<any>`
 export const Middle = styled.div`
   display: flex;
   flex: 0.01;
+`;
+
+export const User = styled.div`
+  div {
+    box-shadow: 0px 0px 50px ${({ theme }) => theme.shadowy};
+  }
+
+  border-radius: 50%;
+
+  box-shadow: 0px 0px 10px ${({ theme }) => theme.shadowy};
+
+  max-width: 42px;
+  max-height: 42px;
+
+  overflow: hidden;
 `;

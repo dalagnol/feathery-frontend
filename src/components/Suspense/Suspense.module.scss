@@ -1,0 +1,36 @@
+.Suspense {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex: 1;
+
+  font-size: 2em;
+
+  animation: fadeUp 1s;
+
+  .SuspenseIcon {
+    animation: rotate linear 2.5s infinite;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

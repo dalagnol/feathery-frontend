@@ -7,9 +7,18 @@ export const Container = styled.div`
   border: 1px solid grey;
 `;
 
-export const Input = styled.input`
+export const Outer = styled.div`
   display: flex;
-  flex: 1;
+  flex-direction: column;
 
+  align-items: center;
+  justify-content: space-between;
+
+  height: 500px;
+`;
+
+export const Input = styled.input`
   border: 1px solid grey;
+
+  height: 30px;
 `;

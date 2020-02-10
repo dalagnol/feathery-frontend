@@ -41,7 +41,9 @@ export default function Form({ form, submit, errors }: any) {
       </Genders>
       <Sub>{Localised.password}</Sub>
       <Input {...password} />
-      <Button onClick={() => submit(data)}>{Localised.signup}</Button>
+      <footer>
+        <Button onClick={() => submit(data)}>{Localised.signup}</Button>
+      </footer>
     </Container>
   );
 }

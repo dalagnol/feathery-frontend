@@ -16,6 +16,8 @@ export default function Form({ form, submit, errors }: any) {
   };
 
   credential.shake = errors.credError;
+  credential.autofocus = "on";
+
   password.shake = errors.pswdError;
 
   return (
@@ -24,7 +26,9 @@ export default function Form({ form, submit, errors }: any) {
       <Input {...credential} />
       <Subheading>{pass}</Subheading>
       <Input {...password} />
-      <Button onClick={() => submit(data)}>{signin}</Button>
+      <footer>
+        <Button onClick={() => submit(data)}>{signin}</Button>
+      </footer>
     </Container>
   );
 }

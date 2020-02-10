@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Check as Icon } from "styled-icons/feather";
 
-export const Container = styled.div`
+export const Container = styled.div<any>`
   display: flex;
   flex: 1;
 
@@ -19,11 +19,11 @@ export const Container = styled.div`
   }
 
   &:hover {
-    background-color: ${({ theme }) => `${theme.text}bb`};
+    background-color: ${({ theme, open }) => open && `${theme.text}bb`};
 
     &,
     * {
-      color: ${({ theme }) => theme.primary};
+      color: ${({ theme, open }) => open && theme.primary};
     }
   }
 `;

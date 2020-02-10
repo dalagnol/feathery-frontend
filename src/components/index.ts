@@ -11,6 +11,9 @@ import Title from "./Title/Title";
 import Chat from "./Chat/Chat";
 import Select from "./Select/Select";
 import Option from "./Select/List/Option/Option";
+import Suspense from "./Suspense/Suspense";
+import UserPicture from "./UserPicture/UserPicture";
+import Socket, { SocketContext } from "./Socket/Socket";
 
 export {
   Button,
@@ -26,4 +29,8 @@ export {
   Chat,
   Select,
   Option,
+  Suspense,
+  UserPicture,
+  Socket,
+  SocketContext,
 };

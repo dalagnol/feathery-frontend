@@ -8,6 +8,9 @@ export const SocketContext: any = createContext({});
 
 export default function Socket({ children, events, room }: any) {
   const [Server, setServer]: any = useState(null);
+  const [Rooms, setRooms]: any = useState(
+    room instanceof Array ? room : [room]
+  );
 
   useEffect(() => {
     if (!Server) {
@@ -22,7 +25,12 @@ export default function Socket({ children, events, room }: any) {
       }
 
       if (room) {
-        Server.emit("Join", room);
+        let rooms = room;
+        if (!(rooms instanceof Array)) {
+          rooms = [rooms];
+        }
+
+        rooms.forEach((r: string) => Server.emit("Join", r));
       }
 
       return () => {
@@ -51,6 +59,22 @@ export default function Socket({ children, events, room }: any) {
       }
     }
   }, [Server, events]);
+
+  useEffect(() => {
+    if (Server) {
+      Rooms.forEach((r: string) => Server.emit("Exit", r));
+      let rooms = room;
+      if (rooms) {
+        if (!(rooms instanceof Array)) {
+          rooms = [rooms];
+        }
+
+        rooms.forEach((r: string) => Server.emit("Join", r));
+        setRooms(rooms);
+      }
+    }
+    // eslint-disable-next-line
+  }, [room]);
 
   return (
     <SocketContext.Provider

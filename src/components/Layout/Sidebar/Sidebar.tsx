@@ -25,7 +25,7 @@ export default function Sidebar({
   const { push } = useHistory();
   const { feed, aboutus } = Locale.use(Dictionary);
 
-  const ref = useExternalClick(() => setSidebarOpen(false));
+  const ref = useExternalClick(() => setSidebarOpen());
 
   const GoToFeed = () => {
     push("/");

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { SocketContext } from "contexts/Socket";
+import { SocketContext } from "components";
 
 export default function Content() {
   const { Server }: any = useContext(SocketContext);

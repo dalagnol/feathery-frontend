@@ -9,9 +9,6 @@ import "./types.d";
 import { Container, Arrow, Box } from "./styles";
 
 import List from "./List/List";
-import Option from "./List/Option/Option";
-
-export { Option };
 
 export const Context: any = createContext({});
 
@@ -28,8 +25,8 @@ export default function Select({
   ...props
 }: any) {
   const { select } = Locale.use(Dictionary);
-  const [internalOpenState, setInternalOpenState] = useState(true);
-  const [internalValue, setInternalValue] = useState("Adimo");
+  const [internalOpenState, setInternalOpenState] = useState(false);
+  const [internalValue, setInternalValue] = useState(null);
   const [internalLookup, setInternalLookup] = useState("");
 
   const [openState, setOpenState] = [
@@ -48,6 +45,7 @@ export default function Select({
   const [display, setDisplay] = useState(
     valueState !== null
       ? children.find((child: any) => shallowly(child.props.value, valueState))
+          .props.children
       : ""
   );
 
@@ -57,13 +55,13 @@ export default function Select({
     },
   });
 
-  const choose = ({ children, value }: Option) => {
+  const choose = ({ name, children, value }: Option) => {
     setDisplay(children || (value as string));
 
     setValueState(value);
 
     if (onChange) {
-      onChange({ children, value });
+      onChange({ name, children, value });
     }
 
     triggerClose();
@@ -80,7 +78,8 @@ export default function Select({
     closing,
     choose,
     triggerClose,
-    toggle
+    toggle,
+    props
   );
 
   const containerProps = {

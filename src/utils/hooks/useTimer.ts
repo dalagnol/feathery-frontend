@@ -16,8 +16,8 @@ export default (time: number, options?: any) => {
     }
   }, [effect, time, current]);
 
-  const trigger = () =>
-    enabled >= 0 ? setCurrent(true) : setEnabled(enabled + 1);
+  const trigger = (value = true) =>
+    enabled >= 0 ? setCurrent(value) : setEnabled(enabled + 1);
 
   return [current, trigger] as any;
 };

@@ -1,9 +1,9 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { Feed } from "views/Commons";
+import { feed } from "routes/paths";
 
-export const feed = (): string => "/";
+import { Feed } from "views/Commons";
 
 export default () => (
   <Switch>

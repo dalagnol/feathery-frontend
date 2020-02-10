@@ -5,3 +5,5 @@ import "./slideDown.scss";
 import "./slideLeft.scss";
 import "./slideUp.scss";
 import "./fadeOut.scss";
+import "./rotate.scss";
+import "./fadeUp.scss";
