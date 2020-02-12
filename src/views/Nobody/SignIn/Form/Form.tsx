@@ -2,7 +2,7 @@ import React from "react";
 import Locale from "locale";
 import Dictionary from "./locale.json";
 
-import { Container } from "./styles";
+import { Container, Text } from "./styles";
 
 import { Button, Input, Subheading } from "components";
 
@@ -29,6 +29,7 @@ export default function Form({ form, submit, errors }: any) {
       <footer>
         <Button onClick={() => submit(data)}>{signin}</Button>
       </footer>
+      <Text>Forgot your password?</Text>
     </Container>
   );
 }
