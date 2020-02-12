@@ -2,11 +2,13 @@
   "en": {
     "signin": "Sign In",
     "cred": "Email address or Username",
-    "pass": "Password"
+    "pass": "Password",
+    "forgotyourpass": "Forgot your password?"
   },
   "pt": {
     "signin": "Login",
     "cred": "Endereço de Email ou Nome de Usuário",
-    "pass": "Senha"
+    "pass": "Senha",
+    "forgotyourpass": "Eswueceu a sua senha?"
   }
 }

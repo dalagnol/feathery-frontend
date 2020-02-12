@@ -26,6 +26,8 @@ export const Container = styled.form`
 `;
 
 export const Text = styled.p`
+  cursor: pointer;
+
   color: ${({ theme }) => theme.secondary};
   margin: 10px auto;
 

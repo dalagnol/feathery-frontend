@@ -1,9 +1,25 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { landing, about, signup, signin, chat, adimo } from "routes/paths";
+import {
+  landing,
+  about,
+  signup,
+  signin,
+  chat,
+  adimo,
+  mailreset,
+} from "routes/paths";
 
-import { Landing, About, SignIn, SignUp, Chat, Adimo } from "views/Nobody";
+import {
+  Landing,
+  About,
+  SignIn,
+  SignUp,
+  Chat,
+  Adimo,
+  MailReset,
+} from "views/Nobody";
 
 export default () => (
   <Switch>
@@ -13,6 +29,7 @@ export default () => (
     <Route path={signin()} render={() => <SignIn />} />
     <Route path={chat()} render={() => <Chat />} />
     <Route path={adimo()} render={() => <Adimo />} />
+    <Route path={mailreset()} render={() => <MailReset />} />
     <Redirect exact to={landing()} />
   </Switch>
 );
