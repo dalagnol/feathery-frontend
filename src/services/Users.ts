@@ -28,9 +28,7 @@ export default new (class UserService {
   }
 
   public async ResetPswEmail(email: any) {
-    // eslint-disable-next-line no-debugger
-    debugger;
-    const { data } = await API.put("/reset", email);
+    const { data } = await API.post("/reset", email);
 
     return data;
   }
