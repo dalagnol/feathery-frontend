@@ -32,4 +32,10 @@ export default new (class UserService {
 
     return data;
   }
+
+  public async ResetPsw(psw: any, token: any) {
+    const { data } = await API.put(`/reset/${token}`, psw);
+
+    return data;
+  }
 })();
