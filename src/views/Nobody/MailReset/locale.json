@@ -1,0 +1,12 @@
+{
+    "en": {
+        "title": "Enter your registered email to get started.",
+        "explanation": "An email with further instructions will be sent to reset your password.",
+        "sendemail": "Send email"
+    },
+    "pt": {
+        "title": "Insira o seu email registrado para começar.",
+        "explanation": "Um email será enviado com mais instruções para redefinir a sua senha.",
+        "sendemail": "Enviar email"
+    }
+}

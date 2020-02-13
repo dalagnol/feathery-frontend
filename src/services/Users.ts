@@ -27,8 +27,8 @@ export default new (class UserService {
     return data.user;
   }
 
-  public async ResetPswEmail(email: any) {
-    const { data } = await API.post("/reset", email);
+  public async MailReset(email: any) {
+    const { data } = await API.post("/send", email);
 
     return data;
   }
