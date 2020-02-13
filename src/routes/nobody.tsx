@@ -8,7 +8,8 @@ import {
   signin,
   chat,
   adimo,
-  mailreset,
+  send,
+  reset,
 } from "routes/paths";
 
 import {
@@ -19,6 +20,7 @@ import {
   Chat,
   Adimo,
   MailReset,
+  ResetPsw,
 } from "views/Nobody";
 
 export default () => (
@@ -29,7 +31,8 @@ export default () => (
     <Route path={signin()} render={() => <SignIn />} />
     <Route path={chat()} render={() => <Chat />} />
     <Route path={adimo()} render={() => <Adimo />} />
-    <Route path={mailreset()} render={() => <MailReset />} />
+    <Route path={send()} render={() => <MailReset />} />
+    <Route path={reset()} render={() => <ResetPsw />} />
     <Redirect exact to={landing()} />
   </Switch>
 );

@@ -3,7 +3,7 @@ import Locale from "locale";
 import Dictionary from "./locale.json";
 import { useHistory } from "react-router-dom";
 
-import { mailreset as mailresetRoute } from "routes/paths";
+import { send as sendRoute } from "routes/paths";
 
 import { Container, Text } from "./styles";
 
@@ -19,8 +19,8 @@ export default function Form({ form, submit, errors }: any) {
     onSubmit: (e: any) => e.preventDefault(),
   };
 
-  const ResetPassword = function() {
-    push(mailresetRoute());
+  const toMailReset = function() {
+    push(sendRoute());
   };
 
   credential.shake = errors.credError;
@@ -37,7 +37,7 @@ export default function Form({ form, submit, errors }: any) {
       <footer>
         <Button onClick={() => submit(data)}>{signin}</Button>
       </footer>
-      <Text onClick={() => ResetPassword()}>{forgotyourpass}</Text>
+      <Text onClick={() => toMailReset()}>{forgotyourpass}</Text>
     </Container>
   );
 }

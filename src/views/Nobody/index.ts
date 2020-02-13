@@ -5,5 +5,6 @@ import SignUp from "./SignUp/SignUp";
 import Chat from "./Chat/Chat";
 import Adimo from "./Adimo/Adimo";
 import MailReset from "./MailReset/MailReset";
+import ResetPsw from "./ResetPsw/ResetPsw";
 
-export { Landing, About, SignIn, SignUp, Chat, Adimo, MailReset };
+export { Landing, About, SignIn, SignUp, Chat, Adimo, MailReset, ResetPsw };
