@@ -23,3 +23,14 @@ export const Container = styled.form`
     justify-content: center;
   }
 `;
+
+export const Text = styled.p`
+  color: ${({ theme }) => theme.secondary};
+  margin: 10px auto;
+
+  font-family: Nanum Gothic, sans-serif;
+
+  text-align: justify;
+
+  font-size: 19px;
+`;

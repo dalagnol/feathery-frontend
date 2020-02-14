@@ -28,13 +28,19 @@ export default new (class UserService {
   }
 
   public async MailReset(email: any) {
-    const { data } = await API.post("/send", email);
+    const { data } = await API.post("/user/mail", email);
 
     return data;
   }
 
   public async ResetPsw(psw: any, token: any) {
-    const { data } = await API.put(`/reset/${token}`, psw);
+    const { data } = await API.put(`/user/password/${token}`, psw);
+
+    return data;
+  }
+
+  public async ValidateToken(token: any) {
+    const { data } = await API.get(`/token/${token}`);
 
     return data;
   }

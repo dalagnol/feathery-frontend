@@ -1,10 +1,16 @@
 {
   "en": {
     "title": "Enter your new password",
-    "save": "Save"
+    "save": "Save",
+    "errortitle": "Sorry, your token expired!",
+    "errormsg": "We will need to re-send your authentication email. Please enter your registered email.",
+    "send": "Send"
   },
   "pt": {
     "title": "Insire a sua nova senha",
-    "save": "Salvar"
+    "save": "Salvar",
+    "errortitle": "Desculpa, seu token expirou!",
+    "errormsg": "Precisamos reenviar o seu email de autenticação. Por favor insira o seu email registrado.",
+    "send": "Enviar"
   }
 }
