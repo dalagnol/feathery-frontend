@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { iPhone, iPad, Mac } from "styles/screens";
+import { Check } from "styled-icons/feather";
 
 export const Container = styled.form`
   display: flex;

@@ -79,9 +79,7 @@ export default function ResetPsw() {
         {checkError() ? (
           <>
             <Subheading>{errortitle}</Subheading>
-            <Text>
-              {errormsg}
-            </Text>
+            <Text>{errormsg}</Text>
             <Input {...$email} />
             <footer>
               <Button
