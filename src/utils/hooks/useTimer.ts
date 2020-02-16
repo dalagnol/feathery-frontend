@@ -46,6 +46,7 @@ export default (time: number, options?: Options | Function) => {
         }, time);
       }
     }
+    // eslint-disable-next-line
   }, [effect, time, current]);
 
   const trigger = () =>
