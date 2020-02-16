@@ -1,28 +1,26 @@
 import React from "react";
 import { Themed } from "themes";
 
-import useForm, { UseFormModifierParams } from "utils/hooks/useForm";
-import { stoi } from "utils/helpers";
+import useForm from "utils/hooks/useForm";
 
-import { Layout, Input } from "components";
+import { Layout, Input, Button } from "components";
 
 export default function Adimo() {
-  const [{ name }] = useForm({
+  const [form, { validate }] = useForm({
     name: {
       placeholder: "Nome",
-      modifier: ({ value }: UseFormModifierParams) => {
-        const x = stoi(value);
-        return x > 0 && x < 31 ? x : "";
-      },
+      value: "Adimo potestas",
+      validation: ({ value }: any) =>
+        value.length < 10 && "Names must be at least 10 characters long",
     },
   });
-
-  console.log(name);
 
   return (
     <Themed>
       <Layout row around>
-        <Input {...name.props} />
+        <Input {...form.name.props} />
+        <p>{form.name.error}</p>
+        <Button onClick={validate}>Submit</Button>
       </Layout>
     </Themed>
   );

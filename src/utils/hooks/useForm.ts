@@ -25,6 +25,12 @@ interface UseFormOptions {
   defaults?: any;
   validateOnInteraction?: boolean;
   autoHideErrors?: boolean;
+
+  service?: Function;
+  preSubmit?: () => void;
+  postSubmit?: (data: any) => void;
+  onSuccess?: (data: any) => void;
+  onError?: (data: any) => void;
 }
 
 /**
@@ -77,17 +83,17 @@ export default function useForm(
 
   const [body, errs] = init();
 
-  const [Form, setForm]: any = useState(body);
-  const [Errors, setErrors]: any = useState(errs);
+  const [form, setForm]: any = useState(body);
+  const [errors, setErrors]: any = useState(errs);
 
-  const Validate = useCallback(() => {
+  const validate = useCallback(() => {
     let res = true;
 
-    Object.entries(preset).forEach(([name, { validation, value }]: any) => {
+    Object.entries(preset).forEach(([name, { validation }]: any) => {
       const partial =
         typeof validation !== "function" && validation !== undefined
           ? validation
-          : validation({ name, value, Form });
+          : validation({ name, value: form[name], form: { ...form } });
 
       setErrors((current: any) => ({
         ...current,
@@ -100,7 +106,7 @@ export default function useForm(
     });
 
     return res;
-  }, [Form, preset]);
+  }, [form, preset]);
 
   const handler = useCallback(
     (e: any, nameOverride?: string) => {
@@ -125,7 +131,7 @@ export default function useForm(
       }
 
       if (modifier) {
-        value = modifier({ value, name, form: { ...Form } });
+        value = modifier({ value, name, form: { ...form } });
       }
 
       setForm((currentForm: any) => ({
@@ -138,28 +144,28 @@ export default function useForm(
           ...currentErrors,
           [name]:
             typeof validation === "function"
-              ? validation({ name, value, form: Form })
+              ? validation({ name, value, form: form })
               : validation,
         }));
       }
     },
-    [Form, preset, options]
+    [form, preset, options]
   );
 
-  const Setter = useCallback(
+  const set = useCallback(
     (nextState: any) => {
       const { validateOnInteraction } = options;
-      const currentState = { ...Form };
+      const currentState = { ...form };
       let next: any;
 
       if (typeof nextState === "function") {
-        next = nextState({ ...Form });
+        next = nextState({ ...form });
       } else {
         next = nextState;
       }
 
       if (validateOnInteraction) {
-        const nextErrors: any = { ...Errors };
+        const nextErrors: any = { ...errors };
 
         Object.entries(currentState).forEach(
           ([key, { validation, value }]: [string, any]) => {
@@ -172,7 +178,7 @@ export default function useForm(
             if (changed && validation !== undefined) {
               nextErrors[key] =
                 typeof validation === "function"
-                  ? validation({ name: key, value, form: { ...Form } })
+                  ? validation({ name: key, value, form: { ...form } })
                   : validation;
             }
           }
@@ -183,10 +189,10 @@ export default function useForm(
 
       setForm(next);
     },
-    [Form, Errors, options]
+    [form, errors, options]
   );
 
-  const Props = useMemo(() => {
+  const props = useMemo(() => {
     const result: any = {};
     Object.entries(preset).forEach(([key, field]: [string, any]) => {
       const extraProps = { ...field };
@@ -197,33 +203,57 @@ export default function useForm(
 
       result[key] = {
         ...extraProps,
-        value: Form[key],
+        value: form[key],
         name: key,
         onChange: handler,
       };
     });
 
     return result;
-  }, [Form, handler, preset]);
+  }, [form, handler, preset]);
 
-  const Final: any = {};
+  const final: any = {};
+  const { service, preSubmit, postSubmit, onSuccess, onError } = options;
+  let submit;
 
   Object.entries(preset).forEach(([key]: [string, any]) => {
-    Final[key] = {
-      value: Form[key],
-      props: Props[key],
-      error: Errors[key],
+    final[key] = {
+      value: form[key],
+      props: props[key],
+      error: errors[key],
     };
   });
 
+  if (service) {
+    submit = async function() {
+      try {
+        if (preSubmit) {
+          preSubmit();
+        }
+        const data = await service({ ...form });
+        if (postSubmit) {
+          postSubmit(data);
+        }
+        if (onSuccess) {
+          onSuccess(data);
+        }
+      } catch (oof) {
+        if (onError) {
+          onError(oof);
+        }
+      }
+    };
+  }
+
   return [
-    Final,
+    final,
     {
-      Form,
-      Props,
-      Errors,
-      Setter,
-      Validate,
+      form,
+      props,
+      errors,
+      set,
+      validate,
+      submit,
     },
   ];
 }

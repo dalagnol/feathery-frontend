@@ -14,12 +14,16 @@ export default withRouter(function SignIn() {
   const [credError, credTrigger]: any = useTimer(500);
   const [pswdError, pswdTrigger]: any = useTimer(500);
 
-  const [form] = useForm({
-    credential: "",
-    password: "",
+  const [data, { form }] = useForm({
+    credential: {
+      shake: credError,
+      autoFocus: "on",
+    },
+    password: {
+      type: "password",
+      shake: pswdError,
+    },
   });
-
-  console.log(form);
 
   const [, loading, authenticate] = useService({
     method: UserService.Authenticate,
@@ -35,7 +39,7 @@ export default withRouter(function SignIn() {
       {loading && <Loader />}
       <Header />
       <Form
-        form={form}
+        form={[data, form]}
         errors={{ credError, pswdError }}
         submit={authenticate}
       />

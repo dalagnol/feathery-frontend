@@ -9,9 +9,9 @@ import { Container, Text } from "./styles";
 
 import { Button, Input, Subheading } from "components";
 
-export default function Form({ form, submit, errors }: any) {
+export default function Form({ form, submit }: any) {
   const { signin, cred, pass, forgotyourpass } = Locale.use(Dictionary);
-  const [data, { credential, password }] = form;
+  const [{ credential, password }, Form] = form;
   const { push } = useHistory();
 
   const FormProps = {
@@ -23,19 +23,14 @@ export default function Form({ form, submit, errors }: any) {
     push(sendRoute());
   };
 
-  credential.shake = errors.credError;
-  credential.autofocus = "on";
-
-  password.shake = errors.pswdError;
-
   return (
     <Container {...FormProps}>
       <Subheading>{cred}</Subheading>
-      <Input {...credential} />
+      <Input {...credential.props} />
       <Subheading>{pass}</Subheading>
-      <Input {...password} />
+      <Input {...password.props} />
       <footer>
-        <Button onClick={() => submit(data)}>{signin}</Button>
+        <Button onClick={() => submit(Form)}>{signin}</Button>
       </footer>
       <Text onClick={() => toMailReset()}>{forgotyourpass}</Text>
     </Container>

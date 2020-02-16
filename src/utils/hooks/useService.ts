@@ -25,10 +25,12 @@ export default function useService({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  console.log(method, params, handler, errors);
+
   const PromiseWrapper = async () => {
     setLoading(true);
     try {
-      const data = await method(...params);
+      const data = await method(params);
       handler(data);
       setValue(data);
     } catch (oof) {

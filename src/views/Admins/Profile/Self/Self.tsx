@@ -36,17 +36,18 @@ export default observer(function Self() {
   const [, phoneTrigger]: any = useTimer(500);
 
   const { user } = Store;
-  const [
-    form,
-    { $name, $email, $gender, $phone, $picture, $password },
-  ] = useForm({
+  const [form] = useForm({
     ...user,
-    password: "",
+    password: {
+      type: "password",
+    },
     phone: user.phone || "",
     picture: user.picture || "",
   });
 
   const ref: any = useRef(null);
+
+  const { name, email, gender, phone, picture, password } = form;
 
   const imageHandler = function(e: any) {
     const {
@@ -55,7 +56,7 @@ export default observer(function Self() {
 
     base64(
       files[0],
-      (value: string) => $picture.onChange({ value, name: "picture" }),
+      (value: string) => picture.props.onChange({ value, name: "picture" }),
       true
     );
   };
@@ -94,20 +95,20 @@ export default observer(function Self() {
             </Button>
           </Buttons>
           <Subheading>Name</Subheading>
-          <Input {...$name} />
+          <Input {...name.props} />
           <Subheading>Email</Subheading>
-          <Input {...$email} />
+          <Input {...email.props} />
           <Subheading>Gender</Subheading>
           <SelectContainer>
-            <Select {...$gender}>
+            <Select {...gender.props}>
               <Option value={"male"}>Male</Option>
               <Option value={"female"}>Female</Option>
             </Select>
           </SelectContainer>
           <Subheading>Phone No.</Subheading>
-          <Input {...$phone} />
+          <Input {...phone.props} />
           <Subheading>Password</Subheading>
-          <Input {...$password} />
+          <Input {...password.props} />
         </Main>
       </Form>
     </Suspense>
