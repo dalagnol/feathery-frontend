@@ -1,23 +1,55 @@
 import { useState, useEffect } from "react";
 
-export default (time: number, options?: any) => {
-  const effect = options?.effect || function() {};
-  const offset = options?.offset || 0;
+interface Options {
+  offset?: number;
+  effectOnBothEdges?: boolean;
+  initialState?: boolean;
+  effect?: Function;
+}
 
+export default (time: number, options?: Options | Function) => {
+  const offset = (typeof options !== "function" && options?.offset) || 0;
+  const effectOnBothEdges =
+    typeof options !== "function" &&
+    typeof options?.effectOnBothEdges === "boolean"
+      ? options.effectOnBothEdges
+      : true;
+  const initialState =
+    (typeof options !== "function" && options?.initialState) || false;
+  const effect =
+    (typeof options !== "function" && options?.effect) ||
+    (typeof options === "function" && options) ||
+    undefined;
+
+  const [state, setState] = useState(initialState);
   const [current, setCurrent] = useState(false);
   const [enabled, setEnabled] = useState(offset);
 
   useEffect(() => {
     if (current) {
-      setTimeout(() => {
-        effect();
-        setCurrent(false);
-      }, time);
+      setTimeout(
+        () => {
+          if (effect) {
+            effect();
+          }
+          setCurrent(false);
+          setState(!state);
+        },
+        state ? time : 1
+      );
+    } else {
+      if (effectOnBothEdges) {
+        setTimeout(() => {
+          if (effect) {
+            effect();
+          }
+        }, time);
+      }
     }
   }, [effect, time, current]);
 
-  const trigger = (value = true) =>
-    enabled >= 0 ? setCurrent(value) : setEnabled(enabled + 1);
+  const trigger = () =>
+    enabled >= 0 ? setCurrent(true) : setEnabled(enabled + 1);
 
-  return [current, trigger] as any;
+  return [current, trigger, state] as any;
 };

@@ -1,44 +1,32 @@
 import { useState } from "react";
-import { errorSwitch } from "utils/helpers";
 
-import Locale from "locale";
+type UseService = [
+  { data: any; loading: boolean },
+  { setData: Function; request: Function }
+];
 
-const Dictionary = {
-  en: {
-    unknown: "An unknown error happened",
-  },
-  pt: {
-    unknown: "Um erro desconhecido aconteceu",
-  },
-};
-
-type UseService = [any, boolean, Function, string];
-
-export default function useService({
-  method,
-  params,
-  handler,
-  errors,
-}: any): UseService {
-  const { unknown } = Locale.use(Dictionary);
-  const [value, setValue] = useState(null);
+export default function useService(
+  method: any,
+  params: Array<any> = [],
+  effect?: any
+): UseService {
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
-  console.log(method, params, handler, errors);
-
-  const PromiseWrapper = async () => {
-    setLoading(true);
-    try {
-      const data = await method(params);
-      handler(data);
-      setValue(data);
-    } catch (oof) {
-      setError(oof?.response?.data?.message || unknown);
-      errorSwitch(oof, errors);
-    }
-    setLoading(false);
+  const request = function() {
+    (async function() {
+      setLoading(true);
+      const response = await method(params);
+      if (effect) {
+        effect(response);
+      }
+      setData(response);
+      setLoading(false);
+    })();
   };
 
-  return [value, loading, PromiseWrapper, error];
+  return [
+    { data, loading },
+    { setData, request },
+  ];
 }
