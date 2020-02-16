@@ -31,6 +31,7 @@ interface UseFormOptions {
   postSubmit?: (data: any) => void;
   onSuccess?: (data: any) => void;
   onError?: (data: any) => void;
+  errors?: any;
 }
 
 /**
@@ -44,6 +45,7 @@ export default function useForm(
   preset: UseFormPreset,
   options: UseFormOptions = {}
 ) {
+  const [loading, setLoading] = useState(false);
   const init = useCallback(() => {
     const body: any = {};
     const errs: any = {};
@@ -226,6 +228,7 @@ export default function useForm(
 
   if (service) {
     submit = async function() {
+      setLoading(true);
       try {
         if (preSubmit) {
           preSubmit();
@@ -241,7 +244,29 @@ export default function useForm(
         if (onError) {
           onError(oof);
         }
+
+        const message = oof?.response?.data?.message;
+
+        if (options.errors && message) {
+          const match = Object.entries(options.errors).find(
+            ([key]: [string, any]) => {
+              return key
+                .toLowerCase()
+                .split(",")
+                .some(keyword => message.toLowerCase().includes(keyword));
+            }
+          );
+
+          if (match) {
+            console.log(match);
+            const [, hand]: any = match;
+            hand();
+          }
+        } else if (errors.none && !message) {
+          errors.none();
+        }
       }
+      setLoading(false);
     };
   }
 
@@ -254,6 +279,7 @@ export default function useForm(
       set,
       validate,
       submit,
+      loading,
     },
   ];
 }
