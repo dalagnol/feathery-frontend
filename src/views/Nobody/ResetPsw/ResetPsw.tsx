@@ -58,6 +58,7 @@ export default function ResetPsw() {
   useEffect(() => {
     typeof validateToken === "function" && validateToken();
     setInit(false);
+    // eslint-disable-next-line
   }, [init, setInit]);
 
   const checkError = () => {

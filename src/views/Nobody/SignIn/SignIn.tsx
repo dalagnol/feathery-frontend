@@ -14,13 +14,12 @@ export default withRouter(function SignIn() {
   const [credError, credTrigger]: any = useTimer(500);
   const [pswdError, pswdTrigger]: any = useTimer(500);
 
-  const form = useForm(
-    {
-      credential: "",
-      password: "",
-    },
-    { no$: true }
-  );
+  const [form] = useForm({
+    credential: "",
+    password: "",
+  });
+
+  console.log(form);
 
   const [, loading, authenticate] = useService({
     method: UserService.Authenticate,

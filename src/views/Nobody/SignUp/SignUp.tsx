@@ -16,16 +16,13 @@ export default withRouter(function SignUp() {
   const [mailError, mailTrigger]: any = useTimer(500);
   const [pswdError, pswdTrigger]: any = useTimer(500);
 
-  const form = useForm(
-    {
-      name: "",
-      identifier: "",
-      email: "",
-      gender: "male",
-      password: "",
-    },
-    { no$: true }
-  );
+  const form = useForm({
+    name: "",
+    identifier: "",
+    email: "",
+    gender: "male",
+    password: "",
+  });
 
   const [, loading, register] = useService({
     method: UserService.Register,
