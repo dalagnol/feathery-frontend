@@ -4,7 +4,7 @@ import Dictionary from "./locale.json";
 import { Themed } from "themes";
 import { useForm, useService, useTimer } from "utils/hooks";
 import { errors } from "./constants";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { Container, Text } from "./styles";
 
@@ -15,7 +15,6 @@ import Service from "services/Users";
 export default function ResetPsw() {
   const [init, setInit] = useState(true);
 
-  const { pathname } = useLocation();
   const [passError, passTrigger]: any = useTimer(500);
   const [emailError, emailTrigger]: any = useTimer(500);
 
@@ -24,7 +23,7 @@ export default function ResetPsw() {
   const [passForm, { $password }] = useForm({ password: "" });
   const [emailForm, { $email }] = useForm({ email: "" });
 
-  const token = pathname.substring(7);
+  const { token } = useParams();
 
   const [, resetLoading, resetPsw] = useService({
     method: Service.ResetPsw,

@@ -1,77 +1,144 @@
 /* eslint-disable prefer-const */
-import { useState } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 
-export default function useForm(preset: any, options: any = {}) {
-  const body: any = {};
+interface UseFormModifierParams {
+  name: string;
+  value: any;
+  form: any;
+}
 
-  Object.entries(preset).forEach((entry: any) => {
-    body[entry[0]] =
-      entry[1].default !== undefined
-        ? options.modifier
-          ? options.modifier(entry[1].default, entry[0])
-          : entry[1].default
-        : typeof entry[1] !== "object" || entry[1] instanceof Array
-        ? options.modifier
-          ? options.modifier(entry[1], entry[0])
-          : entry[1]
-        : options.modifier
-        ? options.modifier("")
-        : "";
-  });
+interface UseFormPreset {
+  [field: string]: {
+    default?: string;
+    value?: string;
 
-  const [form, setForm] = useState(body);
+    modifier?: (param: UseFormModifierParams) => any;
+    validation?: (value: any) => string | null;
 
-  const handler = (e: any, nameOverride?: string) => {
-    let { value, name, target } = e;
-
-    if (target) {
-      value = target.value;
-      name = target.name;
-    }
-
-    if (nameOverride) {
-      name = nameOverride;
-    }
-
-    const modifier =
-      options.modifier || (preset[name] && preset[name].modifier);
-
-    if (modifier) {
-      value = modifier(value, name);
-    }
-
-    setForm((form: any) => ({
-      ...form,
-      [name]: value,
-    }));
+    [props: string]: any;
   };
+}
 
-  const props: any = {};
+interface UseFormOptions {
+  defaults?: any;
+  validateOnInteraction?: boolean;
+  autoHideErrors?: boolean;
+}
 
-  Object.entries(preset).forEach((entry: any) => {
-    const name = !options.no$ ? `$${entry[0]}` : entry[0];
-    props[name] = {
-      value: form[entry[0]],
-      name: entry[0],
-      onChange: handler,
-    };
+/**
+ * Auto generates handlers, states and props for forms.
+ *
+ * @param preset An object containing all of the fields in the form.
+ * @param options An object containing extraneous options for the form behaviour.
+ */
 
-    if (entry[0].toLowerCase() === "password") {
-      props[name].type = "password";
-    }
+export default function useForm(
+  preset: UseFormPreset,
+  options: UseFormOptions = {}
+) {
+  const [body, errs] = useMemo(() => {
+    const body: any = {};
+    const errs: any = {};
 
-    if (typeof preset[entry[0]] === "object") {
-      if (preset[entry[0]].type) {
-        props[name].type = preset[entry[0]].type;
+    Object.entries(preset).forEach(([key, field]: [string, any]) => {
+      if (typeof field !== "object" || field instanceof Array) {
+        field = {
+          default: field,
+        };
       }
-    }
-
-    if (options) {
-      if (options[entry[0]] && options[entry[0]].type) {
-        props[name].type = options[entry[0]].type;
+      if (options?.defaults && options?.defaults[key] !== undefined) {
+        field = {
+          ...field,
+          default: options?.defaults[key],
+        };
       }
-    }
-  });
+      if (field.default && field.value === undefined) {
+        field.value = field.default;
+      }
 
-  return [form, props, setForm, handler];
+      const { value, modifier } = field;
+
+      body[key] = modifier ? modifier(value) : value === undefined ? "" : value;
+      errs[key] = null;
+    });
+
+    return [body, errs];
+  }, [preset]);
+
+  const [Form, setForm]: any = useState(body);
+  const [Errors, setErrors]: any = useState(errs);
+
+  const Validate = useCallback(() => {
+    let res = true;
+
+    Object.entries(preset).forEach(([key, { validation }]: any) => {
+      const partial =
+        typeof validation !== "function" && validation !== undefined
+          ? validation
+          : validation({ name: key, value: Form[key], Form });
+
+      setErrors((current: any) => ({
+        ...current,
+        [key]: partial,
+      }));
+
+      if (res) {
+        res = partial === null;
+      }
+    });
+
+    return res;
+  }, [Form]);
+
+  const handler = useCallback(
+    (e: any, nameOverride?: string) => {
+      let { value, name, target } = e;
+
+      if (!preset[name]) {
+        return;
+      }
+
+      if (target) {
+        name = target.name;
+      }
+
+      if (nameOverride) {
+        name = nameOverride;
+      }
+
+      const { modifier, validation } = preset[name];
+      const { autoHideErrors, validateOnInteraction } = options;
+
+      if (!(autoHideErrors === false)) {
+        setErrors((currentErrors: any) => ({ ...currentErrors, [name]: null }));
+      }
+
+      if (modifier) {
+        value = modifier(value);
+      }
+
+      setForm((currentForm: any) => ({
+        ...currentForm,
+        [name]: value,
+      }));
+
+      if (validateOnInteraction && validation !== undefined) {
+        setErrors((currentErrors: any) => ({
+          ...currentErrors,
+          [name]:
+            typeof validation === "function"
+              ? validation({ name, value, form: Form })
+              : validation,
+        }));
+      }
+    },
+    [Form, preset]
+  );
+
+  const Setter = useCallback((value: any) => {
+    const previous = { ...Form };
+    if (typeof)
+  }, [Form, preset])
+
+  // useEffect(() => {}, []);
 }
