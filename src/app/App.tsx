@@ -1,7 +1,8 @@
 import React from "react";
-import { Playground } from "./styles";
 import { useForm } from "react-hook-form";
 import { DevTool } from "react-hook-form-devtools";
+
+import { Playground, Container, InputContainer, Input } from "./styles";
 
 export function App() {
   const { register, control, handleSubmit } = useForm();
@@ -22,14 +23,11 @@ export function App() {
 
   return (
     <Playground>
-      <form onSubmit={handleSubmit(submitHandler)}>
-        <input name="name" ref={register} />
-        <input type="checkbox" name="monday" ref={register} />
-        <input type="checkbox" name="tuesday" ref={register} />
-        <input type="checkbox" name="wednesday" ref={register} />
-        <input type="checkbox" name="thursday" ref={register} />
-        <button type="submit">Okay</button>
-      </form>
+      <Container>
+        <InputContainer>
+          <Input />
+        </InputContainer>
+      </Container>
     </Playground>
   );
 }
