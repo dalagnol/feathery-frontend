@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { landing, about } from "routes/paths";
+import { landing } from "routes/paths";
 import { Feed } from "views/Commons";
 
 export default function() {
