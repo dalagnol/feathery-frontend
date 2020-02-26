@@ -7,7 +7,7 @@ export default function Event({ agent, log, timestamp }: any) {
       <p>{log}</p>
       <div>
         <span>{agent}</span>
-        <b>{moment(timestamp).fromNow()}</b>
+        <b>{moment().valueOf() - moment(timestamp).valueOf()}ms ago</b>
       </div>
     </div>
   );

@@ -63,12 +63,10 @@ export const Themed = ({ children }: any) => {
   function Add(component: string, config: any, agent = "") {
     _setThemes((current: any) => ({ ...current, [component]: config[Name] }));
     const amountOf = Object.entries(config).length;
-    log(
-      agent,
-      `${
-        agent !== "DevTools" ? "Registered" : `Updated ${amountOf} entries on`
-      } "${component}" ${agent !== "DevTools" ? `[+${amountOf} entries]` : ""}`
-    );
+
+    if (agent !== "DevTools") {
+      log(agent, `${"Registered"} "${component}" ${`[+${amountOf} entries]`}`);
+    }
 
     return true;
   }
@@ -88,13 +86,29 @@ export const Themed = ({ children }: any) => {
     return true;
   }
 
-  function Set(component: string, property: string, value: string) {
+  function Set(
+    component: string,
+    property: string,
+    value: string,
+    agent = "DevTools"
+  ) {
     _setThemes((current: any) => ({
       ...current,
       [component]: { ...current[component], [property]: value },
     }));
 
-    log("DevTools", `Set ${property} to ${value} in "${component}"`);
+    log(agent, `Set "${property}" to "${value}" in "${component}"`);
+  }
+
+  function ForComponent(component: string) {
+    return {
+      SetName: (name: string) => SetName(name, component),
+      SwitchTheme: () => SwitchTheme(component),
+      Add: (element: string, config: any) => Add(element, config, component),
+      Remove: (element: string) => Remove(element, component),
+      Set: (element: string, property: string, value: string) =>
+        Set(element, property, value, component),
+    };
   }
 
   return (
@@ -108,6 +122,7 @@ export const Themed = ({ children }: any) => {
         Remove,
         Set,
         History,
+        ForComponent,
         ...themes,
       }}
     >

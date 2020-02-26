@@ -22,6 +22,15 @@ export function DevTools() {
     setLock(!lock);
   };
 
+  const historyToggle = () => {
+    if (!history) {
+      localStorage.setItem(LS_HISTORY, "1");
+    } else {
+      localStorage.removeItem(LS_HISTORY);
+    }
+    setHistory(!history);
+  };
+
   const ContextEntries = Object.entries(Context).filter(
     ([key]: any) => key.toLowerCase() === key
   );
@@ -61,7 +70,7 @@ export function DevTools() {
         </div>
 
         <div className={"History"}>
-          <h2 onClick={() => setHistory(!history)}>History</h2>
+          <h2 onClick={historyToggle}>History</h2>
           <History open={history} />
         </div>
       </div>

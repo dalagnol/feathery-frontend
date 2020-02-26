@@ -10,9 +10,7 @@ export default function History({ open }: any) {
 
   return (
     <Container open={open}>
-      {History.sort((a: any, b: any) =>
-        a.timestamp < b.timestamp ? 1 : -1
-      ).map((log: any, index: number) => (
+      {History.map((log: any, index: number) => (
         <Event key={index} {...log} />
       ))}
     </Container>

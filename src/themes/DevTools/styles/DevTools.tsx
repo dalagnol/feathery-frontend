@@ -14,7 +14,7 @@ export const Container = styled.div<any>`
   background-color: #000000bb;
 
   width: 300px;
-  height: 100vh;
+  height: 100%;
   right: 0;
   top: 0;
 
