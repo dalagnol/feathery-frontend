@@ -1,8 +1,10 @@
 {
   "light": {
-    "backgroundColor": "white"
+    "backgroundColor": "white",
+    "text": "black"
   },
   "dark": {
-    "backgroundColor": "black"
+    "backgroundColor": "black",
+    "text": "white"
   }
 }

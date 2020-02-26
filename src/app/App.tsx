@@ -2,7 +2,7 @@ import React from "react";
 import { Theme } from "themes";
 import { Locale } from "locale";
 
-import { Playground, Container } from "./styles";
+import { Playground } from "./styles";
 import { ThemeTest } from "./styles/Theme";
 
 import { theme, locale } from "./json";
@@ -13,9 +13,7 @@ export const App = () => {
 
   return (
     <Playground>
-      <Container>
-        <ThemeTest onClick={t.SwitchTheme}>{l("test")}</ThemeTest>
-      </Container>
+      <ThemeTest onClick={t.SwitchTheme}>{l("test")}</ThemeTest>
     </Playground>
   );
 };

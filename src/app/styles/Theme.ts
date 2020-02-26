@@ -9,4 +9,5 @@ export const ThemeTest = styled.div`
   transition: all 0.3s ease-in-out;
 
   background-color: ${({ theme }) => theme.app?.backgroundColor};
+  color: ${({ theme }) => theme.app?.text};
 `;

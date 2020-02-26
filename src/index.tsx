@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { App } from "./app";
-import * as serviceWorker from "./serviceWorker";
+
 import { Themed } from "themes";
 import { Localised } from "locale";
+
+import { App } from "./app/App";
+
+import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Themed>

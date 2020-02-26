@@ -1,28 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import { ThemeProvider, ThemeContext } from "styled-components";
+import { Themes } from "./json";
 
-import { Container } from "./styles";
-
+export * from "./Theme";
+export * from "./DevTools";
 export const Context = ThemeContext;
-
-const Themes: Array<string> = ["light", "dark"];
-
-export type Theme = {
-  [name: string]: any;
-  light: any;
-  dark: any;
-};
-
-export function Theme(component: string, config: any) {
-  const Context = useContext(ThemeContext);
-  useEffect(() => {
-    Context.Add(component, config);
-    return () => Context.Remove(component);
-    // eslint-disable-next-line
-  }, [Context.Name]);
-
-  return Context;
-}
 
 export const Themed = ({ children }: any) => {
   const [Name, _setName] = useState(localStorage.getItem("theme") || "light");
@@ -31,6 +13,7 @@ export const Themed = ({ children }: any) => {
   function SetName(name: string) {
     if (Themes.includes(name)) {
       _setName(name);
+      localStorage.setItem("theme", name);
     }
   }
 
@@ -65,7 +48,3 @@ export const Themed = ({ children }: any) => {
     </ThemeProvider>
   );
 };
-
-export function DevTools() {
-  return <Container />;
-}
