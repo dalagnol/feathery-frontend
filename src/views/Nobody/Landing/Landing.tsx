@@ -1,5 +1,5 @@
 import React from "react";
-import { Theme } from "themes";
+import { Theme, DevTools } from "themes";
 import { Locale } from "locale";
 
 import { Playground } from "./styles";
@@ -20,6 +20,7 @@ export function Landing() {
           "Notice how this is written naturally, and it still responds to language"
         )}
       </Square>
+      <DevTools />
     </Playground>
   );
 }

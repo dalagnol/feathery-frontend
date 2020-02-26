@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container } from "./styles/DevTools";
+import { ThemeContext } from "styled-components";
 
 export function DevTools() {
-  return <Container />;
+  const Context = useContext(ThemeContext);
+
+  console.log(Context);
+
+  return (
+    <Container>
+      <h1>test</h1>
+    </Container>
+  );
 }
