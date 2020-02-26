@@ -8,6 +8,6 @@ export const Square = styled.div`
 
   transition: all 0.3s ease-in-out;
 
-  background-color: ${({ theme }) => theme.nobody?.backgroundColor};
-  color: ${({ theme }) => theme.nobody?.text};
+  background-color: ${({ theme }) => theme.landing?.backgroundColor};
+  color: ${({ theme }) => theme.landing?.text};
 `;

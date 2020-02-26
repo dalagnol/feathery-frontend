@@ -8,8 +8,8 @@ import { Square } from "./styles/Shapes";
 import { theme, locale } from "./json";
 
 export function Landing() {
-  const [, { SwitchTheme }] = Theme("nobody", theme);
-  const [l, { SwitchLanguage }] = Locale("nobody", locale);
+  const [, { SwitchTheme }] = Theme("landing", theme);
+  const [l, { SwitchLanguage }] = Locale("landing", locale);
 
   const onClick = () => SwitchTheme() && SwitchLanguage();
 
