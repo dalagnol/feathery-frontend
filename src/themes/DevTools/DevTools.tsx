@@ -9,8 +9,6 @@ export function DevTools() {
   const [lock, setLock] = useState(!!localStorage.getItem(LS_LOCK));
   const Context = useContext(ThemeContext);
 
-  console.log(Context);
-
   const lockToggle = () => {
     if (!lock) {
       localStorage.setItem(LS_LOCK, "1");

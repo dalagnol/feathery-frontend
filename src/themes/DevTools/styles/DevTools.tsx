@@ -7,6 +7,10 @@ export const Palette: Theme = {
 };
 
 export const Container = styled.div<any>`
+  <<<<<<<HEAD
+  font-size: 0.8em;
+
+  =======>>>>>>> development
   position: fixed;
 
   background-color: #000000bb;
@@ -40,10 +44,14 @@ export const Container = styled.div<any>`
     transform: translateX(0);
   }
 
-  * {
+  *:not(input) {
     color: white;
 
     font-family: Nanum Gothic;
+  }
+
+  input {
+    width: 100px;
   }
 
   h1 {
