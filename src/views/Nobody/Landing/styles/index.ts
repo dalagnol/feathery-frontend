@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Playground = styled.div`
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: calc(100vh - 18px);
 
   justify-content: center;
   align-items: center;
