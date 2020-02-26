@@ -7,7 +7,7 @@ export const Container = styled.div<any>`
 
   transition: all 0.3s ease-in-out;
 
-  max-height: ${({ open }) => (open ? "500px" : "50px")};
+  max-height: ${({ open }) => (open ? "500px" : "40px")};
   overflow: hidden;
 
   * {

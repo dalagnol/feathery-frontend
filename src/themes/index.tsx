@@ -46,6 +46,13 @@ export const Themed = ({ children }: any) => {
     return true;
   }
 
+  function Set(component: string, property: string, value: string) {
+    _setThemes((current: any) => ({
+      ...current,
+      [component]: { ...current[component], [property]: value },
+    }));
+  }
+
   return (
     <ThemeProvider
       theme={{
@@ -55,6 +62,7 @@ export const Themed = ({ children }: any) => {
         SwitchTheme,
         Add,
         Remove,
+        Set,
         ...themes,
       }}
     >
