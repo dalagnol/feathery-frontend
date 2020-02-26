@@ -16,6 +16,7 @@
     "enzyme-adapter-utils": "^1.13.0",
     "enzyme-shallow-equal": "^1.0.1",
     "eslint": "^6.8.0",
+    "mobx": "^5.15.4",
     "mobx-react": "^6.1.8",
     "moment": "^2.24.0",
     "prettier": "^1.19.1",

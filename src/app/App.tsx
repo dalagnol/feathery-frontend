@@ -1,33 +1,19 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { DevTool } from "react-hook-form-devtools";
+import React, { useContext } from "react";
+import { Context as ThemeContext, Theme } from "themes";
 
-import { Playground, Container, InputContainer, Input } from "./styles";
+import { Palette, Playground, Container, ThemeTest } from "./styles";
 
-export function App() {
-  const { register, control, handleSubmit } = useForm();
+export const App = () => {
+  Theme("app", Palette);
 
-  const submitHandler = (data: any) => {
-    const weekDays = Object.entries(data).map((field: any) => {
-      if (!["monday", "tuesday", "wednesday", "thursday"].includes(field[0])) {
-        return;
-      }
-
-      if (field[1] === true) {
-        return field[0];
-      }
-    });
-
-    console.log(weekDays.filter((value: any) => value));
-  };
+  const Context = useContext(ThemeContext);
+  console.log(Context);
 
   return (
     <Playground>
       <Container>
-        <InputContainer>
-          <Input />
-        </InputContainer>
+        <ThemeTest onClick={Context.Switch} />
       </Container>
     </Playground>
   );
-}
+};

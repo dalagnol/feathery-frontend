@@ -1,4 +1,23 @@
+import { Theme } from "themes";
 import styled from "styled-components";
+
+export const Palette: Theme = {
+  light: {
+    backgroundColor: "white",
+  },
+  dark: {
+    backgroundColor: "black",
+  },
+};
+
+export const ThemeTest = styled.div`
+  width: 300px;
+  height: 300px;
+
+  box-shadow: 0px 0px 25px #00000044;
+
+  background-color: ${({ theme }) => theme.app?.backgroundColor};
+`;
 
 export const Playground = styled.div`
   display: flex;
