@@ -42,9 +42,8 @@ export const Container = styled.div<any>`
     transform: translateX(0);
   }
 
-  *:not(input) {
+  * {
     color: white;
-
     font-family: Nanum Gothic;
   }
 
@@ -70,4 +69,24 @@ export const Container = styled.div<any>`
   }
 
   overflow-y: scroll;
+
+  .History {
+    * {
+      transition: all 0.3s ease-in-out;
+    }
+
+    h2 {
+      background-color: #00000088;
+      margin: 0;
+      padding: 10px 0px;
+    }
+
+    position: absolute;
+    bottom: 0px;
+
+    width: 100%;
+
+    max-height: 200px;
+    overflow: hidden;
+  }
 `;

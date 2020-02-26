@@ -30,4 +30,15 @@ export const Container = styled.div<any>`
       margin: 5px 20px;
     }
   }
+
+  input {
+    background-color: #00000000;
+    text-align: right;
+    border: none;
+    padding: 5px 20px;
+    font-size: 1em;
+    outline: none;
+
+    transition: all 0.3s ease-in-out;
+  }
 `;
