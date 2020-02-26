@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ThemeTest = styled.div`
+export const Square = styled.div`
   width: 300px;
   height: 300px;
 

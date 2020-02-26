@@ -1,6 +1,16 @@
+import { Theme } from "themes/Theme.d";
 import { useEffect, createContext, useContext } from "react";
 import { Languages } from "./json";
 import engine from "./engine";
+
+type LocaleContextType = {
+  Languages: Array<string>;
+  Lang: string;
+  SetLanguage: (code: string) => void;
+  SwitchLanguage: () => void;
+  Add: (component: string, config: Theme) => any;
+  Remove: (component: string) => void;
+};
 
 export const LocaleContext = createContext({
   Languages,
@@ -19,16 +29,22 @@ export const LocaleContext = createContext({
   },
 });
 
-export function Locale(component: string, dictionary: any) {
-  const { Lang, Add, Remove } = useContext(LocaleContext);
+type LocaleReturn = [(string: string) => string, LocaleContextType];
+
+export function Locale(component: string, dictionary: any): LocaleReturn {
+  const Context = useContext(LocaleContext);
 
   useEffect(() => {
-    Add(component, dictionary);
-    return () => Remove(component);
-  }, [Lang]);
+    Context.Add(component, dictionary);
+    return () => Context.Remove(component);
+    // eslint-disable-next-line
+  }, [Context.Lang]);
 
-  return function(string: string): string {
-    const res = engine.dictionaries?.[component]?.[string];
-    return res || string;
-  };
+  return [
+    function(string: string): string {
+      const res = engine.dictionaries?.[component]?.[string];
+      return res || string;
+    },
+    Context,
+  ];
 }
