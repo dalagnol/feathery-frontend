@@ -1,0 +1,33 @@
+import styled from "styled-components";
+
+export const Container = styled.div<any>`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  transition: all 0.3s ease-in-out;
+
+  max-height: ${({ open }) => (open ? "500px" : "50px")};
+  overflow: hidden;
+
+  * {
+    text-indent: 1em;
+  }
+
+  h4,
+  h2 {
+    background-color: #00000044;
+    padding: 10px 0px;
+    margin: 0;
+  }
+
+  div {
+    background-color: #00000044;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      margin: 5px 20px;
+    }
+  }
+`;
