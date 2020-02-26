@@ -1,0 +1,8 @@
+{
+  "light": {
+    "backgroundColor": "white"
+  },
+  "dark": {
+    "backgroundColor": "black"
+  }
+}

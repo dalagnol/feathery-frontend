@@ -3,10 +3,13 @@ import ReactDOM from "react-dom";
 import { App } from "./app";
 import * as serviceWorker from "./serviceWorker";
 import { Themed } from "themes";
+import { Localised } from "locale";
 
 ReactDOM.render(
   <Themed>
-    <App />
+    <Localised>
+      <App />
+    </Localised>
   </Themed>,
   document.getElementById("root")
 );

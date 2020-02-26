@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ThemeProvider, ThemeContext } from "styled-components";
 
+import { Container } from "./styles";
+
 export const Context = ThemeContext;
 
 const Themes: Array<string> = ["light", "dark"];
@@ -12,11 +14,14 @@ export type Theme = {
 };
 
 export function Theme(component: string, config: any) {
-  const { Name, Add, Remove } = useContext(ThemeContext);
+  const Context = useContext(ThemeContext);
   useEffect(() => {
-    Add(component, config);
-    return () => Remove(component);
-  }, [Name]);
+    Context.Add(component, config);
+    return () => Context.Remove(component);
+    // eslint-disable-next-line
+  }, [Context.Name]);
+
+  return Context;
 }
 
 export const Themed = ({ children }: any) => {
@@ -29,7 +34,7 @@ export const Themed = ({ children }: any) => {
     }
   }
 
-  function Switch() {
+  function SwitchTheme() {
     const current = Themes.indexOf(Name);
     SetName(current === Themes.length - 1 ? Themes[0] : Themes[current + 1]);
   }
@@ -50,7 +55,7 @@ export const Themed = ({ children }: any) => {
         Themes,
         Name,
         SetName,
-        Switch,
+        SwitchTheme,
         Add,
         Remove,
         ...themes,
@@ -60,3 +65,7 @@ export const Themed = ({ children }: any) => {
     </ThemeProvider>
   );
 };
+
+export function DevTools() {
+  return <Container />;
+}

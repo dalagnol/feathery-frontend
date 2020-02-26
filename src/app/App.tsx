@@ -1,18 +1,20 @@
-import React, { useContext } from "react";
-import { Context as ThemeContext, Theme } from "themes";
+import React from "react";
+import { Theme } from "themes";
+import { Locale } from "locale";
 
-import { Palette, Playground, Container, ThemeTest } from "./styles";
+import { Playground, Container } from "./styles";
+import { ThemeTest } from "./styles/Theme";
+
+import { theme, locale } from "./json";
 
 export const App = () => {
-  Theme("app", Palette);
-
-  const Context = useContext(ThemeContext);
-  console.log(Context);
+  const t = Theme("app", theme);
+  const l = Locale("app", locale);
 
   return (
     <Playground>
       <Container>
-        <ThemeTest onClick={Context.Switch} />
+        <ThemeTest onClick={t.SwitchTheme}>{l("test")}</ThemeTest>
       </Container>
     </Playground>
   );
