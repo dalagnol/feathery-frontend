@@ -7,10 +7,8 @@ export const Palette: Theme = {
 };
 
 export const Container = styled.div<any>`
-  <<<<<<<HEAD
   font-size: 0.8em;
 
-  =======>>>>>>> development
   position: fixed;
 
   background-color: #000000bb;
