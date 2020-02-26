@@ -6,10 +6,10 @@ import { Localised } from "locale";
 
 import Routing from "routes";
 
-const user = "hsg";
+const userType = "nobody";
 
 export const App = () => {
-  const Routes = Routing[user] || Routing.nobody;
+  const Routes = Routing[userType] || Routing.nobody;
 
   return (
     <Router>
