@@ -12,6 +12,7 @@ class Engine {
   public set language(code: string) {
     if (Languages.includes(code)) {
       this.Language = code;
+      localStorage.setItem("lang", code);
     }
   }
 

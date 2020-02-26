@@ -9,5 +9,5 @@ export function Theme(component: string, config: any) {
     // eslint-disable-next-line
   }, [Context.Name]);
 
-  return [Context];
+  return [Context.Name, Context];
 }
