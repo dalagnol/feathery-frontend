@@ -14,9 +14,27 @@ export const Container = styled.div<any>`
     text-indent: 1em;
   }
 
+  .Subheader {
+    background-color: #00000088;
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+      cursor: pointer;
+    }
+
+    p {
+      opacity: 0.5;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
   h4,
   h2 {
-    background-color: #00000044;
     padding: 10px 0px;
     margin: 0;
 
@@ -26,13 +44,28 @@ export const Container = styled.div<any>`
     }
   }
 
-  div {
+  > div {
     background-color: #00000044;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    > div {
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 10px;
+      * {
+        opacity: 0.5;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
     p {
-      margin: 5px 20px;
+      margin: 10px;
     }
   }
 
@@ -40,10 +73,27 @@ export const Container = styled.div<any>`
     background-color: #00000000;
     text-align: right;
     border: none;
-    padding: 5px 20px;
+    padding: 10px;
     font-size: 1em;
     outline: none;
 
     transition: all 0.3s ease-in-out;
+  }
+`;
+
+export const Title = styled.h2<any>`
+  ${errors =>
+    errors["Missing active palette"] &&
+    `
+    color: red;
+    animation: pulse 2s infinite;
+  `}
+
+  padding: 10px 0px;
+  margin: 0;
+
+  span {
+    color: #ffffff44;
+    font-size: 0.7em;
   }
 `;

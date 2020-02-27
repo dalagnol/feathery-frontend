@@ -6,6 +6,13 @@ export const Palette: Theme = {
   dark: {},
 };
 
+export const Collections = styled.div<any>`
+  overflow-y: scroll;
+  transition: all 0.3s ease-in-out;
+  max-height: ${({ history }) =>
+    !history ? "calc(100vh - 220px)" : " calc(100vh - 360px)"};
+`;
+
 export const Container = styled.div<any>`
   font-size: 0.8em;
 
@@ -56,7 +63,8 @@ export const Container = styled.div<any>`
   }
 
   h2 {
-    text-indent: 1em;
+    text-indent: 0.5em;
+    cursor: pointer;
   }
 
   span {
@@ -68,25 +76,65 @@ export const Container = styled.div<any>`
     }
   }
 
-  overflow-y: scroll;
+  overflow-y: hidden;
 
   .History {
     * {
       transition: all 0.3s ease-in-out;
     }
 
+    .Subheader {
+      display: flex;
+
+      p {
+        color: white;
+      }
+    }
+
+    background-color: #000000ee;
+
     h2 {
       background-color: #00000088;
-      margin: 0;
+      margin: 0px 5px;
       padding: 10px 0px;
     }
 
-    position: absolute;
+    position: fixed;
     bottom: 0px;
 
     width: 100%;
 
     max-height: 200px;
     overflow: hidden;
+  }
+
+  * {
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+`;
+
+export const Icon = styled.button<any>`
+  background-color: #00000000;
+  border: none;
+
+  display: flex;
+  justify-content: flex-start;
+
+  color: white;
+
+  outline: none;
+
+  cursor: pointer;
+
+  ${({ active }) =>
+    !active &&
+    `
+      opacity: 0.5;
+    `}
+
+  &:hover {
+    ${({ active }) => !active && `opacity: 0.8;`}
   }
 `;
