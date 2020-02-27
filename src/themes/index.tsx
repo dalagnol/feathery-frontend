@@ -134,17 +134,30 @@ export const Themed = ({ children }: any) => {
     value: string,
     agent = "DevTools"
   ) {
-    _setThemes((current: any) => ({
-      ...current,
-      [component]: { ...current[component], [property]: value },
-    }));
+    if (value !== undefined) {
+      _setThemes((current: any) => ({
+        ...current,
+        [component]: { ...current[component], [property]: value },
+      }));
 
-    log(
-      agent,
-      `Set ${property} to "${value}" in <${component
-        .substring(0, 1)
-        .toUpperCase()}${component.slice(1).toLowerCase()} />`
-    );
+      log(
+        agent,
+        `Set ${property} to "${value}" in <${component
+          .substring(0, 1)
+          .toUpperCase()}${component.slice(1).toLowerCase()} />`
+      );
+    } else {
+      const removal = { ...themes };
+      delete removal[component][property];
+      _setThemes(removal);
+
+      log(
+        agent,
+        `Deleted "${property}" off <${component
+          .substring(0, 1)
+          .toUpperCase()}${component.slice(1).toLowerCase()} />`
+      );
+    }
   }
 
   function ForComponent(component: string) {
