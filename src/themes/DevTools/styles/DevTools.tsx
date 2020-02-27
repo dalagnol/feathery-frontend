@@ -1,10 +1,4 @@
 import styled from "styled-components";
-import { Theme } from "themes/Theme.d";
-
-export const Palette: Theme = {
-  light: {},
-  dark: {},
-};
 
 export const Collections = styled.div<any>`
   overflow-y: scroll;
@@ -43,6 +37,9 @@ export const Container = styled.div<any>`
       opacity: 0.1;
       transform: translateX(95%);
 
+      &:hover {
+        opacity: 0.8;
+      }
   `}
 
   &:hover {
@@ -67,9 +64,14 @@ export const Container = styled.div<any>`
     cursor: pointer;
   }
 
+  p {
+    * {
+      cursor: pointer;
+    }
+  }
+
   span {
     margin: 0px 5px;
-    cursor: pointer;
 
     &.Damp {
       opacity: 0.4;
