@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
-import { TrashAlt, Plus } from "styled-icons/boxicons-regular";
+import React, { useState, useContext, useRef } from "react";
+import { CodeCurly, TrashAlt, Plus } from "styled-icons/boxicons-regular";
 import { TimesCircle } from "styled-icons/fa-regular/TimesCircle";
 import { ThemeContext } from "styled-components";
+import { copy } from "../../helpers";
 
-import { Container, Title } from "../styles/Collection";
+import { Container, Title, Code } from "../styles/Collection";
 
 import Value from "./Value/Value";
 
@@ -16,7 +17,10 @@ export default function({
 }: any) {
   const [open, _setOpen] = useState(initialOpen);
   const [adding, setAdding] = useState(false);
+  const [code, setCode] = useState("");
   const { Set, Remove } = useContext(ThemeContext);
+
+  const ref: any = useRef(null);
 
   const [property, setProperty] = useState({});
 
@@ -50,6 +54,11 @@ export default function({
 
         <div>
           <Plus size={22} onClick={() => setAdding(!adding)} />
+          <CodeCurly
+            size={22}
+            onClick={() => copy(JSON.stringify(data))}
+            onDoubleClick={() => setCode(JSON.stringify(data, null, "\t"))}
+          />
           <TrashAlt
             size={22}
             onClick={() => Remove(title.toLowerCase(), "DevTools")}
@@ -80,10 +89,16 @@ export default function({
             onChange={handler}
             style={{ textAlign: "left", textIndent: "0.2em" }}
             autoFocus={true}
+            onKeyDown={(e: any) => {
+              if (e.keyCode === 13) {
+                ref.current?.focus();
+              }
+            }}
           />
           <input
             onClick={e => e.stopPropagation()}
             name="value"
+            ref={ref}
             value={String(Object.values(property)[0] || "")}
             onChange={handler}
             onKeyDown={(e: any) => {
@@ -100,6 +115,11 @@ export default function({
             }}
           />
         </div>
+      )}
+      {code && (
+        <Code onDoubleClick={() => setCode("")}>
+          {code.replace("}", "  }")}
+        </Code>
       )}
     </Container>
   );

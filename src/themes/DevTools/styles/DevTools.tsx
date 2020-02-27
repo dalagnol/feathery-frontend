@@ -140,3 +140,16 @@ export const Icon = styled.button<any>`
     ${({ active }) => !active && `opacity: 0.8;`}
   }
 `;
+
+export const Input = styled.input`
+  background-color: #00000000;
+  border: none;
+
+  font: 1em Nanum Gothic;
+
+  outline: none;
+
+  min-width: 240px;
+
+  animation: slideDown 0.5s;
+`;

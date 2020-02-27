@@ -3,3 +3,4 @@ export * from "./compare";
 export * from "./capitalise";
 export * from "./createMomentInitialiser";
 export * from "./timeIsBetween";
+export * from "./copy";

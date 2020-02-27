@@ -119,11 +119,7 @@ export const Themed = ({ children }: any) => {
     delete newState[component];
     _setThemes(newState);
 
-    log(
-      agent,
-      `Removed component "${component}" [-${deleted} entries]`,
-      "info"
-    );
+    log(agent, `Removed "${component}" [-${deleted} entries]`, "info");
 
     return true;
   }
@@ -171,6 +167,11 @@ export const Themed = ({ children }: any) => {
     };
   }
 
+  function ClearHistory() {
+    localStorage.removeItem(LS_HISTORY);
+    _setHistory([]);
+  }
+
   return (
     <Host pinned={Pinned}>
       <ThemeProvider
@@ -185,6 +186,7 @@ export const Themed = ({ children }: any) => {
           History,
           ForComponent,
           SetPinned,
+          ClearHistory,
           ...themes,
         }}
       >
