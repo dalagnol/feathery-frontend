@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ThemeProvider, ThemeContext } from "styled-components";
 import { Themes } from "./json";
 
-export * from "./Theme";
+export * from "./useTheme";
 export * from "./DevTools";
 export const Context = ThemeContext;
 

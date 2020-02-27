@@ -1,7 +1,18 @@
 import { useState, useEffect, useContext } from "react";
 import { ThemeContext } from "styled-components";
 
-export function Theme(component: string, config: any) {
+type ThemeHookReturn = [
+  string,
+  {
+    SetName: (name: string) => boolean;
+    SwitchTheme: () => boolean;
+    Add: (element: string, config: any) => boolean;
+    Remove: (element: string) => boolean;
+    Set: (element: string, property: string, value: string) => boolean;
+  }
+];
+
+export function useTheme(component: string, config: any): ThemeHookReturn {
   const [first, setFirst] = useState(true);
   const Context = useContext(ThemeContext);
   const componentName = `<${component
