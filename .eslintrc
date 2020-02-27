@@ -23,7 +23,9 @@
     "no-mixed-operators": "off",
     "@typescript-eslint/interface-name-prefix": "off",
     "array-callback-return": "off",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "react/react-hooks/exhaustive-deps": "off"
   },
   "settings": {
     "react": {

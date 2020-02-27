@@ -7,3 +7,4 @@ import "./slideUp.scss";
 import "./fadeOut.scss";
 import "./rotate.scss";
 import "./fadeUp.scss";
+import "./pulse.scss";
