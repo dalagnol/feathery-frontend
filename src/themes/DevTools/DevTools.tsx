@@ -40,7 +40,8 @@ export function DevTools() {
       <div onClick={e => e.stopPropagation()}>
         <div className={"Header"}>
           <h1 onClick={() => Context.SwitchTheme("DevTools")}>
-            Theme: {Context.Name}
+            Theme: {Context.Name.substring(0, 1).toUpperCase()}
+            {Context.Name.substring(1).toLowerCase()}
           </h1>
           <p>
             {Context.Themes.map((theme: string, index: number) => (
@@ -62,7 +63,9 @@ export function DevTools() {
               <Collection
                 key={index}
                 initialOpen={ContextEntries.length < 5}
-                title={collection}
+                title={`${collection
+                  .substring(0, 1)
+                  .toUpperCase()}${collection.substring(1).toLowerCase()}`}
                 data={variables}
               />
             )

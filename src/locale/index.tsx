@@ -1,14 +1,14 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import { LocaleContext } from "./Locale";
+import { LocaleContext } from "./useLocale";
 import { Languages } from "./json";
 
 import engine from "./engine";
 
-export * from "./Locale";
-export * from "./json";
+export * from "./useLocale";
 export * from "./DevTools";
+export * from "./json";
 
 export const Localised = observer(({ children }: any) => {
   return (

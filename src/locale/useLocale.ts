@@ -31,7 +31,7 @@ export const LocaleContext = createContext({
 
 type LocaleReturn = [(string: string) => string, LocaleContextType];
 
-export function Locale(component: string, dictionary: any): LocaleReturn {
+export function useLocale(component: string, dictionary: any): LocaleReturn {
   const Context = useContext(LocaleContext);
 
   useEffect(() => {

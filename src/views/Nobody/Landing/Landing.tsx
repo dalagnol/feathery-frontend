@@ -1,6 +1,6 @@
 import React from "react";
-import { Theme, DevTools } from "themes";
-import { Locale } from "locale";
+import { useTheme, DevTools } from "themes";
+import { useLocale } from "locale";
 
 import { Playground } from "./styles";
 import { Square } from "./styles/Shapes";
@@ -8,8 +8,8 @@ import { Square } from "./styles/Shapes";
 import { theme, locale } from "./json";
 
 export function Landing() {
-  const [, { SwitchTheme }] = Theme("landing", theme);
-  const [l, { SwitchLanguage }] = Locale("landing", locale);
+  const [, { SwitchTheme }] = useTheme("landing", theme);
+  const [l, { SwitchLanguage }] = useLocale("landing", locale);
 
   const onClick = () => SwitchTheme() && SwitchLanguage();
 
