@@ -5,7 +5,6 @@ import { ThemeContext } from "styled-components";
 import { copy } from "../../helpers";
 
 import { Container, Title, Code } from "../styles/Collection";
-
 import Value from "./Value/Value";
 
 export default function({
@@ -89,6 +88,7 @@ export default function({
             onChange={handler}
             style={{ textAlign: "left", textIndent: "0.2em" }}
             autoFocus={true}
+
             onKeyDown={(e: any) => {
               if (e.keyCode === 13) {
                 ref.current?.focus();

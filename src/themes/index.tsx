@@ -118,9 +118,7 @@ export const Themed = ({ children }: any) => {
     const deleted = Object.entries(newState[component] || {}).length;
     delete newState[component];
     _setThemes(newState);
-
     log(agent, `Removed "${component}" [-${deleted} entries]`, "info");
-
     return true;
   }
 
