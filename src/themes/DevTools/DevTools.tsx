@@ -1,8 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Collections, Icon } from "./styles/DevTools";
 import { ThemeContext } from "styled-components";
 
+import { Pin } from "styled-icons/entypo";
+
 import {
+  Palette,
   ChatBubble,
   Error,
   Warning,
@@ -40,6 +43,10 @@ export function DevTools() {
   );
 
   const Context = useContext(ThemeContext);
+
+  useEffect(() => {
+    Context.SetPinned(lock);
+  }, [lock]);
 
   const toggle = (state: any, ls: any, set: any, value = "1") => () => {
     if (!state) {
@@ -84,10 +91,13 @@ export function DevTools() {
       <div onClick={e => e.stopPropagation()}>
         <div className={"Header"}>
           <h1 onClick={() => Context.SwitchTheme("DevTools")}>
-            Theme: {Context.Name.substring(0, 1).toUpperCase()}
-            {Context.Name.substring(1).toLowerCase()}
+            <Palette size={32} /> Theme
           </h1>
           <p>
+            <span className={(!lock && "Damp") || "None"}>
+              <Pin onClick={toggle(lock, LS_LOCK, setLock)} size={16} />
+            </span>
+
             {Context.Themes.map((theme: string, index: number) => (
               <span
                 key={index}
