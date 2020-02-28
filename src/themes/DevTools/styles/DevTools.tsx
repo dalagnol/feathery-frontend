@@ -22,24 +22,31 @@ export const Container = styled.div<any>`
   box-shadow: 0px 0px 30px #00000044;
 
   transition: all 0.3s ease-in-out;
+  max-height: 100vh;
+  max-width: 100vw;
 
   .Header {
     position: sticky;
     top: 0;
 
+    ${({ lock }) => !lock && `margin-top: -35px;`}
+
     padding: 30px;
     background-color: #000000ee;
   }
 
-  ${({ lock }) =>
+  ${({ lock, mini }) =>
     !lock &&
     `
       opacity: 0.1;
-      transform: translateX(95%);
+      max-height: 50px;
+      max-width: 180px;
 
       &:hover {
         opacity: 0.8;
       }
+      ${!mini && "transform: translateX(90%);"}
+
   `}
 
   &:hover {
