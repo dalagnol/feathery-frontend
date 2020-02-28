@@ -15,6 +15,7 @@ export default function({
   initialOpen,
 }: any) {
   const [open, _setOpen] = useState(initialOpen);
+
   const [adding, setAdding] = useState(false);
   const { Set, Remove } = useContext(ThemeContext);
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider, ThemeContext } from "styled-components";
+import { ThemeProvider, ThemeContext } from "styled-components";
 import { Themes } from "./json";
 
 export * from "./useTheme";
@@ -7,6 +8,7 @@ export * from "./DevTools";
 export const Context = ThemeContext;
 
 const LS_HISTORY = "theme_devtools_history";
+
 
 const Host = styled.div<any>`
   transition: all 0.3s ease-in-out;
