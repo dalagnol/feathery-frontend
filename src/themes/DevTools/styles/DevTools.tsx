@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { Theme } from "themes/Theme.d";
 
-export const Palette: Theme = {
-  light: {},
-  dark: {},
-};
+export const Collections = styled.div<any>`
+  overflow-y: scroll;
+  transition: all 0.3s ease-in-out;
+  max-height: ${({ history }) =>
+    !history ? "calc(100vh - 220px)" : " calc(100vh - 360px)"};
+`;
 
 export const Container = styled.div<any>`
   font-size: 0.8em;
@@ -36,6 +37,9 @@ export const Container = styled.div<any>`
       opacity: 0.1;
       transform: translateX(95%);
 
+      &:hover {
+        opacity: 0.8;
+      }
   `}
 
   &:hover {
@@ -56,32 +60,48 @@ export const Container = styled.div<any>`
   }
 
   h2 {
-    text-indent: 1em;
+    text-indent: 0.5em;
+    cursor: pointer;
+  }
+
+  p {
+    * {
+      cursor: pointer;
+    }
   }
 
   span {
     margin: 0px 5px;
-    cursor: pointer;
 
     &.Damp {
       opacity: 0.4;
     }
   }
 
-  overflow-y: scroll;
+  overflow-y: hidden;
 
   .History {
     * {
       transition: all 0.3s ease-in-out;
     }
 
+    .Subheader {
+      display: flex;
+
+      p {
+        color: white;
+      }
+    }
+
+    background-color: #000000ee;
+
     h2 {
       background-color: #00000088;
-      margin: 0;
+      margin: 0px 5px;
       padding: 10px 0px;
     }
 
-    position: absolute;
+    position: fixed;
     bottom: 0px;
 
     width: 100%;
@@ -89,4 +109,47 @@ export const Container = styled.div<any>`
     max-height: 200px;
     overflow: hidden;
   }
+
+  * {
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+`;
+
+export const Icon = styled.button<any>`
+  background-color: #00000000;
+  border: none;
+
+  display: flex;
+  justify-content: flex-start;
+
+  color: white;
+
+  outline: none;
+
+  cursor: pointer;
+
+  ${({ active }) =>
+    !active &&
+    `
+      opacity: 0.5;
+    `}
+
+  &:hover {
+    ${({ active }) => !active && `opacity: 0.8;`}
+  }
+`;
+
+export const Input = styled.input`
+  background-color: #00000000;
+  border: none;
+
+  font: 1em Nanum Gothic;
+
+  outline: none;
+
+  min-width: 240px;
+
+  animation: slideDown 0.5s;
 `;

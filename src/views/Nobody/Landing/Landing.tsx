@@ -11,6 +11,8 @@ export function Landing() {
   const [, { SwitchTheme }] = useTheme("landing", theme);
   const [l, { SwitchLanguage }] = useLocale("landing", locale);
 
+  useTheme("test", { light: { test: "adimo" } });
+  
   const onClick = () => SwitchTheme() && SwitchLanguage();
 
   return (

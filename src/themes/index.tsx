@@ -1,32 +1,60 @@
-import React, { useState } from "react";
-import { ThemeProvider, ThemeContext } from "styled-components";
+import React, { useState, useEffect } from "react";
+import styled, { ThemeProvider, ThemeContext } from "styled-components";
 import { Themes } from "./json";
 
 export * from "./useTheme";
 export * from "./DevTools";
 export const Context = ThemeContext;
 
+const LS_HISTORY = "theme_devtools_history";
+
+const Host = styled.div<any>`
+  transition: all 0.3s ease-in-out;
+  ${({ pinned }) =>
+    pinned &&
+    `
+    margin-right: 300px;
+  `}
+`;
+
 class Event {
   public agent: string;
   public log: string;
+  public type: string;
   public timestamp: Date = new Date();
-  constructor(agent: string, log: string) {
+  constructor(agent: string, log: string, type = "none") {
     this.agent = agent;
     this.log = log;
+    this.type = type;
   }
 }
 
 export const Themed = ({ children }: any) => {
   const [Name, _setName] = useState(localStorage.getItem("theme") || "light");
   const [themes, _setThemes]: any = useState({});
-  const [History, _setHistory]: any = useState([]);
+  const [Pinned, SetPinned]: any = useState(false);
 
-  function log(agent: string, log: string) {
+  const [History, _setHistory]: any = useState(
+    JSON.parse(localStorage.getItem(LS_HISTORY)!) || []
+  );
+
+  function log(agent: string, log: string, type?: string) {
     _setHistory((current: any) => [
       ...current,
-      new Event(agent || "unknown", log),
+      new Event(agent || "unknown", log, type),
     ]);
+
+    const l = History.length - 50 > 0 ? History.length - 50 : 0;
+
+    localStorage.setItem(LS_HISTORY, JSON.stringify(History.slice(l)));
   }
+
+  useEffect(() => {
+    log("DevTools", "Initialised", "system");
+
+    return () => log("DevTools", "Shut down", "system");
+    // eslint-disable-next-line
+  }, []);
 
   function SetName(name: string, agent = "") {
     if (typeof agent !== "string") {
@@ -61,11 +89,21 @@ export const Themed = ({ children }: any) => {
   }
 
   function Add(component: string, config: any, agent = "") {
+    if (!config[Name]) {
+      config[Name] = { "Missing active palette": true };
+
+      log(agent, `Missing active palette "${Name}"`, "error");
+    }
+
     _setThemes((current: any) => ({ ...current, [component]: config[Name] }));
-    const amountOf = Object.entries(config).length;
+    const amountOf = Object.entries(config[Name]).length;
 
     if (agent !== "DevTools") {
-      log(agent, `${"Registered"} "${component}" ${`[+${amountOf} entries]`}`);
+      log(
+        agent,
+        `Registered "${component}" ${`[+${amountOf} entries]`}`,
+        "info"
+      );
     }
 
     return true;
@@ -80,9 +118,7 @@ export const Themed = ({ children }: any) => {
     const deleted = Object.entries(newState[component] || {}).length;
     delete newState[component];
     _setThemes(newState);
-
-    log(agent, `Removed component "${component}" [-${deleted} entries]`);
-
+    log(agent, `Removed "${component}" [-${deleted} entries]`, "info");
     return true;
   }
 
@@ -92,12 +128,30 @@ export const Themed = ({ children }: any) => {
     value: string,
     agent = "DevTools"
   ) {
-    _setThemes((current: any) => ({
-      ...current,
-      [component]: { ...current[component], [property]: value },
-    }));
+    if (value !== undefined) {
+      _setThemes((current: any) => ({
+        ...current,
+        [component]: { ...current[component], [property]: value },
+      }));
 
-    log(agent, `Set "${property}" to "${value}" in "${component}"`);
+      log(
+        agent,
+        `Set ${property} to "${value}" in <${component
+          .substring(0, 1)
+          .toUpperCase()}${component.slice(1).toLowerCase()} />`
+      );
+    } else {
+      const removal = { ...themes };
+      delete removal[component][property];
+      _setThemes(removal);
+
+      log(
+        agent,
+        `Deleted "${property}" off <${component
+          .substring(0, 1)
+          .toUpperCase()}${component.slice(1).toLowerCase()} />`
+      );
+    }
   }
 
   function ForComponent(component: string) {
@@ -111,22 +165,31 @@ export const Themed = ({ children }: any) => {
     };
   }
 
+  function ClearHistory() {
+    localStorage.removeItem(LS_HISTORY);
+    _setHistory([]);
+  }
+
   return (
-    <ThemeProvider
-      theme={{
-        Themes,
-        Name,
-        SetName,
-        SwitchTheme,
-        Add,
-        Remove,
-        Set,
-        History,
-        ForComponent,
-        ...themes,
-      }}
-    >
-      {children}
-    </ThemeProvider>
+    <Host pinned={Pinned}>
+      <ThemeProvider
+        theme={{
+          Themes,
+          Name,
+          SetName,
+          SwitchTheme,
+          Add,
+          Remove,
+          Set,
+          History,
+          ForComponent,
+          SetPinned,
+          ClearHistory,
+          ...themes,
+        }}
+      >
+        {children}
+      </ThemeProvider>
+    </Host>
   );
 };
