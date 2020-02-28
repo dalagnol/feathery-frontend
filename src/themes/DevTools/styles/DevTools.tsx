@@ -7,13 +7,6 @@ export const Collections = styled.div<any>`
     !history ? "calc(100vh - 220px)" : " calc(100vh - 360px)"};
 `;
 
-export const Collections = styled.div<any>`
-  overflow-y: scroll;
-  transition: all 0.3s ease-in-out;
-  max-height: ${({ history }) =>
-    !history ? "calc(100vh - 220px)" : " calc(100vh - 360px)"};
-`;
-
 export const Container = styled.div<any>`
   font-size: 0.8em;
 
@@ -69,7 +62,6 @@ export const Container = styled.div<any>`
   h2 {
     text-indent: 0.5em;
     cursor: pointer;
-
   }
 
   p {
@@ -147,4 +139,17 @@ export const Icon = styled.button<any>`
   &:hover {
     ${({ active }) => !active && `opacity: 0.8;`}
   }
+`;
+
+export const Input = styled.input`
+  background-color: #00000000;
+  border: none;
+
+  font: 1em Nanum Gothic;
+
+  outline: none;
+
+  min-width: 240px;
+
+  animation: slideDown 0.5s;
 `;

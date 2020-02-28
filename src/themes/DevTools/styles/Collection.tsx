@@ -97,3 +97,25 @@ export const Title = styled.h2<any>`
     font-size: 0.7em;
   }
 `;
+
+export const Code = styled.code`
+  color: white;
+  white-space: pre;
+
+  display: flex;
+  align-items: center;
+
+  font-family: monospace;
+
+  position: fixed;
+
+  background-color: #000000dd;
+
+  max-width: 300px;
+  width: 100%;
+  height: 100vh;
+  right: 0;
+  top: 0;
+
+  animation: fadeIn 0.3s;
+`;

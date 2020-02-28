@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Container, Collections, Icon } from "./styles/DevTools";
+import { Container, Collections, Icon, Input } from "./styles/DevTools";
 import { ThemeContext } from "styled-components";
 
-import { Pin } from "styled-icons/entypo";
+import { Pin, Trash } from "styled-icons/entypo";
 
 import {
+  Add,
   Palette,
   ChatBubble,
   Error,
-  Warning,
   FilterList as Filter,
   Info,
 } from "styled-icons/material";
@@ -19,13 +19,23 @@ import Collection from "./Collection/Collection";
 import History from "./History/History";
 
 const LS_LOCK = "theme_devtools_lock";
-const LS_HISTORY = "theme_devtools_history";
+const LS_HISTORY = "theme_devtools_display_history";
 const LS_FILTER = "theme_devtools_filter";
 const LS_SECTIONS = "theme_devtools_sections";
 
 export function DevTools() {
   const [lock, setLock] = useState(!!localStorage.getItem(LS_LOCK));
   const [history, setHistory] = useState(!!localStorage.getItem(LS_HISTORY));
+  const [context, setContext] = useState("");
+  const [adding, setAdding] = useState(false);
+
+  const handler = (e: any) => {
+    const {
+      target: { value },
+    } = e;
+
+    setContext(value);
+  };
 
   const [sections, _setSections]: any = useState(
     JSON.parse(localStorage.getItem(LS_SECTIONS)!) || []
@@ -46,6 +56,7 @@ export function DevTools() {
 
   useEffect(() => {
     Context.SetPinned(lock);
+    // eslint-disable-next-line
   }, [lock]);
 
   const toggle = (state: any, ls: any, set: any, value = "1") => () => {
@@ -97,7 +108,9 @@ export function DevTools() {
             <span className={(!lock && "Damp") || "None"}>
               <Pin onClick={toggle(lock, LS_LOCK, setLock)} size={16} />
             </span>
-
+            <span>
+              <Add onClick={() => setAdding(!adding)} size={16} />
+            </span>
             {Context.Themes.map((theme: string, index: number) => (
               <span
                 key={index}
@@ -108,6 +121,18 @@ export function DevTools() {
               </span>
             ))}
           </p>
+          {adding && (
+            <Input
+              autoFocus={true}
+              onChange={handler}
+              onKeyDown={(e: any) => {
+                if (e.keyCode === 13) {
+                  Context.Add(context.toLowerCase(), {}, "DevTools");
+                  setAdding(false);
+                }
+              }}
+            />
+          )}
           <hr />
         </div>
 
@@ -149,8 +174,13 @@ export function DevTools() {
             <Icon onClick={setFilter("error")} active={filter.error}>
               <Error size={24} />
             </Icon>
-            <Icon onClick={setFilter("warning")} active={filter.warning}>
-              <Warning size={24} />
+            <Icon
+              onClick={() => {
+                Context.ClearHistory();
+                setHistory(false);
+              }}
+            >
+              <Trash size={24} />
             </Icon>
             <Icon onClick={setFilter("filter")} active={filter.filter}>
               <Filter size={24} />

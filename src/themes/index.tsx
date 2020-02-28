@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider, ThemeContext } from "styled-components";
-import { ThemeProvider, ThemeContext } from "styled-components";
 import { Themes } from "./json";
 
 export * from "./useTheme";
@@ -8,7 +7,6 @@ export * from "./DevTools";
 export const Context = ThemeContext;
 
 const LS_HISTORY = "theme_devtools_history";
-
 
 const Host = styled.div<any>`
   transition: all 0.3s ease-in-out;
@@ -120,13 +118,7 @@ export const Themed = ({ children }: any) => {
     const deleted = Object.entries(newState[component] || {}).length;
     delete newState[component];
     _setThemes(newState);
-
-    log(
-      agent,
-      `Removed component "${component}" [-${deleted} entries]`,
-      "info"
-    );
-
+    log(agent, `Removed "${component}" [-${deleted} entries]`, "info");
     return true;
   }
 
@@ -173,6 +165,11 @@ export const Themed = ({ children }: any) => {
     };
   }
 
+  function ClearHistory() {
+    localStorage.removeItem(LS_HISTORY);
+    _setHistory([]);
+  }
+
   return (
     <Host pinned={Pinned}>
       <ThemeProvider
@@ -187,6 +184,7 @@ export const Themed = ({ children }: any) => {
           History,
           ForComponent,
           SetPinned,
+          ClearHistory,
           ...themes,
         }}
       >
