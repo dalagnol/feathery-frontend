@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import React, { useState, useEffect } from "react";
 import { palette } from "./Theme";
 import { ThemeProvider } from "styled-components";
 import { observer } from "mobx-react";
-import { C } from "./helpers";
+import { C, Load, Save } from "./helpers";
 import Log from "./Log";
 
 import { themes } from "./json";
@@ -10,12 +11,15 @@ import { themes } from "./json";
 import { Host } from "./styles";
 
 export * from "./useTheme";
+export * from "./DevTools/DevTools";
+
+const LS_DevTools = "theme_devtools";
 
 export const Themed = observer(({ children }: any) => {
   const [Themes, setThemes]: any = useState({});
-  const [DevTools, SetDevTools] = useState(false);
+  const [DevTools, SetDevTools] = useState(Load(LS_DevTools));
   const [Theme, setTheme] = useState<palette>(
-    (localStorage.getItem("theme") as palette) || themes[0]
+    (Load("theme") as palette) || themes[0]
   );
 
   const Use = (agent = "") => (name: palette) => {
@@ -97,6 +101,12 @@ export const Themed = observer(({ children }: any) => {
     return false;
   };
 
+  const ToggleDevTools = () => {
+    SetDevTools(!DevTools);
+
+    Save(LS_DevTools, !DevTools);
+  };
+
   const For = (agent: string) => ({
     Name: Theme,
     Use: Use(agent),
@@ -120,7 +130,8 @@ export const Themed = observer(({ children }: any) => {
           Add,
           Remove,
           Set,
-          SetDevTools,
+          DevTools,
+          ToggleDevTools,
           ClearHistory: Log.clear,
           For,
           ...Themes,

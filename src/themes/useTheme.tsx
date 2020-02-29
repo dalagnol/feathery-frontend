@@ -12,6 +12,8 @@ type ThemeHookReturn = {
 };
 
 export function useTheme(component: string, config: ITheme): ThemeHookReturn {
+  component = component.toLowerCase();
+
   const { For } = useContext(ThemeContext);
   const Theme = For(component);
 
@@ -19,6 +21,7 @@ export function useTheme(component: string, config: ITheme): ThemeHookReturn {
     Theme.Add(component, config);
 
     return () => Theme.Remove(component);
+    // eslint-disable-next-line
   }, [Theme.Name]);
 
   return Theme as ThemeHookReturn;
