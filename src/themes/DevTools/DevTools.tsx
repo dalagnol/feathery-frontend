@@ -18,12 +18,14 @@ import { Cogs } from "styled-icons/icomoon";
 import Collection from "./Collection/Collection";
 import History from "./History/History";
 
+const LS_MINI = "theme_devtools_mini";
 const LS_LOCK = "theme_devtools_lock";
 const LS_HISTORY = "theme_devtools_display_history";
 const LS_FILTER = "theme_devtools_filter";
 const LS_SECTIONS = "theme_devtools_sections";
 
 export function DevTools() {
+  const [mini, setMini] = useState(!!localStorage.getItem(LS_MINI));
   const [lock, setLock] = useState(!!localStorage.getItem(LS_LOCK));
   const [history, setHistory] = useState(!!localStorage.getItem(LS_HISTORY));
   const [context, setContext] = useState("");
@@ -98,30 +100,35 @@ export function DevTools() {
   );
 
   return (
-    <Container onClick={toggle(lock, LS_LOCK, setLock)} lock={lock}>
+    <Container lock={lock} mini={mini}>
       <div onClick={e => e.stopPropagation()}>
-        <div className={"Header"}>
-          <h1 onClick={() => Context.SwitchTheme("DevTools")}>
-            <Palette size={32} /> Theme
+        <div className={"Header"} onClick={toggle(mini, LS_MINI, setMini)}>
+          <h1
+            onClick={() => Context.SwitchTheme("DevTools")}
+            onDoubleClick={() => setLock(!lock)}
+          >
+            <Palette size={32} /> {lock ? "Theme" : Context.Name}
           </h1>
-          <p>
-            <span className={(!lock && "Damp") || "None"}>
-              <Pin onClick={toggle(lock, LS_LOCK, setLock)} size={16} />
-            </span>
-            <span>
-              <Add onClick={() => setAdding(!adding)} size={16} />
-            </span>
-            {Context.Themes.map((theme: string, index: number) => (
-              <span
-                key={index}
-                onClick={() => Context.SetName(theme, "DevTools")}
-                className={(theme !== Context.Name && "Damp") || "None"}
-              >
-                {theme}
+          {lock && (
+            <p>
+              <span className={(!lock && "Damp") || "None"}>
+                <Pin onClick={toggle(lock, LS_LOCK, setLock)} size={16} />
               </span>
-            ))}
-          </p>
-          {adding && (
+              <span>
+                <Add onClick={() => setAdding(!adding)} size={16} />
+              </span>
+              {Context.Themes.map((theme: string, index: number) => (
+                <span
+                  key={index}
+                  onClick={() => Context.SetName(theme, "DevTools")}
+                  className={(theme !== Context.Name && "Damp") || "None"}
+                >
+                  {theme}
+                </span>
+              ))}
+            </p>
+          )}
+          {lock && adding && (
             <Input
               autoFocus={true}
               onChange={handler}
@@ -136,61 +143,65 @@ export function DevTools() {
           <hr />
         </div>
 
-        <Collections history={history} className={"Collections"}>
-          {ContextEntries.map(
-            ([collection, variables]: [string, any], index: number) => (
-              <Collection
-                key={index}
-                initialOpen={
-                  ContextEntries.length < 5 ||
-                  sections.includes(
-                    `<${collection
-                      .substring(0, 1)
-                      .toUpperCase()}${collection
-                      .substring(1)
-                      .toLowerCase()} />`
-                  )
-                }
-                addSection={addSection}
-                removeSection={removeSection}
-                title={`${collection
-                  .substring(0, 1)
-                  .toUpperCase()}${collection.substring(1).toLowerCase()}`}
-                data={variables}
-              />
-            )
-          )}
-        </Collections>
+        {lock && (
+          <Collections history={history} className={"Collections"}>
+            {ContextEntries.map(
+              ([collection, variables]: [string, any], index: number) => (
+                <Collection
+                  key={index}
+                  initialOpen={
+                    ContextEntries.length < 5 ||
+                    sections.includes(
+                      `<${collection
+                        .substring(0, 1)
+                        .toUpperCase()}${collection
+                        .substring(1)
+                        .toLowerCase()} />`
+                    )
+                  }
+                  addSection={addSection}
+                  removeSection={removeSection}
+                  title={`${collection
+                    .substring(0, 1)
+                    .toUpperCase()}${collection.substring(1).toLowerCase()}`}
+                  data={variables}
+                />
+              )
+            )}
+          </Collections>
+        )}
 
-        <div className={"History"}>
-          <div className={"Subheader"}>
-            <h2 onClick={toggle(history, LS_HISTORY, setHistory)}>History</h2>
-            <Icon onClick={setFilter("none")} active={filter.none}>
-              <ChatBubble size={24} />
-            </Icon>
-            <Icon onClick={setFilter("info")} active={filter.info}>
-              <Info size={24} />
-            </Icon>
-            <Icon onClick={setFilter("error")} active={filter.error}>
-              <Error size={24} />
-            </Icon>
-            <Icon
-              onClick={() => {
-                Context.ClearHistory();
-                setHistory(false);
-              }}
-            >
-              <Trash size={24} />
-            </Icon>
-            <Icon onClick={setFilter("filter")} active={filter.filter}>
-              <Filter size={24} />
-            </Icon>
-            <Icon onClick={setFilter("system")} active={filter.system}>
-              <Cogs size={24} />
-            </Icon>
+        {lock && (
+          <div className={"History"}>
+            <div className={"Subheader"}>
+              <h2 onClick={toggle(history, LS_HISTORY, setHistory)}>History</h2>
+              <Icon onClick={setFilter("none")} active={filter.none}>
+                <ChatBubble size={24} />
+              </Icon>
+              <Icon onClick={setFilter("info")} active={filter.info}>
+                <Info size={24} />
+              </Icon>
+              <Icon onClick={setFilter("error")} active={filter.error}>
+                <Error size={24} />
+              </Icon>
+              <Icon
+                onClick={() => {
+                  Context.ClearHistory();
+                  setHistory(false);
+                }}
+              >
+                <Trash size={24} />
+              </Icon>
+              <Icon onClick={setFilter("filter")} active={filter.filter}>
+                <Filter size={24} />
+              </Icon>
+              <Icon onClick={setFilter("system")} active={filter.system}>
+                <Cogs size={24} />
+              </Icon>
+            </div>
+            <History sections={sections} filters={filter} open={history} />
           </div>
-          <History sections={sections} filters={filter} open={history} />
-        </div>
+        )}
       </div>
     </Container>
   );
