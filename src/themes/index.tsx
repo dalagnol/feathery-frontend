@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { palette } from "./Theme";
 import { ThemeProvider } from "styled-components";
 import { observer } from "mobx-react";
@@ -9,31 +9,43 @@ import { themes } from "./json";
 
 import { Host } from "./styles";
 
+export * from "./useTheme";
+
 export const Themed = observer(({ children }: any) => {
   const [Themes, setThemes]: any = useState({});
   const [DevTools, SetDevTools] = useState(false);
-  const [Theme, setTheme] = useState(
-    localStorage.getItem("theme") || themes[0]
+  const [Theme, setTheme] = useState<palette>(
+    (localStorage.getItem("theme") as palette) || themes[0]
   );
 
   const Use = (agent = "") => (name: palette) => {
     if (themes.includes(name)) {
       setTheme(name);
-      Log.system(agent, `Set theme to ${name}`);
+      localStorage.setItem("theme", name);
+      Log.system(agent, `Set palette to ${name}`);
+      return true;
     }
+
+    Log.error(agent, `Attempted to use a non-existing palette "${name}"`);
+    return false;
   };
 
   const Switch = (agent = "") => () => {
-    const current = Themes.indexOf(Theme);
+    const current = themes.indexOf(Theme);
     const name =
-      current === Themes.length - 1 ? Themes[0] : Themes[current + 1];
+      current === themes.length - 1 ? themes[0] : themes[current + 1];
     setTheme(name);
-    Log.system(agent, `Switched theme to ${current}`);
+    localStorage.setItem("theme", name);
+    Log.system(agent, `Switched palette to ${name}`);
+
+    return true;
   };
 
   const Add = (agent = "") => (name: string, config: any = {}) => {
-    if (!config[Theme]) {
-      Log.error(C(name), "Missing current palette");
+    if (Themes[name]) {
+      Log.warn(agent, `Overwrote theme "${name}"`);
+    } else {
+      Log.info(agent, `Added theme "${name}"`);
     }
 
     setThemes((currentThemes: any) => ({
@@ -41,15 +53,24 @@ export const Themed = observer(({ children }: any) => {
       [name]: config[Theme],
     }));
 
-    Log.info(agent, `Added context "${name}"`);
+    if (!config[Theme]) {
+      Log.error(C(name), "Missing current palette");
+    }
+    return true;
   };
 
   const Remove = (agent = "") => (name: string) => {
-    const newState = { ...Themes };
-    delete newState[name];
-    setThemes(newState);
+    if (Themes[name]) {
+      const newState = { ...Themes };
+      delete newState[name];
+      setThemes(newState);
 
-    Log.info(agent, `Removed context "${name}`);
+      Log.info(agent, `Removed theme "${name}`);
+      return true;
+    }
+
+    Log.error(agent, `Attempted to remove non-existing theme "${name}`);
+    return false;
   };
 
   const Set = (agent = "") => (
@@ -57,12 +78,27 @@ export const Themed = observer(({ children }: any) => {
     property: string,
     value: string
   ) => {
-    setThemes({ ...Themes, [theme]: { ...Themes[theme], [property]: value } });
+    if (Themes[theme]) {
+      setThemes({
+        ...Themes,
+        [theme]: { ...Themes[theme], [property]: value },
+      });
 
-    Log.system(agent, `Set ${property} to "${value}" in ${C(theme)}`);
+      Log.system(agent, `Set ${property} to "${value}" in ${C(theme)}`);
+      return true;
+    }
+
+    Log.system(
+      agent,
+      `Attempted to set ${property} to "${value}" in non-existing theme ${C(
+        theme
+      )}`
+    );
+    return false;
   };
 
-  const For = (agent: string) => ({
+  const Controller = (agent: string) => ({
+    Name: Theme,
     Use: Use(agent),
     Switch: Switch(agent),
     Add: Add(agent),
@@ -70,10 +106,15 @@ export const Themed = observer(({ children }: any) => {
     Set: Set(agent),
   });
 
+  useEffect(() => {
+    Log.DevTools = DevTools;
+  }, [DevTools]);
+
   return (
     <Host DevTools={DevTools}>
       <ThemeProvider
         theme={{
+          Name: Theme,
           Use,
           Switch,
           Add,
@@ -81,7 +122,7 @@ export const Themed = observer(({ children }: any) => {
           Set,
           SetDevTools,
           ClearHistory: Log.clear,
-          For,
+          Controller,
           ...Themes,
         }}
       >

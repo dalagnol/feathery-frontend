@@ -22,12 +22,16 @@ class Log {
   @observable private History: Array<Event> =
     JSON.parse(localStorage.getItem(LS)!) || [];
 
+  public DevTools = false;
+
   private log(agent: string, log: string, type: EventType) {
-    this.History.push(new Event(agent || "unknown", log, type));
+    if (this.DevTools) {
+      this.History.push(new Event(agent || "unknown", log, type));
 
-    const cut = this.History.length - 50 > 0 ? this.History.length - 50 : 0;
+      const cut = this.History.length - 50 > 0 ? this.History.length - 50 : 0;
 
-    localStorage.setItem(LS, JSON.stringify(this.History.slice(cut)));
+      localStorage.setItem(LS, JSON.stringify(this.History.slice(cut)));
+    }
   }
 
   info(agent: string, log: string) {

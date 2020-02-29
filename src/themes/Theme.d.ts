@@ -4,4 +4,6 @@ export interface ITheme {
   [x: palette]: any;
   light: any;
   dark: any;
+
+  $extensive?: boolean;
 }
