@@ -1,4 +1,3 @@
-import { Theme } from "themes/Theme.d";
 import { useEffect, createContext, useContext } from "react";
 import { Languages } from "./json";
 import engine from "./engine";
@@ -8,7 +7,7 @@ type LocaleContextType = {
   Lang: string;
   SetLanguage: (code: string) => void;
   SwitchLanguage: () => void;
-  Add: (component: string, config: Theme) => any;
+  Add: (component: string, config: any) => any;
   Remove: (component: string) => void;
 };
 

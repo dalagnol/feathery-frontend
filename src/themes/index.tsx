@@ -1,195 +1,92 @@
-import React, { useState, useEffect } from "react";
-import styled, { ThemeProvider, ThemeContext } from "styled-components";
-import { Themes } from "./json";
+import React, { useState } from "react";
+import { palette } from "./Theme";
+import { ThemeProvider } from "styled-components";
+import { observer } from "mobx-react";
+import { C } from "./helpers";
+import Log from "./Log";
 
-export * from "./useTheme";
-export * from "./DevTools";
-export const Context = ThemeContext;
+import { themes } from "./json";
 
-const LS_HISTORY = "theme_devtools_history";
+import { Host } from "./styles";
 
-const Host = styled.div<any>`
-  transition: all 0.3s ease-in-out;
-  ${({ pinned }) =>
-    pinned &&
-    `
-    margin-right: 300px;
-  `}
-`;
-
-class Event {
-  public agent: string;
-  public log: string;
-  public type: string;
-  public timestamp: Date = new Date();
-  constructor(agent: string, log: string, type = "none") {
-    this.agent = agent;
-    this.log = log;
-    this.type = type;
-  }
-}
-
-export const Themed = ({ children }: any) => {
-  const [Name, _setName] = useState(localStorage.getItem("theme") || "light");
-  const [themes, _setThemes]: any = useState({});
-  const [Pinned, SetPinned]: any = useState(false);
-
-  const [History, _setHistory]: any = useState(
-    JSON.parse(localStorage.getItem(LS_HISTORY)!) || []
+export const Themed = observer(({ children }: any) => {
+  const [Themes, setThemes]: any = useState({});
+  const [DevTools, SetDevTools] = useState(false);
+  const [Theme, setTheme] = useState(
+    localStorage.getItem("theme") || themes[0]
   );
 
-  function log(agent: string, log: string, type?: string) {
-    _setHistory((current: any) => [
-      ...current,
-      new Event(agent || "unknown", log, type),
-    ]);
-
-    const l = History.length - 50 > 0 ? History.length - 50 : 0;
-
-    localStorage.setItem(LS_HISTORY, JSON.stringify(History.slice(l)));
-  }
-
-  useEffect(() => {
-    log("DevTools", "Initialised", "system");
-
-    return () => log("DevTools", "Shut down", "system");
-    // eslint-disable-next-line
-  }, []);
-
-  function SetName(name: string, agent = "") {
-    if (typeof agent !== "string") {
-      agent = "";
+  const Use = (agent = "") => (name: palette) => {
+    if (themes.includes(name)) {
+      setTheme(name);
+      Log.system(agent, `Set theme to ${name}`);
     }
+  };
 
-    if (Themes.includes(name)) {
-      _setName(name);
-      localStorage.setItem("theme", name);
-
-      log(agent, `Set theme to ${name}`);
-
-      return true;
-    }
-
-    return false;
-  }
-
-  function SwitchTheme(agent = "") {
-    if (typeof agent !== "string") {
-      agent = "";
-    }
-
-    const current = Themes.indexOf(Name);
+  const Switch = (agent = "") => () => {
+    const current = Themes.indexOf(Theme);
     const name =
       current === Themes.length - 1 ? Themes[0] : Themes[current + 1];
-    _setName(name);
+    setTheme(name);
+    Log.system(agent, `Switched theme to ${current}`);
+  };
 
-    log(agent, `Switched theme to ${name}`);
-
-    return true;
-  }
-
-  function Add(component: string, config: any, agent = "") {
-    if (!config[Name]) {
-      config[Name] = { "Missing active palette": true };
-
-      log(agent, `Missing active palette "${Name}"`, "error");
+  const Add = (agent = "") => (name: string, config: any = {}) => {
+    if (!config[Theme]) {
+      Log.error(C(name), "Missing current palette");
     }
 
-    _setThemes((current: any) => ({ ...current, [component]: config[Name] }));
-    const amountOf = Object.entries(config[Name]).length;
+    setThemes((currentThemes: any) => ({
+      ...currentThemes,
+      [name]: config[Theme],
+    }));
 
-    if (agent !== "DevTools") {
-      log(
-        agent,
-        `Registered "${component}" ${`[+${amountOf} entries]`}`,
-        "info"
-      );
-    }
+    Log.info(agent, `Added context "${name}"`);
+  };
 
-    return true;
-  }
+  const Remove = (agent = "") => (name: string) => {
+    const newState = { ...Themes };
+    delete newState[name];
+    setThemes(newState);
 
-  function Remove(component: string, agent = "") {
-    if (!themes[component]) {
-      return false;
-    }
+    Log.info(agent, `Removed context "${name}`);
+  };
 
-    const newState: any = { ...themes };
-    const deleted = Object.entries(newState[component] || {}).length;
-    delete newState[component];
-    _setThemes(newState);
-    log(agent, `Removed "${component}" [-${deleted} entries]`, "info");
-    return true;
-  }
-
-  function Set(
-    component: string,
+  const Set = (agent = "") => (
+    theme: string,
     property: string,
-    value: string,
-    agent = "DevTools"
-  ) {
-    if (value !== undefined) {
-      _setThemes((current: any) => ({
-        ...current,
-        [component]: { ...current[component], [property]: value },
-      }));
+    value: string
+  ) => {
+    setThemes({ ...Themes, [theme]: { ...Themes[theme], [property]: value } });
 
-      log(
-        agent,
-        `Set ${property} to "${value}" in <${component
-          .substring(0, 1)
-          .toUpperCase()}${component.slice(1).toLowerCase()} />`
-      );
-    } else {
-      const removal = { ...themes };
-      delete removal[component][property];
-      _setThemes(removal);
+    Log.system(agent, `Set ${property} to "${value}" in ${C(theme)}`);
+  };
 
-      log(
-        agent,
-        `Deleted "${property}" off <${component
-          .substring(0, 1)
-          .toUpperCase()}${component.slice(1).toLowerCase()} />`
-      );
-    }
-  }
-
-  function ForComponent(component: string) {
-    return {
-      SetName: (name: string) => SetName(name, component),
-      SwitchTheme: () => SwitchTheme(component),
-      Add: (element: string, config: any) => Add(element, config, component),
-      Remove: (element: string) => Remove(element, component),
-      Set: (element: string, property: string, value: string) =>
-        Set(element, property, value, component),
-    };
-  }
-
-  function ClearHistory() {
-    localStorage.removeItem(LS_HISTORY);
-    _setHistory([]);
-  }
+  const For = (agent: string) => ({
+    Use: Use(agent),
+    Switch: Switch(agent),
+    Add: Add(agent),
+    Remove: Remove(agent),
+    Set: Set(agent),
+  });
 
   return (
-    <Host pinned={Pinned}>
+    <Host DevTools={DevTools}>
       <ThemeProvider
         theme={{
-          Themes,
-          Name,
-          SetName,
-          SwitchTheme,
+          Use,
+          Switch,
           Add,
           Remove,
           Set,
-          History,
-          ForComponent,
-          SetPinned,
-          ClearHistory,
-          ...themes,
+          SetDevTools,
+          ClearHistory: Log.clear,
+          For,
+          ...Themes,
         }}
       >
         {children}
       </ThemeProvider>
     </Host>
   );
-};
+});

@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme, DevTools } from "themes";
+// import { useTheme, DevTools } from "themes";
 import { useLocale } from "locale";
 
 import { Playground } from "./styles";
@@ -8,21 +8,16 @@ import { Square } from "./styles/Shapes";
 import { theme, locale } from "./json";
 
 export function Landing() {
-  const [, { SwitchTheme }] = useTheme("landing", theme);
-  const [l, { SwitchLanguage }] = useLocale("landing", locale);
-
-  useTheme("test", { light: { test: "adimo" } });
-
-  const onClick = () => SwitchTheme() && SwitchLanguage();
+  // useTheme("landing", theme);
+  const [l] = useLocale("landing", locale);
 
   return (
     <Playground>
-      <Square onClick={onClick}>
+      <Square>
         {l(
           "Notice how this is written naturally, and it still responds to language"
         )}
       </Square>
-      <DevTools />
     </Playground>
   );
 }
