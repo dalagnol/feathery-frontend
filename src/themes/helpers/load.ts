@@ -1,4 +1,9 @@
 export function Load(key: string, fallback?: any) {
   const data = localStorage.getItem(key)!;
-  return data?.includes("{") ? JSON.parse(data) : data || fallback;
+  try {
+    const attempt = JSON.parse(data);
+    return attempt === null ? fallback : attempt;
+  } catch (oof) {
+    return data;
+  }
 }

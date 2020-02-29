@@ -1,10 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Load, Save } from "../helpers";
 import { ThemeContext } from "styled-components";
+import { themes } from "../json";
 
-import { Container, Header, Title } from "./styles";
-import { Pin, Trash } from "styled-icons/entypo";
-import { Add, Palette } from "styled-icons/material";
+import {
+  Container,
+  Header,
+  Title,
+  Icons,
+  Names,
+  Options,
+  Pin,
+  Add,
+  Palette,
+  Input,
+} from "./styles";
 
 const LS = "theme_devtools_state";
 
@@ -18,7 +28,7 @@ export function DevTools() {
   const Theme = For("DevTools");
   const [Config, SetConfig] = useState(
     Load(LS, {
-      mini: true,
+      addingTheme: false,
     })
   );
 
@@ -36,22 +46,35 @@ export function DevTools() {
     Save(LS, State);
   };
 
-  useEffect(() => {
-    set("mini", !DevTools)();
-  }, [DevTools]);
-
   return (
-    <Container
-      onDoubleClick={ToggleDevTools}
-      mini={Config.mini}
-      open={DevTools}
-    >
-      <Header mini={Config.mini}>
+    <Container onDoubleClick={ToggleDevTools} open={DevTools}>
+      <Header>
         <Title onClick={Theme.Switch} onDoubleClick={set("mini", true)}>
-          <Palette size={48} /> {Theme.Name}
+          <Palette /> {Theme.Name}
         </Title>
-        {!Config.mini && (
+
+        {DevTools && (
           <>
+            <Options>
+              <Icons>
+                <Pin onClick={ToggleDevTools} />
+                <Add
+                  rotate={Config.addingTheme}
+                  onClick={toggle("addingTheme")}
+                />
+              </Icons>
+
+              <Names>
+                {themes.map((name: string, index: number) => (
+                  <p onClick={() => Theme.Use(name)} key={index}>
+                    {name}
+                  </p>
+                ))}
+              </Names>
+            </Options>
+
+            {Config.addingTheme && <Input autoFocus={true} />}
+
             <hr />
           </>
         )}
