@@ -97,7 +97,7 @@ export const Themed = observer(({ children }: any) => {
     return false;
   };
 
-  const Controller = (agent: string) => ({
+  const For = (agent: string) => ({
     Name: Theme,
     Use: Use(agent),
     Switch: Switch(agent),
@@ -122,7 +122,7 @@ export const Themed = observer(({ children }: any) => {
           Set,
           SetDevTools,
           ClearHistory: Log.clear,
-          Controller,
+          For,
           ...Themes,
         }}
       >

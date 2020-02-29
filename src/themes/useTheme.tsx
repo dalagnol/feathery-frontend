@@ -3,7 +3,7 @@ import { ThemeContext } from "styled-components";
 import { palette, ITheme } from "./Theme";
 
 type ThemeHookReturn = {
-  Theme: string;
+  Name: string;
   Use: (name: palette) => boolean;
   Switch: () => boolean;
   Add: (theme: string, config: any) => boolean;
@@ -12,8 +12,8 @@ type ThemeHookReturn = {
 };
 
 export function useTheme(component: string, config: ITheme): ThemeHookReturn {
-  const { Controller } = useContext(ThemeContext);
-  const Theme = Controller(component);
+  const { For } = useContext(ThemeContext);
+  const Theme = For(component);
 
   useEffect(() => {
     Theme.Add(component, config);
