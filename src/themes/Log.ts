@@ -1,4 +1,4 @@
-import { observable } from "mobx";
+import { observable, toJS } from "mobx";
 
 const LS = "theme_devtools_history";
 
@@ -51,7 +51,7 @@ class Log {
   }
 
   public get history() {
-    return this.History;
+    return toJS(this.History);
   }
 
   public clear() {

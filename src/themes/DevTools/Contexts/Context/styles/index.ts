@@ -8,6 +8,9 @@ export const Container = styled.div<Props>`
   max-height: ${({ open }) => (open ? "500px" : "50px")};
   overflow: hidden;
 
+  margin: ${({ open }) => open && "10px 0px"};
+  transform: ${({ open }) => open && "scale(0.99, 0.99)"};
+
   > header {
     h1 {
       ${({ open }) => open && `margin-left: 10px;`}
@@ -56,6 +59,8 @@ export const Header = styled.header`
 
 export const List = styled.div<Props>`
   height: auto;
+
+  padding: 0px 10px;
 
   background-color: #00000044;
 `;

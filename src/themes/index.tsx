@@ -158,6 +158,7 @@ export const Themed = observer(({ children }: any) => {
           Unset,
           DevTools,
           ToggleDevTools,
+          History: Log.history,
           ClearHistory: Log.clear,
           For,
           ...Themes,

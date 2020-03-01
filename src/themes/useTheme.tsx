@@ -12,8 +12,6 @@ type ThemeHookReturn = {
 };
 
 export function useTheme(component: string, config: ITheme): ThemeHookReturn {
-  component = component.toLowerCase();
-
   const { For } = useContext(ThemeContext);
   const Theme = For(component);
 

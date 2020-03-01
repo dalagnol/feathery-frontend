@@ -16,13 +16,9 @@ import {
 import { Pin, Add, Palette } from "./styles/icons";
 
 import Contexts from "./Contexts/Contexts";
+import History from "./History/History";
 
 const LS = "theme_devtools_state";
-
-type config = {
-  [x: string]: any;
-  mini: boolean;
-};
 
 export function DevTools() {
   const { Name, DevTools, ToggleDevTools, For } = useContext(ThemeContext);
@@ -30,6 +26,7 @@ export function DevTools() {
   const [Config, SetConfig] = useState(
     Load(LS, {
       addingTheme: false,
+      history: true,
     })
   );
 
@@ -93,9 +90,15 @@ export function DevTools() {
       </Header>
 
       {DevTools && (
-        <div>
-          <Contexts />
-        </div>
+        <>
+          <div>
+            <Contexts history={Config.history} />
+          </div>
+
+          <div>
+            <History open={Config.history} toggle={toggle("history")} />
+          </div>
+        </>
       )}
     </Container>
   );

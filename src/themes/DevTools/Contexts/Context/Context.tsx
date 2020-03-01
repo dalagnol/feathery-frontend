@@ -39,6 +39,7 @@ export default function Context({ name, data }: Props) {
     if (data) {
       setAddingProperty(false);
     }
+    // eslint-disable-next-line
   }, [Themes]);
 
   return (
