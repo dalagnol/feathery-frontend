@@ -101,6 +101,30 @@ export const Themed = observer(({ children }: any) => {
     return false;
   };
 
+  const Unset = (agent = "") => (theme: string, property: string) => {
+    if (Themes[theme]) {
+      if (Themes[theme][property]) {
+        const newState = { ...Themes };
+        delete newState[theme][property];
+        setThemes(newState);
+
+        Log.system(agent, `Unset ${property} off ${C(theme)}`);
+        return true;
+      }
+
+      Log.system(
+        agent,
+        `Attempted to unset non-existing ${property} off ${C(theme)}`
+      );
+    }
+
+    Log.system(
+      agent,
+      `Attempted to unset ${property} off non-existing theme ${C(theme)}`
+    );
+    return false;
+  };
+
   const ToggleDevTools = () => {
     SetDevTools(!DevTools);
 
@@ -114,6 +138,7 @@ export const Themed = observer(({ children }: any) => {
     Add: Add(agent),
     Remove: Remove(agent),
     Set: Set(agent),
+    Unset: Unset(agent),
   });
 
   useEffect(() => {
@@ -130,6 +155,7 @@ export const Themed = observer(({ children }: any) => {
           Add,
           Remove,
           Set,
+          Unset,
           DevTools,
           ToggleDevTools,
           ClearHistory: Log.clear,

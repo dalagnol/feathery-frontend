@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Load, Save } from "../helpers";
 import { ThemeContext } from "styled-components";
 import { themes } from "../json";
@@ -10,11 +10,12 @@ import {
   Icons,
   Names,
   Options,
-  Pin,
-  Add,
-  Palette,
   Input,
 } from "./styles";
+
+import { Pin, Add, Palette } from "./styles/icons";
+
+import Contexts from "./Contexts/Contexts";
 
 const LS = "theme_devtools_state";
 
@@ -24,7 +25,7 @@ type config = {
 };
 
 export function DevTools() {
-  const { DevTools, ToggleDevTools, For } = useContext(ThemeContext);
+  const { Name, DevTools, ToggleDevTools, For } = useContext(ThemeContext);
   const Theme = For("DevTools");
   const [Config, SetConfig] = useState(
     Load(LS, {
@@ -44,6 +45,13 @@ export function DevTools() {
     SetConfig(State);
 
     Save(LS, State);
+  };
+
+  const handler = (e: any) => {
+    if (e.keyCode === 13) {
+      Theme.Add(e.target.value, {});
+      set("addingTheme", false)();
+    }
   };
 
   return (
@@ -66,19 +74,29 @@ export function DevTools() {
 
               <Names>
                 {themes.map((name: string, index: number) => (
-                  <p onClick={() => Theme.Use(name)} key={index}>
+                  <p
+                    onClick={() => Theme.Use(name)}
+                    key={index}
+                    className={String(Name !== name && "Damp")}
+                  >
                     {name}
                   </p>
                 ))}
               </Names>
             </Options>
 
-            {Config.addingTheme && <Input autoFocus={true} />}
+            {Config.addingTheme && <Input onKeyUp={handler} autoFocus={true} />}
 
             <hr />
           </>
         )}
       </Header>
+
+      {DevTools && (
+        <>
+          <Contexts />
+        </>
+      )}
     </Container>
   );
 }

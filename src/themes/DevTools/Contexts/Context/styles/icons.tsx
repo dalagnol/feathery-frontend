@@ -1,0 +1,31 @@
+import React from "react";
+import { CodeCurly, TrashAlt, Plus } from "styled-icons/boxicons-regular";
+
+export const Add = (props: any) => (
+  <Plus
+    {...props}
+    size={24}
+    style={{
+      animation: "slideLeft 0.5s",
+      transform: props.rotate && "rotate(45deg)",
+    }}
+  />
+);
+
+export const Export = () => (
+  <CodeCurly
+    size={24}
+    style={{
+      animation: "slideLeft 1s",
+    }}
+  />
+);
+
+export const Delete = () => (
+  <TrashAlt
+    size={24}
+    style={{
+      animation: "slideLeft 1.5s",
+    }}
+  />
+);

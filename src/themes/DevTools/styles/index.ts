@@ -1,15 +1,17 @@
-import React from "react";
 import styled from "styled-components";
 import "styles/animations";
-import * as Entypo from "styled-icons/entypo";
-import * as Material from "styled-icons/material";
 
 interface Props {
   open?: boolean;
 }
 
 export const Container = styled.aside<Props>`
-  transition: all 0.3s ease-in-out;
+  &,
+  * {
+    transition: all 0.3s ease-in-out;
+    color: white;
+  }
+
   background-color: #00000044;
 
   position: fixed;
@@ -26,7 +28,7 @@ export const Container = styled.aside<Props>`
     max-height: ${!open ? "60px" : "100vh"};
     max-width: ${open ? "300px" : "180px"};
 
-    header {
+    > header {
       padding: ${open ? "10px 40px" : "0px 30px"};
 
       ${!open && "margin: -20px;"}
@@ -35,8 +37,6 @@ export const Container = styled.aside<Props>`
 `;
 
 export const Header = styled.header<Props>`
-  color: white;
-
   hr {
     border: 0;
     height: 1px;
@@ -64,6 +64,10 @@ export const Names = styled.div`
   p {
     margin: 0px 10px;
     cursor: pointer;
+
+    &.Damp {
+      opacity: 0.5;
+    }
   }
 `;
 
@@ -73,33 +77,24 @@ export const Title = styled.h1<Props>`
   ${({ open }) => !open && `font-size: 2em;`}
 `;
 
-export const Pin = (props: any) => <Entypo.Pin {...props} size={24} />;
-export const Add = (props: any) => (
-  <Material.Add
-    style={{
-      transition: "all 0.3s ease-in-out",
-      transform: props.rotate ? "rotate(45deg)" : "rotate(0deg)",
-    }}
-    {...props}
-    size={24}
-  />
-);
-export const Palette = (props: any) => (
-  <Material.Palette {...props} size={48} />
-);
-
-export const Input = styled.input`
+export const Input = styled.input<any>`
   background-color: #00000000;
   border: none;
-
-  color: white;
-  padding: 10px;
 
   font: 1em Nanum Gothic;
 
   outline: none;
 
+  ${({ align }) =>
+    !align &&
+    `
+    padding: 10px;
+
   min-width: 240px;
 
+  `}
+
   animation: slideDown 0.5s;
+
+  text-align: ${({ align }) => align || "left"};
 `;
