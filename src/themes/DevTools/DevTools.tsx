@@ -1,105 +1,81 @@
-import React, { useState, useContext } from "react";
+import React, { useState, createContext, useContext } from "react";
 import { Load, Save } from "../helpers";
 import { ThemeContext } from "styled-components";
 import { themes } from "../json";
 
-import {
-  Container,
-  Header,
-  Title,
-  Icons,
-  Names,
-  Options,
-  Input,
-} from "./styles";
+import { Container } from "./styles";
 
-import { Pin, Add, Palette } from "./styles/icons";
-
+import Header from "./Header/Header";
 import Contexts from "./Contexts/Contexts";
 import History from "./History/History";
 
 const LS = "theme_devtools_state";
 
+export const Config = createContext(
+  Load(LS, {
+    addingTheme: false,
+    history: true,
+    contexts: {},
+    filter: {
+      SYSTEM: true,
+      INFO: false,
+      ERROR: false,
+      WARNING: false,
+      FILTER: false,
+    },
+    code: "",
+  })
+);
+
 export function DevTools() {
   const { Name, DevTools, ToggleDevTools, For } = useContext(ThemeContext);
   const Theme = For("DevTools");
-  const [Config, SetConfig] = useState(
+  const [ConfigState, SetConfigState] = useState(
     Load(LS, {
       addingTheme: false,
       history: true,
+      contexts: {},
+      filter: {
+        SYSTEM: true,
+        INFO: false,
+        ERROR: false,
+        WARNING: false,
+        FILTER: false,
+      },
+      code: "",
     })
   );
 
   const set = (state: string, value: boolean) => () => {
-    const State = { ...Config, [state]: value };
-    SetConfig(State);
+    const State = { ...ConfigState, [state]: value };
+    SetConfigState(State);
 
     Save(LS, State);
   };
 
   const toggle = (state: string) => () => {
-    const State = { ...Config, [state]: !Config[state] };
-    SetConfig(State);
+    const State = { ...ConfigState, [state]: !ConfigState[state] };
+    SetConfigState(State);
 
     Save(LS, State);
   };
 
-  const handler = (e: any) => {
-    if (e.keyCode === 13) {
-      Theme.Add(e.target.value, {});
-      set("addingTheme", false)();
-    }
-  };
-
   return (
-    <Container open={DevTools}>
-      <Header>
-        <Title onClick={Theme.Switch} onDoubleClick={ToggleDevTools}>
-          <Palette /> {Theme.Name}
-        </Title>
-
+    <Config.Provider value={{ ...Config, set, toggle }}>
+      <Container open={DevTools}>
+        <Header />
         {DevTools && (
           <>
-            <Options>
-              <Icons>
-                <Pin onClick={ToggleDevTools} />
-                <Add
-                  rotate={Config.addingTheme}
-                  onClick={toggle("addingTheme")}
-                />
-              </Icons>
+            <div>
+              <Contexts history={ConfigState.history} />
+            </div>
 
-              <Names>
-                {themes.map((name: string, index: number) => (
-                  <p
-                    onClick={() => Theme.Use(name)}
-                    key={index}
-                    className={String(Name !== name && "Damp")}
-                  >
-                    {name}
-                  </p>
-                ))}
-              </Names>
-            </Options>
-
-            {Config.addingTheme && <Input onKeyUp={handler} autoFocus={true} />}
-
-            <hr />
+            <div>
+              <History open={ConfigState.history} toggle={toggle("history")} />
+            </div>
           </>
         )}
-      </Header>
-
-      {DevTools && (
-        <>
-          <div>
-            <Contexts history={Config.history} />
-          </div>
-
-          <div>
-            <History open={Config.history} toggle={toggle("history")} />
-          </div>
-        </>
-      )}
-    </Container>
+      </Container>
+    </Config.Provider>
   );
 }
