@@ -9,18 +9,6 @@ import { theme, locale } from "./json";
 
 export function Landing() {
   const Theme = useTheme("Landing", theme);
-  useTheme("a", theme);
-  useTheme("b", theme);
-  useTheme("c", theme);
-  useTheme("d", theme);
-  useTheme("e", theme);
-  useTheme("f", theme);
-  useTheme("h", theme);
-  useTheme("i", theme);
-  useTheme("j", theme);
-  useTheme("k", theme);
-  useTheme("l", theme);
-  useTheme("m", theme);
   const [l] = useLocale("Landing", locale);
 
   return (

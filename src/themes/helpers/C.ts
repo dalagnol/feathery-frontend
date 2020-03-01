@@ -1,2 +1,3 @@
 import { U } from "./U";
-export const C = (contextName: string) => `<${U(contextName)} />`;
+export const C = (contextName: string) =>
+  contextName === "DevTools" ? "DevTools" : `<${U(contextName)} />`;
