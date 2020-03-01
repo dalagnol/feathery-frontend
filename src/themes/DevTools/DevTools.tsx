@@ -1,7 +1,6 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import { Load, Save } from "../helpers";
 import { ThemeContext } from "styled-components";
-import { themes } from "../json";
 
 import { Container } from "./styles";
 
@@ -28,8 +27,7 @@ export const Config = createContext(
 );
 
 export function DevTools() {
-  const { Name, DevTools, ToggleDevTools, For } = useContext(ThemeContext);
-  const Theme = For("DevTools");
+  const { DevTools, Themes } = useContext(ThemeContext);
   const [ConfigState, SetConfigState] = useState(
     Load(LS, {
       addingTheme: false,
@@ -49,19 +47,62 @@ export function DevTools() {
   const set = (state: string, value: boolean) => () => {
     const State = { ...ConfigState, [state]: value };
     SetConfigState(State);
-
-    Save(LS, State);
   };
 
   const toggle = (state: string) => () => {
     const State = { ...ConfigState, [state]: !ConfigState[state] };
     SetConfigState(State);
-
-    Save(LS, State);
   };
 
+  const toggleContextValue = (
+    name: string,
+    property: string,
+    value?: boolean
+  ) => () => {
+    const State = {
+      ...ConfigState,
+      contexts: {
+        ...ConfigState.contexts,
+        [name]: {
+          ...ConfigState.contexts[name],
+          [property]:
+            typeof value !== "undefined"
+              ? value
+              : !ConfigState.contexts[name][property],
+        },
+      },
+    };
+
+    SetConfigState(State);
+  };
+
+  useEffect(() => {
+    const newState: any = {};
+
+    Object.keys(Themes).forEach((context: string) => {
+      if (ConfigState.contexts[context]) {
+        newState[context] = { ...ConfigState.contexts[context] };
+      } else {
+        newState[context] = {
+          open: false,
+          addingProperty: false,
+        };
+      }
+    });
+
+    SetConfigState({ ...ConfigState, contexts: newState });
+  }, [Themes]);
+
+  if (ConfigState) {
+    Save(LS, ConfigState);
+  }
+
+  console.log(ConfigState.contexts);
+
   return (
-    <Config.Provider value={{ ...Config, set, toggle }}>
+    <Config.Provider
+      value={{ ...ConfigState, set, toggle, toggleContextValue }}
+    >
       <Container open={DevTools}>
         <Header />
         {DevTools && (

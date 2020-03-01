@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { ThemeContext } from "styled-components";
+import { Config as Configuration } from "../../DevTools";
 import { U, copy } from "../../../helpers";
 
 import { Container, Header, List, Code } from "./styles";
@@ -23,32 +24,27 @@ function Title({ children }: any) {
 }
 
 export default function Context({ name, data }: Props) {
-  const [open, setOpen] = useState(!data);
-  const [addingProperty, setAddingProperty] = useState(!data);
+  const Config = useContext(Configuration);
   const [code, setCode] = useState("");
-  const { Themes, For } = useContext(ThemeContext);
+  const { For } = useContext(ThemeContext);
   const { Remove } = For("DevTools");
 
   const toggleAddingProperty = (e: any) => {
     e.stopPropagation();
 
-    setAddingProperty(!addingProperty);
+    Config.toggleContextValue(name, "addingProperty")();
   };
 
-  useEffect(() => {
-    if (data) {
-      setAddingProperty(false);
-    }
-    // eslint-disable-next-line
-  }, [Themes]);
-
   return (
-    <Container open={open}>
-      <Header onClick={() => setOpen(!open)}>
+    <Container open={Config.contexts[name]?.open}>
+      <Header onClick={Config.toggleContextValue(name, "open")}>
         <Title>{name}</Title>
-        {open && (
+        {Config.contexts[name]?.open && (
           <div onClick={e => e.stopPropagation()}>
-            <Add rotate={addingProperty} onClick={toggleAddingProperty} />
+            <Add
+              rotate={Config.contexts[name]?.addingProperty}
+              onClick={toggleAddingProperty}
+            />
             <Export
               onClick={() => copy(JSON.stringify(data, null, 2))}
               onDoubleClick={() => setCode(JSON.stringify(data, null, 2))}
@@ -58,7 +54,7 @@ export default function Context({ name, data }: Props) {
         )}
       </Header>
 
-      {open && (
+      {Config.contexts[name]?.open && (
         <List>
           {data &&
             Object.entries(
@@ -66,7 +62,7 @@ export default function Context({ name, data }: Props) {
             ).map(([key, value]: [string, any], index: number) => (
               <Property key={index} context={name} name={key} value={value} />
             ))}
-          {addingProperty && <Property context={name} />}
+          {Config.contexts[name]?.addingProperty && <Property context={name} />}
         </List>
       )}
       {code && (
