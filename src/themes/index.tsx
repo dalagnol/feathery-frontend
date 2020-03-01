@@ -23,6 +23,8 @@ export const Themed = observer(({ children }: any) => {
   );
 
   const Use = (agent = "") => (name: palette) => {
+    name = name.toLowerCase() as palette;
+
     if (themes.includes(name)) {
       setTheme(name);
       localStorage.setItem("theme", name);
@@ -46,6 +48,8 @@ export const Themed = observer(({ children }: any) => {
   };
 
   const Add = (agent = "") => (name: string, config: any = {}) => {
+    name = name.toLowerCase();
+
     if (Themes[name]) {
       Log.warn(agent, `Overwrote theme "${name}"`);
     } else {
@@ -64,17 +68,14 @@ export const Themed = observer(({ children }: any) => {
   };
 
   const Remove = (agent = "") => (name: string) => {
-    if (Themes[name]) {
-      const newState = { ...Themes };
-      delete newState[name];
-      setThemes(newState);
+    name = name.toLowerCase();
 
-      Log.info(agent, `Removed theme "${name}`);
-      return true;
-    }
+    const newState = { ...Themes };
+    delete newState[name];
+    setThemes(newState);
 
-    Log.error(agent, `Attempted to remove non-existing theme "${name}`);
-    return false;
+    Log.info(agent, `Removed theme "${name}`);
+    return true;
   };
 
   const Set = (agent = "") => (
@@ -82,26 +83,24 @@ export const Themed = observer(({ children }: any) => {
     property: string,
     value: string
   ) => {
-    if (Themes[theme]) {
-      setThemes({
-        ...Themes,
-        [theme]: { ...Themes[theme], [property]: value },
-      });
+    theme = theme.toLowerCase();
 
-      Log.system(agent, `Set ${property} to "${value}" in ${C(theme)}`);
-      return true;
+    if (!Themes[theme]) {
+      Log.warn(agent, `Created theme ${C(theme)}`);
     }
 
-    Log.system(
-      agent,
-      `Attempted to set ${property} to "${value}" in non-existing theme ${C(
-        theme
-      )}`
-    );
-    return false;
+    setThemes({
+      ...Themes,
+      [theme]: { ...Themes[theme], [property]: value },
+    });
+
+    Log.system(agent, `Set ${property} to "${value}" in ${C(theme)}`);
+    return true;
   };
 
   const Unset = (agent = "") => (theme: string, property: string) => {
+    theme = theme.toLowerCase();
+
     if (Themes[theme]) {
       if (Themes[theme][property]) {
         const newState = { ...Themes };

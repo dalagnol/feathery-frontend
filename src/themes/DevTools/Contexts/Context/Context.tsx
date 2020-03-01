@@ -23,8 +23,8 @@ function Title({ children }: any) {
 }
 
 export default function Context({ name, data }: Props) {
-  const [open, setOpen] = useState(false);
-  const [addingProperty, setAddingProperty] = useState(false);
+  const [open, setOpen] = useState(!data);
+  const [addingProperty, setAddingProperty] = useState(!data);
   const [code, setCode] = useState("");
   const { Themes, For } = useContext(ThemeContext);
   const { Remove } = For("DevTools");
@@ -36,7 +36,9 @@ export default function Context({ name, data }: Props) {
   };
 
   useEffect(() => {
-    setAddingProperty(false);
+    if (data) {
+      setAddingProperty(false);
+    }
   }, [Themes]);
 
   return (
@@ -57,11 +59,12 @@ export default function Context({ name, data }: Props) {
 
       {open && (
         <List>
-          {Object.entries(data).map(
-            ([key, value]: [string, any], index: number) => (
+          {data &&
+            Object.entries(
+              data
+            ).map(([key, value]: [string, any], index: number) => (
               <Property key={index} context={name} name={key} value={value} />
-            )
-          )}
+            ))}
           {addingProperty && <Property context={name} />}
         </List>
       )}

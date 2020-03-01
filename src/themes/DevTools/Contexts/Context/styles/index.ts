@@ -13,6 +13,8 @@ export const Container = styled.div<Props>`
       ${({ open }) => open && `margin-left: 10px;`}
     }
   }
+
+  animation: slideDown 1s;
 `;
 
 export const Header = styled.header`

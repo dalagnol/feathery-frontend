@@ -23,7 +23,7 @@ export default function Property({ context, name, value }: Props) {
       if (e.target.name === "key") {
         val.current?.focus();
       } else {
-        Set(context, key.current?.value, val.current?.value);
+        Set(context, key.current?.value || name, val.current?.value);
       }
     }
   };
@@ -36,11 +36,28 @@ export default function Property({ context, name, value }: Props) {
             <Delete onClick={() => Unset(context, name, value)} />
             <label>{name}</label>
           </>
-        )) || <Input ref={key} autoFocus={true} onKeyUp={handler} name="key" />}
+        )) || (
+          <Input
+            ref={key}
+            defaultValue={name}
+            autoFocus={true}
+            onKeyUp={handler}
+            name="key"
+          />
+        )}
       </div>
       <div>
         {(!editing && (
-          <p onDoubleClick={() => setEditing(true)}>{value}</p>
+          <p
+            onDoubleClick={() => {
+              setEditing(true);
+              setTimeout(() => {
+                val.current?.focus();
+              }, 200);
+            }}
+          >
+            {value}
+          </p>
         )) || (
           <Input
             autoFocus={!key}
