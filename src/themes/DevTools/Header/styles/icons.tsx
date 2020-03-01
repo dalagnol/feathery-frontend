@@ -10,7 +10,7 @@ export const Add = (props: any) => (
       transition: "all 0.3s ease-in-out",
       transform: props.rotate ? "rotate(45deg)" : "rotate(0deg)",
     }}
-    {...props}
+    onClick={props.onClick}
     size={24}
   />
 );

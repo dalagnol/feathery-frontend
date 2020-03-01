@@ -91,13 +91,12 @@ export function DevTools() {
     });
 
     SetConfigState({ ...ConfigState, contexts: newState });
+    // eslint-disable-next-line
   }, [Themes]);
 
   if (ConfigState) {
     Save(LS, ConfigState);
   }
-
-  console.log(ConfigState.contexts);
 
   return (
     <Config.Provider

@@ -3,11 +3,11 @@ import { CodeCurly, TrashAlt, Plus } from "styled-icons/boxicons-regular";
 
 export const Add = (props: any) => (
   <Plus
-    {...props}
+    onClick={props.onClick}
     size={24}
     style={{
       animation: "slideLeft 0.5s",
-      transform: props.rotate && "rotate(45deg)",
+      transform: props.rotate ? "rotate(45deg)" : "rotate(0deg)",
     }}
   />
 );

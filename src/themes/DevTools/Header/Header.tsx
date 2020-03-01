@@ -39,7 +39,7 @@ export default function Header() {
             <Icons>
               <Pin onClick={ToggleDevTools} />
               <Add
-                rotate={Config.addingTheme}
+                rotate={Config.addingTheme || undefined}
                 onClick={Config.toggle("addingTheme")}
               />
             </Icons>
