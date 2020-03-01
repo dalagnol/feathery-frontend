@@ -22,11 +22,13 @@ export const Options = styled.div`
   justify-content: space-between;
   align-items: flex-start;
 `;
+
 export const Icons = styled.div`
   * {
     cursor: pointer;
   }
 `;
+
 export const Names = styled.div`
   display: flex;
   p {
@@ -56,10 +58,8 @@ export const Input = styled.input<any>`
   ${({ align }) =>
     !align &&
     `
-    padding: 10px;
-
-  min-width: 240px;
-
+      padding: 10px;
+      min-width: 240px;
   `}
 
   animation: slideDown 0.5s;
