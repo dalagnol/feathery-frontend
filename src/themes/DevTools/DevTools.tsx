@@ -2,7 +2,7 @@ import React, { useState, useEffect, createContext, useContext } from "react";
 import { Load, Save } from "../helpers";
 import { ThemeContext } from "styled-components";
 
-import { Container } from "./styles";
+import { Container, Code } from "./styles";
 
 import Header from "./Header/Header";
 import Contexts from "./Contexts/Contexts";
@@ -44,22 +44,18 @@ export function DevTools() {
     })
   );
 
-  const set = (state: string, value: boolean) => () => {
-    const State = { ...ConfigState, [state]: value };
-    SetConfigState(State);
-  };
+  const set = (state: string, value: boolean | string) => () =>
+    SetConfigState({ ...ConfigState, [state]: value });
 
-  const toggle = (state: string) => () => {
-    const State = { ...ConfigState, [state]: !ConfigState[state] };
-    SetConfigState(State);
-  };
+  const toggle = (state: string) => () =>
+    SetConfigState({ ...ConfigState, [state]: !ConfigState[state] });
 
   const toggleContextValue = (
     name: string,
     property: string,
     value?: boolean
-  ) => () => {
-    const State = {
+  ) => () =>
+    SetConfigState({
       ...ConfigState,
       contexts: {
         ...ConfigState.contexts,
@@ -71,10 +67,13 @@ export function DevTools() {
               : !ConfigState.contexts[name][property],
         },
       },
-    };
+    });
 
-    SetConfigState(State);
-  };
+  const toggleFilter = (name: string) => () =>
+    SetConfigState({
+      ...ConfigState,
+      filter: { ...ConfigState.filter, [name]: !ConfigState.filter[name] },
+    });
 
   useEffect(() => {
     const newState: any = {};
@@ -100,7 +99,7 @@ export function DevTools() {
 
   return (
     <Config.Provider
-      value={{ ...ConfigState, set, toggle, toggleContextValue }}
+      value={{ ...ConfigState, set, toggle, toggleContextValue, toggleFilter }}
     >
       <Container open={DevTools}>
         <Header />
@@ -116,6 +115,12 @@ export function DevTools() {
           </>
         )}
       </Container>
+
+      {ConfigState.code && (
+        <Code onDoubleClick={set("code", "")}>
+          <p>{ConfigState.code}</p>
+        </Code>
+      )}
     </Config.Provider>
   );
 }

@@ -24,7 +24,7 @@ function Title({ children }: any) {
 }
 
 export default function Context({ name, data }: Props) {
-  const { contexts, toggleContextValue } = useContext(Configuration);
+  const { contexts, toggleContextValue, set } = useContext(Configuration);
   const { For } = useContext(ThemeContext);
   const { Remove } = For("DevTools");
 
@@ -42,7 +42,10 @@ export default function Context({ name, data }: Props) {
         {open && (
           <div onClick={e => e.stopPropagation()}>
             <Add rotate={addingProperty} onClick={toggle("addingProperty")} />
-            <Export onClick={() => copy(data)} onDoubleClick={() => data} />
+            <Export
+              onClick={() => copy(data)}
+              onDoubleClick={set("code", JSON.stringify(data, null, 2))}
+            />
             <Delete onClick={() => Remove(name)} />
           </div>
         )}

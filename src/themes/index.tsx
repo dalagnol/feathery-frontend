@@ -74,7 +74,7 @@ export const Themed = observer(({ children }: any) => {
     delete newState[name];
     setThemes(newState);
 
-    Log.info(agent, `Removed theme "${name}`);
+    Log.info(agent, `Removed theme "${name}"`);
     return true;
   };
 
