@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
+import { Config as Configuration } from "../DevTools";
 import { ThemeContext } from "styled-components";
 import { themes } from "../../json";
+import "../../interfaces/keyboardMap.d";
 
 import {
   Header as Element,
@@ -13,19 +15,18 @@ import {
 
 import { Pin, Add, Palette } from "./styles/icons";
 
-import { Config as ConfigurationContext } from "../DevTools";
+const actions: keyboardActionsMap<{ 13: Function }> = {
+  13: (e: any, Theme: any, Config: any) =>
+    Theme.Add(e.target.value, {}) && Config.set("addingTheme", false)(),
+};
 
 export default function Header() {
-  const Config = useContext(ConfigurationContext);
+  const Config = useContext(Configuration);
   const { DevTools, ToggleDevTools, For } = useContext(ThemeContext);
   const Theme = For("DevTools");
 
-  const handler = (e: any) => {
-    if (e.keyCode === 13) {
-      Theme.Add(e.target.value, {});
-      Config.set("addingTheme", false)();
-    }
-  };
+  const handler = (e: any) =>
+    actions[e.keyCode] && actions[e.keyCode](e, Theme, Config);
 
   return (
     <Element>
