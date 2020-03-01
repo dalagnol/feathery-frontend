@@ -21,8 +21,6 @@ export default function History({ open, toggle }: any) {
     })
   );
 
-  console.log(History);
-
   const set = (name: string) => () => {
     const State = { ...filters, [name]: !filters[name] };
     setFilters(State);
