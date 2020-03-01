@@ -22,8 +22,9 @@ export const Export = (props: any) => (
   />
 );
 
-export const Delete = () => (
+export const Delete = (props: any) => (
   <TrashAlt
+    {...props}
     size={24}
     style={{
       animation: "slideLeft 1.5s",

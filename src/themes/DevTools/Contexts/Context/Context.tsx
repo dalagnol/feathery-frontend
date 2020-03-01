@@ -26,7 +26,8 @@ export default function Context({ name, data }: Props) {
   const [open, setOpen] = useState(false);
   const [addingProperty, setAddingProperty] = useState(false);
   const [code, setCode] = useState("");
-  const { Themes } = useContext(ThemeContext);
+  const { Themes, For } = useContext(ThemeContext);
+  const { Remove } = For("DevTools");
 
   const toggleAddingProperty = (e: any) => {
     e.stopPropagation();
@@ -49,7 +50,7 @@ export default function Context({ name, data }: Props) {
               onClick={() => copy(JSON.stringify(data, null, 2))}
               onDoubleClick={() => setCode(JSON.stringify(data, null, 2))}
             />
-            <Delete />
+            <Delete onClick={() => Remove(name)} />
           </div>
         )}
       </Header>
