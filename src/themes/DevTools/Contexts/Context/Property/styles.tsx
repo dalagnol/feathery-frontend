@@ -22,6 +22,10 @@ export const Container = styled.div`
     *:not(input) {
       margin: 0px 2px;
     }
+
+    p {
+      margin-right: 25px;
+    }
   }
 `;
 

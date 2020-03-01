@@ -55,9 +55,9 @@ export function DevTools() {
   };
 
   return (
-    <Container onDoubleClick={ToggleDevTools} open={DevTools}>
+    <Container open={DevTools}>
       <Header>
-        <Title onClick={Theme.Switch} onDoubleClick={set("mini", true)}>
+        <Title onClick={Theme.Switch} onDoubleClick={ToggleDevTools}>
           <Palette /> {Theme.Name}
         </Title>
 
@@ -93,9 +93,9 @@ export function DevTools() {
       </Header>
 
       {DevTools && (
-        <>
+        <div>
           <Contexts />
-        </>
+        </div>
       )}
     </Container>
   );

@@ -150,6 +150,7 @@ export const Themed = observer(({ children }: any) => {
       <ThemeProvider
         theme={{
           Name: Theme,
+          Themes,
           Use,
           Switch,
           Add,

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "styled-components";
 import { U } from "../../../helpers";
 
 import { Container, Header, List } from "./styles";
@@ -24,12 +25,17 @@ function Title({ children }: any) {
 export default function Context({ name, data }: Props) {
   const [open, setOpen] = useState(false);
   const [addingProperty, setAddingProperty] = useState(false);
+  const { Themes } = useContext(ThemeContext);
 
   const toggleAddingProperty = (e: any) => {
     e.stopPropagation();
 
     setAddingProperty(!addingProperty);
   };
+
+  useEffect(() => {
+    setAddingProperty(false);
+  }, [Themes]);
 
   return (
     <Container open={open}>
@@ -51,6 +57,7 @@ export default function Context({ name, data }: Props) {
               <Property key={index} context={name} name={key} value={value} />
             )
           )}
+          {addingProperty && <Property context={name} />}
         </List>
       )}
     </Container>

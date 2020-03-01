@@ -11,20 +11,19 @@ interface Props {
 
 export default function Property({ context, name, value }: Props) {
   const { For } = useContext(ThemeContext);
-  const { Unset } = For("DevTools");
+  const { Set, Unset } = For("DevTools");
 
-  const ref: any = useRef(null);
+  const key: any = useRef(null);
+  const val: any = useRef(null);
 
-  const [editing, setEditing] = useState(true);
+  const [editing, setEditing] = useState(!name);
 
-  const handler = (name: string) => (e: any) => {
-    const {
-      target: { value },
-    } = e;
-
+  const handler = (e: any) => {
     if (e.keyCode === 13) {
-      if (name === "key") {
+      if (e.target.name === "key") {
+        val.current?.focus();
       } else {
+        Set(context, key.current?.value, val.current?.value);
       }
     }
   };
@@ -35,11 +34,24 @@ export default function Property({ context, name, value }: Props) {
         {(name && (
           <>
             <Delete onClick={() => Unset(context, name, value)} />
-            <p>{name}</p>{" "}
+            <label>{name}</label>
           </>
-        )) || <Input />}
+        )) || <Input ref={key} autoFocus={true} onKeyUp={handler} name="key" />}
       </div>
-      <div>{(!editing && <p>{value}</p>) || <Input align={"right"} />}</div>
+      <div>
+        {(!editing && (
+          <p onDoubleClick={() => setEditing(true)}>{value}</p>
+        )) || (
+          <Input
+            autoFocus={!key}
+            ref={val}
+            defaultValue={value}
+            onKeyUp={handler}
+            name="value"
+            align={"right"}
+          />
+        )}
+      </div>
     </Container>
   );
 }
