@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ThemeContext } from "styled-components";
-import { U } from "../../../helpers";
+import { U, copy } from "../../../helpers";
 
-import { Container, Header, List } from "./styles";
+import { Container, Header, List, Code } from "./styles";
 import { Add, Delete, Export } from "./styles/icons";
 
 import Property from "./Property/Property";
@@ -25,6 +25,7 @@ function Title({ children }: any) {
 export default function Context({ name, data }: Props) {
   const [open, setOpen] = useState(false);
   const [addingProperty, setAddingProperty] = useState(false);
+  const [code, setCode] = useState("");
   const { Themes } = useContext(ThemeContext);
 
   const toggleAddingProperty = (e: any) => {
@@ -42,9 +43,12 @@ export default function Context({ name, data }: Props) {
       <Header onClick={() => setOpen(!open)}>
         <Title>{name}</Title>
         {open && (
-          <div>
+          <div onClick={e => e.stopPropagation()}>
             <Add rotate={addingProperty} onClick={toggleAddingProperty} />
-            <Export />
+            <Export
+              onClick={() => copy(JSON.stringify(data, null, 2))}
+              onDoubleClick={() => setCode(JSON.stringify(data, null, 2))}
+            />
             <Delete />
           </div>
         )}
@@ -59,6 +63,11 @@ export default function Context({ name, data }: Props) {
           )}
           {addingProperty && <Property context={name} />}
         </List>
+      )}
+      {code && (
+        <Code onDoubleClick={() => setCode("")}>
+          <p>{code}</p>
+        </Code>
       )}
     </Container>
   );

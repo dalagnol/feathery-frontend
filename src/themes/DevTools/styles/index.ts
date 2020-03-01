@@ -34,6 +34,12 @@ export const Container = styled.aside<Props>`
       ${!open && "margin: -20px;"}
     }
   `}
+
+  * {
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 export const Header = styled.header<Props>`

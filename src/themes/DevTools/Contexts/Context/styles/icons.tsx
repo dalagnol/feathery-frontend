@@ -12,8 +12,9 @@ export const Add = (props: any) => (
   />
 );
 
-export const Export = () => (
+export const Export = (props: any) => (
   <CodeCurly
+    {...props}
     size={24}
     style={{
       animation: "slideLeft 1s",
