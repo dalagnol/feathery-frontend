@@ -8,12 +8,12 @@ import { Square } from "./styles/Shapes";
 import { theme, locale } from "./json";
 
 export function Landing() {
-  const Theme = useTheme("Landing", theme);
+  useTheme("Landing", theme);
   const [l] = useLocale("Landing", locale);
 
   return (
     <Playground>
-      <Square onClick={Theme.Switch}>
+      <Square>
         {l(
           "Notice how this is written naturally, and it still responds to language"
         )}
