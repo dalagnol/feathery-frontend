@@ -29,6 +29,23 @@ export const Container = styled.div<any>`
 export const Header = styled.header`
   position: sticky;
   top: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 290px;
+
+  > div {
+    * {
+      margin: 0px 4px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1 !important;
+      }
+    }
+  }
 `;
 
 export const Title = styled.h2`

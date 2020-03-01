@@ -159,7 +159,9 @@ export const Themed = observer(({ children }: any) => {
           DevTools,
           ToggleDevTools,
           History: Log.history,
-          ClearHistory: Log.clear,
+          ClearHistory: function() {
+            Log.clear();
+          },
           For,
           ...Themes,
         }}

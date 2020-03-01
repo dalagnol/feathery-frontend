@@ -1,4 +1,5 @@
 import { observable, toJS } from "mobx";
+import { Load } from "./helpers";
 
 const LS = "theme_devtools_history";
 
@@ -19,8 +20,7 @@ class Event {
 }
 
 class Log {
-  @observable private History: Array<Event> =
-    JSON.parse(localStorage.getItem(LS)!) || [];
+  @observable private History: Array<Event> = Load(LS, []);
 
   public DevTools = false;
 
