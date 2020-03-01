@@ -24,6 +24,9 @@ export default function Property({ context, name, value }: Props) {
         val.current?.focus();
       } else {
         Set(context, key.current?.value || name, val.current?.value);
+        key.current.value = "";
+        val.current.value = "";
+        key.current.focus();
       }
     }
   };
