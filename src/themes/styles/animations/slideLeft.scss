@@ -1,0 +1,11 @@
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+    z-index: 10000;
+  }
+
+  100% {
+    transform: translateX(0);
+    z-index: 10000;
+  }
+}

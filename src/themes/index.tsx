@@ -9,6 +9,8 @@ import Log from "./Log";
 import { themes } from "./json";
 
 import { Host } from "./styles";
+import "./styles/fonts.scss";
+import "./styles/animations";
 
 export * from "./useTheme";
 export * from "./DevTools/DevTools";
@@ -29,6 +31,7 @@ export const Themed = observer(({ children }: any) => {
       setTheme(name);
       localStorage.setItem("theme", name);
       Log.system(agent, `Set palette to ${name}`);
+
       return true;
     }
 
@@ -58,7 +61,7 @@ export const Themed = observer(({ children }: any) => {
 
     setThemes((currentThemes: any) => ({
       ...currentThemes,
-      [name]: config[Theme],
+      [name]: config[Theme]
     }));
 
     if (!config[Theme]) {
@@ -91,7 +94,7 @@ export const Themed = observer(({ children }: any) => {
 
     setThemes({
       ...Themes,
-      [theme]: { ...Themes[theme], [property]: value },
+      [theme]: { ...Themes[theme], [property]: value }
     });
 
     Log.system(agent, `Set ${property} to "${value}" in ${C(theme)}`);
@@ -137,12 +140,20 @@ export const Themed = observer(({ children }: any) => {
     Add: Add(agent),
     Remove: Remove(agent),
     Set: Set(agent),
-    Unset: Unset(agent),
+    Unset: Unset(agent)
   });
 
   useEffect(() => {
     Log.DevTools = DevTools;
   }, [DevTools]);
+
+  useEffect(() => {
+    if (Theme === "dark") {
+      document.body.style.backgroundColor = "black";
+    } else {
+      document.body.style.backgroundColor = "white";
+    }
+  }, [Theme]);
 
   return (
     <Host DevTools={DevTools}>
@@ -163,7 +174,7 @@ export const Themed = observer(({ children }: any) => {
             Log.clear();
           },
           For,
-          ...Themes,
+          ...Themes
         }}
       >
         {children}

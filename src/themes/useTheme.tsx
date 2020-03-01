@@ -9,18 +9,26 @@ type ThemeHookReturn = {
   Add: (theme: string, config: any) => boolean;
   Remove: (theme: string) => boolean;
   Set: (theme: string, property: string, value: string) => boolean;
+  Themes: any;
 };
 
-export function useTheme(component: string, config: ITheme): ThemeHookReturn {
-  const { For } = useContext(ThemeContext);
+export function useTheme(component: string, config?: ITheme): ThemeHookReturn {
+  component = component.toLowerCase();
+
+  const { Themes, For } = useContext(ThemeContext);
   const Theme = For(component);
 
   useEffect(() => {
-    Theme.Add(component, config);
+    if (!Themes[component]) {
+      Theme.Add(component, config || {});
+    }
 
     return () => Theme.Remove(component);
     // eslint-disable-next-line
   }, [Theme.Name]);
 
-  return Theme as ThemeHookReturn;
+  return {
+    ...Theme,
+    Themes
+  } as ThemeHookReturn;
 }
