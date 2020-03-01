@@ -1,30 +1,55 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "styled-components";
+import { Config as Configuration } from "../DevTools";
 
-import { Container } from "../styles/History";
+import { Container, Header, Title } from "./styles";
+import { Info, Error, System, Warning, Clear, Filter } from "./styles/icons";
 
 import Event from "./Event/Event";
 
-export default function History({ open, sections, filters }: any) {
-  const { History } = useContext(ThemeContext);
+export default function History({ open, toggle }: any) {
+  const { History, ClearHistory } = useContext(ThemeContext);
+  const { toggleFilter, filter, contexts } = useContext(Configuration);
+
+  const clearHistory = () => {
+    ClearHistory();
+    toggle();
+  };
 
   const Logs = History.filter(
     (log: any) =>
-      (filters[log.type] ||
-        Object.entries(filters).every(
-          (one: any) => ["filter", "system"].includes(one[0]) || !one[1]
-        )) &&
-      (!filters.filter ||
-        sections.includes(log.agent) || !log.agent.includes("<")) &&
-      (filters.system || log.type !== "system")
+      (Object.values(filter)
+        .slice(0, 3)
+        .every((filter: any) => !filter) ||
+        filter[log.type]) &&
+      (!filter.FILTER || contexts[log.agent.toLowerCase()]?.open)
   );
+
+  const props: any = {};
+  ["SYSTEM", "INFO", "ERROR", "WARNING", "FILTER"].forEach((key: string) => {
+    props[key] = {
+      active: filter[key],
+      onClick: toggleFilter(key),
+    };
+  });
 
   return (
     <Container open={open}>
+      <Header>
+        <Title onClick={toggle}>History</Title>
+        <div>
+          <System {...props["SYSTEM"]} />
+          <Info {...props["INFO"]} />
+          <Error {...props["ERROR"]} />
+          <Warning {...props["WARNING"]} />
+          <Filter {...props["FILTER"]} />
+          <Clear onClick={clearHistory} />
+        </div>
+      </Header>
+
       {Logs.reverse().map((log: any, index: number) => (
         <Event key={index} {...log} />
       ))}
-      <div style={{ width: "100%", height: "60px" }}></div>
     </Container>
   );
 }
