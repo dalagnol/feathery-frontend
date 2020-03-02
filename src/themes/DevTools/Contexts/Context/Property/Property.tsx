@@ -21,11 +21,15 @@ const keyActions: {
 const valActions: {
   [x: number]: Function;
 } = {
-  13: ({ Set, context, key, val, name }: any) => {
+  13: ({ Set, context, key, val, name, setEditing }: any) => {
     Set(context, key.current?.value || name, val.current?.value);
-    key.current.value = "";
-    val.current.value = "";
-    key.current.focus();
+    try {
+      key.current.value = "";
+      val.current.value = "";
+      key.current.focus();
+    } catch (oof) {
+      setEditing(false);
+    }
   },
   27: ({ toggleContextValue, context }: any) =>
     toggleContextValue(context, "addingProperty", false)(),

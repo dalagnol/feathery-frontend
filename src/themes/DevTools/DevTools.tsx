@@ -1,4 +1,12 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  useCallback,
+  useMemo
+} from "react";
+
 import { Load, Save } from "../helpers";
 import { ThemeContext } from "styled-components";
 
@@ -20,9 +28,9 @@ export const Config = createContext(
       INFO: false,
       ERROR: false,
       WARNING: false,
-      FILTER: false,
+      FILTER: false
     },
-    code: "",
+    code: ""
   })
 );
 
@@ -38,64 +46,77 @@ export function DevTools() {
         INFO: false,
         ERROR: false,
         WARNING: false,
-        FILTER: false,
+        FILTER: false
       },
-      code: "",
+      code: ""
     })
   );
 
-  const set = (state: string, value: boolean | string) => () =>
-    SetConfigState({ ...ConfigState, [state]: value });
+  const set = useCallback(
+    (state: string, value: boolean | string) => () =>
+      SetConfigState({ ...ConfigState, [state]: value }),
+    [ConfigState]
+  );
 
-  const toggle = (state: string) => () =>
-    SetConfigState({ ...ConfigState, [state]: !ConfigState[state] });
+  const toggle = useCallback(
+    (state: string) => () =>
+      SetConfigState({ ...ConfigState, [state]: !ConfigState[state] }),
+    [ConfigState]
+  );
 
-  const toggleContextValue = (
-    name: string,
-    property: string,
-    value?: boolean
-  ) => () =>
-    SetConfigState({
-      ...ConfigState,
-      contexts: {
-        ...ConfigState.contexts,
-        [name]: {
-          ...ConfigState.contexts[name],
-          [property]:
-            typeof value !== "undefined"
-              ? value
-              : !ConfigState.contexts[name][property],
-        },
-      },
-    });
+  const toggleContextValue = useCallback(
+    (name: string, property: string, value?: boolean) => () =>
+      SetConfigState({
+        ...ConfigState,
+        contexts: {
+          ...ConfigState.contexts,
+          [name]: {
+            ...ConfigState.contexts[name],
+            [property]:
+              typeof value !== "undefined"
+                ? value
+                : !ConfigState.contexts[name][property]
+          }
+        }
+      }),
+    [ConfigState]
+  );
 
-  const toggleFilter = (name: string) => () =>
-    SetConfigState({
-      ...ConfigState,
-      filter: { ...ConfigState.filter, [name]: !ConfigState.filter[name] },
-    });
+  const toggleFilter = useCallback(
+    (name: string) => () =>
+      SetConfigState({
+        ...ConfigState,
+        filter: { ...ConfigState.filter, [name]: !ConfigState.filter[name] }
+      }),
+    [ConfigState]
+  );
 
-  useEffect(() => {
-    const newState: any = {};
+  useEffect(
+    useCallback(() => {
+      const newState: any = {};
 
-    Object.keys(Themes).forEach((context: string) => {
-      if (ConfigState.contexts[context]) {
-        newState[context] = { ...ConfigState.contexts[context] };
-      } else {
-        newState[context] = {
-          open: false,
-          addingProperty: false,
-        };
-      }
-    });
+      Object.entries(Themes).forEach(([context, variables]: [string, any]) => {
+        if (ConfigState.contexts[context]) {
+          newState[context] = { ...ConfigState.contexts[context] };
+        } else {
+          newState[context] = {
+            open: !Object.entries(variables || {}).length,
+            addingProperty: !Object.entries(variables || {}).length
+          };
+        }
+      });
 
-    SetConfigState({ ...ConfigState, contexts: newState });
-    // eslint-disable-next-line
-  }, [Themes]);
+      SetConfigState({ ...ConfigState, contexts: newState });
+      // eslint-disable-next-line
+    }, [Themes, ConfigState]),
+    [Themes]
+  );
 
-  if (ConfigState) {
-    Save(LS, ConfigState);
-  }
+  useMemo(() => {
+    if (ConfigState) {
+      Save(LS, ConfigState);
+    }
+  }, [ConfigState]);
 
   return (
     <Config.Provider

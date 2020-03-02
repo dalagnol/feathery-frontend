@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useCallback } from "react";
 import { ThemeContext } from "styled-components";
 import { Config as Configuration } from "../../DevTools";
 import { U, copy, map } from "../../../helpers";
@@ -33,17 +33,19 @@ export default function Context({ name, data }: Props) {
     toggleContextValue(name, property)();
   };
 
+  const clipboard = useCallback(() => copy(data), [data]);
+
   const { open, addingProperty } = (contexts && contexts[name]) || {};
 
   return (
-    <Container open={open}>
+    <Container name={name} open={open}>
       <Header onClick={toggle("open")}>
         <Title>{name}</Title>
         {open && (
           <div onClick={e => e.stopPropagation()}>
             <Add rotate={addingProperty} onClick={toggle("addingProperty")} />
             <Export
-              onClick={() => copy(data)}
+              onClick={clipboard}
               onDoubleClick={set("code", JSON.stringify(data, null, 2))}
             />
             <Delete onClick={() => Remove(name)} />
@@ -54,7 +56,7 @@ export default function Context({ name, data }: Props) {
       {open && (
         <List>
           {map(data, (params: any) => (
-            <Property {...params} />
+            <Property context={name} {...params} />
           ))}
           {addingProperty && <Property context={name} />}
         </List>

@@ -1,5 +1,4 @@
 import React from "react";
-import "styles/animations";
 import * as Entypo from "styled-icons/entypo";
 import * as Material from "styled-icons/material";
 
@@ -8,7 +7,7 @@ export const Add = (props: any) => (
   <Material.Add
     style={{
       transition: "all 0.3s ease-in-out",
-      transform: props.rotate ? "rotate(45deg)" : "rotate(0deg)",
+      transform: props.rotate ? "rotate(45deg)" : "rotate(0deg)"
     }}
     onClick={props.onClick}
     size={24}

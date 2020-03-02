@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface Props {
   open?: boolean;
+  name?: string;
 }
 
 export const Container = styled.div<Props>`
@@ -14,6 +15,8 @@ export const Container = styled.div<Props>`
   > header {
     h1 {
       ${({ open }) => open && `margin-left: 10px;`}
+      ${({ open, name }) =>
+        open && name && name.length > 20 && `font-size: 1.2em;`}
     }
   }
 

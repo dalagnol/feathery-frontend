@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import "styles/animations";
 
 interface Props {
   open?: boolean;
@@ -22,7 +21,7 @@ export const Container = styled.aside<Props>`
   width: 300px;
   max-height: 100vh;
 
-  font-family: Nanum Gothic;
+  font: 0.7em Nanum Gothic;
 
   ${({ open }) => `
     max-height: ${!open ? "60px" : "100vh"};
@@ -40,6 +39,8 @@ export const Container = styled.aside<Props>`
       display: none;
     }
   }
+
+  border-left: dashed 1px #ffffff22;
 `;
 
 export const Code = styled.code`

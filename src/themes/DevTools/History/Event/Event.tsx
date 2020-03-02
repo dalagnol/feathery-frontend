@@ -1,9 +1,7 @@
 import React from "react";
 import moment from "moment";
 import styled from "styled-components";
-import "styles/animations";
 import { Container } from "./styles";
-import { C } from "../../../helpers";
 
 const Log = styled.p<any>`
   color: ${({ type }) =>
@@ -23,7 +21,7 @@ export default function Event({ agent, log, timestamp, type }: any) {
     <Container>
       <Log type={type}>{log}</Log>
       <div>
-        <span>{C(agent)}</span>
+        <span>{agent}</span>
         <b>{moment().valueOf() - moment(timestamp).valueOf()}ms ago</b>
       </div>
     </Container>

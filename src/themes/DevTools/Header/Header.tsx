@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useMemo, useContext } from "react";
 import { Config as Configuration } from "../DevTools";
 import { ThemeContext } from "styled-components";
 import { themes } from "../../json";
@@ -25,8 +25,22 @@ export default function Header() {
   const { DevTools, ToggleDevTools, For } = useContext(ThemeContext);
   const Theme = For("DevTools");
 
-  const handler = (e: any) =>
-    actions[e.keyCode] && actions[e.keyCode](e, Theme, Config);
+  const handler = useCallback(
+    (e: any) => actions[e.keyCode] && actions[e.keyCode](e, Theme, Config),
+    [Theme, Config]
+  );
+
+  const names = useMemo(() => {
+    return themes.map((name: string, index: number) => (
+      <p
+        onClick={() => Theme.Use(name)}
+        key={index}
+        className={String(Theme.Name !== name && "Damp")}
+      >
+        {name}
+      </p>
+    ));
+  }, [Theme]);
 
   return (
     <Element>
@@ -45,17 +59,7 @@ export default function Header() {
               />
             </Icons>
 
-            <Names>
-              {themes.map((name: string, index: number) => (
-                <p
-                  onClick={() => Theme.Use(name)}
-                  key={index}
-                  className={String(Theme.Name !== name && "Damp")}
-                >
-                  {name}
-                </p>
-              ))}
-            </Names>
+            <Names>{names}</Names>
           </Options>
 
           {Config.addingTheme && <Input onKeyUp={handler} autoFocus={true} />}
