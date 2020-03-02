@@ -29,15 +29,14 @@ export const Themed = observer(({ children }: any) => {
 
       if (themes.includes(name)) {
         setTheme(name);
-
         localStorage.setItem("theme", name);
-
         Log.system(agent, `Set palette to ${name}`);
 
         return true;
       }
 
       Log.error(agent, `Attempted to use a non-existing palette "${name}"`);
+
       return false;
     },
     []
@@ -49,11 +48,9 @@ export const Themed = observer(({ children }: any) => {
       const name =
         current === themes.length - 1 ? themes[0] : themes[current + 1];
 
-      localStorage.setItem("theme", name);
-
-      Log.system(agent, `Switched palette to ${name}`);
-
       setTheme(name);
+      localStorage.setItem("theme", name);
+      Log.system(agent, `Switched palette to ${name}`);
 
       return true;
     },
@@ -126,6 +123,7 @@ export const Themed = observer(({ children }: any) => {
           setThemes(newState);
 
           Log.system(agent, `Unset ${property} off ${C(theme)}`);
+
           return true;
         }
 

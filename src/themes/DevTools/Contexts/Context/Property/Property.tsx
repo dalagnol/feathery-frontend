@@ -44,9 +44,9 @@ const keyActions: {
         .trim()
         .replace(/;/g, "");
       valActions[13](params);
+    } else {
+      val.current?.focus();
     }
-
-    val.current?.focus();
   },
   27: ({ toggleContextValue, context }: any) =>
     toggleContextValue(context, "addingProperty", false)(),
