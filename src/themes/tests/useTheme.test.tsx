@@ -2,20 +2,16 @@ import React from "react";
 import { Themed, useTheme } from "../index";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
+import { act } from "react-dom/test-utils";
 
-beforeAll(() => {
-  const store: any = {};
-
-  spyOn(localStorage, "getItem").and.callFake((key: string) =>
-    store[key] !== undefined ? store[key] : null
-  );
-  spyOn(localStorage, "setItem").and.callFake(
-    (key: string, value: any) => (store[key] = value)
-  );
-  spyOn(localStorage, "removeItem").and.callFake(
-    (key: string) => delete store[key]
-  );
-});
+let getByTestId;
+let Name;
+let Use;
+let Switch;
+let Add;
+let Remove;
+let Set;
+let Themes;
 
 const testTheme = {
   light: { bckg: "white" },
@@ -44,15 +40,39 @@ const Component = () => {
   );
 };
 
+beforeEach(() => {
+  getByTestId = render(
+    <Themed>
+      <Component />
+    </Themed>
+  ).getByTestId;
+
+  Name = getByTestId("Name");
+  Use = getByTestId("Use");
+  Switch = getByTestId("Switch");
+  Add = getByTestId("Add");
+  Remove = getByTestId("Remove");
+  Set = getByTestId("Set");
+  Themes = getByTestId("Themes");
+});
+
+beforeAll(() => {
+  const store: any = {};
+
+  spyOn(localStorage, "getItem").and.callFake((key: string) =>
+    store[key] !== undefined ? store[key] : null
+  );
+  spyOn(localStorage, "setItem").and.callFake(
+    (key: string, value: any) => (store[key] = value)
+  );
+  spyOn(localStorage, "removeItem").and.callFake(
+    (key: string) => delete store[key]
+  );
+});
+
 describe("Theming", () => {
   it("inits on light", () => {
-    const { getByTestId } = render(
-      <Themed>
-        <Component />
-      </Themed>
-    );
-
-    expect(getByTestId("Name")).toHaveTextContent("light");
+    expect(Name).toHaveTextContent("light");
   });
 
   it("does not automatically affect localStorage", () => {
@@ -60,99 +80,63 @@ describe("Theming", () => {
   });
 
   it("returns a working Use method", () => {
-    const { getByTestId } = render(
-      <Themed>
-        <Component />
-      </Themed>
-    );
+    act(() => {
+      Use.click();
+    });
 
-    getByTestId("Use").click();
-
-    expect(getByTestId("Name")).toHaveTextContent("dark");
+    expect(Name).toHaveTextContent("dark");
     expect(localStorage.getItem("theme")).toBe("dark");
-
-    getByTestId("Name").click();
     expect(document.body.style.backgroundColor).toBe("black");
   });
 
   it("restores theme off localStorage", () => {
-    const { getByTestId } = render(
-      <Themed>
-        <Component />
-      </Themed>
-    );
-
-    expect(getByTestId("Name")).toHaveTextContent("dark");
+    expect(Name).toHaveTextContent("dark");
   });
 
   it("returns a working Switch method", () => {
-    const { getByTestId } = render(
-      <Themed>
-        <Component />
-      </Themed>
-    );
+    act(() => {
+      Switch.click();
+    });
 
-    getByTestId("Switch").click();
-
-    expect(getByTestId("Name")).toHaveTextContent("light");
+    expect(Name).toHaveTextContent("light");
     expect(localStorage.getItem("theme")).toBe("light");
-
-    getByTestId("Name").click();
     expect(document.body.style.backgroundColor).toBe("white");
   });
 
   it("returns a working Add method", () => {
-    const { getByTestId } = render(
-      <Themed>
-        <Component />
-      </Themed>
-    );
+    act(() => {
+      Add.click();
+    });
 
-    getByTestId("Add").click();
-
-    expect(getByTestId("Themes")).toHaveTextContent(
+    expect(Themes).toHaveTextContent(
       JSON.stringify({ initial: testTheme.light, testing: testTheme.light })
     );
   });
 
   it("returns a working Remove method", () => {
-    const { getByTestId } = render(
-      <Themed>
-        <Component />
-      </Themed>
-    );
+    act(() => {
+      Remove.click();
+    });
 
-    getByTestId("Remove").click();
-
-    expect(getByTestId("Themes")).toHaveTextContent("{}");
+    expect(Themes).toHaveTextContent("{}");
   });
 
   it("has the component react to themes", () => {
-    const { getByTestId } = render(
-      <Themed>
-        <Component />
-      </Themed>
-    );
+    act(() => {
+      Switch.click();
+    });
 
-    getByTestId("Switch").click();
-    getByTestId("Name").click();
-
-    expect(getByTestId("Themes")).toHaveTextContent(
+    expect(Themes).toHaveTextContent(
       JSON.stringify({ initial: testTheme.dark })
     );
   });
 
   it("sets properties on the fly", () => {
-    const { getByTestId } = render(
-      <Themed>
-        <Component />
-      </Themed>
-    );
+    act(() => {
+      Set.click();
+    });
 
-    getByTestId("Set").click();
-    getByTestId("Name").click();
-
-    expect(getByTestId("Themes")).toHaveTextContent(
+    expect(Themes).toHaveTextContent(
       JSON.stringify({ initial: { ...testTheme.dark, Adimo: "Potestas" } })
     );
   });
