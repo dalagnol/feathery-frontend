@@ -1,4 +1,4 @@
 import { palette } from "../Theme.d";
-import ThemesJSON from "./Themes.json";
+import ThemesJSON from "./themes.json";
 
 export const themes = ThemesJSON as Array<palette>;
