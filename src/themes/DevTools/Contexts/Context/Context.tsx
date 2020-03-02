@@ -37,7 +37,7 @@ export default function Context({ name, data }: Props) {
 
   const { open, addingProperty } = (contexts && contexts[name]) || {};
 
-  const count = Object.entries(data).length + (addingProperty ? 1 : 0);
+  const count = Object.entries(data || {})?.length + (addingProperty ? 2 : 1);
 
   return (
     <Container count={count} name={name} open={open}>

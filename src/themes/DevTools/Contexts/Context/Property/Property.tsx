@@ -43,10 +43,10 @@ const keyActions: {
         .split(":")[1]
         .trim()
         .replace(/;/g, "");
+      valActions[13](params);
     }
 
     val.current?.focus();
-    valActions[13](params);
   },
   27: ({ toggleContextValue, context }: any) =>
     toggleContextValue(context, "addingProperty", false)(),

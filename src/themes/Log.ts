@@ -19,7 +19,7 @@ class Event {
   }
 }
 
-class Log {
+export class Log {
   @observable private History: Array<Event> = Load(LS, []);
 
   public DevTools = false;

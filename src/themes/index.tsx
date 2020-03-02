@@ -8,7 +8,6 @@ import Log from "./Log";
 
 import { themes } from "./json";
 
-import { Host } from "./styles";
 import "./styles/fonts.scss";
 import "./styles/animations";
 
@@ -50,11 +49,11 @@ export const Themed = observer(({ children }: any) => {
       const name =
         current === themes.length - 1 ? themes[0] : themes[current + 1];
 
-      setTheme(name);
-
       localStorage.setItem("theme", name);
 
       Log.system(agent, `Switched palette to ${name}`);
+
+      setTheme(name);
 
       return true;
     },
@@ -184,29 +183,27 @@ export const Themed = observer(({ children }: any) => {
   );
 
   return (
-    <Host DevTools={DevTools}>
-      <ThemeProvider
-        theme={{
-          Name: Theme,
-          Themes,
-          Use,
-          Switch,
-          Add,
-          Remove,
-          Set,
-          Unset,
-          DevTools,
-          ToggleDevTools,
-          History: Log.history,
-          ClearHistory: function() {
-            Log.clear();
-          },
-          For,
-          ...Themes,
-        }}
-      >
-        {children}
-      </ThemeProvider>
-    </Host>
+    <ThemeProvider
+      theme={{
+        Name: Theme,
+        Themes,
+        Use,
+        Switch,
+        Add,
+        Remove,
+        Set,
+        Unset,
+        DevTools,
+        ToggleDevTools,
+        History: Log.history,
+        ClearHistory: function() {
+          Log.clear();
+        },
+        For,
+        ...Themes,
+      }}
+    >
+      {children}
+    </ThemeProvider>
   );
 });
