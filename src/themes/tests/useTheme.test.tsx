@@ -157,5 +157,3 @@ describe("Theming", () => {
     );
   });
 });
-
-// test("toggles to dark", () => {});
