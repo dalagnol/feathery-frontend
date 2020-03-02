@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { palette } from "./Theme";
 import { ThemeProvider } from "styled-components";
 import { observer } from "mobx-react";
@@ -24,136 +24,164 @@ export const Themed = observer(({ children }: any) => {
     (Load("theme") as palette) || themes[0]
   );
 
-  const Use = (agent = "") => (name: palette) => {
-    name = name.toLowerCase() as palette;
+  const Use = useCallback(
+    (agent = "") => (name: palette) => {
+      name = name.toLowerCase() as palette;
 
-    if (themes.includes(name)) {
-      setTheme(name);
-      localStorage.setItem("theme", name);
-      Log.system(agent, `Set palette to ${name}`);
+      if (themes.includes(name)) {
+        setTheme(name);
 
-      return true;
-    }
+        localStorage.setItem("theme", name);
 
-    Log.error(agent, `Attempted to use a non-existing palette "${name}"`);
-    return false;
-  };
+        Log.system(agent, `Set palette to ${name}`);
 
-  const Switch = (agent = "") => () => {
-    const current = themes.indexOf(Theme);
-    const name =
-      current === themes.length - 1 ? themes[0] : themes[current + 1];
-    setTheme(name);
-    localStorage.setItem("theme", name);
-    Log.system(agent, `Switched palette to ${name}`);
-
-    return true;
-  };
-
-  const Add = (agent = "") => (name: string, config: any = {}) => {
-    name = name.toLowerCase();
-
-    if (Themes[name]) {
-      Log.warn(agent, `Overwrote theme "${name}"`);
-    } else {
-      Log.info(agent, `Added theme "${name}"`);
-    }
-
-    setThemes((currentThemes: any) => ({
-      ...currentThemes,
-      [name]: config[Theme]
-    }));
-
-    if (!config[Theme]) {
-      Log.error(C(name), "Missing current palette");
-    }
-    return true;
-  };
-
-  const Remove = (agent = "") => (name: string) => {
-    name = name.toLowerCase();
-
-    const newState = { ...Themes };
-    delete newState[name];
-    setThemes(newState);
-
-    Log.info(agent, `Removed theme "${name}"`);
-    return true;
-  };
-
-  const Set = (agent = "") => (
-    theme: string,
-    property: string,
-    value: string
-  ) => {
-    theme = theme.toLowerCase();
-
-    if (!Themes[theme]) {
-      Log.warn(agent, `Created theme ${C(theme)}`);
-    }
-
-    setThemes({
-      ...Themes,
-      [theme]: { ...Themes[theme], [property]: value }
-    });
-
-    Log.system(agent, `Set ${property} to "${value}" in ${C(theme)}`);
-    return true;
-  };
-
-  const Unset = (agent = "") => (theme: string, property: string) => {
-    theme = theme.toLowerCase();
-
-    if (Themes[theme]) {
-      if (Themes[theme][property]) {
-        const newState = { ...Themes };
-        delete newState[theme][property];
-        setThemes(newState);
-
-        Log.system(agent, `Unset ${property} off ${C(theme)}`);
         return true;
       }
 
-      Log.system(
+      Log.error(agent, `Attempted to use a non-existing palette "${name}"`);
+      return false;
+    },
+    []
+  );
+
+  const Switch = useCallback(
+    (agent = "") => () => {
+      const current = themes.indexOf(Theme);
+      const name =
+        current === themes.length - 1 ? themes[0] : themes[current + 1];
+
+      setTheme(name);
+
+      localStorage.setItem("theme", name);
+
+      Log.system(agent, `Switched palette to ${name}`);
+
+      return true;
+    },
+    [Theme]
+  );
+
+  const Add = useCallback(
+    (agent = "") => (name: string, config: any = {}) => {
+      name = name.toLowerCase();
+
+      if (Themes[name]) {
+        Log.warn(agent, `Overwrote theme "${name}"`);
+      } else {
+        Log.info(agent, `Added theme "${name}"`);
+      }
+
+      setThemes((currentThemes: any) => ({
+        ...currentThemes,
+        [name]: config[Theme],
+      }));
+
+      if (!config[Theme]) {
+        Log.error(C(name), "Missing current palette");
+      }
+      return true;
+    },
+    [Themes, Theme]
+  );
+
+  const Remove = useCallback(
+    (agent = "") => (name: string) => {
+      name = name.toLowerCase();
+
+      const newState = { ...Themes };
+      delete newState[name];
+      setThemes(newState);
+
+      Log.info(agent, `Removed theme "${name}"`);
+      return true;
+    },
+    [Themes]
+  );
+
+  const Set = useCallback(
+    (agent = "") => (theme: string, property: string, value: string) => {
+      theme = theme.toLowerCase();
+
+      if (!Themes[theme]) {
+        Log.warn(agent, `Created theme ${C(theme)}`);
+      }
+
+      setThemes({
+        ...Themes,
+        [theme]: { ...Themes[theme], [property]: value },
+      });
+
+      Log.system(agent, `Set ${property} to "${value}" in ${C(theme)}`);
+      return true;
+    },
+    [Themes]
+  );
+
+  const Unset = useCallback(
+    (agent = "") => (theme: string, property: string) => {
+      theme = theme.toLowerCase();
+
+      if (Themes[theme]) {
+        if (Themes[theme][property]) {
+          const newState = { ...Themes };
+          delete newState[theme][property];
+          setThemes(newState);
+
+          Log.system(agent, `Unset ${property} off ${C(theme)}`);
+          return true;
+        }
+
+        Log.error(
+          agent,
+          `Attempted to unset non-existing ${property} off ${C(theme)}`
+        );
+      }
+
+      Log.error(
         agent,
-        `Attempted to unset non-existing ${property} off ${C(theme)}`
+        `Attempted to unset ${property} off non-existing theme ${C(theme)}`
       );
-    }
+      return false;
+    },
+    [Themes]
+  );
 
-    Log.system(
-      agent,
-      `Attempted to unset ${property} off non-existing theme ${C(theme)}`
-    );
-    return false;
-  };
-
-  const ToggleDevTools = () => {
+  const ToggleDevTools = useCallback(() => {
     SetDevTools(!DevTools);
 
     Save(LS_DevTools, !DevTools);
-  };
-
-  const For = (agent: string) => ({
-    Name: Theme,
-    Use: Use(agent),
-    Switch: Switch(agent),
-    Add: Add(agent),
-    Remove: Remove(agent),
-    Set: Set(agent),
-    Unset: Unset(agent)
-  });
-
-  useEffect(() => {
-    Log.DevTools = DevTools;
   }, [DevTools]);
 
-  useEffect(() => {
-    if (Theme === "dark") {
-      document.body.style.backgroundColor = "black";
-    } else {
-      document.body.style.backgroundColor = "white";
-    }
-  }, [Theme]);
+  const For = useCallback(
+    (agent: string) => ({
+      Name: Theme,
+      Use: Use(agent),
+      Switch: Switch(agent),
+      Add: Add(agent),
+      Remove: Remove(agent),
+      Set: Set(agent),
+      Unset: Unset(agent),
+    }),
+    [Theme, Use, Switch, Add, Remove, Set, Unset]
+  );
+
+  useEffect(
+    useCallback(() => {
+      Log.DevTools = DevTools;
+    }, [DevTools]),
+    [DevTools]
+  );
+
+  useEffect(
+    useCallback(() => {
+      if (Theme === "dark") {
+        document.body.style.backgroundColor = "black";
+      } else {
+        document.body.style.backgroundColor = "white";
+      }
+    }, [Theme]),
+    [Theme]
+  );
 
   return (
     <Host DevTools={DevTools}>
@@ -174,7 +202,7 @@ export const Themed = observer(({ children }: any) => {
             Log.clear();
           },
           For,
-          ...Themes
+          ...Themes,
         }}
       >
         {children}

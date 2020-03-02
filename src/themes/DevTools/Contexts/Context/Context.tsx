@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useCallback } from "react";
 import { ThemeContext } from "styled-components";
 import { Config as Configuration } from "../../DevTools";
 import { U, copy, map } from "../../../helpers";
@@ -33,6 +33,8 @@ export default function Context({ name, data }: Props) {
     toggleContextValue(name, property)();
   };
 
+  const clipboard = useCallback(() => copy(data), [data]);
+
   const { open, addingProperty } = (contexts && contexts[name]) || {};
 
   return (
@@ -43,7 +45,7 @@ export default function Context({ name, data }: Props) {
           <div onClick={e => e.stopPropagation()}>
             <Add rotate={addingProperty} onClick={toggle("addingProperty")} />
             <Export
-              onClick={() => copy(data)}
+              onClick={clipboard}
               onDoubleClick={set("code", JSON.stringify(data, null, 2))}
             />
             <Delete onClick={() => Remove(name)} />

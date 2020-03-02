@@ -19,9 +19,7 @@ export function useTheme(component: string, config?: ITheme): ThemeHookReturn {
   const Theme = For(component);
 
   useEffect(() => {
-    if (!Themes[component]) {
-      Theme.Add(component, config || {});
-    }
+    Theme.Add(component, config || {});
 
     return () => Theme.Remove(component);
     // eslint-disable-next-line
@@ -29,6 +27,6 @@ export function useTheme(component: string, config?: ITheme): ThemeHookReturn {
 
   return {
     ...Theme,
-    Themes
+    Themes,
   } as ThemeHookReturn;
 }
