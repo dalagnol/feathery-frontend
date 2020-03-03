@@ -8,16 +8,12 @@ import { Square } from "./styles/Shapes";
 import { theme, locale } from "./json";
 
 export function Landing() {
-  const [, { SwitchTheme }] = useTheme("landing", theme);
-  const [l, { SwitchLanguage }] = useLocale("landing", locale);
-
-  useTheme("test", { light: { test: "adimo" } });
-  
-  const onClick = () => SwitchTheme() && SwitchLanguage();
+  const { Themes, Switch } = useTheme("Landing", theme);
+  const [l] = useLocale("Landing", locale);
 
   return (
     <Playground>
-      <Square onClick={onClick}>
+      <Square style={Themes.adimo} onClick={Switch}>
         {l(
           "Notice how this is written naturally, and it still responds to language"
         )}

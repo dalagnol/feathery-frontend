@@ -1,195 +1,206 @@
-import React, { useState, useEffect } from "react";
-import styled, { ThemeProvider, ThemeContext } from "styled-components";
-import { Themes } from "./json";
+/* eslint-disable @typescript-eslint/camelcase */
+import React, { useState, useEffect, useCallback } from "react";
+import { palette } from "./Theme";
+import { ThemeProvider } from "styled-components";
+import { observer } from "mobx-react";
+import { C, Load, Save } from "./helpers";
+import Log from "./Log";
+
+import { themes } from "./json";
+
+import "./styles/fonts.scss";
+import "./styles/animations";
 
 export * from "./useTheme";
-export * from "./DevTools";
-export const Context = ThemeContext;
+export * from "./DevTools/DevTools";
 
-const LS_HISTORY = "theme_devtools_history";
+const LS_DevTools = "theme_devtools";
 
-const Host = styled.div<any>`
-  transition: all 0.3s ease-in-out;
-  ${({ pinned }) =>
-    pinned &&
-    `
-    margin-right: 300px;
-  `}
-`;
-
-class Event {
-  public agent: string;
-  public log: string;
-  public type: string;
-  public timestamp: Date = new Date();
-  constructor(agent: string, log: string, type = "none") {
-    this.agent = agent;
-    this.log = log;
-    this.type = type;
-  }
-}
-
-export const Themed = ({ children }: any) => {
-  const [Name, _setName] = useState(localStorage.getItem("theme") || "light");
-  const [themes, _setThemes]: any = useState({});
-  const [Pinned, SetPinned]: any = useState(false);
-
-  const [History, _setHistory]: any = useState(
-    JSON.parse(localStorage.getItem(LS_HISTORY)!) || []
+export const Themed = observer(({ children }: any) => {
+  const [Themes, setThemes]: any = useState({});
+  const [DevTools, SetDevTools] = useState(Load(LS_DevTools));
+  const [Theme, setTheme] = useState<palette>(
+    (Load("theme") as palette) || themes[0]
   );
 
-  function log(agent: string, log: string, type?: string) {
-    _setHistory((current: any) => [
-      ...current,
-      new Event(agent || "unknown", log, type),
-    ]);
+  const Use = useCallback(
+    (agent = "") => (name: palette) => {
+      name = name.toLowerCase() as palette;
 
-    const l = History.length - 50 > 0 ? History.length - 50 : 0;
+      if (themes.includes(name)) {
+        setTheme(name);
+        localStorage.setItem("theme", name);
+        Log.system(agent, `Set palette to ${name}`);
 
-    localStorage.setItem(LS_HISTORY, JSON.stringify(History.slice(l)));
-  }
+        return true;
+      }
 
-  useEffect(() => {
-    log("DevTools", "Initialised", "system");
+      Log.error(agent, `Attempted to use a non-existing palette "${name}"`);
 
-    return () => log("DevTools", "Shut down", "system");
-    // eslint-disable-next-line
-  }, []);
+      return false;
+    },
+    []
+  );
 
-  function SetName(name: string, agent = "") {
-    if (typeof agent !== "string") {
-      agent = "";
-    }
+  const Switch = useCallback(
+    (agent = "") => () => {
+      const current = themes.indexOf(Theme);
+      const name =
+        current === themes.length - 1 ? themes[0] : themes[current + 1];
 
-    if (Themes.includes(name)) {
-      _setName(name);
+      setTheme(name);
       localStorage.setItem("theme", name);
-
-      log(agent, `Set theme to ${name}`);
+      Log.system(agent, `Switched palette to ${name}`);
 
       return true;
-    }
+    },
+    [Theme]
+  );
 
-    return false;
-  }
+  const Add = useCallback(
+    (agent = "") => (name: string, config: any = {}) => {
+      name = name.toLowerCase();
 
-  function SwitchTheme(agent = "") {
-    if (typeof agent !== "string") {
-      agent = "";
-    }
-
-    const current = Themes.indexOf(Name);
-    const name =
-      current === Themes.length - 1 ? Themes[0] : Themes[current + 1];
-    _setName(name);
-
-    log(agent, `Switched theme to ${name}`);
-
-    return true;
-  }
-
-  function Add(component: string, config: any, agent = "") {
-    if (!config[Name]) {
-      config[Name] = { "Missing active palette": true };
-
-      log(agent, `Missing active palette "${Name}"`, "error");
-    }
-
-    _setThemes((current: any) => ({ ...current, [component]: config[Name] }));
-    const amountOf = Object.entries(config[Name]).length;
-
-    if (agent !== "DevTools") {
-      log(
-        agent,
-        `Registered "${component}" ${`[+${amountOf} entries]`}`,
-        "info"
-      );
-    }
-
-    return true;
-  }
-
-  function Remove(component: string, agent = "") {
-    if (!themes[component]) {
-      return false;
-    }
-
-    const newState: any = { ...themes };
-    const deleted = Object.entries(newState[component] || {}).length;
-    delete newState[component];
-    _setThemes(newState);
-    log(agent, `Removed "${component}" [-${deleted} entries]`, "info");
-    return true;
-  }
-
-  function Set(
-    component: string,
-    property: string,
-    value: string,
-    agent = "DevTools"
-  ) {
-    if (value !== undefined) {
-      _setThemes((current: any) => ({
-        ...current,
-        [component]: { ...current[component], [property]: value },
+      setThemes((currentThemes: any) => ({
+        ...currentThemes,
+        [name]: config[Theme],
       }));
 
-      log(
+      if (!config[Theme]) {
+        Log.error(C(name), "Missing current palette");
+      }
+      return true;
+    },
+    [Theme]
+  );
+
+  const Remove = useCallback(
+    (agent = "") => (name: string) => {
+      name = name.toLowerCase();
+
+      const newState = { ...Themes };
+      delete newState[name];
+      setThemes(newState);
+
+      return true;
+    },
+    [Themes]
+  );
+
+  const Set = useCallback(
+    (agent = "") => (theme: string, property: string, value: string) => {
+      theme = theme.toLowerCase();
+
+      if (!Themes[theme]) {
+        Log.warn(
+          agent,
+          `Created current palette "${Theme}" in theme ${C(theme)}`
+        );
+      }
+
+      setThemes({
+        ...Themes,
+        [theme]: { ...Themes[theme], [property]: value },
+      });
+
+      Log.system(
         agent,
-        `Set ${property} to "${value}" in <${component
-          .substring(0, 1)
-          .toUpperCase()}${component.slice(1).toLowerCase()} />`
+        `Set ${property} to "${value}" in ${Theme} ${C(theme)}`
       );
-    } else {
-      const removal = { ...themes };
-      delete removal[component][property];
-      _setThemes(removal);
+      return true;
+    },
+    [Themes, Theme]
+  );
 
-      log(
+  const Unset = useCallback(
+    (agent = "") => (theme: string, property: string) => {
+      theme = theme.toLowerCase();
+
+      if (Themes[theme]) {
+        if (Themes[theme][property]) {
+          const newState = { ...Themes };
+          delete newState[theme][property];
+          setThemes(newState);
+
+          Log.system(agent, `Unset ${property} off ${C(theme)}`);
+
+          return true;
+        }
+
+        Log.error(
+          agent,
+          `Attempted to unset non-existing ${property} off ${C(theme)}`
+        );
+      }
+
+      Log.error(
         agent,
-        `Deleted "${property}" off <${component
-          .substring(0, 1)
-          .toUpperCase()}${component.slice(1).toLowerCase()} />`
+        `Attempted to unset ${property} off non-existing theme ${C(theme)}`
       );
-    }
-  }
+      return false;
+    },
+    [Themes]
+  );
 
-  function ForComponent(component: string) {
-    return {
-      SetName: (name: string) => SetName(name, component),
-      SwitchTheme: () => SwitchTheme(component),
-      Add: (element: string, config: any) => Add(element, config, component),
-      Remove: (element: string) => Remove(element, component),
-      Set: (element: string, property: string, value: string) =>
-        Set(element, property, value, component),
-    };
-  }
+  const ToggleDevTools = useCallback(() => {
+    SetDevTools(!DevTools);
 
-  function ClearHistory() {
-    localStorage.removeItem(LS_HISTORY);
-    _setHistory([]);
-  }
+    Save(LS_DevTools, !DevTools);
+  }, [DevTools]);
+
+  const For = useCallback(
+    (agent: string) => ({
+      Name: Theme,
+      Use: Use(agent),
+      Switch: Switch(agent),
+      Add: Add(agent),
+      Remove: Remove(agent),
+      Set: Set(agent),
+      Unset: Unset(agent),
+    }),
+    [Theme, Use, Switch, Add, Remove, Set, Unset]
+  );
+
+  useEffect(
+    useCallback(() => {
+      Log.DevTools = DevTools;
+    }, [DevTools]),
+    [DevTools]
+  );
+
+  useEffect(
+    useCallback(() => {
+      if (Theme === "dark") {
+        document.body.style.backgroundColor = "black";
+      } else {
+        document.body.style.backgroundColor = "white";
+      }
+    }, [Theme]),
+    [Theme]
+  );
 
   return (
-    <Host pinned={Pinned}>
-      <ThemeProvider
-        theme={{
-          Themes,
-          Name,
-          SetName,
-          SwitchTheme,
-          Add,
-          Remove,
-          Set,
-          History,
-          ForComponent,
-          SetPinned,
-          ClearHistory,
-          ...themes,
-        }}
-      >
-        {children}
-      </ThemeProvider>
-    </Host>
+    <ThemeProvider
+      theme={{
+        Name: Theme,
+        Themes,
+        Use,
+        Switch,
+        Add,
+        Remove,
+        Set,
+        Unset,
+        DevTools,
+        ToggleDevTools,
+        History: Log.history,
+        ClearHistory: function() {
+          Log.clear();
+        },
+        For,
+        ...Themes,
+      }}
+    >
+      {children}
+    </ThemeProvider>
   );
-};
+});
