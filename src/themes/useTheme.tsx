@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useCallback, useContext } from "react";
 import { ThemeContext } from "styled-components";
 import { palette, ITheme } from "./Theme";
 
@@ -18,13 +18,19 @@ export function useTheme(component: string, config?: ITheme): ThemeHookReturn {
   const { Themes, For } = useContext(ThemeContext);
   const Theme = For(component);
 
-  useEffect(() => {
-    Theme.Add(component, config || {});
-  }, [Theme.Name]);
+  useEffect(
+    useCallback(() => {
+      Theme.Add(component, config || {});
+    }, [Theme, component, config]),
+    [Theme.Name]
+  );
 
-  useEffect(() => {
-    return () => Theme.Remove(component);
-  }, []);
+  useEffect(
+    useCallback(() => {
+      return () => Theme.Remove(component);
+    }, [Theme, component]),
+    []
+  );
 
   return {
     ...Theme,
