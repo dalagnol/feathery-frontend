@@ -10,14 +10,6 @@ interface Props {
   value?: string;
 }
 
-const keyActions: {
-  [x: number]: Function;
-} = {
-  13: ({ val }: any) => val.current?.focus(),
-  27: ({ toggleContextValue, context }: any) =>
-    toggleContextValue(context, "addingProperty", false)(),
-};
-
 const valActions: {
   [x: number]: Function;
 } = {
@@ -29,6 +21,31 @@ const valActions: {
       key.current.focus();
     } catch (oof) {
       setEditing(false);
+    }
+  },
+  27: ({ toggleContextValue, context }: any) =>
+    toggleContextValue(context, "addingProperty", false)(),
+};
+
+const keyActions: {
+  [x: number]: Function;
+} = {
+  13: (params: any) => {
+    const { e, val } = params;
+
+    const {
+      target: { value },
+    } = e;
+
+    if (e.target.value.includes(":")) {
+      e.target.value = value.split(":")[0].trim();
+      val.current.value = value
+        .split(":")[1]
+        .trim()
+        .replace(/;/g, "");
+      valActions[13](params);
+    } else {
+      val.current?.focus();
     }
   },
   27: ({ toggleContextValue, context }: any) =>
@@ -56,10 +73,10 @@ export default function Property({ context, name, value }: Props) {
   };
 
   const keyHandler = (e: any) =>
-    keyActions[e.keyCode] && keyActions[e.keyCode](handlerParams);
+    keyActions[e.keyCode] && keyActions[e.keyCode]({ e, ...handlerParams });
 
   const valHandler = (e: any) =>
-    valActions[e.keyCode] && valActions[e.keyCode](handlerParams);
+    valActions[e.keyCode] && valActions[e.keyCode]({ e, ...handlerParams });
 
   return (
     <Container>

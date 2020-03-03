@@ -3,14 +3,18 @@ import styled from "styled-components";
 interface Props {
   open?: boolean;
   name?: string;
+  count?: number;
 }
 
 export const Container = styled.div<Props>`
-  max-height: ${({ open }) => (open ? "500px" : "50px")};
+  max-height: ${({ open, count }) =>
+    open ? String((count || 1) * 60) + "px" : "50px"};
   overflow: hidden;
 
   margin: ${({ open }) => open && "10px 0px"};
   transform: ${({ open }) => open && "scale(0.99, 0.99)"};
+
+  transition: all 0.3s ease-in-out;
 
   > header {
     h1 {

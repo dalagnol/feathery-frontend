@@ -8,7 +8,6 @@ import Log from "./Log";
 
 import { themes } from "./json";
 
-import { Host } from "./styles";
 import "./styles/fonts.scss";
 import "./styles/animations";
 
@@ -30,15 +29,14 @@ export const Themed = observer(({ children }: any) => {
 
       if (themes.includes(name)) {
         setTheme(name);
-
         localStorage.setItem("theme", name);
-
         Log.system(agent, `Set palette to ${name}`);
 
         return true;
       }
 
       Log.error(agent, `Attempted to use a non-existing palette "${name}"`);
+
       return false;
     },
     []
@@ -51,9 +49,7 @@ export const Themed = observer(({ children }: any) => {
         current === themes.length - 1 ? themes[0] : themes[current + 1];
 
       setTheme(name);
-
       localStorage.setItem("theme", name);
-
       Log.system(agent, `Switched palette to ${name}`);
 
       return true;
@@ -65,12 +61,6 @@ export const Themed = observer(({ children }: any) => {
     (agent = "") => (name: string, config: any = {}) => {
       name = name.toLowerCase();
 
-      if (Themes[name]) {
-        Log.warn(agent, `Overwrote theme "${name}"`);
-      } else {
-        Log.info(agent, `Added theme "${name}"`);
-      }
-
       setThemes((currentThemes: any) => ({
         ...currentThemes,
         [name]: config[Theme],
@@ -81,7 +71,7 @@ export const Themed = observer(({ children }: any) => {
       }
       return true;
     },
-    [Themes, Theme]
+    [Theme]
   );
 
   const Remove = useCallback(
@@ -92,7 +82,6 @@ export const Themed = observer(({ children }: any) => {
       delete newState[name];
       setThemes(newState);
 
-      Log.info(agent, `Removed theme "${name}"`);
       return true;
     },
     [Themes]
@@ -103,7 +92,10 @@ export const Themed = observer(({ children }: any) => {
       theme = theme.toLowerCase();
 
       if (!Themes[theme]) {
-        Log.warn(agent, `Created theme ${C(theme)}`);
+        Log.warn(
+          agent,
+          `Created current palette "${Theme}" in theme ${C(theme)}`
+        );
       }
 
       setThemes({
@@ -111,10 +103,13 @@ export const Themed = observer(({ children }: any) => {
         [theme]: { ...Themes[theme], [property]: value },
       });
 
-      Log.system(agent, `Set ${property} to "${value}" in ${C(theme)}`);
+      Log.system(
+        agent,
+        `Set ${property} to "${value}" in ${Theme} ${C(theme)}`
+      );
       return true;
     },
-    [Themes]
+    [Themes, Theme]
   );
 
   const Unset = useCallback(
@@ -128,6 +123,7 @@ export const Themed = observer(({ children }: any) => {
           setThemes(newState);
 
           Log.system(agent, `Unset ${property} off ${C(theme)}`);
+
           return true;
         }
 
@@ -184,29 +180,27 @@ export const Themed = observer(({ children }: any) => {
   );
 
   return (
-    <Host DevTools={DevTools}>
-      <ThemeProvider
-        theme={{
-          Name: Theme,
-          Themes,
-          Use,
-          Switch,
-          Add,
-          Remove,
-          Set,
-          Unset,
-          DevTools,
-          ToggleDevTools,
-          History: Log.history,
-          ClearHistory: function() {
-            Log.clear();
-          },
-          For,
-          ...Themes,
-        }}
-      >
-        {children}
-      </ThemeProvider>
-    </Host>
+    <ThemeProvider
+      theme={{
+        Name: Theme,
+        Themes,
+        Use,
+        Switch,
+        Add,
+        Remove,
+        Set,
+        Unset,
+        DevTools,
+        ToggleDevTools,
+        History: Log.history,
+        ClearHistory: function() {
+          Log.clear();
+        },
+        For,
+        ...Themes,
+      }}
+    >
+      {children}
+    </ThemeProvider>
   );
 });
