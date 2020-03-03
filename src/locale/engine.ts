@@ -1,5 +1,5 @@
 import { observable, toJS } from "mobx";
-import { Languages } from "./json";
+import { language } from "./json";
 
 class Engine {
   @observable private Language = localStorage.getItem("lang") || "en";
@@ -10,16 +10,15 @@ class Engine {
   }
 
   public set language(code: string) {
-    if (Languages.includes(code)) {
+    if (language.includes(code)) {
       this.Language = code;
       localStorage.setItem("lang", code);
     }
   }
 
   public switchLanguage() {
-    const current = Languages.indexOf(this.Language);
-    this.language =
-      Languages[current + 1 === Languages.length ? 0 : current + 1];
+    const current = language.indexOf(this.Language);
+    this.language = language[current + 1 === language.length ? 0 : current + 1];
   }
 
   public add(component: string, config: any) {

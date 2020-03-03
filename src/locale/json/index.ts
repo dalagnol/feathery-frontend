@@ -1,3 +1,3 @@
 import LanguagesJSON from "./Languages.json";
 
-export const Languages = LanguagesJSON as Array<string>;
+export const languages = LanguagesJSON as Array<string>;
