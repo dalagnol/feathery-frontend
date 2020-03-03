@@ -20,10 +20,11 @@ export function useTheme(component: string, config?: ITheme): ThemeHookReturn {
 
   useEffect(() => {
     Theme.Add(component, config || {});
-
-    return () => Theme.Remove(component);
-    // eslint-disable-next-line
   }, [Theme.Name]);
+
+  useEffect(() => {
+    return () => Theme.Remove(component);
+  }, []);
 
   return {
     ...Theme,
