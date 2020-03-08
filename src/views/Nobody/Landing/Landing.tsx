@@ -9,7 +9,7 @@ import { theme, locale } from "./json";
 
 export function Landing() {
   const { Themes, Switch } = useTheme("Landing", theme);
-  const [l] = useLocale("Landing", locale);
+  const { l } = useLocale("Landing", locale);
 
   return (
     <Playground>
