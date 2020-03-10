@@ -18,7 +18,6 @@ export const Localised = observer(({ children }: any) => {
     const lang =
       current === languages.length - 1 ? languages[0] : languages[current + 1];
 
-      console.log(lang);
     setLanguage(lang);
     Save("language", lang);
 
@@ -27,8 +26,6 @@ export const Localised = observer(({ children }: any) => {
 
   const Add = (component: string, config: any = {}) => {
     component = component.toLowerCase();
-
-    console.log(config);
 
     setDictionaries({
       ...Dictionaries,

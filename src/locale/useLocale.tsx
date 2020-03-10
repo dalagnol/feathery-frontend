@@ -37,7 +37,6 @@ export function useLocale(component: string, dictionary: any) {
 
   const l = (string: string) => {
     const res = Context.Dictionaries?.[component]?.[string];
-    console.log(Context);
     return res || string;
   };
 
