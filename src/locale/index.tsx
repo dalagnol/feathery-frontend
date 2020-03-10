@@ -6,7 +6,7 @@ import { LocaleContext } from "./useLocale";
 import { languages } from "./json";
 
 export * from "./useLocale";
-export * from "./DevTools";
+export * from "./DevTools/DevTools";
 export * from "./json";
 
 export const Localised = observer(({ children }: any) => {
@@ -18,6 +18,7 @@ export const Localised = observer(({ children }: any) => {
     const lang =
       current === languages.length - 1 ? languages[0] : languages[current + 1];
 
+      console.log(lang);
     setLanguage(lang);
     Save("language", lang);
 
@@ -26,6 +27,8 @@ export const Localised = observer(({ children }: any) => {
 
   const Add = (component: string, config: any = {}) => {
     component = component.toLowerCase();
+
+    console.log(config);
 
     setDictionaries({
       ...Dictionaries,
@@ -58,22 +61,16 @@ export const Localised = observer(({ children }: any) => {
     }
   };
 
-  const l = (component: string, string: string) => {
-    const res = Dictionaries?.[component]?.[string];
-    return res || string;
-  };
-
   return (
     <LocaleContext.Provider
       value={{
-        l,
         Name: Language,
         Languages: languages,
         Use,
-        Switch,
+        SwitchLang: Switch,
         Add,
         Remove,
-        ...Dictionaries,
+        Dictionaries,
       }}
     >
       {children}

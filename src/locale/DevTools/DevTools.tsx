@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function DevTools() {
+export function DevTools() {
   return <div></div>;
 }

@@ -9,11 +9,11 @@ import { theme, locale } from "./json";
 
 export function Landing() {
   const { Themes, Switch } = useTheme("Landing", theme);
-  const { l } = useLocale("Landing", locale);
+  const { l, SwitchLang } = useLocale("Landing", locale);
 
   return (
     <Playground>
-      <Square style={Themes.adimo} onClick={Switch}>
+      <Square style={Themes.adimo} onClick={SwitchLang}>
         {l(
           "Notice how this is written naturally, and it still responds to language"
         )}

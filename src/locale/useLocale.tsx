@@ -1,26 +1,31 @@
 import { useEffect, createContext, useContext } from "react";
 import { languages } from "./json";
 
+type Dictionary = {
+  code: string;
+  translation: any;
+};
+
 type LocaleContextType = {
-  l: Function;
   Name: string;
   Languages: Array<string>;
   Use: (code: string) => void;
-  Switch: () => void;
+  SwitchLang: () => void;
   Add: (component: string, config: any) => any;
   Remove: (component: string) => void;
-  Dictionaries: any;
+  Dictionaries: {
+    [key: string] : any;
+  };
 };
 
 export const LocaleContext = createContext<LocaleContextType>({
-  l() {},
   Name: "",
   Languages: languages,
   Use() {},
-  Switch() {},
+  SwitchLang() {},
   Add() {},
   Remove() {},
-  Dictionaries: [],
+  Dictionaries: {},
 });
 
 // type LocaleReturn = ({...LocaleContextType}: LocaleContextType);
@@ -30,6 +35,12 @@ export function useLocale(component: string, dictionary: any) {
 
   const Context = useContext(LocaleContext);
 
+  const l = (string: string) => {
+    const res = Context.Dictionaries?.[component]?.[string];
+    console.log(Context);
+    return res || string;
+  };
+
   useEffect(() => {
     Context.Add(component, dictionary);
     return () => Context.Remove(component);
@@ -37,6 +48,7 @@ export function useLocale(component: string, dictionary: any) {
   }, [Context.Name]);
 
   return {
+    l,
     ...Context,
   };
 }
