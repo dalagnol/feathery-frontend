@@ -13,6 +13,8 @@ type LocaleContextType = {
   SwitchLang: () => void;
   Add: (component: string, config: any) => any;
   Remove: (component: string) => void;
+  DevTools: boolean;
+  ToggleDevTools: () => void;
   Dictionaries: {
     [key: string] : any;
   };
@@ -25,6 +27,8 @@ export const LocaleContext = createContext<LocaleContextType>({
   SwitchLang() {},
   Add() {},
   Remove() {},
+  DevTools: true,
+  ToggleDevTools() {},
   Dictionaries: {},
 });
 

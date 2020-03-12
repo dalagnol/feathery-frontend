@@ -1,6 +1,6 @@
 import React from "react";
-import { useTheme, DevTools } from "themes";
-import { useLocale } from "locale";
+import { useTheme } from "themes";
+import { useLocale, DevTools } from "locale";
 
 import { Playground } from "./styles";
 import { Square } from "./styles/Shapes";

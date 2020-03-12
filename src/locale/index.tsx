@@ -9,8 +9,11 @@ export * from "./useLocale";
 export * from "./DevTools/DevTools";
 export * from "./json";
 
+const LS_DevTools = "locale_devtools";
+
 export const Localised = observer(({ children }: any) => {
   const [Dictionaries, setDictionaries]: any = useState({});
+  const [DevTools, SetDevTools] = useState(Load(LS_DevTools));
   const [Language, setLanguage] = useState(Load("lang") || languages[0]);
 
   const Switch = () => {
@@ -58,6 +61,14 @@ export const Localised = observer(({ children }: any) => {
     }
   };
 
+  const ToggleDevTools = () => {
+    SetDevTools(!DevTools);
+
+    console.log(DevTools);
+
+    Save(LS_DevTools, !DevTools);
+  };
+
   return (
     <LocaleContext.Provider
       value={{
@@ -67,6 +78,8 @@ export const Localised = observer(({ children }: any) => {
         SwitchLang: Switch,
         Add,
         Remove,
+        DevTools,
+        ToggleDevTools,
         Dictionaries,
       }}
     >

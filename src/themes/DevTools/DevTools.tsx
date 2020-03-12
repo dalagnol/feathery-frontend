@@ -133,7 +133,7 @@ export function DevTools() {
             <div>
               <History open={ConfigState.history} toggle={toggle("history")} />
             </div>
-          </>
+          </> 
         )}
       </Container>
 
