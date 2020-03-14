@@ -18,7 +18,5 @@ export default function Contexts() {
     ));
   };
 
-  console.log(contexts(), Dictionaries);
-
   return <Container>{contexts()}</Container>;
 }

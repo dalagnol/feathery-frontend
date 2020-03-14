@@ -48,7 +48,7 @@ export default function Context({ name, data }: Props) {
             <Add rotate={addingProperty} onClick={toggle("addingProperty")} />
             <Export
               onClick={clipboard}
-              onDoubleClick={set("code", JSON.stringify(data, null, 2))}
+              onDoubleClick={set("code", JSON.stringify(data, null, 2))()}
             />
             <Delete onClick={() => Remove(name)} />
           </div>

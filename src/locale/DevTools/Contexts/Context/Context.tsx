@@ -1,5 +1,5 @@
 import React, { useContext, useCallback } from "react";
-import { ThemeContext } from "styled-components";
+import { LocaleContext } from "../../../useLocale";
 import { Config as Configuration } from "../../DevTools";
 import { U, copy, map } from "../../../helpers";
 
@@ -25,8 +25,7 @@ function Title({ children }: any) {
 
 export default function Context({ name, data }: Props) {
   const { contexts, toggleContextValue, set } = useContext(Configuration);
-  const { For } = useContext(ThemeContext);
-  const { Remove } = For("DevTools");
+  const { Remove } = useContext(LocaleContext);
 
   const toggle = (property: string) => (e: any) => {
     e.stopPropagation();
@@ -48,7 +47,7 @@ export default function Context({ name, data }: Props) {
             <Add rotate={addingProperty} onClick={toggle("addingProperty")} />
             <Export
               onClick={clipboard}
-              onDoubleClick={set("code", JSON.stringify(data, null, 2))()}
+              onDoubleClick={set("code", JSON.stringify(data, null, 2))}
             />
             <Delete onClick={() => Remove(name)} />
           </div>

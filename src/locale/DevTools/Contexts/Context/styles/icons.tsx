@@ -1,13 +1,13 @@
 import React from "react";
-import { CodeCurly, TrashAlt, Plus } from "styled-icons/boxicons-regular";
+import { CodeCurly, TrashAlt } from "styled-icons/boxicons-regular";
+import { Translate } from "@styled-icons/material/Translate";
 
 export const Add = (props: any) => (
-  <Plus
-    onClick={props.onClick}
+  <Translate
+    {...props}
     size={18}
     style={{
       animation: "slideLeft 0.5s",
-      transform: props.rotate ? "rotate(45deg)" : "rotate(0deg)"
     }}
   />
 );
@@ -17,7 +17,7 @@ export const Export = (props: any) => (
     {...props}
     size={18}
     style={{
-      animation: "slideLeft 1s"
+      animation: "slideLeft 1s",
     }}
   />
 );
@@ -27,7 +27,7 @@ export const Delete = (props: any) => (
     {...props}
     size={18}
     style={{
-      animation: "slideLeft 1.5s"
+      animation: "slideLeft 1.5s",
     }}
   />
 );

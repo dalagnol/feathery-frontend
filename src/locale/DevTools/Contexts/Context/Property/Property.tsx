@@ -1,5 +1,4 @@
 import React, { useState, useRef, useContext } from "react";
-import { ThemeContext } from "styled-components";
 import { Config as Configuration } from "../../../DevTools";
 
 import { Container, Delete, Input } from "./styles";
@@ -53,9 +52,7 @@ const keyActions: {
 };
 
 export default function Property({ context, name, value }: Props) {
-  const { For } = useContext(ThemeContext);
   const { toggleContextValue } = useContext(Configuration);
-  const { Set, Unset } = For("DevTools");
 
   const key: any = useRef(null);
   const val: any = useRef(null);
@@ -83,7 +80,6 @@ export default function Property({ context, name, value }: Props) {
       <div>
         {(name && (
           <>
-            <Delete onClick={() => Unset(context, name, value)} />
             <label>{name}</label>
           </>
         )) || (

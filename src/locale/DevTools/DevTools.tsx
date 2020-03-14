@@ -13,7 +13,7 @@ const LS = "locale_devtools_state";
 export const Config = createContext(
   Load(LS, {
     contexts: {},
-    code: ""
+    code: "",
   })
 );
 
@@ -22,65 +22,72 @@ export function DevTools() {
   const [ConfigState, SetConfigState] = useState(
     Load(LS, {
       contexts: {},
-      code: ""
+      code: "",
     })
   );
 
-  const set = (state: string, value: boolean | string) =>
-      SetConfigState({ ...ConfigState, [state]: value });
-
+  const set = (state: string, value: boolean | string) => () =>
+    SetConfigState({ ...ConfigState, [state]: value });
+ 
   const toggle = (state: string) => () =>
-      SetConfigState({ ...ConfigState, [state]: !ConfigState[state] });
+    SetConfigState({ ...ConfigState, [state]: !ConfigState[state] });
 
-  const toggleContextValue = (name: string, property: string, value?: boolean) =>
-      SetConfigState({
-        ...ConfigState,
-        contexts: {
-          ...ConfigState.contexts,
-          [name]: {
-            ...ConfigState.contexts[name],
-            [property]:
-              typeof value !== "undefined"
-                ? value
-                : !ConfigState.contexts[name][property]
-          }
-        }
-      });
+  const toggleContextValue = (
+    name: string,
+    property: string,
+    value?: boolean
+  ) => () =>
+    SetConfigState({
+      ...ConfigState,
+      contexts: {
+        ...ConfigState.contexts,
+        [name]: {
+          ...ConfigState.contexts[name],
+          [property]:
+            typeof value !== "undefined"
+              ? value
+              : !ConfigState.contexts[name][property],
+        },
+      },
+    });
 
-  useEffect(
-    () => {
-      const newState: any = {};
+  useEffect(() => {
+    const newState: any = {};
 
-      Object.entries(Dictionaries).forEach(([context, variables]: [string, any]) => {
+    Object.entries(Dictionaries).forEach(
+      ([context, variables]: [string, any]) => {
         if (ConfigState.contexts[context]) {
           newState[context] = { ...ConfigState.contexts[context] };
         } else {
           newState[context] = {
             open: !Object.entries(variables || {}).length,
-            addingProperty: !Object.entries(variables || {}).length
+            addingProperty: !Object.entries(variables || {}).length,
           };
         }
-      });
+      }
+    );
 
-      SetConfigState({ ...ConfigState, contexts: newState });
-      // eslint-disable-next-line
-    },
-    [Dictionaries]
-  );
+    SetConfigState({ ...ConfigState, contexts: newState });
+    // eslint-disable-next-line
+  }, [Dictionaries]);
 
-    if (ConfigState) {
-      Save(LS, ConfigState);
-    };
+  if (ConfigState) {
+    Save(LS, ConfigState);
+  }
 
   return (
-    <Container open={DevTools}>
-      <Header />
-      {DevTools && (
-      <>
-        <div>
-          <Contexts />
-        </div>
-      </>)}
-    </Container>
+    <Config.Provider value={{ ...ConfigState, set, toggle, toggleContextValue }}>
+      <Container open={DevTools}>
+        <Header />
+        {DevTools && (
+          <>
+            <div>
+              <Contexts />
+            </div>
+          </>
+        )}
+      </Container>
+    </Config.Provider>
+    
   );
 }
