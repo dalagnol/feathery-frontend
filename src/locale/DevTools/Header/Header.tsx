@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { languages } from "../../json";
 import { LocaleContext } from "../../useLocale";
-import { U } from "../../helpers"
+import { U } from "../../helpers";
 
 import {
   Header as Element,
@@ -20,7 +20,9 @@ const actions: keyboardActionsMap<{ 13: Function }> = {
 };
 
 export default function Header() {
-  const { Name, SwitchLang, Use, DevTools, ToggleDevTools } = useContext(LocaleContext);
+  const { Name, SwitchLang, Use, DevTools, ToggleDevTools } = useContext(
+    LocaleContext
+  );
 
   const names = () => {
     return languages.map((name: string, index: number) => (
@@ -34,8 +36,6 @@ export default function Header() {
     ));
   };
 
-  console.log(names);
-
   return (
     <Element>
       <Title onClick={SwitchLang} onDoubleClick={ToggleDevTools}>
@@ -46,11 +46,11 @@ export default function Header() {
         <>
           <Options>
             <Icons>
-              <Pin onClick={ToggleDevTools}/>
+              <Pin onClick={ToggleDevTools} />
               <Add />
             </Icons>
 
-            <Names>{names}</Names>
+            <Names>{names()}</Names>
           </Options>
 
           {true && <Input />}

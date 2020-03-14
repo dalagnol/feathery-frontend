@@ -32,6 +32,7 @@ export const Icons = styled.div`
 export const Names = styled.div`
   display: flex;
   p {
+    font-size: 1.7em;
     margin: 0px 10px;
     cursor: pointer;
 
