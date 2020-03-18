@@ -67,7 +67,7 @@ export const Header = styled.header`
 export const List = styled.div<Props>`
   height: auto;
 
-  padding: 0px 10px;
+  padding: 0px 10px 10px 10px;
 
   background-color: #00000044;
 `;

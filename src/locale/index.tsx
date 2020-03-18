@@ -48,6 +48,17 @@ export const Localised = observer(({ children }: any) => {
     return true;
   };
 
+  const Set = (lang: string, string: string) => {
+    if (lang === "en") {
+      Object.entries(Dictionaries).forEach(
+        ([context, variables]: [string, any]) => {
+          console.log(context, variables);
+      });
+    }
+  };
+
+  Set("en", "ahihsaihasi");
+
   const Use = (code: string) => {
     code = code.toLowerCase();
 

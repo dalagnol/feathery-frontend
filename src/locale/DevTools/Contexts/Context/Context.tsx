@@ -6,7 +6,7 @@ import { U, copy, map } from "../../../helpers";
 import { Container, Header, List } from "./styles";
 import { Add, Delete, Export } from "./styles/icons";
 
-import Property from "./Property/Property";
+import Property from "./Property/x";
 
 type Props = {
   name: string;
@@ -26,6 +26,8 @@ function Title({ children }: any) {
 export default function Context({ name, data }: Props) {
   const { contexts, toggleContextValue, set } = useContext(Configuration);
   const { Remove } = useContext(LocaleContext);
+
+  console.log(data);
 
   const toggle = (property: string) => (e: any) => {
     e.stopPropagation();

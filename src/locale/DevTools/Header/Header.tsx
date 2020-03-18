@@ -12,7 +12,7 @@ import {
   Title,
 } from "./styles";
 
-import { Pin, Add, Globe } from "./styles/icons";
+import { Pin, Globe } from "./styles/icons";
 
 const actions: keyboardActionsMap<{ 13: Function }> = {
   13: (e: any, Theme: any, Config: any) =>
@@ -47,7 +47,6 @@ export default function Header() {
           <Options>
             <Icons>
               <Pin onClick={ToggleDevTools} />
-              <Add />
             </Icons>
 
             <Names>{names()}</Names>
