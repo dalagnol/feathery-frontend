@@ -48,16 +48,16 @@ export const Localised = observer(({ children }: any) => {
     return true;
   };
 
-  const Set = (lang: string, string: string) => {
-    if (lang === "en") {
-      Object.entries(Dictionaries).forEach(
-        ([context, variables]: [string, any]) => {
-          console.log(context, variables);
-      });
-    }
-  };
+  const Set = (translation: string, component: string, string: string) => {
+    component = component.toLowerCase();
 
-  Set("en", "ahihsaihasi");
+    setDictionaries({
+      ...Dictionaries,
+      [component]: { ...Dictionaries[component], [string]: translation },
+    });
+
+    return true;
+  };
 
   const Use = (code: string) => {
     code = code.toLowerCase();
@@ -89,6 +89,7 @@ export const Localised = observer(({ children }: any) => {
         SwitchLang: Switch,
         Add,
         Remove,
+        Set,
         DevTools,
         ToggleDevTools,
         Dictionaries,

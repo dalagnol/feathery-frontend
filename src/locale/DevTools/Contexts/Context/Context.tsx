@@ -27,8 +27,6 @@ export default function Context({ name, data }: Props) {
   const { contexts, toggleContextValue, set } = useContext(Configuration);
   const { Remove } = useContext(LocaleContext);
 
-  console.log(data);
-
   const toggle = (property: string) => (e: any) => {
     e.stopPropagation();
     toggleContextValue(name, property)();
@@ -59,7 +57,7 @@ export default function Context({ name, data }: Props) {
       {open && (
         <List>
           {map(data, (params: any) => (
-            <Property context={name} {...params} />
+            <Property context={name} data={data} {...params} />
           ))}
           {addingProperty && <Property context={name} />}
         </List>
