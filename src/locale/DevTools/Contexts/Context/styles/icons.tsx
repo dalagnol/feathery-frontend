@@ -1,9 +1,9 @@
 import React from "react";
 import { CodeCurly, TrashAlt } from "styled-icons/boxicons-regular";
-import { Translate } from "@styled-icons/material/Translate";
+import { Translate as T } from "@styled-icons/material/Translate";
 
-export const Add = (props: any) => (
-  <Translate
+export const Translate = (props: any) => (
+  <T
     {...props}
     size={18}
     style={{

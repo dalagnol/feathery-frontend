@@ -4,31 +4,49 @@ import { LocaleContext } from "../../../../useLocale";
 
 import { Container, Input } from "./styles";
 
-export default function Property({ context, data, value }: any) {
+const keyActions: {
+  [x: number]: Function;
+} = {
+  13: ({ Set, name, data, context, toggleContextValue, e }: any) => {
+    const string = Object.values(data)[0];
+
+    Set(e.target.value || name, context, string || name);
+    toggleContextValue(context, "editing", false)();
+  },
+  27: ({ toggleContextValue, context }: any) =>
+    toggleContextValue(context, "editing", false)(),
+};
+
+export default function Property({ context, data, name, value, editing }: any) {
   const { toggleContextValue } = useContext(Configuration);
   const { Set } = useContext(LocaleContext);
 
-  const [editing, setEditing] = useState(!value);
-
-  const keyActions: {
-    [x: number]: Function;
-  } = {
-    13: ({ key, val, name }: any) => {
-      const string = Object.entries(data)[0];
-      Set(key.current?.value || name, context, string);
-    },
-    27: ({ toggleContextValue, context }: any) =>
-      toggleContextValue(context, "addingProperty", false)(),
+  const handlerParams = {
+    Set,
+    context,
+    name,
+    data,
+    toggleContextValue,
   };
+
+  const keyHandler = (e: any) =>
+    keyActions[e.keyCode] && keyActions[e.keyCode]({ e, ...handlerParams });
 
   return (
     <Container>
       <div>
-        {(value && (
+        {editing ? (
+          <Input
+            defaultValue={value}
+            autoFocus={true}
+            name={value}
+            onKeyUp={keyHandler}
+          />
+        ) : (
           <>
             <label>{value}</label>
           </>
-        )) || <Input defaultValue={value} autoFocus={true} name={value} />}
+        )}
       </div>
     </Container>
   );

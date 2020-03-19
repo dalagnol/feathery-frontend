@@ -4,7 +4,7 @@ import { Config as Configuration } from "../../DevTools";
 import { U, copy, map } from "../../../helpers";
 
 import { Container, Header, List } from "./styles";
-import { Add, Delete, Export } from "./styles/icons";
+import { Translate, Delete, Export } from "./styles/icons";
 
 import Property from "./Property/x";
 
@@ -34,9 +34,9 @@ export default function Context({ name, data }: Props) {
 
   const clipboard = useCallback(() => copy(data), [data]);
 
-  const { open, addingProperty } = (contexts && contexts[name]) || {};
+  const { open, editing } = (contexts && contexts[name]) || {};
 
-  const count = Object.entries(data || {})?.length + (addingProperty ? 2 : 1);
+  const count = Object.entries(data || {})?.length + (editing ? 2 : 1);
 
   return (
     <Container count={count} name={name} open={open}>
@@ -44,7 +44,7 @@ export default function Context({ name, data }: Props) {
         <Title>{name}</Title>
         {open && (
           <div onClick={e => e.stopPropagation()}>
-            <Add rotate={addingProperty} onClick={toggle("addingProperty")} />
+            <Translate onClick={toggle("editing")} />
             <Export
               onClick={clipboard}
               onDoubleClick={set("code", JSON.stringify(data, null, 2))}
@@ -57,9 +57,8 @@ export default function Context({ name, data }: Props) {
       {open && (
         <List>
           {map(data, (params: any) => (
-            <Property context={name} data={data} {...params} />
+            <Property context={name} data={data} {...params} editing={editing}/>
           ))}
-          {addingProperty && <Property context={name} />}
         </List>
       )}
     </Container>
