@@ -1,118 +1,51 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useContext } from "react";
 import { Config as Configuration } from "../../../DevTools";
+import { LocaleContext } from "../../../../useLocale";
 
-import { Container, Delete, Input } from "./styles";
-
-interface Props {
-  context: string;
-  name?: string;
-  value?: string;
-}
-
-const valActions: {
-  [x: number]: Function;
-} = {
-  13: ({ Set, context, key, val, name, setEditing }: any) => {
-    Set(context, key.current?.value || name, val.current?.value);
-    try {
-      key.current.value = "";
-      val.current.value = "";
-      key.current.focus();
-    } catch (oof) {
-      setEditing(false);
-    }
-  },
-  27: ({ toggleContextValue, context }: any) =>
-    toggleContextValue(context, "addingProperty", false)(),
-};
+import { Container, Input } from "./styles";
 
 const keyActions: {
   [x: number]: Function;
 } = {
-  13: (params: any) => {
-    const { e, val } = params;
+  13: ({ Set, name, data, context, toggleContextValue, e }: any) => {
+    const string = Object.values(data)[0];
 
-    const {
-      target: { value },
-    } = e;
-
-    if (e.target.value.includes(":")) {
-      e.target.value = value.split(":")[0].trim();
-      val.current.value = value
-        .split(":")[1]
-        .trim()
-        .replace(/;/g, "");
-      valActions[13](params);
-    } else {
-      val.current?.focus();
-    }
+    Set(e.target.value || name, context, string || name);
+    toggleContextValue(context, "editing", false)();
   },
   27: ({ toggleContextValue, context }: any) =>
-    toggleContextValue(context, "addingProperty", false)(),
+    toggleContextValue(context, "editing", false)(),
 };
 
-export default function Property({ context, name, value }: Props) {
+export default function Property({ context, data, name, value, editing }: any) {
   const { toggleContextValue } = useContext(Configuration);
-
-  const key: any = useRef(null);
-  const val: any = useRef(null);
-
-  const [editing, setEditing] = useState(!name);
+  const { Set } = useContext(LocaleContext);
 
   const handlerParams = {
     Set,
     context,
     name,
-    key,
-    val,
-    setEditing,
+    data,
     toggleContextValue,
   };
 
   const keyHandler = (e: any) =>
     keyActions[e.keyCode] && keyActions[e.keyCode]({ e, ...handlerParams });
 
-  const valHandler = (e: any) =>
-    valActions[e.keyCode] && valActions[e.keyCode]({ e, ...handlerParams });
-
   return (
     <Container>
       <div>
-        {(name && (
-          <>
-            <label>{name}</label>
-          </>
-        )) || (
+        {editing ? (
           <Input
-            ref={key}
-            defaultValue={name}
-            autoFocus={true}
-            onKeyUp={keyHandler}
-            name="key"
-          />
-        )}
-      </div>
-      <div>
-        {(!editing && (
-          <p
-            onDoubleClick={() => {
-              setEditing(true);
-              setTimeout(() => {
-                val.current?.focus();
-              }, 200);
-            }}
-          >
-            {value}
-          </p>
-        )) || (
-          <Input
-            autoFocus={!key}
-            ref={val}
             defaultValue={value}
-            onKeyUp={valHandler}
-            name="value"
-            align={"right"}
+            autoFocus={true}
+            name={value}
+            onKeyUp={keyHandler}
           />
+        ) : (
+          <>
+            <label>{value}</label>
+          </>
         )}
       </div>
     </Container>

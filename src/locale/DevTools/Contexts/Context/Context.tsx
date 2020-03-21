@@ -6,7 +6,7 @@ import { U, copy, map } from "../../../helpers";
 import { Container, Header, List } from "./styles";
 import { Translate, Delete, Export } from "./styles/icons";
 
-import Property from "./Property/x";
+import Property from "./Property/Property";
 
 type Props = {
   name: string;

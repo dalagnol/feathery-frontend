@@ -13,11 +13,6 @@ import {
 
 import { Pin, Globe } from "./styles/icons";
 
-const actions: keyboardActionsMap<{ 13: Function }> = {
-  13: (e: any, Theme: any, Config: any) =>
-    Theme.Add(e.target.value, {}) && Config.set("addingTheme", false)(),
-};
-
 export default function Header() {
   const { Name, SwitchLang, Use, DevTools, ToggleDevTools } = useContext(
     LocaleContext
