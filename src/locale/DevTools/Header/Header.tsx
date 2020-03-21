@@ -8,7 +8,6 @@ import {
   Options,
   Icons,
   Names,
-  Input,
   Title,
 } from "./styles";
 
@@ -51,9 +50,6 @@ export default function Header() {
 
             <Names>{names()}</Names>
           </Options>
-
-          {true && <Input />}
-
           <hr />
         </>
       )}

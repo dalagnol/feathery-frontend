@@ -47,23 +47,3 @@ export const Title = styled.h1<Props>`
 
   ${({ open }) => !open && `font-size: 2em;`}
 `;
-
-export const Input = styled.input<any>`
-  background-color: #00000000;
-  border: none;
-
-  font: 1em Nanum Gothic;
-
-  outline: none;
-
-  ${({ align }) =>
-    !align &&
-    `
-      padding: 10px;
-      min-width: 240px;
-  `}
-
-  animation: slideDown 0.5s;
-
-  text-align: ${({ align }) => align || "left"};
-`;
