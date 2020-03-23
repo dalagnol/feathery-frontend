@@ -75,8 +75,6 @@ export const Localised = observer(({ children }: any) => {
   const ToggleDevTools = () => {
     SetDevTools(!DevTools);
 
-    console.log(DevTools);
-
     Save(LS_DevTools, !DevTools);
   };
 

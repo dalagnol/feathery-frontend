@@ -17,6 +17,7 @@ export function Landing() {
         {l(
           "Notice how this is written naturally, and it still responds to language"
         )}
+        <p>{l("Hello")}</p>
       </Square>
       <DevTools />
     </Playground>

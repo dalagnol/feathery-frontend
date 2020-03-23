@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { TimesCircle } from "styled-icons/fa-regular/TimesCircle";
 
-export const Container = styled.div`
+export const Container = styled.div`  
   height: 30px;
   width: 100%;
   max-width: 100%;

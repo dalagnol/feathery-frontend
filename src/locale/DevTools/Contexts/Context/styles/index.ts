@@ -69,5 +69,5 @@ export const List = styled.div<Props>`
 
   padding: 0px 10px 10px 10px;
 
-  background-color: #00000044;
+  background-color: #00000022;
 `;
